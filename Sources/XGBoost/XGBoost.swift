@@ -325,9 +325,9 @@ public class XGBoost {
         trainingData: Data,
         evaluationData: [Data] = [],
         beforeIteration: (XGBoost, Int) throws -> Void = { _, _ in },
-        afterIteration: (XGBoost, Int, [String: [String: String]]?) throws -> Void = { _, _, _ in }
+        afterIteration: (XGBoost, Int, [String: [String: String]]?) throws -> AfterIterationCallbackOutput = { _, _, _ in .next }
     ) throws {
-        for iteration in 0 ..< iterations {
+        training: for iteration in 0 ..< iterations {
             try beforeIteration(
                 self,
                 iteration
@@ -340,11 +340,18 @@ public class XGBoost {
 
             let evaluation =
                 evaluationData.isEmpty ? nil : try evalOneIter(iteration: iteration, data: evaluationData)
-            try afterIteration(
+            let output = try afterIteration(
                 self,
                 iteration,
                 evaluation
             )
+
+            switch output {
+            case .stop:
+                break training
+            case .next:
+                break
+            }
         }
     }
 }

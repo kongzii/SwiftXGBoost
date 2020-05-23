@@ -9,6 +9,10 @@ typealias Version = (major: Int, minor: Int, patch: Int)
 public
 typealias Feature = (name: String, type: FeatureType)
 
+public enum AfterIterationCallbackOutput {
+    case stop, next
+}
+
 public enum FeatureType: String {
     case quantitative = "q"
     case indicator = "i"
