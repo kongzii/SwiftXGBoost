@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  test:
+    build:
+      context: .
+      target: build
+      dockerfile: Dockerfile-test
+    volumes:
+      - "./:/app"
+    command: swift test
