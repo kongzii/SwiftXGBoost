@@ -19,10 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: SwiftLint with --strict
+      - name: SwiftLint
         uses: norio-nomura/action-swiftlint@3.1.0
-        with:
-          args: --strict
   SwiftFormat:
     runs-on: macos-latest
     steps:
