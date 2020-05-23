@@ -1,6 +1,7 @@
 # XGBoost for Swift
 
-Bindings for XGBoost system library.
+Bindings for the XGBoost system library. 
+The aim of this package is to mimic XGBoost python bindings but, at the same time, utilize the power of Swift and C compatibility. Some things thus behave differently but should provide you maximum flexibility over XGBoost.
 
 ## Installation
 
@@ -23,7 +24,7 @@ make install
 
 #### OSX
 
-Intall XGBoost from brew
+Install XGBoost from brew
 
 ```
 brew install xgboost
@@ -31,7 +32,7 @@ brew install xgboost
 
 ### Package
 
-Add dependency in your your `Package.swift`
+Add a dependency in your your `Package.swift`
 
 ```swift
 .package(url: "https://github.com/kongzii/SwiftXGBoost.git", from: "0.0.0"),
