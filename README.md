@@ -57,7 +57,7 @@ As library is still evolving, there can be incompatible changes,
 use exact version if you do not want to worry about updating your packages.
 
 ```swift
-.package(url: "https://github.com/kongzii/SwiftXGBoost.git", from: "0.1.0"),
+.package(url: "https://github.com/kongzii/SwiftXGBoost.git", .exact("0.1.0")),
 ```
 
 ## Example usage
