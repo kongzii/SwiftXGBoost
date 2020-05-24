@@ -53,6 +53,13 @@ import CXGBoost
 both `XGBoost` and `Data` classes are exposing `pointee` variable to the underlying C pointer,
 so you can utilize C-API directly for more advanced usage.
 
+As library is still evolving, there can be incompatible changes, 
+use exact version if you do not want to worry about updating your packages.
+
+```swift
+.package(url: "https://github.com/kongzii/SwiftXGBoost.git", from: "0.1.0"),
+```
+
 ## Example usage
 
 ```swift
@@ -71,13 +78,10 @@ let labels = (0 ..< 100).map { _ in Float([0, 1].randomElement()!) }
 let data = try Data(
     name: "data",
     values: randomArray,
-    rowCount: 100,
-    columnCount: 10,
+    shape: (100, 10),
+    label: labels,
     threads: 1
 )
-
-// Set labels
-try data.setFloatInfo(field: .label, values: labels)
 
 // Slice array into train and test
 let train = try data.slice(indexes: 0 ..< 90, newName: "train")
@@ -104,4 +108,7 @@ try xgboost.train(
 
 // Predict from test data
 let predictions = try xgboost.predict(from: test)
+
+// Save
+try xgboost.save(to: "model.xgboost")
 ```

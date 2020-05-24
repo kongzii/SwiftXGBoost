@@ -2,6 +2,7 @@ import CXGBoost
 
 /// C API: https://xgboost.readthedocs.io/en/stable/dev/c__api_8h.html#a197d1b017fe9e62785b82397eb6bb17c
 public class XGBoost {
+    var features: [Feature]?
     let booster: UnsafeMutablePointer<BoosterHandle?>
 
     public static var systemLibraryVersion: Version {
@@ -41,10 +42,25 @@ public class XGBoost {
     }
 
     public init(
+        model: BufferModel
+    ) throws {
+        booster = .allocate(capacity: 1)
+
+        try safe {
+            XGBoosterUnserializeFromBuffer(
+                booster,
+                model.data,
+                model.length
+            )
+        }
+    }
+
+    public init(
         with data: [Data] = [],
         from path: String? = nil,
         config: String? = nil,
-        parameters: [Parameter] = []
+        parameters: [Parameter] = [],
+        validateParameters: Bool = true
     ) throws {
         booster = .allocate(capacity: 1)
 
@@ -55,16 +71,22 @@ public class XGBoost {
         }
 
         if let path = path {
-            try loadModel(from: path)
+            try load(model: path)
         }
 
         if let config = config {
-            try loadConfig(config: config)
+            try load(config: config)
+        }
+
+        if validateParameters {
+            try set(parameter: "validate_parameters", value: "1")
         }
 
         for (name, value) in parameters {
-            try setParameter(name: name, value: value)
+            try set(parameter: name, value: value)
         }
+
+        try validate(data: data)
     }
 
     deinit {
@@ -73,7 +95,7 @@ public class XGBoost {
         }
     }
 
-    public func getConfig() throws -> String {
+    public func config() throws -> String {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
 
@@ -84,7 +106,7 @@ public class XGBoost {
         return String(cString: outResult.pointee!)
     }
 
-    public func getAttributes() throws -> [String: String] {
+    public func attributes() throws -> [String: String] {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
 
@@ -96,7 +118,7 @@ public class XGBoost {
         let names = (0 ..< Int(outLenght.pointee)).lazy.map { String(cString: outResult.pointee![$0]!) }
 
         for name in names {
-            attributes[name] = try getAttribute(name: name)!
+            attributes[name] = try attribute(name: name)!
         }
 
         return attributes
@@ -104,10 +126,41 @@ public class XGBoost {
 
     public func predict(
         from data: Data,
-        mask: PredictOutputMask = .normal,
+        outputMargin: Bool = false,
         treeLimit: UInt32 = 0,
-        stage: Stage = .inference
+        predictionLeaf: Bool = false,
+        predictionContributions: Bool = false,
+        approximateContributions: Bool = false,
+        predictionInteractions: Bool = false,
+        training: Bool = false,
+        validateFeatures: Bool = true
     ) throws -> [Float] {
+        if validateFeatures {
+            try validate(data: data)
+        }
+
+        var optionMask: Int32 = 0x00
+
+        if outputMargin {
+            optionMask |= 0x01
+        }
+
+        if predictionLeaf {
+            optionMask |= 0x02
+        }
+
+        if predictionContributions {
+            optionMask |= 0x04
+        }
+
+        if approximateContributions {
+            optionMask |= 0x08
+        }
+
+        if predictionInteractions {
+            optionMask |= 0x10
+        }
+
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafePointer<Float>?>.allocate(capacity: 1)
 
@@ -115,9 +168,9 @@ public class XGBoost {
             XGBoosterPredict(
                 pointee,
                 data.pointee,
-                mask.rawValue,
+                optionMask,
                 treeLimit,
-                stage.rawValue,
+                training ? 1 : 0,
                 outLenght,
                 outResult
             )
@@ -128,26 +181,52 @@ public class XGBoost {
 
     public func predict(
         features: [Float],
-        mask: PredictOutputMask = .normal,
+        outputMargin: Bool = false,
         treeLimit: UInt32 = 0,
-        stage: Stage = .inference,
+        predictionLeaf: Bool = false,
+        predictionContributions: Bool = false,
+        approximateContributions: Bool = false,
+        predictionInteractions: Bool = false,
+        training: Bool = false,
         missingValue: Float = Float.greatestFiniteMagnitude
     ) throws -> Float {
         try predict(
             from: Data(
                 name: "predict",
                 values: features,
-                rowCount: 1,
-                columnCount: features.count,
+                shape: (1, features.count),
+                features: self.features,
                 missingValue: missingValue
             ),
-            mask: mask,
+            outputMargin: outputMargin,
             treeLimit: treeLimit,
-            stage: stage
+            predictionLeaf: predictionLeaf,
+            predictionContributions: predictionContributions,
+            approximateContributions: approximateContributions,
+            predictionInteractions: predictionInteractions,
+            training: training
         )[0]
     }
 
-    public func saveModel(
+    public func serialized() throws -> BufferModel {
+        let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
+        let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
+
+        try safe {
+            XGBoosterSerializeToBuffer(
+                pointee,
+                length,
+                data
+            )
+        }
+
+        return (
+            length: length.pointee,
+            data: data
+        )
+    }
+
+    public func save(
         to path: String
     ) throws {
         try safe {
@@ -155,11 +234,48 @@ public class XGBoost {
         }
     }
 
-    public func dumpModel(
-        features: String,
+    public func raw() throws -> BufferModel {
+        let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
+        let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
+
+        try safe {
+            XGBoosterGetModelRaw(
+                pointee,
+                length,
+                data
+            )
+        }
+
+        return (
+            length: length.pointee,
+            data: data
+        )
+    }
+
+    func formatModelDump(
+        models: [String],
+        format: ModelFormat
+    ) -> String {
+        var output: String
+
+        switch format {
+        case .json:
+            output = "[\n\(models.joined(separator: ",\n"))]\n"
+        case .text:
+            output = ""
+            for (index, booster) in models.enumerated() {
+                output += "booster[\(index)]:\n\(booster)"
+            }
+        }
+
+        return output
+    }
+
+    public func dumped(
+        features: String = "",
         withStatistics: Bool = false,
         format: ModelFormat = .text
-    ) throws -> [String] {
+    ) throws -> String {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
 
@@ -174,14 +290,15 @@ public class XGBoost {
             )
         }
 
-        return (0 ..< Int(outLenght.pointee)).lazy.map { String(cString: outResult.pointee![$0]!) }
+        let models = (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
+        return formatModelDump(models: models, format: format)
     }
 
-    public func dumpModel(
+    public func dumped(
         features: [Feature],
         withStatistics: Bool = false,
         format: ModelFormat = .text
-    ) throws -> [String] {
+    ) throws -> String {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
 
@@ -201,18 +318,31 @@ public class XGBoost {
             )
         }
 
-        return (0 ..< Int(outLenght.pointee)).lazy.map { String(cString: outResult.pointee![$0]!) }
+        let models = (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
+        return formatModelDump(models: models, format: format)
     }
 
-    public func loadModel(
-        from path: String
+    public func load(
+        model buffer: BufferModel
+    ) throws {
+        try safe {
+            XGBoosterLoadModelFromBuffer(
+                pointee,
+                buffer.data,
+                buffer.length
+            )
+        }
+    }
+
+    public func load(
+        model path: String
     ) throws {
         try safe {
             XGBoosterLoadModel(pointee, path)
         }
     }
 
-    public func loadConfig(
+    public func load(
         config: String
     ) throws {
         try safe {
@@ -234,7 +364,7 @@ public class XGBoost {
         return Int(version)
     }
 
-    public func getAttribute(
+    public func attribute(
         name: String
     ) throws -> String? {
         var success: Int32 = -1
@@ -251,30 +381,32 @@ public class XGBoost {
         return String(cString: outResult.pointee!)
     }
 
-    public func setAttribute(
-        name: String,
+    public func set(
+        attribute: String,
         value: String
     ) throws {
         try safe {
             XGBoosterSetAttr(
-                pointee, name, value
+                pointee, attribute, value
             )
         }
     }
 
-    public func setParameter(
-        name: String,
+    public func set(
+        parameter: String,
         value: String
     ) throws {
         try safe {
-            XGBoosterSetParam(pointee, name, value)
+            XGBoosterSetParam(pointee, parameter, value)
         }
     }
 
-    public func updateOneIter(
+    public func update(
         iteration: Int,
         data: Data
     ) throws {
+        try validate(data: data)
+
         try safe {
             XGBoosterUpdateOneIter(
                 pointee,
@@ -284,10 +416,12 @@ public class XGBoost {
         }
     }
 
-    public func evalOneIter(
+    public func evaluate(
         iteration: Int,
         data: [Data]
     ) throws -> [String: [String: String]] {
+        try validate(data: data)
+
         var pointees = data.map { $0.pointee }
         var names = data.map { $0.name.cCompatible }
         let output = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -328,6 +462,13 @@ public class XGBoost {
         return results
     }
 
+    public func evaluate(
+        iteration: Int,
+        data: Data
+    ) throws -> [String: [String: String]] {
+        try evaluate(iteration: iteration, data: [data])
+    }
+
     public func train(
         iterations: Int,
         trainingData: Data,
@@ -341,13 +482,13 @@ public class XGBoost {
                 iteration
             )
 
-            try updateOneIter(
+            try update(
                 iteration: iteration,
                 data: trainingData
             )
 
             let evaluation =
-                evaluationData.isEmpty ? nil : try evalOneIter(iteration: iteration, data: evaluationData)
+                evaluationData.isEmpty ? nil : try evaluate(iteration: iteration, data: evaluationData)
             let output = try afterIteration(
                 self,
                 iteration,
@@ -360,6 +501,43 @@ public class XGBoost {
             case .next:
                 break
             }
+        }
+    }
+
+    public func validate(
+        features: [Feature]
+    ) throws {
+        guard let boosterFeatures = self.features else {
+            self.features = features
+            return
+        }
+
+        let featureNames = features.map { $0.name }
+        let boosterFeatureNames = boosterFeatures.map { $0.name }
+
+        if featureNames != boosterFeatureNames {
+            let dataMissing = Set(boosterFeatureNames).subtracting(Set(featureNames))
+            let boosterMissing = Set(featureNames).subtracting(Set(boosterFeatureNames))
+
+            throw ValueError.runtimeError("""
+            Feature names mismatch.
+            Missing in data: \(dataMissing).
+            Missing in booster: \(boosterMissing).
+            """)
+        }
+    }
+
+    public func validate(
+        data: Data
+    ) throws {
+        try validate(features: data.features())
+    }
+
+    public func validate(
+        data: [Data]
+    ) throws {
+        for data in data {
+            try validate(features: data.features())
         }
     }
 }

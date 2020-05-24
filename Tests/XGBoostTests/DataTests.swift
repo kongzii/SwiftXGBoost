@@ -8,12 +8,13 @@ final class DataTests: XCTestCase {
         let data = try Data(
             name: "data",
             values: randomArray,
-            rowCount: 5,
-            columnCount: 2,
+            shape: (5, 2),
             threads: 1
         )
-        XCTAssertEqual(try data.getRowCount(), 5)
-        XCTAssertEqual(try data.getColumnCount(), 2)
+        XCTAssertEqual(try data.rowCount(), 5)
+        XCTAssertEqual(try data.columnCount(), 2)
+        XCTAssertEqual(try data.shape().row, 5)
+        XCTAssertEqual(try data.shape().column, 2)
     }
 
     static var allTests = [

@@ -19,13 +19,10 @@ final class ExampleTests: XCTestCase {
         let data = try Data(
             name: "data",
             values: randomArray,
-            rowCount: 100,
-            columnCount: 10,
+            shape: (100, 10),
+            label: labels,
             threads: 1
         )
-
-        // Set labels
-        try data.setFloatInfo(field: .label, values: labels)
 
         // Slice array into train and test
         let train = try data.slice(indexes: 0 ..< 90, newName: "train")
@@ -53,14 +50,17 @@ final class ExampleTests: XCTestCase {
         // Predict from test data
         let predictions = try xgboost.predict(from: test)
 
+        // Save
+        try xgboost.save(to: "model.xgboost")
+
         // Assert outputs
-        XCTAssertEqual(try data.getFloatInfo(field: .label), labels)
-        XCTAssertEqual(try data.getRowCount(), 100)
-        XCTAssertEqual(try data.getColumnCount(), 10)
-        XCTAssertEqual(try train.getRowCount(), 90)
-        XCTAssertEqual(try train.getColumnCount(), 10)
-        XCTAssertEqual(try test.getRowCount(), 10)
-        XCTAssertEqual(try test.getColumnCount(), 10)
+        XCTAssertEqual(try data.label(), labels)
+        XCTAssertEqual(try data.rowCount(), 100)
+        XCTAssertEqual(try data.columnCount(), 10)
+        XCTAssertEqual(try train.rowCount(), 90)
+        XCTAssertEqual(try train.columnCount(), 10)
+        XCTAssertEqual(try test.rowCount(), 10)
+        XCTAssertEqual(try test.columnCount(), 10)
     }
 
     static var allTests = [
