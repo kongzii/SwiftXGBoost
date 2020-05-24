@@ -6,6 +6,11 @@ final class ExampleTests: XCTestCase {
     func readmeExample1() throws {
         // import XGBoost
 
+        // Register your own callback function for log(info) messages
+        try XGBoost.registerLogCallback {
+            print("Swifty log:", String(cString: $0!))
+        }
+
         // Create some random features and labels
         let randomArray = (0 ..< 1000).map { _ in Float.random(in: 0 ..< 2) }
         let labels = (0 ..< 100).map { _ in Float([0, 1].randomElement()!) }
@@ -28,6 +33,7 @@ final class ExampleTests: XCTestCase {
 
         // Parameters for XGBoost, check https://xgboost.readthedocs.io/en/latest/parameter.html
         let parameters: [Parameter] = [
+            ("verbosity", "2"),
             ("seed", "0"),
         ]
 

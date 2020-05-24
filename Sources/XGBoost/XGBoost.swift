@@ -22,6 +22,14 @@ public class XGBoost {
         )
     }
 
+    public static func registerLogCallback(
+        _ call: (@convention(c) (UnsafePointer<Int8>?) -> Void)?
+    ) throws {
+        try safe {
+            XGBRegisterLogCallback(call)
+        }
+    }
+
     public var pointee: BoosterHandle? {
         booster.pointee
     }
