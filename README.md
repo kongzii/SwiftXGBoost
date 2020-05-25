@@ -112,3 +112,11 @@ let predictions = try xgboost.predict(from: test)
 // Save
 try xgboost.save(to: "model.xgboost")
 ```
+
+## Development
+
+### Run tests locally
+
+```
+docker-compose run test 
+```
