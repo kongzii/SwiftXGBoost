@@ -416,6 +416,56 @@ public class XGBoost {
         }
     }
 
+    public func update(
+        data: Data,
+        objective: ([Float], Data) -> (gradient: [Float], hessian: [Float]),
+        validateFeatures: Bool = true
+    ) throws {
+        let predicted = try predict(
+            from: data,
+            outputMargin: true,
+            training: true,
+            validateFeatures: validateFeatures
+        )
+        let (gradient, hessian) = objective(predicted, data)
+        try boost(
+            data: data,
+            gradient: gradient,
+            hessian: hessian,
+            validateFeatures: false
+        )
+    }
+
+    public func boost(
+        data: Data,
+        gradient: [Float],
+        hessian: [Float],
+        validateFeatures: Bool = true
+    ) throws {
+        if gradient.count != hessian.count {
+            throw ValueError.runtimeError(
+                "Gradient count \(gradient.count) != Hessian count \(hessian.count)."
+            )
+        }
+
+        if validateFeatures {
+            try validate(data: data)
+        }
+
+        var gradient = gradient
+        var hessian = hessian
+
+        try safe {
+            XGBoosterBoostOneIter(
+                pointee,
+                data.pointee,
+                &gradient,
+                &hessian,
+                UInt64(gradient.count)
+            )
+        }
+    }
+
     public func evaluate(
         iteration: Int,
         data: [Data]

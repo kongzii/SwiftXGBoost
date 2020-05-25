@@ -8,8 +8,6 @@
 
 ### Booster
 
-- update custom objective function
-- boost
 - predict output shape
 - get_fscore
 - get_score
