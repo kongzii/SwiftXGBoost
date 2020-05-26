@@ -20,8 +20,6 @@ public enum AfterIterationCallbackOutput {
 }
 
 public enum FeatureType: String {
-    case float
-    case int
     case quantitative = "q"
     case indicator = "i"
 }

@@ -298,7 +298,6 @@ public class XGBoost {
     ) throws -> [String] {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
-
         try safe {
             XGBoosterDumpModelEx(
                 pointee,
@@ -439,7 +438,7 @@ public class XGBoost {
 
         if averageOverSplits {
             for (featureName, value) in gMap {
-                gMap[featureName] = gMap[featureName]! / Float(fMap[featureName]!)
+                gMap[featureName] = value / Float(fMap[featureName]!)
             }
         }
 

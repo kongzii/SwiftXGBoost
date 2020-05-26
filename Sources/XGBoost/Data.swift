@@ -134,6 +134,12 @@ public class Data {
         }
     }
 
+    public func saveFeatureMap(
+        to path: String
+    ) throws {
+        try features().saveFeatureMap(to: path)
+    }
+
     public func rowCount() throws -> Int {
         var count: UInt64 = 0
         try! safe {
