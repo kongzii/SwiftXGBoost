@@ -1,6 +1,9 @@
 import CXGBoost
 
-/// C API: https://xgboost.readthedocs.io/en/stable/dev/c__api_8h.html#a197d1b017fe9e62785b82397eb6bb17c
+
+/// XGBoost
+///
+/// C API: https://xgboost.readthedocs.io/en/stable/dev/c__api_8h.html
 public class XGBoost {
     var features: [Feature]?
     var type: Booster?
