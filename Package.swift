@@ -19,6 +19,7 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(url: "https://github.com/pvieito/PythonKit.git", .branch("master")),
     ],
     targets: [
         .target(
@@ -37,6 +38,7 @@ let package = Package(
             name: "XGBoostTests",
             dependencies: [
                 "XGBoost",
+                "PythonKit",
             ]
         ),
     ]

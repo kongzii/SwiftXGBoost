@@ -115,7 +115,19 @@ try xgboost.save(to: "model.xgboost")
 
 ## Development
 
-### Run tests locally
+### Tests
+
+Where possible, Swift implementation is tested against reference implementation in Python via PythonKit. For example, test of `score` method in `scoreEmptyFeatureMapTest`
+
+```swift
+let pyFMap = [String: Int](pyXgboost.get_score(
+    fmap: "", importance_type: "weight"))!
+let (fMap, _) = try xgboost.score(featureMap: "", importance: .weight)
+
+XCTAssertEqual(fMap, pyFMap)
+```
+
+#### Run locally
 
 ```
 docker-compose run test 

@@ -43,3 +43,17 @@ public enum FloatField: String {
 public enum UIntField: String {
     case group
 }
+
+public enum Importance: String {
+    case weight
+    case gain
+    case cover
+    case totalGain = "total_gain"
+    case totalCover = "total_cover"
+}
+
+public enum Booster: String {
+    case gbtree
+    case gblinear
+    case dart
+}

@@ -3,6 +3,7 @@ import CXGBoost
 /// C API: https://xgboost.readthedocs.io/en/stable/dev/c__api_8h.html#a197d1b017fe9e62785b82397eb6bb17c
 public class XGBoost {
     var features: [Feature]?
+    var type: Booster?
     let booster: UnsafeMutablePointer<BoosterHandle?>
 
     public static var systemLibraryVersion: Version {
@@ -84,6 +85,10 @@ public class XGBoost {
 
         for (name, value) in parameters {
             try set(parameter: name, value: value)
+
+            if name == "booster" {
+                type = Booster(rawValue: name)
+            }
         }
 
         try validate(data: data)
@@ -272,17 +277,32 @@ public class XGBoost {
     }
 
     public func dumped(
-        features: String = "",
+        featureMap: String = "",
         withStatistics: Bool = false,
         format: ModelFormat = .text
     ) throws -> String {
+        try formatModelDump(
+            models: rawDumped(
+                featureMap: featureMap,
+                withStatistics: withStatistics,
+                format: format
+            ),
+            format: format
+        )
+    }
+
+    public func rawDumped(
+        featureMap: String = "",
+        withStatistics: Bool = false,
+        format: ModelFormat = .text
+    ) throws -> [String] {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
 
         try safe {
             XGBoosterDumpModelEx(
                 pointee,
-                features,
+                featureMap,
                 withStatistics ? 1 : 0,
                 format.rawValue,
                 outLenght,
@@ -290,8 +310,7 @@ public class XGBoost {
             )
         }
 
-        let models = (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
-        return formatModelDump(models: models, format: format)
+        return (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
     }
 
     public func dumped(
@@ -299,6 +318,21 @@ public class XGBoost {
         withStatistics: Bool = false,
         format: ModelFormat = .text
     ) throws -> String {
+        try formatModelDump(
+            models: rawDumped(
+                features: features,
+                withStatistics: withStatistics,
+                format: format
+            ),
+            format: format
+        )
+    }
+
+    public func rawDumped(
+        features: [Feature],
+        withStatistics: Bool = false,
+        format: ModelFormat = .text
+    ) throws -> [String] {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
 
@@ -318,8 +352,98 @@ public class XGBoost {
             )
         }
 
-        let models = (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
-        return formatModelDump(models: models, format: format)
+        return (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
+    }
+
+    public func score(
+        featureMap: String = "",
+        importance: Importance = .weight
+    ) throws -> (features: [String: Int], gains: [String: Float]?) {
+        if type != nil, ![.gbtree, .dart].contains(type!) {
+            throw ValueError.runtimeError("Feature importance not defined for \(booster).")
+        }
+
+        if importance == .weight {
+            var fMap = [String: Int]()
+            let trees = try rawDumped(
+                featureMap: featureMap,
+                withStatistics: false,
+                format: .text
+            )
+
+            for tree in trees {
+                let lines = tree.components(separatedBy: "\n")
+                for line in lines {
+                    let splitted = line.components(separatedBy: "[")
+
+                    if splitted.count == 1 {
+                        // Leaf node
+                        continue
+                    }
+
+                    let fid = splitted[1]
+                        .components(separatedBy: "]")[0]
+                        .components(separatedBy: "<")[0]
+
+                    fMap[fid] = (fMap[fid] ?? 0) + 1
+                }
+            }
+
+            return (fMap, nil)
+        }
+
+        var importance = importance
+        var averageOverSplits = true
+
+        if importance == .totalGain {
+            importance = .gain
+            averageOverSplits = false
+        }
+
+        if importance == .totalCover {
+            importance = .cover
+            averageOverSplits = false
+        }
+
+        var fMap = [String: Int]()
+        var gMap = [String: Float]()
+        let importanceSeparator = importance.rawValue + "="
+        let trees = try rawDumped(
+            featureMap: featureMap,
+            withStatistics: true,
+            format: .text
+        )
+
+        for tree in trees {
+            let lines = tree.components(separatedBy: "\n")
+            for line in lines {
+                let splitted = line.components(separatedBy: "[")
+
+                if splitted.count == 1 {
+                    // Leaf node
+                    continue
+                }
+
+                let feature = splitted[1].components(separatedBy: "]")
+                let featureName = feature[0].components(separatedBy: "<")[0]
+                let gain = Float(
+                    feature[1]
+                        .components(separatedBy: importanceSeparator)[1]
+                        .components(separatedBy: ",")[0]
+                )!
+
+                fMap[featureName] = (fMap[featureName] ?? 0) + 1
+                gMap[featureName] = (gMap[featureName] ?? 0) + gain
+            }
+        }
+
+        if averageOverSplits {
+            for (featureName, value) in gMap {
+                gMap[featureName] = gMap[featureName]! / Float(fMap[featureName]!)
+            }
+        }
+
+        return (fMap, gMap)
     }
 
     public func load(
