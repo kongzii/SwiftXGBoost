@@ -1,6 +1,5 @@
 import CXGBoost
 
-
 /// XGBoost
 ///
 /// C API: https://xgboost.readthedocs.io/en/stable/dev/c__api_8h.html
