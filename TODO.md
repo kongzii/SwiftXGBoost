@@ -2,10 +2,6 @@
 
 ## core.py
 
-### Data
-
-- DeviceQuantileDMatrix
-
 ### Booster
 
 - predict output shape
