@@ -30,6 +30,11 @@ RUN git clone --recursive https://github.com/dmlc/xgboost \
 
 RUN python3.8 -m pip install xgboost==1.1.0
 
+RUN apt-get install -y libxml2-dev \
+    && git clone https://github.com/SwiftDocOrg/swift-doc \
+    && cd swift-doc \
+    && make install
+
 WORKDIR /app
 
 FROM build AS app

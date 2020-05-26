@@ -15,6 +15,7 @@ jobs:
         with:
           inputs: "Sources"
           module-name: XGBoost
+          base-url: "https://github.com/kongzii/SwiftXGBoost/wiki"
           output: "Documentation"
       - name: Upload Documentation to Wiki
         uses: SwiftDocOrg/github-wiki-publish-action@v1

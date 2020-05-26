@@ -3,6 +3,8 @@
 Bindings for the XGBoost system library. 
 The aim of this package is to mimic XGBoost python bindings but, at the same time, utilize the power of Swift and C compatibility. Some things thus behave differently but should provide you maximum flexibility over XGBoost.
 
+Documentation is available at [Wiki](https://github.com/kongzii/SwiftXGBoost/wiki).
+
 ## Installation
 
 ### System library dependency
@@ -114,6 +116,18 @@ try xgboost.save(to: "model.xgboost")
 ```
 
 ## Development
+
+### Documentation
+
+[Swiftdoc](https://github.com/SwiftDocOrg/swift-doc) is used for generation of documenation for module `XGBoost`.
+
+You can generate documentation locally using 
+
+```
+docker-compose run documentation
+```
+
+Github wiki will be updated automatically, when merged into master.
 
 ### Tests
 
