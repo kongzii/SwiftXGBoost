@@ -2,7 +2,7 @@ import CXGBoost
 
 /// Data class used with XGBoost.
 ///
-/// Data is encapsulation of DMatrixHandle, internal structure used by XGBoost, 
+/// Data is encapsulation of DMatrixHandle, internal structure used by XGBoost,
 /// which is optimized for both memory efficiency and training speed.
 public class Data {
     /// Name of dataset, for example, "train".
