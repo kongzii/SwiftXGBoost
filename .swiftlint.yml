@@ -6,3 +6,4 @@ disabled_rules:
   - large_tuple
   - force_cast
   - type_name
+  - type_body_length

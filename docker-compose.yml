@@ -1,10 +1,17 @@
 version: '3.7'
 services:
+  swiftxgboost:
+    build:
+      context: .
+      target: build
+    image: swiftxgboost
+    volumes:
+      - "./:/app"
+
   test:
     build:
       context: .
       target: build
-      dockerfile: Dockerfile-test
     image: swiftxgboost
     volumes:
       - "./:/app"
@@ -14,7 +21,6 @@ services:
     build:
       context: .
       target: build
-      dockerfile: Dockerfile-test
     image: swiftxgboost
     volumes:
       - "./:/app"

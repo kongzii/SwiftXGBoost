@@ -36,6 +36,15 @@
           "revision": "223d62adc52d51669ae2ee19bdb8b7d9fd6fcd9c",
           "version": "0.0.6"
         }
+      },
+      {
+        "package": "SwiftPlot",
+        "repositoryURL": "https://github.com/KarthikRIyer/swiftplot.git",
+        "state": {
+          "branch": null,
+          "revision": "c5424eb8688217029d44e941d3a1d2ccc18c3a82",
+          "version": "2.0.0"
+        }
       }
     ]
   },
