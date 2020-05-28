@@ -1,15 +1,26 @@
 import CXGBoost
 
+/// Data class used with XGBoost.
+///
+/// Data is encapsulation of DMatrixHandle, internal structure used by XGBoost, 
+/// which is optimized for both memory efficiency and training speed.
 public class Data {
+    /// Name of dataset, for example, "train".
     public var name: String
 
     var _features: [Feature]?
     var dmatrix: UnsafeMutablePointer<DMatrixHandle?>
 
+    /// Pointer to underlying DMatrixHandle.
     public var pointee: DMatrixHandle? {
         dmatrix.pointee
     }
 
+    /// Initialize Data with an existing DMatrixHandle pointer.
+    ///
+    /// - Parameter name: Name of dataset.
+    /// - Parameter features: Array describing features in this dataset.
+    /// - Parameter dmatrix: DMatrixHandle pointer.
     public init(
         name: String,
         features: [Feature]? = nil,
@@ -23,6 +34,16 @@ public class Data {
         }
     }
 
+    /// Initialize Data.
+    ///
+    /// - Parameter name: Name of dataset.
+    /// - Parameter values: Values source.
+    /// - Parameter shape: Shape of resulting DMatrixHandle.
+    /// - Parameter weight: Weight for each instance.
+    /// - Parameter baseMargin: Set base margin of booster to start from.
+    /// - Parameter features: Names and types of features.
+    /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
+    /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public init(
         name: String,
         values: [Float],
@@ -65,6 +86,18 @@ public class Data {
         }
     }
 
+    /// Initialize Data from file.
+    ///
+    /// - Parameter name: Name of dataset.
+    /// - Parameter file: File to laod from.
+    /// - Parameter format: Format of input file.
+    /// - Parameter features: Names and types of features.
+    /// - Parameter labelColumn: Which column is for label.
+    /// - Parameter label: Array of labels for data.
+    /// - Parameter weight: Weight for each instance.
+    /// - Parameter baseMargin: Set base margin of booster to start from.
+    /// - Parameter silent: Whether print messages during construction.
+    /// - Parameter fileQuery: Additional parameters that will be appended to the file path as query.
     public init(
         name: String,
         file: String,
@@ -121,6 +154,10 @@ public class Data {
         }
     }
 
+    /// Save DMatrixHandle to binary file.
+    ///
+    /// - Parameter to: File path.
+    /// - Parameter silent: Whether print messages during construction.
     public func save(
         to path: String,
         silent: Bool = true
@@ -134,12 +171,16 @@ public class Data {
         }
     }
 
+    /// Save feature map compatible with XGBoost`s inputs.
+    ///
+    /// - Parameter to: Path where feature map will be saved.
     public func saveFeatureMap(
         to path: String
     ) throws {
         try features().saveFeatureMap(to: path)
     }
 
+    /// - Returns: The number of rows.
     public func rowCount() throws -> Int {
         var count: UInt64 = 0
         try! safe {
@@ -151,6 +192,7 @@ public class Data {
         return Int(count)
     }
 
+    /// - Returns: The number of columns.
     public func columnCount() throws -> Int {
         var count: UInt64 = 0
         try! safe {
@@ -162,6 +204,7 @@ public class Data {
         return Int(count)
     }
 
+    /// - Returns: The shape of data, i.e. (rowCount(), columnCount()).
     public func shape() throws -> Shape {
         Shape(
             row: try rowCount(),
