@@ -1,5 +1,4 @@
 import AGGRenderer
-import Plotly
 import SwiftPlot
 
 extension XGBoost {
