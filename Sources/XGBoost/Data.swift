@@ -212,6 +212,12 @@ public class Data {
         )
     }
 
+    /// Slice and return a new Data that only contains `indexes`.
+    ///
+    /// - Parameter indexes: Array of indices to be selected.
+    /// - Parameter newName: New name of the returned Data.
+    /// - Parameter allowGroups: Allow slicing of a matrix with a groups attribute.
+    /// - Returns: A new data class containing only selected indexes.
     public func slice(
         indexes: [Int],
         newName: String? = nil,
@@ -237,6 +243,12 @@ public class Data {
         )
     }
 
+    /// Slice and return a new Data that only indexes from given range..
+    ///
+    /// - Parameter indexes: Range of indices to be selected.
+    /// - Parameter newName: New name of the returned Data.
+    /// - Parameter allowGroups: Allow slicing of a matrix with a groups attribute.
+    /// - Returns: A new data class containing only selected indexes.
     public func slice(
         indexes: Range<Int>,
         newName: String? = nil,
@@ -249,6 +261,10 @@ public class Data {
         )
     }
 
+    /// Set uint type property into the DMatrixHandle.
+    ///
+    /// - Parameter field: The field name of the information.
+    /// - Parameter values: The array of data to be set.
     public func setUIntInfo(
         field: String,
         values: [UInt32]
@@ -263,6 +279,10 @@ public class Data {
         }
     }
 
+    /// Set float type property into the DMatrixHandle.
+    ///
+    /// - Parameter field: The field name of the information.
+    /// - Parameter values: The array of data to be set.
     public func setFloatInfo(
         field: String,
         values: [Float]
@@ -277,6 +297,10 @@ public class Data {
         }
     }
 
+    /// Get unsigned integer property from the DMatrixHandle.
+    ///
+    /// - Parameter field: The field name of the information.
+    /// - Returns: An array of unsigned integer information of the data.
     public func getUIntInfo(
         field: UIntField
     ) throws -> [UInt32] {
@@ -290,6 +314,10 @@ public class Data {
         return (0 ..< Int(outLenght.pointee)).lazy.map { outResult.pointee![$0] }
     }
 
+    /// Get float property from the DMatrixHandle.
+    ///
+    /// - Parameter field: The field name of the information.
+    /// - Returns: An array of float information of the data.
     public func getFloatInfo(
         field: FloatField
     ) throws -> [Float] {
@@ -303,6 +331,10 @@ public class Data {
         return (0 ..< Int(outLenght.pointee)).lazy.map { outResult.pointee![$0] }
     }
 
+    /// Set uint type property into the DMatrixHandle.
+    ///
+    /// - Parameter field: The field name of the information.
+    /// - Parameter values: The array of data to be set.
     public func set(
         field: UIntField,
         values: [UInt32]
@@ -310,6 +342,10 @@ public class Data {
         try setUIntInfo(field: field.rawValue, values: values)
     }
 
+    /// Set float type property into the DMatrixHandle.
+    ///
+    /// - Parameter field: The field name of the information.
+    /// - Parameter values: The array of data to be set.
     public func set(
         field: FloatField,
         values: [Float]
@@ -317,30 +353,45 @@ public class Data {
         try setFloatInfo(field: field.rawValue, values: values)
     }
 
+    /// Set float type property named "label" into the DMatrixHandle.
+    ///
+    /// - Parameter label: The array of labels to be set.
     public func set(
         label: [Float]
     ) throws {
         try set(field: .label, values: label)
     }
 
+    /// Set float type property named "weight" into the DMatrixHandle.
+    ///
+    /// - Parameter label: The array of weights to be set.
     public func set(
         weight: [Float]
     ) throws {
         try set(field: .weight, values: weight)
     }
 
+    /// Set float type property named "base_margin" into the DMatrixHandle.
+    ///
+    /// - Parameter label: The array of values to be set.
     public func set(
         baseMargin: [Float]
     ) throws {
         try set(field: .baseMargin, values: baseMargin)
     }
 
+    /// Set uint type property named "group" into the DMatrixHandle.
+    ///
+    /// - Parameter label: The array of values to be set.
     public func set(
         group: [UInt32]
     ) throws {
         try set(field: .group, values: group)
     }
 
+    /// Save names and types of features.
+    ///
+    /// - Parameter features: Optional array of features.
     public func set(
         features: [Feature]?
     ) throws {
@@ -368,22 +419,27 @@ public class Data {
         _features = features
     }
 
+    /// - Returns: An array of label information of the data.
     public func label() throws -> [Float] {
         try getFloatInfo(field: .label)
     }
 
+    /// - Returns: An array of weight information of the data.
     public func weight() throws -> [Float] {
         try getFloatInfo(field: .weight)
     }
 
+    /// - Returns: An array of base margin information of the data.
     public func baseMargin() throws -> [Float] {
         try getFloatInfo(field: .baseMargin)
     }
 
+    /// - Returns: An array of group information of the data.
     public func group() throws -> [UInt32] {
         try getUIntInfo(field: .group)
     }
 
+    /// - Returns: Features of data, generates universal names if not previously set by user.
     public func features() throws -> [Feature] {
         if let features = _features {
             return features
