@@ -1,3 +1,6 @@
+[![Swift Version](https://img.shields.io/badge/Swift-5.2-green.svg)]()
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
+
 # XGBoost for Swift
 
 Bindings for [the XGBoost system library](https://en.wikipedia.org/wiki/XGBoost). 
