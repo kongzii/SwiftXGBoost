@@ -13,21 +13,21 @@ func assertEqualDictionary(_ a: [String: Float], _ b: [String: Float], accuracy:
 }
 
 final class XGBoostTests: XCTestCase {
-    func attributeTest() throws {
+    func testAttribute() throws {
         let xgboost = try XGBoost()
         try xgboost.set(attribute: "testName", value: "testValue")
         XCTAssertEqual(try xgboost.attribute(name: "testName"), "testValue")
         XCTAssertNil(try xgboost.attribute(name: "unknownName"))
     }
 
-    func attributesTest() throws {
+    func testAttributes() throws {
         let xgboost = try XGBoost()
         try xgboost.set(attribute: "attribute1", value: "value1")
         try xgboost.set(attribute: "attribute2", value: "value2")
         XCTAssertEqual(try xgboost.attributes(), ["attribute1": "value1", "attribute2": "value2"])
     }
 
-    func jsonDumpedTest() throws {
+    func testJsonDumped() throws {
         let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
         let data = try Data(
@@ -50,7 +50,7 @@ final class XGBoostTests: XCTestCase {
         XCTAssertNotNil(jsonObject)
     }
 
-    func textDumpedTest() throws {
+    func testTextDumped() throws {
         let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
         let data = try Data(
@@ -72,7 +72,7 @@ final class XGBoostTests: XCTestCase {
         XCTAssertNotEqual(text, "")
     }
 
-    func scoreEmptyFeatureMapTest() throws {
+    func testScoreEmptyFeatureMap() throws {
         let randomArray = (0 ..< 50).map { _ in Float.random(in: 0 ..< 2) }
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
         let data = try Data(
@@ -89,7 +89,7 @@ final class XGBoostTests: XCTestCase {
         )
 
         let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "scoreEmptyFeatureMapTest.xgboost", isDirectory: false
+            "testScoreEmptyFeatureMap.xgboost", isDirectory: false
         ).absoluteString
 
         try xgboost.save(to: temporaryModelFile)
@@ -126,7 +126,7 @@ final class XGBoostTests: XCTestCase {
         assertEqualDictionary(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
     }
 
-    func scoreWithFeatureMapTest() throws {
+    func testScoreWithFeatureMap() throws {
         let randomArray = (0 ..< 50).map { _ in Float.random(in: 0 ..< 2) }
         let features = (0 ..< 5).map { Feature(name: "Feature-\($0)", type: .quantitative) }
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
@@ -145,10 +145,10 @@ final class XGBoostTests: XCTestCase {
         )
 
         let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "scoreWithFeatureMapTest.xgboost", isDirectory: false
+            "testScoreWithFeatureMap.xgboost", isDirectory: false
         ).path
         let temporaryNamesFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "scoreWithFeatureMapTest.featuremap.txt", isDirectory: false
+            "testScoreWithFeatureMap.featuremap.txt", isDirectory: false
         ).path
 
         try features.saveFeatureMap(to: temporaryNamesFile)
@@ -198,11 +198,11 @@ final class XGBoostTests: XCTestCase {
     }
 
     static var allTests = [
-        ("attributeTest", attributeTest),
-        ("attributesTest", attributesTest),
-        ("jsonDumpedTest", jsonDumpedTest),
-        ("textDumpedTest", textDumpedTest),
-        ("scoreEmptyFeatureMapTest", scoreEmptyFeatureMapTest),
-        ("scoreWithFeatureMapTest", scoreWithFeatureMapTest),
+        ("testAttribute", testAttribute),
+        ("testAttributes", testAttributes),
+        ("testJsonDumped", testJsonDumped),
+        ("testTextDumped", testTextDumped),
+        ("testScoreEmptyFeatureMap", testScoreEmptyFeatureMap),
+        ("testScoreWithFeatureMap", testScoreWithFeatureMap),
     ]
 }

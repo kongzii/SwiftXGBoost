@@ -3,7 +3,7 @@ import XCTest
 @testable import XGBoost
 
 final class PlotTests: XCTestCase {
-    func saveImportanceGraphTest() throws {
+    func testSaveImportanceGraph() throws {
         let randomArray = (0 ..< 50).map { _ in Float.random(in: 0 ..< 2) }
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
         let features = (0 ..< 5).map { Feature(name: "Name-\($0)", type: .quantitative) }
@@ -22,10 +22,10 @@ final class PlotTests: XCTestCase {
         )
 
         let graphFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "saveImportanceGraphTest", isDirectory: false
+            "testSaveImportanceGraph", isDirectory: false
         ).path
         let featureMapFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "saveImportanceGraphTest.featureMap", isDirectory: false
+            "testSaveImportanceGraph.featureMap", isDirectory: false
         ).path
 
         try data.saveFeatureMap(to: featureMapFile)
@@ -36,6 +36,6 @@ final class PlotTests: XCTestCase {
     }
 
     static var allTests = [
-        ("saveImportanceGraphTest", saveImportanceGraphTest),
+        ("testSaveImportanceGraph", testSaveImportanceGraph),
     ]
 }

@@ -3,7 +3,7 @@ import XCTest
 @testable import XGBoost
 
 final class ExampleTests: XCTestCase {
-    func readmeExample1() throws {
+    func testReadmeExample1() throws {
         // import XGBoost
 
         // Register your own callback function for log(info) messages
@@ -64,6 +64,6 @@ final class ExampleTests: XCTestCase {
     }
 
     static var allTests = [
-        ("readmeExample1", readmeExample1),
+        ("testReadmeExample1", testReadmeExample1),
     ]
 }
