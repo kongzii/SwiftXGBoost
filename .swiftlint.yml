@@ -7,3 +7,6 @@ disabled_rules:
   - force_cast
   - type_name
   - type_body_length
+  - line_length
+  - file_length
+

@@ -34,10 +34,10 @@ let package = Package(
                 "AGGRenderer",
             ],
             cSettings: [
-                .unsafeFlags(["-I/usr/local/include"])
+                .unsafeFlags(["-I/usr/local/include"]),
             ],
             linkerSettings: [
-                .unsafeFlags(["-L/usr/local/lib"])
+                .unsafeFlags(["-L/usr/local/lib"]),
             ]
         ),
         .systemLibrary(
