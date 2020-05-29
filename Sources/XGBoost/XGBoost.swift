@@ -81,7 +81,7 @@ public class XGBoost {
         parameters: [Parameter] = [],
         validateParameters: Bool = true
     ) throws {
-        let pointees = data.map { $0.pointee }
+        let pointees = data.map { $0.dmatrix }
 
         var booster: BoosterHandle?
         try safe {
@@ -203,7 +203,7 @@ public class XGBoost {
         try safe {
             XGBoosterPredict(
                 booster,
-                data.pointee,
+                data.dmatrix,
                 optionMask,
                 treeLimit,
                 training ? 1 : 0,
@@ -645,7 +645,7 @@ public class XGBoost {
             XGBoosterUpdateOneIter(
                 booster,
                 Int32(iteration),
-                data.pointee
+                data.dmatrix
             )
         }
     }
@@ -703,7 +703,7 @@ public class XGBoost {
         try safe {
             XGBoosterBoostOneIter(
                 booster,
-                data.pointee,
+                data.dmatrix,
                 &gradient,
                 &hessian,
                 UInt64(gradient.count)
@@ -722,7 +722,7 @@ public class XGBoost {
     ) throws -> [String: [String: String]] {
         try validate(data: data)
 
-        var pointees = data.map { $0.pointee }
+        var pointees = data.map { $0.dmatrix }
         var names = data.map { $0.name.cCompatible }
         let output = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
 

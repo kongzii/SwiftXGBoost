@@ -9,12 +9,9 @@ public class Data {
     public var name: String
 
     var _features: [Feature]?
-    var dmatrix: UnsafeMutablePointer<DMatrixHandle?>
 
     /// Pointer to underlying DMatrixHandle.
-    public var pointee: DMatrixHandle? {
-        dmatrix.pointee
-    }
+    public let dmatrix: DMatrixHandle?
 
     /// Initialize Data with an existing DMatrixHandle pointer.
     ///
@@ -24,7 +21,7 @@ public class Data {
     public init(
         name: String,
         features: [Feature]? = nil,
-        dmatrix: UnsafeMutablePointer<DMatrixHandle?>
+        dmatrix: DMatrixHandle?
     ) throws {
         self.name = name
         self.dmatrix = dmatrix
@@ -57,18 +54,19 @@ public class Data {
         threads: Int = 0
     ) throws {
         self.name = name
-        dmatrix = .allocate(capacity: 1)
 
+        var dmatrix: DMatrixHandle?
         try safe {
             XGDMatrixCreateFromMat_omp(
                 values,
                 UInt64(shape.row),
                 UInt64(shape.column),
                 missingValue,
-                dmatrix,
+                &dmatrix,
                 Int32(threads)
             )
         }
+        self.dmatrix = dmatrix
 
         if let label = label {
             try set(label: label)
@@ -112,7 +110,6 @@ public class Data {
         fileQuery: [String] = []
     ) throws {
         self.name = name
-        dmatrix = .allocate(capacity: 1)
 
         var fileQuery = fileQuery
 
@@ -124,13 +121,15 @@ public class Data {
             fileQuery.append("label_column=\(labelColumn)")
         }
 
+        var dmatrix: DMatrixHandle?
         try safe {
             XGDMatrixCreateFromFile(
                 file + (fileQuery.isEmpty ? "" : "?\(fileQuery.joined(separator: "&"))"),
                 silent ? 1 : 0,
-                dmatrix
+                &dmatrix
             )
         }
+        self.dmatrix = dmatrix
 
         if let label = label {
             try set(label: label)
@@ -151,7 +150,7 @@ public class Data {
 
     deinit {
         try! safe {
-            XGDMatrixFree(pointee)
+            XGDMatrixFree(dmatrix)
         }
     }
 
@@ -165,7 +164,7 @@ public class Data {
     ) throws {
         try safe {
             XGDMatrixSaveBinary(
-                pointee,
+                dmatrix,
                 path,
                 silent ? 1 : 0
             )
@@ -186,7 +185,7 @@ public class Data {
         var count: UInt64 = 0
         try! safe {
             XGDMatrixNumRow(
-                pointee,
+                dmatrix,
                 &count
             )
         }
@@ -198,7 +197,7 @@ public class Data {
         var count: UInt64 = 0
         try! safe {
             XGDMatrixNumCol(
-                pointee,
+                dmatrix,
                 &count
             )
         }
@@ -225,14 +224,14 @@ public class Data {
         allowGroups: Bool = false
     ) throws -> Data {
         let indexes: [Int32] = indexes.map { Int32($0) }
-        let slicedDmatrix = UnsafeMutablePointer<DMatrixHandle?>.allocate(capacity: 1)
+        var slicedDmatrix: DMatrixHandle?
 
         try safe {
             XGDMatrixSliceDMatrixEx(
-                pointee,
+                dmatrix,
                 indexes,
                 UInt64(indexes.count),
-                slicedDmatrix,
+                &slicedDmatrix,
                 allowGroups ? 1 : 0
             )
         }
@@ -272,7 +271,7 @@ public class Data {
     ) throws {
         try safe {
             XGDMatrixSetUIntInfo(
-                pointee,
+                dmatrix,
                 field,
                 values,
                 UInt64(values.count)
@@ -290,7 +289,7 @@ public class Data {
     ) throws {
         try safe {
             XGDMatrixSetFloatInfo(
-                pointee,
+                dmatrix,
                 field,
                 values,
                 UInt64(values.count)
@@ -309,7 +308,7 @@ public class Data {
         let outResult = UnsafeMutablePointer<UnsafePointer<UInt32>?>.allocate(capacity: 1)
 
         try safe {
-            XGDMatrixGetUIntInfo(pointee, field.rawValue, outLenght, outResult)
+            XGDMatrixGetUIntInfo(dmatrix, field.rawValue, outLenght, outResult)
         }
 
         return (0 ..< Int(outLenght.pointee)).lazy.map { outResult.pointee![$0] }
@@ -326,7 +325,7 @@ public class Data {
         let outResult = UnsafeMutablePointer<UnsafePointer<Float>?>.allocate(capacity: 1)
 
         try safe {
-            XGDMatrixGetFloatInfo(pointee, field.rawValue, outLenght, outResult)
+            XGDMatrixGetFloatInfo(dmatrix, field.rawValue, outLenght, outResult)
         }
 
         return (0 ..< Int(outLenght.pointee)).lazy.map { outResult.pointee![$0] }
