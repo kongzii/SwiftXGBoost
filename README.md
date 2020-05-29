@@ -19,14 +19,20 @@ cd xgboost
 git checkout release_1.1.0
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_LIBDIR=/usr/lib ..
+cmake ..
 make -j$(nproc)
 make install
 ```
 
+Or you can use provided installation script
+
+```
+./install.sh
+```
+
 #### OSX
 
-Install XGBoost from brew
+You can build and install similarly as on Linux, or just use brew
 
 ```
 brew install xgboost

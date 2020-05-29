@@ -32,11 +32,16 @@ let package = Package(
                 "CXGBoost",
                 "SwiftPlot",
                 "AGGRenderer",
+            ],
+            cSettings: [
+                .unsafeFlags(["-I/usr/local/include"])
+            ],
+            linkerSettings: [
+                .unsafeFlags(["-L/usr/local/lib"])
             ]
         ),
         .systemLibrary(
             name: "CXGBoost",
-            pkgConfig: "xgboost",
             providers: [
                 .brew(["xgboost"]),
             ]
