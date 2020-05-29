@@ -3,20 +3,20 @@
     "pins": [
       {
         "package": "LoggerKit",
-        "repositoryURL": "https://github.com/pvieito/LoggerKit.git",
+        "repositoryURL": "https://github.com/kongzii/LoggerKit.git",
         "state": {
-          "branch": "master",
+          "branch": null,
           "revision": "9b54626f49f97c38227009762cce4156dfa313a5",
-          "version": null
+          "version": "0.0.0"
         }
       },
       {
         "package": "PythonKit",
-        "repositoryURL": "https://github.com/pvieito/PythonKit.git",
+        "repositoryURL": "https://github.com/kongzii/PythonKit",
         "state": {
-          "branch": "master",
-          "revision": "b8976a9c36ca4240ae627a2ae2cbe33d35e26198",
-          "version": null
+          "branch": null,
+          "revision": "977002d1f5cad96c84360d0ad4496ec614c58975",
+          "version": "0.0.1"
         }
       },
       {
