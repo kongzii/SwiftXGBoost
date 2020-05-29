@@ -5,6 +5,8 @@ The aim of this package is to mimic [XGBoost Python bindings](https://xgboost.re
 
 Documentation is available at [Wiki](https://github.com/kongzii/SwiftXGBoost/wiki).
 
+Note: This is not an official XGBoost project.
+
 ## Installation
 
 ### System library dependency
