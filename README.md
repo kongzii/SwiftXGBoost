@@ -22,6 +22,7 @@ cd build
 cmake ..
 make -j$(nproc)
 make install
+ldconfig
 ```
 
 Or you can use provided installation script
