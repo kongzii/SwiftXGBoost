@@ -39,6 +39,7 @@ public class Data {
     /// - Parameter name: Name of dataset.
     /// - Parameter values: Values source.
     /// - Parameter shape: Shape of resulting DMatrixHandle.
+    /// - Parameter label: Array of labels for data.
     /// - Parameter weight: Weight for each instance.
     /// - Parameter baseMargin: Set base margin of booster to start from.
     /// - Parameter features: Names and types of features.
