@@ -36,6 +36,7 @@ let package = Package(
         ),
         .systemLibrary(
             name: "CXGBoost",
+            pkgConfig: "xgboost",
             providers: [
                 .brew(["xgboost"]),
             ]
