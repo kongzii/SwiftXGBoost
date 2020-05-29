@@ -7,6 +7,7 @@ import XCTest
             testCase(DataTests.allTests),
             testCase(XGBoostTests.allTests),
             testCase(PlotTests.allTests),
+            testCase(TensorFlowTests.allTests),
         ]
     }
 #endif
