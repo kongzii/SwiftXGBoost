@@ -61,7 +61,7 @@ or directly C library
 import CXGBoost
 ```
 
-both `XGBoost` and `Data` classes are exposing `pointee` variable to the underlying C pointer,
+both `XGBoost` and `Data` classes are exposing pointers to the underlying C,
 so you can utilize C-API directly for more advanced usage.
 
 As library is still evolving, there can be incompatible changes, 
