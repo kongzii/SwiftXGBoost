@@ -2,6 +2,20 @@ import AGGRenderer
 import SwiftPlot
 
 extension XGBoost {
+    /// Saves plot with importance based on fitted trees.
+    ///
+    /// - Parameter fileName: File where graph will be saved, .png extension will be added.
+    /// - Parameter featureMap: Path to the feature map, if provided, replaces default f0, f1, ... feature names.
+    /// - Parameter importance: Type of importance to plot.
+    /// - Parameter label: Label of graph.
+    /// - Parameter title: Title of graph.
+    /// - Parameter xAxisLabel: Label of X-axis.
+    /// - Parameter yAxisLabel: Label of Y-axis.
+    /// - Parameter maxNumberOfFeatures: Maximum number of top features displayed on plot. If None, all features will be displayed.
+    /// - Parameter graphOrientation: Orientaton of ploted graph.
+    /// - Parameter enableGrid: urn the axes grids on or off.
+    /// - Parameter size: Size of ploted graph.
+    /// - Parameter renderer: Renderer to use.
     public func saveImportanceGraph(
         fileName: String,
         featureMap: String = "",
