@@ -1,13 +1,15 @@
 import CXGBoost
 
-/// XGBoost
+/// XGBoost model.
 ///
-/// C API: https://xgboost.readthedocs.io/en/stable/dev/c__api_8h.html
+/// Encapsulates BoosterHandle, the model of xgboost, that contains low level routines for
+/// training, prediction and evaluation.
 public class XGBoost {
     var features: [Feature]?
     var type: Booster?
     let booster: UnsafeMutablePointer<BoosterHandle?>
 
+    /// Version of underlying XGBoost system library.
     public static var systemLibraryVersion: Version {
         var major: Int32 = -1
         var minor: Int32 = -1
@@ -26,6 +28,9 @@ public class XGBoost {
         )
     }
 
+    /// Register callback function for LOG(INFO) messages.
+    ///
+    /// - Parameter call: Function to be called with C-String as parameter.
     public static func registerLogCallback(
         _ call: (@convention(c) (UnsafePointer<Int8>?) -> Void)?
     ) throws {
@@ -34,16 +39,23 @@ public class XGBoost {
         }
     }
 
+    /// Pointer to underlying BoosterHandle.
     public var pointee: BoosterHandle? {
         booster.pointee
     }
 
+    /// Initialize XGBoost with an existing BoosterHandle pointer.
+    ///
+    /// - Parameter booster: BoosterHandle pointer.
     public init(
         booster: UnsafeMutablePointer<BoosterHandle?>
     ) {
         self.booster = booster
     }
 
+    /// Initialize XGBoost from buffer.
+    ///
+    /// - Parameter model: Model serialized as buffer.
     public init(
         model: BufferModel
     ) throws {
@@ -58,6 +70,13 @@ public class XGBoost {
         }
     }
 
+    /// Initialize new XGBoost.
+    ///
+    /// - Parameter with: Data that will be cached.
+    /// - Parameter from: Loads model from path.
+    /// - Parameter config: Loads model from config.
+    /// - Parameter parameters: Array of parameters to be set.
+    /// - Parameter validateParameters: If true, parameters will be valided. This basically adds parameter validate_parameters=1.
     public init(
         with data: [Data] = [],
         from path: String? = nil,
@@ -102,6 +121,7 @@ public class XGBoost {
         }
     }
 
+    /// - Return: XGBoost's internal configuration into a JSON document.
     public func config() throws -> String {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -113,6 +133,7 @@ public class XGBoost {
         return String(cString: outResult.pointee!)
     }
 
+    /// - Return: Attributes stored in the Booster as a dictionary.
     public func attributes() throws -> [String: String] {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
@@ -131,6 +152,17 @@ public class XGBoost {
         return attributes
     }
 
+    /// Predict from data.
+    ///
+    /// - Parameter from: Data to predict from.
+    /// - Parameter outputMargin: Whether to output the raw untransformed margin value.
+    /// - Parameter treeLimit: Limit number of trees in the prediction. Zero means use all trees.
+    /// - Parameter predictionLeaf: Each record indicating the predicted leaf index of each sample in each tree.
+    /// - Parameter predictionContributions: Each record indicating the feature contributions (SHAP values) for that prediction.
+    /// - Parameter approximateContributions: Approximate the contributions of each feature.
+    /// - Parameter predictionInteractions: Indicate the SHAP interaction values for each pair of features.
+    /// - Parameter training: Whether the prediction will be used for traning.
+    /// - Parameter validateFeatures: Validate booster and data features.
     public func predict(
         from data: Data,
         outputMargin: Bool = false,
@@ -186,6 +218,17 @@ public class XGBoost {
         return (0 ..< Int(outLenght.pointee)).map { outResult.pointee![$0] }
     }
 
+    /// Predict directly from array of floats, will build Data structure automatically with one row and features.count features.
+    ///
+    /// - Parameter features: Features to base prediction at..
+    /// - Parameter outputMargin: Whether to output the raw untransformed margin value.
+    /// - Parameter treeLimit: Limit number of trees in the prediction. Zero means use all trees.
+    /// - Parameter predictionLeaf: Each record indicating the predicted leaf index of each sample in each tree.
+    /// - Parameter predictionContributions: Each record indicating the feature contributions (SHAP values) for that prediction.
+    /// - Parameter approximateContributions: Approximate the contributions of each feature.
+    /// - Parameter predictionInteractions: Indicate the SHAP interaction values for each pair of features.
+    /// - Parameter training: Whether the prediction will be used for traning.
+    /// - Parameter missingValue: Value in features representing missing values.
     public func predict(
         features: [Float],
         outputMargin: Bool = false,
@@ -215,6 +258,7 @@ public class XGBoost {
         )[0]
     }
 
+    /// - Return: Everything states in buffer.
     public func serialized() throws -> BufferModel {
         let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -233,6 +277,9 @@ public class XGBoost {
         )
     }
 
+    /// Saves modes into file.
+    ///
+    /// - Parameter to: Path to output file.
     public func save(
         to path: String
     ) throws {
@@ -241,6 +288,7 @@ public class XGBoost {
         }
     }
 
+    /// - Return: Model as binary raw bytes.
     public func raw() throws -> BufferModel {
         let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -278,6 +326,12 @@ public class XGBoost {
         return output
     }
 
+    /// Dump model into a string.
+    ///
+    /// - Parameter featureMap: Name of the file containing feature map.
+    /// - Parameter withStatistics: Controls whether the split statistics are output.
+    /// - Parameter format: Desired output format type.
+    /// - Return: Formated output into ModelFormat format.
     public func dumped(
         featureMap: String = "",
         withStatistics: Bool = false,
@@ -293,6 +347,13 @@ public class XGBoost {
         )
     }
 
+    /// Dump model into an array of strings.
+    /// In most cases you will want to use `dumped` method to get output in expected format.
+    ///
+    /// - Parameter featureMap: Name of the file containing feature map.
+    /// - Parameter withStatistics: Controls whether the split statistics are output.
+    /// - Parameter format: Desired output format type.
+    /// - Return: Raw output from XGBoosterDumpModelEx provided as array of strings.
     public func rawDumped(
         featureMap: String = "",
         withStatistics: Bool = false,
@@ -314,6 +375,12 @@ public class XGBoost {
         return (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
     }
 
+    /// Dump model into a string.
+    ///
+    /// - Parameter features: Array of features.
+    /// - Parameter withStatistics: Controls whether the split statistics are output.
+    /// - Parameter format: Desired output format type.
+    /// - Return: Formated output into ModelFormat format.
     public func dumped(
         features: [Feature],
         withStatistics: Bool = false,
@@ -329,6 +396,13 @@ public class XGBoost {
         )
     }
 
+    /// Dump model into an array of strings.
+    /// In most cases you will want to use `dumped` method to get output in expected format.
+    ///
+    /// - Parameter features: Array of features.
+    /// - Parameter withStatistics: Controls whether the split statistics are output.
+    /// - Parameter format: Desired output format type.
+    /// - Return: Raw output from XGBoosterDumpModelEx provided as array of strings.
     public func rawDumped(
         features: [Feature],
         withStatistics: Bool = false,
@@ -356,6 +430,11 @@ public class XGBoost {
         return (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
     }
 
+    /// Get feature importance of each feature.
+    ///
+    /// - Parameter featureMap: Path to the feature map.
+    /// - Parameter importance: Type of importance you want to compute.
+    /// - Return: Tuple of features and gains, in case importance = weight, gains will be nil.
     public func score(
         featureMap: String = "",
         importance: Importance = .weight
@@ -447,6 +526,9 @@ public class XGBoost {
         return (fMap, gMap)
     }
 
+    /// Loads model from buffer.
+    ///
+    /// - Parameter model: Buffer to load from.
     public func load(
         model buffer: BufferModel
     ) throws {
@@ -459,6 +541,9 @@ public class XGBoost {
         }
     }
 
+    /// Loads model from file.
+    ///
+    /// - Parameter model: Path of file to load model from.
     public func load(
         model path: String
     ) throws {
@@ -467,6 +552,9 @@ public class XGBoost {
         }
     }
 
+    /// Loads model from config.
+    ///
+    /// - Parameter model: Config to load from.
     public func load(
         config: String
     ) throws {
@@ -475,12 +563,16 @@ public class XGBoost {
         }
     }
 
+    /// Save the current checkpoint to rabit.
     public func saveRabitCheckpoint() throws {
         try safe {
             XGBoosterSaveRabitCheckpoint(pointee)
         }
     }
 
+    /// Initialize the booster from rabit checkpoint.
+    ///
+    /// - Return: The output version of the model.
     public func loadRabitCheckpoint() throws -> Int {
         var version: Int32 = -1
         try safe {
@@ -489,6 +581,10 @@ public class XGBoost {
         return Int(version)
     }
 
+    /// Get attribute string from the Booster.
+    ///
+    /// - Parameter name: Name of attribute to get.
+    /// - Return: Value of attribute.
     public func attribute(
         name: String
     ) throws -> String? {
@@ -506,6 +602,10 @@ public class XGBoost {
         return String(cString: outResult.pointee!)
     }
 
+    /// Set string attribute.
+    ///
+    /// - Parameter attribute: Name of attribute.
+    /// - Parameter value: Value of attribute.
     public func set(
         attribute: String,
         value: String
@@ -517,6 +617,10 @@ public class XGBoost {
         }
     }
 
+    /// Set string parameter.
+    ///
+    /// - Parameter parameter: Name of parameter.
+    /// - Parameter value: Value of parameter.
     public func set(
         parameter: String,
         value: String
@@ -526,11 +630,19 @@ public class XGBoost {
         }
     }
 
+    /// Update for one iteration, with objective function calculated internally.
+    ///
+    /// - Parameter iteration: Current iteration number.
+    /// - Parameter data: Training data.
+    /// - Parameter validateFeatures: Whether to validate features.
     public func update(
         iteration: Int,
-        data: Data
+        data: Data,
+        validateFeatures: Bool = true
     ) throws {
-        try validate(data: data)
+        if validateFeatures {
+            try validate(data: data)
+        }
 
         try safe {
             XGBoosterUpdateOneIter(
@@ -541,6 +653,11 @@ public class XGBoost {
         }
     }
 
+    /// Update for one iteration with custom objective.
+    ///
+    /// - Parameter data: Training data.
+    /// - Parameter objective: Objective function returning gradient and hessian.
+    /// - Parameter validateFeatures: Whether to validate features.
     public func update(
         data: Data,
         objective: ([Float], Data) -> (gradient: [Float], hessian: [Float]),
@@ -561,6 +678,12 @@ public class XGBoost {
         )
     }
 
+    /// Boost the booster for one iteration, with customized gradient statistics.
+    ///
+    /// - Parameter data: Training data.
+    /// - Parameter gradient: The first order of gradient.
+    /// - Parameter hessian: The second order of gradient.
+    /// - Parameter validateFeatures: Whether to validate features.
     public func boost(
         data: Data,
         gradient: [Float],
@@ -591,6 +714,11 @@ public class XGBoost {
         }
     }
 
+    /// Evaluate array of data.
+    ///
+    /// - Parameter iteration: Current iteration.
+    /// - Parameter data: Data to evaluate.
+    /// - Return: Dictionary in format [data_name: [eval_name: eval_value, ...], ...]
     public func evaluate(
         iteration: Int,
         data: [Data]
@@ -637,6 +765,11 @@ public class XGBoost {
         return results
     }
 
+    /// Evaluate data.
+    ///
+    /// - Parameter iteration: Current iteration.
+    /// - Parameter data: Data to evaluate.
+    /// - Return: Dictionary in format [data_name: [eval_name: eval_value]]
     public func evaluate(
         iteration: Int,
         data: Data
@@ -644,6 +777,13 @@ public class XGBoost {
         try evaluate(iteration: iteration, data: [data])
     }
 
+    /// Train booster.
+    ///
+    /// - Parameter iterations: Number of training iterations, but training can be stopped early.
+    /// - Parameter trainingData: Data to train on.
+    /// - Parameter evaluationData: Data to evaluate on, if provided.
+    /// - Parameter beforeIteration: Callback called before each iteration.
+    /// - Parameter afterIteration: Callback called after each iteration.
     public func train(
         iterations: Int,
         trainingData: Data,
@@ -679,6 +819,9 @@ public class XGBoost {
         }
     }
 
+    /// Validate features.
+    ///
+    /// - Parameter features: Features to validate.
     public func validate(
         features: [Feature]
     ) throws {
@@ -702,12 +845,18 @@ public class XGBoost {
         }
     }
 
+    /// Validate features.
+    ///
+    /// - Parameter data: Data which features will be validated.
     public func validate(
         data: Data
     ) throws {
         try validate(features: data.features())
     }
 
+    /// Validate features.
+    ///
+    /// - Parameter data: Array of data which features will be validated.
     public func validate(
         data: [Data]
     ) throws {
