@@ -1,7 +1,7 @@
 # XGBoost for Swift
 
-Bindings for the XGBoost system library. 
-The aim of this package is to mimic XGBoost python bindings but, at the same time, utilize the power of Swift and C compatibility. Some things thus behave differently but should provide you maximum flexibility over XGBoost.
+Bindings for [the XGBoost system library](https://en.wikipedia.org/wiki/XGBoost). 
+The aim of this package is to mimic [XGBoost Python bindings](https://xgboost.readthedocs.io/en/latest/python/python_intro.html) but, at the same time, utilize the power of Swift and C compatibility. Some things thus behave differently but should provide you maximum flexibility over XGBoost.
 
 Documentation is available at [Wiki](https://github.com/kongzii/SwiftXGBoost/wiki).
 
