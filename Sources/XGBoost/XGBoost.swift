@@ -7,7 +7,9 @@ import CXGBoost
 public class XGBoost {
     var features: [Feature]?
     var type: Booster?
-    let booster: UnsafeMutablePointer<BoosterHandle?>
+
+    /// Pointer to underlying BoosterHandle.
+    public let booster: BoosterHandle?
 
     /// Version of underlying XGBoost system library.
     public static var systemLibraryVersion: Version {
@@ -39,16 +41,11 @@ public class XGBoost {
         }
     }
 
-    /// Pointer to underlying BoosterHandle.
-    public var pointee: BoosterHandle? {
-        booster.pointee
-    }
-
     /// Initialize XGBoost with an existing BoosterHandle pointer.
     ///
     /// - Parameter booster: BoosterHandle pointer.
     public init(
-        booster: UnsafeMutablePointer<BoosterHandle?>
+        booster: BoosterHandle?
     ) {
         self.booster = booster
     }
@@ -59,15 +56,15 @@ public class XGBoost {
     public init(
         model: BufferModel
     ) throws {
-        booster = .allocate(capacity: 1)
-
+        var booster: BoosterHandle?
         try safe {
             XGBoosterUnserializeFromBuffer(
-                booster,
+                &booster,
                 model.data,
                 model.length
             )
         }
+        self.booster = booster
     }
 
     /// Initialize new XGBoost.
@@ -84,13 +81,13 @@ public class XGBoost {
         parameters: [Parameter] = [],
         validateParameters: Bool = true
     ) throws {
-        booster = .allocate(capacity: 1)
-
         let pointees = data.map { $0.pointee }
 
+        var booster: BoosterHandle?
         try safe {
-            XGBoosterCreate(pointees, UInt64(pointees.count), booster)
+            XGBoosterCreate(pointees, UInt64(pointees.count), &booster)
         }
+        self.booster = booster
 
         if let path = path {
             try load(model: path)
@@ -117,7 +114,7 @@ public class XGBoost {
 
     deinit {
         try! safe {
-            XGBoosterFree(pointee)
+            XGBoosterFree(booster)
         }
     }
 
@@ -127,7 +124,7 @@ public class XGBoost {
         let outResult = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
 
         try safe {
-            XGBoosterSaveJsonConfig(pointee, outLenght, outResult)
+            XGBoosterSaveJsonConfig(booster, outLenght, outResult)
         }
 
         return String(cString: outResult.pointee!)
@@ -139,7 +136,7 @@ public class XGBoost {
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
 
         try safe {
-            XGBoosterGetAttrNames(pointee, outLenght, outResult)
+            XGBoosterGetAttrNames(booster, outLenght, outResult)
         }
 
         var attributes = [String: String]()
@@ -205,7 +202,7 @@ public class XGBoost {
 
         try safe {
             XGBoosterPredict(
-                pointee,
+                booster,
                 data.pointee,
                 optionMask,
                 treeLimit,
@@ -265,7 +262,7 @@ public class XGBoost {
 
         try safe {
             XGBoosterSerializeToBuffer(
-                pointee,
+                booster,
                 length,
                 data
             )
@@ -284,7 +281,7 @@ public class XGBoost {
         to path: String
     ) throws {
         try safe {
-            XGBoosterSaveModel(pointee, path)
+            XGBoosterSaveModel(booster, path)
         }
     }
 
@@ -295,7 +292,7 @@ public class XGBoost {
 
         try safe {
             XGBoosterGetModelRaw(
-                pointee,
+                booster,
                 length,
                 data
             )
@@ -363,7 +360,7 @@ public class XGBoost {
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
         try safe {
             XGBoosterDumpModelEx(
-                pointee,
+                booster,
                 featureMap,
                 withStatistics ? 1 : 0,
                 format.rawValue,
@@ -416,7 +413,7 @@ public class XGBoost {
 
         try safe {
             XGBoosterDumpModelExWithFeatures(
-                pointee,
+                booster,
                 Int32(names.count),
                 &names,
                 &types,
@@ -440,7 +437,7 @@ public class XGBoost {
         importance: Importance = .weight
     ) throws -> (features: [String: Int], gains: [String: Float]?) {
         if type != nil, ![.gbtree, .dart].contains(type!) {
-            throw ValueError.runtimeError("Feature importance not defined for \(booster).")
+            throw ValueError.runtimeError("Feature importance not defined for \(type!).")
         }
 
         if importance == .weight {
@@ -534,7 +531,7 @@ public class XGBoost {
     ) throws {
         try safe {
             XGBoosterLoadModelFromBuffer(
-                pointee,
+                booster,
                 buffer.data,
                 buffer.length
             )
@@ -548,7 +545,7 @@ public class XGBoost {
         model path: String
     ) throws {
         try safe {
-            XGBoosterLoadModel(pointee, path)
+            XGBoosterLoadModel(booster, path)
         }
     }
 
@@ -559,14 +556,14 @@ public class XGBoost {
         config: String
     ) throws {
         try safe {
-            XGBoosterLoadJsonConfig(pointee, config)
+            XGBoosterLoadJsonConfig(booster, config)
         }
     }
 
     /// Save the current checkpoint to rabit.
     public func saveRabitCheckpoint() throws {
         try safe {
-            XGBoosterSaveRabitCheckpoint(pointee)
+            XGBoosterSaveRabitCheckpoint(booster)
         }
     }
 
@@ -576,7 +573,7 @@ public class XGBoost {
     public func loadRabitCheckpoint() throws -> Int {
         var version: Int32 = -1
         try safe {
-            XGBoosterLoadRabitCheckpoint(pointee, &version)
+            XGBoosterLoadRabitCheckpoint(booster, &version)
         }
         return Int(version)
     }
@@ -592,7 +589,7 @@ public class XGBoost {
         let outResult = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
 
         try safe {
-            XGBoosterGetAttr(pointee, name, outResult, &success)
+            XGBoosterGetAttr(booster, name, outResult, &success)
         }
 
         if success != 1 {
@@ -612,7 +609,7 @@ public class XGBoost {
     ) throws {
         try safe {
             XGBoosterSetAttr(
-                pointee, attribute, value
+                booster, attribute, value
             )
         }
     }
@@ -626,7 +623,7 @@ public class XGBoost {
         value: String
     ) throws {
         try safe {
-            XGBoosterSetParam(pointee, parameter, value)
+            XGBoosterSetParam(booster, parameter, value)
         }
     }
 
@@ -646,7 +643,7 @@ public class XGBoost {
 
         try safe {
             XGBoosterUpdateOneIter(
-                pointee,
+                booster,
                 Int32(iteration),
                 data.pointee
             )
@@ -705,7 +702,7 @@ public class XGBoost {
 
         try safe {
             XGBoosterBoostOneIter(
-                pointee,
+                booster,
                 data.pointee,
                 &gradient,
                 &hessian,
@@ -731,7 +728,7 @@ public class XGBoost {
 
         try safe {
             XGBoosterEvalOneIter(
-                pointee,
+                booster,
                 Int32(iteration),
                 &pointees,
                 &names,
