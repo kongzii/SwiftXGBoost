@@ -23,7 +23,7 @@ git checkout release_1.1.0
 mkdir build
 cd build
 cmake ..
-make -j$(nproc)
+make
 make install
 ldconfig
 ```
