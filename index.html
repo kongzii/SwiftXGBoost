@@ -203,7 +203,7 @@ For more detailed usage and workarounds for known issues, check out <a href="htt
 <p><a href="https://github.com/tensorflow/swift">Swift4TensorFlow</a> is a great project from Google. 
 If you are using one of the S4TF swift toolchains, you can combine its power directly with XGBoost.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">tensor</span> <span class="o">=</span> <span class="kt">Tensor</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt">TensorShape</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="nv">scalars</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
-<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"training"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">tensor</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">DMatrix</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"training"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">tensor</span><span class="p">)</span>
 </code></pre>
 <h2 id='examples' class='heading'>Examples</h2>
 
@@ -228,7 +228,7 @@ and run inside docker</p>
 <span class="k">let</span> <span class="nv">labels</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span> <span class="o">..&lt;</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="kt">Float</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="nf">randomElement</span><span class="p">()</span><span class="o">!</span><span class="p">)</span> <span class="p">}</span>
 
 <span class="c1">// Initialize data, DMatrixHandle in the background</span>
-<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">Data</span><span class="p">(</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">DMatrix</span><span class="p">(</span>
     <span class="nv">name</span><span class="p">:</span> <span class="s">"data"</span><span class="p">,</span>
     <span class="nv">values</span><span class="p">:</span> <span class="n">randomArray</span><span class="p">,</span>
     <span class="nv">shape</span><span class="p">:</span> <span class="kt">Shape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
