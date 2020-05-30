@@ -43,6 +43,7 @@ final class DMatrixTests: XCTestCase {
         XCTAssertEqual(try data.label(), [1.0, 0.0, 1.0])
         XCTAssertEqual(try data.rowCount(), 3)
         XCTAssertEqual(try data.columnCount(), 2)
+        XCTAssertEqual(try data.shape(), [3, 2])
     }
 
     func testSaveAndLoadBinary() throws {
@@ -68,6 +69,8 @@ final class DMatrixTests: XCTestCase {
         XCTAssertEqual(try data.label(), try loadedData.label())
         XCTAssertEqual(try data.rowCount(), try loadedData.rowCount())
         XCTAssertEqual(try data.columnCount(), try loadedData.columnCount())
+        XCTAssertEqual(try data.shape(), try loadedData.shape())
+        XCTAssertEqual(try data.shape(), [3, 2])
     }
 
     func testSaveAndLoadFeatureMap() throws {

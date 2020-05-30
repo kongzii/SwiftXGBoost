@@ -2,7 +2,7 @@ import Foundation
 import PythonKit
 
 /// Shape of Data.
-public struct Shape: ExpressibleByArrayLiteral {
+public struct Shape: ExpressibleByArrayLiteral, Equatable {
     public let row: Int
     public let column: Int
     public typealias ArrayLiteralElement = Int
