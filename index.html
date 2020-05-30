@@ -135,11 +135,11 @@ ldconfig
 <p>both <code>XGBoost</code> and <code>Data</code> classes are exposing pointers to the underlying C,
 so you can utilize C-API directly for more advanced usage.</p>
 
-<p>As library is still evolving, there can be incompatible changes, 
-use exact version if you do not want to worry about updating your packages.</p>
+<p>As the library is still evolving, there can be incompatible changes, 
+use the exact version if you do not want to worry about updating your packages.</p>
 <pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/kongzii/SwiftXGBoost.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.1.0"</span><span class="p">)),</span>
 </code></pre>
-<h2 id='python-compability' class='heading'>Python compability</h2>
+<h2 id='python-compatibility' class='heading'>Python compatibility</h2>
 
 <p>DMatrix can be created from numpy array just like in Python</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">pandas</span> <span class="o">=</span> <span class="kt">Python</span><span class="o">.</span><span class="nf">import</span><span class="p">(</span><span class="s">"pandas"</span><span class="p">)</span>
@@ -150,7 +150,7 @@ use exact version if you do not want to worry about updating your packages.</p>
 <span class="p">)</span>
 </code></pre>
 
-<p>and swift array can be converted back to numpy</p>
+<p>and the swift array can be converted back to numpy</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">predicted</span> <span class="o">=</span> <span class="k">try</span> <span class="n">xgboost</span><span class="o">.</span><span class="nf">predict</span><span class="p">(</span>
     <span class="nv">from</span><span class="p">:</span> <span class="n">validationData</span>
 <span class="p">)</span>
@@ -165,7 +165,14 @@ use exact version if you do not want to worry about updating your packages.</p>
 </code></pre>
 
 <p>This is possible thanks to the <a href="https://github.com/pvieito/PythonKit.git">PythonKit</a>. 
-For more detailed usage and workarounds for known issues check out <a href="https://github.com/kongzii/SwiftXGBoost/tree/master/Examples">examples</a>.</p>
+For more detailed usage and workarounds for known issues, check out <a href="https://github.com/kongzii/SwiftXGBoost/tree/master/Examples">examples</a>.</p>
+<h2 id='tensorflow-compability' class='heading'>TensorFlow compability</h2>
+
+<p><a href="https://github.com/tensorflow/swift">Swift4TensorFlow</a> is a great project from Google. 
+If you are using one of the S4TF swift toolchains, you can combine its power directly with XGBoost.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">tensor</span> <span class="o">=</span> <span class="kt">Tensor</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt">TensorShape</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="nv">scalars</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"training"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">tensor</span><span class="p">)</span>
+</code></pre>
 <h2 id='examples' class='heading'>Examples</h2>
 
 <p>More examples can be found in <a href="https://github.com/kongzii/SwiftXGBoost/tree/master/Examples">Examples directory</a> 
