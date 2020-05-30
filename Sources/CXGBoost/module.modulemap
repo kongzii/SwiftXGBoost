@@ -1,5 +1,0 @@
-module CXGBoost [system] {
-    header "shim.h"
-    link "xgboost"
-    export *
-}

@@ -1,7 +1,0 @@
-.build
-.github
-.history
-.idea
-.vscode
-.DS_Store
-*.xgboost

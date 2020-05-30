@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (73% documented)</p>
+        <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+          Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/XGBoost.html">XGBoost</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Booster.html">Booster</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/DataFormat.html">DataFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/FeatureType.html">FeatureType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/FloatField.html">FloatField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Importance.html">Importance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/ModelFormat.html">ModelFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/UIntField.html">UIntField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/ValueError.html">ValueError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/XGBoostError.html">XGBoostError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Tensor.html">Tensor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:7XGBoost4safe4callys5Int32VyXE_tKF">safe(call:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7XGBoost7Featurea">Feature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7XGBoost9Parametera">Parameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7XGBoost5Shapea">Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7XGBoost7Versiona">Version</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <p><a href=""><img src="https://img.shields.io/badge/Swift-5.2-green.svg" alt="Swift Version"></a>
+<a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a> </p>
+<h1 id='xgboost-for-swift' class='heading'>XGBoost for Swift</h1>
+
+<p>Bindings for <a href="https://en.wikipedia.org/wiki/XGBoost">the XGBoost system library</a>. 
+The aim of this package is to mimic <a href="https://xgboost.readthedocs.io/en/latest/python/python_intro.html">XGBoost Python bindings</a> but, at the same time, utilize the power of Swift and C compatibility. Some things thus behave differently but should provide you maximum flexibility over XGBoost.</p>
+
+<p>Documentation is available at <a href="https://kongzii.github.io/SwiftXGBoost/">pages</a>.</p>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='system-library-dependency' class='heading'>System library dependency</h3>
+<h4 id='linux' class='heading'>Linux</h4>
+
+<p>Install XGBoost from sources</p>
+<pre class="highlight plaintext"><code>git clone --recursive https://github.com/dmlc/xgboost
+cd xgboost
+git checkout release_1.1.0
+mkdir build
+cd build
+cmake ..
+make -j$(nproc)
+make install
+ldconfig
+</code></pre>
+
+<p>Or you can use provided installation script</p>
+<pre class="highlight plaintext"><code>./install.sh
+</code></pre>
+<h4 id='osx' class='heading'>OSX</h4>
+
+<p>You can build and install similarly as on Linux, or just use brew</p>
+<pre class="highlight plaintext"><code>brew install xgboost
+</code></pre>
+<h3 id='package' class='heading'>Package</h3>
+
+<p>Add a dependency in your your <code>Package.swift</code></p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/kongzii/SwiftXGBoost.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"0.0.0"</span><span class="p">),</span>
+</code></pre>
+
+<p>Import Swifty XGBoost </p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">XGBoost</span>
+</code></pre>
+
+<p>or directly C library </p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">CXGBoost</span>
+</code></pre>
+
+<p>both <code><a href="Classes/XGBoost.html">XGBoost</a></code> and <code><a href="Classes/Data.html">Data</a></code> classes are exposing pointers to the underlying C,
+so you can utilize C-API directly for more advanced usage.</p>
+
+<p>As library is still evolving, there can be incompatible changes, 
+use exact version if you do not want to worry about updating your packages.</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/kongzii/SwiftXGBoost.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.1.0"</span><span class="p">)),</span>
+</code></pre>
+<h2 id='example-usage' class='heading'>Example usage</h2>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">XGBoost</span>
+
+<span class="c1">// Register your own callback function for log(info) messages</span>
+<span class="k">try</span> <span class="kt">XGBoost</span><span class="o">.</span><span class="n">registerLogCallback</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Swifty log:"</span><span class="p">,</span> <span class="kt">String</span><span class="p">(</span><span class="nv">cString</span><span class="p">:</span> <span class="nv">$0</span><span class="o">!</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1">// Create some random features and labels</span>
+<span class="k">let</span> <span class="nv">randomArray</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span> <span class="o">..&lt;</span> <span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="kt">Float</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="mi">0</span> <span class="o">..&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">let</span> <span class="nv">labels</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span> <span class="o">..&lt;</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="kt">Float</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="nf">randomElement</span><span class="p">()</span><span class="o">!</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="c1">// Initialize data, DMatrixHandle in the background</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">Data</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"data"</span><span class="p">,</span>
+    <span class="nv">values</span><span class="p">:</span> <span class="n">randomArray</span><span class="p">,</span>
+    <span class="nv">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="nv">label</span><span class="p">:</span> <span class="n">labels</span><span class="p">,</span>
+    <span class="nv">threads</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1">// Slice array into train and test</span>
+<span class="k">let</span> <span class="nv">train</span> <span class="o">=</span> <span class="k">try</span> <span class="n">data</span><span class="o">.</span><span class="nf">slice</span><span class="p">(</span><span class="nv">indexes</span><span class="p">:</span> <span class="mi">0</span> <span class="o">..&lt;</span> <span class="mi">90</span><span class="p">,</span> <span class="nv">newName</span><span class="p">:</span> <span class="s">"train"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">test</span> <span class="o">=</span> <span class="k">try</span> <span class="n">data</span><span class="o">.</span><span class="nf">slice</span><span class="p">(</span><span class="nv">indexes</span><span class="p">:</span> <span class="mi">90</span> <span class="o">..&lt;</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">newName</span><span class="p">:</span> <span class="s">"test"</span><span class="p">)</span>
+
+<span class="c1">// Parameters for XGBoost, check https://xgboost.readthedocs.io/en/latest/parameter.html</span>
+<span class="k">let</span> <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt">Parameter</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">"verbosity"</span><span class="p">,</span> <span class="s">"2"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"seed"</span><span class="p">,</span> <span class="s">"0"</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1">// Create XGBoost model, `with` data will be cached</span>
+<span class="k">let</span> <span class="nv">xgboost</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">XGBoost</span><span class="p">(</span>
+    <span class="nv">with</span><span class="p">:</span> <span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">],</span>
+    <span class="nv">parameters</span><span class="p">:</span> <span class="n">parameters</span>
+<span class="p">)</span>
+
+<span class="c1">// Train xgboost, optionally provide callback functions called before and after each iteration</span>
+<span class="k">try</span> <span class="n">xgboost</span><span class="o">.</span><span class="nf">train</span><span class="p">(</span>
+    <span class="nv">iterations</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nv">trainingData</span><span class="p">:</span> <span class="n">train</span><span class="p">,</span>
+    <span class="nv">evaluationData</span><span class="p">:</span> <span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1">// Predict from test data</span>
+<span class="k">let</span> <span class="nv">predictions</span> <span class="o">=</span> <span class="k">try</span> <span class="n">xgboost</span><span class="o">.</span><span class="nf">predict</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">test</span><span class="p">)</span>
+
+<span class="c1">// Save</span>
+<span class="k">try</span> <span class="n">xgboost</span><span class="o">.</span><span class="nf">save</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="s">"model.xgboost"</span><span class="p">)</span>
+</code></pre>
+<h2 id='development' class='heading'>Development</h2>
+<h3 id='documentation' class='heading'>Documentation</h3>
+
+<p><a href="https://github.com/realm/jazzy">Jazzy</a> is used for the generation of documentation.</p>
+
+<p>You can generate documentation locally using </p>
+<pre class="highlight plaintext"><code>make documentation
+</code></pre>
+
+<p>Github pages will be updated automatically when merged into master.</p>
+<h3 id='tests' class='heading'>Tests</h3>
+
+<p>Where possible, Swift implementation is tested against reference implementation in Python via PythonKit. For example, test of <code>score</code> method in <code>scoreEmptyFeatureMapTest</code></p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">pyFMap</span> <span class="o">=</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Int</span><span class="p">](</span><span class="n">pyXgboost</span><span class="o">.</span><span class="nf">get_score</span><span class="p">(</span>
+    <span class="nv">fmap</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span> <span class="nv">importance_type</span><span class="p">:</span> <span class="s">"weight"</span><span class="p">))</span><span class="o">!</span>
+<span class="nf">let</span> <span class="p">(</span><span class="n">fMap</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="k">try</span> <span class="n">xgboost</span><span class="o">.</span><span class="nf">score</span><span class="p">(</span><span class="nv">featureMap</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span> <span class="nv">importance</span><span class="p">:</span> <span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+
+<span class="kt">XCTAssertEqual</span><span class="p">(</span><span class="n">fMap</span><span class="p">,</span> <span class="n">pyFMap</span><span class="p">)</span>
+</code></pre>
+<h4 id='run-locally' class='heading'>Run locally</h4>
+
+<p>On ubuntu using docker</p>
+<pre class="highlight plaintext"><code>docker-compose run test 
+</code></pre>
+
+<p>On host</p>
+<pre class="highlight plaintext"><code>swift test
+</code></pre>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-05-30)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
