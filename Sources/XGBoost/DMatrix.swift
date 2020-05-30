@@ -136,7 +136,6 @@ public class DMatrix {
     /// - Parameter format: Format of input file.
     /// - Parameter features: Names and types of features.
     /// - Parameter labelColumn: Which column is for label.
-    /// - Parameter label: Array of labels for data.
     /// - Parameter weight: Weight for each instance.
     /// - Parameter baseMargin: Set base margin of booster to start from.
     /// - Parameter silent: Whether print messages during construction.
@@ -147,7 +146,6 @@ public class DMatrix {
         format: DataFormat = .csv,
         features: [Feature]? = nil,
         labelColumn: Int? = nil,
-        label: [Float]? = nil,
         weight: [Float]? = nil,
         baseMargin: [Float]? = nil,
         silent: Bool = true,
@@ -176,7 +174,6 @@ public class DMatrix {
             name: name,
             dmatrix: dmatrix,
             features: features,
-            label: label,
             weight: weight,
             baseMargin: baseMargin
         )
