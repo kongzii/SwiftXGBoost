@@ -8,7 +8,7 @@ addons:
       - xgboost
       - sourcekitten
 before_install:
-  - gem install jazzy -v 0.12
+  - gem install jazzy -v 0.12.0
 after_success:
   - gmake documentation
 deploy:
