@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AfterIterationCallbackOutput Enumeration Reference</title>
+    <title>Feature Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/AfterIterationCallbackOutput" class="dashAnchor"></a>
-    <a title="AfterIterationCallbackOutput Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Struct/Feature" class="dashAnchor"></a>
+    <a title="Feature Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (73% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        AfterIterationCallbackOutput Enumeration Reference
+        Feature Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -118,14 +118,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>AfterIterationCallbackOutput</h1>
+            <h1>Feature</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AfterIterationCallbackOutput</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Feature</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Information about feature.</p>
 
           </section>
           <section class="section task-group-section">
@@ -134,9 +134,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost28AfterIterationCallbackOutputO4stopyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/stop" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost28AfterIterationCallbackOutputO4stopyA2CmF">stop</a>
+                    <a name="/s:7XGBoost7FeatureV4nameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7FeatureV4nameSSvp">name</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -151,7 +151,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">stop</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -161,9 +161,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost28AfterIterationCallbackOutputO4nextyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/next" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost28AfterIterationCallbackOutputO4nextyA2CmF">next</a>
+                    <a name="/s:7XGBoost7FeatureV4typeAA0B4TypeOvp"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7FeatureV4typeAA0B4TypeOvp">type</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -178,7 +178,61 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">next</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/FeatureType.html">FeatureType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost7FeatureVyACSS_AA0B4TypeOtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7FeatureVyACSS_AA0B4TypeOtcfc">init(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/FeatureType.html">FeatureType</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost7FeatureV4name4typeACSS_AA0B4TypeOtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:type:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7FeatureV4name4typeACSS_AA0B4TypeOtcfc">init(name:<wbr>type:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/FeatureType.html">FeatureType</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

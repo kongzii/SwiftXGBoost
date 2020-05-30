@@ -14,7 +14,7 @@
     <a title="Array Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (76% documented)</p>
+        <p><a href="../index.html"> Docs</a> (73% documented)</p>
         <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -89,6 +89,9 @@
             <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Structs/Feature.html">Feature</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Shape.html">Shape</a>
               </li>
             </ul>
@@ -101,9 +104,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:7XGBoost7Featurea">Feature</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost9Parametera">Parameter</a>
@@ -121,7 +121,7 @@
             <h1>Array</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">Array</span> <span class="k">where</span> <span class="kt">Element</span> <span class="o">==</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost7Featurea">Feature</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">Array</span> <span class="k">where</span> <span class="kt">Element</span> <span class="o">==</span> <span class="kt"><a href="../Structs/Feature.html">Feature</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">Array</span> <span class="k">where</span> <span class="kt">Element</span><span class="p">:</span> <span class="kt">NumpyScalarCompatible</span></code></pre>
 
                 </div>
@@ -135,7 +135,7 @@
                 <a name="//apple_ref/swift/Section/Available where `Element` == `Feature`" class="dashAnchor"></a>
                 <div class="section-name-container">
                   <a class="section-name-link" href="#/Available%20where%20%60Element%60%20==%20%60Feature%60"></a>
-                  <h3 class="section-name"><p>Available where <code>Element</code> == <code><a href="../Typealiases.html#/s:7XGBoost7Featurea">Feature</a></code></p>
+                  <h3 class="section-name"><p>Available where <code>Element</code> == <code><a href="../Structs/Feature.html">Feature</a></code></p>
 </h3>
                 </div>
               </div>
@@ -143,9 +143,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Sa7XGBoostSS4name_AA11FeatureTypeO4typetRszlE04saveC3Map2toySS_tKF"></a>
+                    <a name="/s:Sa7XGBoostAA7FeatureVRszlE04saveB3Map2toySS_tKF"></a>
                     <a name="//apple_ref/swift/Method/saveFeatureMap(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Sa7XGBoostSS4name_AA11FeatureTypeO4typetRszlE04saveC3Map2toySS_tKF">saveFeatureMap(to:<wbr>)</a>
+                    <a class="token" href="#/s:Sa7XGBoostAA7FeatureVRszlE04saveB3Map2toySS_tKF">saveFeatureMap(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -177,6 +177,52 @@
                               <td>
                                 <div>
                                   <p>Path where feature map will be saved.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sa7XGBoostAA7FeatureVRszlE04fromB3MapSayACGSS_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(fromFeatureMap:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sa7XGBoostAA7FeatureVRszlE04fromB3MapSayACGSS_tKcfc">init(fromFeatureMap:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Load previously saved feature map.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="n">fromFeatureMap</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Path to the feature map.</p>
                                 </div>
                               </td>
                             </tr>
