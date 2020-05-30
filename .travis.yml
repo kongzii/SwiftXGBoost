@@ -1,0 +1,21 @@
+language: generic
+os: osx
+osx_image: xcode11
+addons:
+  homebrew:
+    packages:
+      - make
+      - sourcekitten
+before_install:
+  - gem install jazzy
+after_success:
+  - gmake documentation
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  local_dir: Documentation
+  keep_history: true
+branches:
+  only:
+    - master

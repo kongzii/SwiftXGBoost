@@ -6,9 +6,7 @@
 Bindings for [the XGBoost system library](https://en.wikipedia.org/wiki/XGBoost). 
 The aim of this package is to mimic [XGBoost Python bindings](https://xgboost.readthedocs.io/en/latest/python/python_intro.html) but, at the same time, utilize the power of Swift and C compatibility. Some things thus behave differently but should provide you maximum flexibility over XGBoost.
 
-Documentation is available at [Wiki](https://github.com/kongzii/SwiftXGBoost/wiki).
-
-Note: This is not an official XGBoost project.
+Documentation is available at [pages](https://kongzii.github.io/SwiftXGBoost/).
 
 ## Installation
 
@@ -131,15 +129,15 @@ try xgboost.save(to: "model.xgboost")
 
 ### Documentation
 
-[Swiftdoc](https://github.com/SwiftDocOrg/swift-doc) is used for generation of documenation for module `XGBoost`.
+[Jazzy](https://github.com/realm/jazzy) is used for the generation of documentation.
 
 You can generate documentation locally using 
 
 ```
-docker-compose run documentation
+make documentation
 ```
 
-Github wiki will be updated automatically, when merged into master.
+Github pages will be updated automatically when merged into master.
 
 ### Tests
 
@@ -155,6 +153,14 @@ XCTAssertEqual(fMap, pyFMap)
 
 #### Run locally
 
+On ubuntu using docker
+
 ```
 docker-compose run test 
+```
+
+On host
+
+```
+swift test
 ```
