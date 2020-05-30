@@ -1,13 +1,13 @@
 import CXGBoost
 
-/// Convient alias for Python data name.
-public typealias DMatrix = Data
+/// Backward compatible alias for Data
+public typealias Data = DMatrix
 
 /// Data class used with XGBoost.
 ///
 /// Data is encapsulation of DMatrixHandle, internal structure used by XGBoost,
 /// which is optimized for both memory efficiency and training speed.
-public class Data {
+public class DMatrix {
     /// Name of dataset, for example, "train".
     public var name: String
 
