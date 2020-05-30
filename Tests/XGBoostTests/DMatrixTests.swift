@@ -3,7 +3,7 @@ import XCTest
 @testable import XGBoost
 
 final class DMatrixTests: XCTestCase {
-    func countsTest() throws {
+    func testCounts() throws {
         let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
         let data = try DMatrix(
             name: "data",
@@ -18,6 +18,6 @@ final class DMatrixTests: XCTestCase {
     }
 
     static var allTests = [
-        ("countsTest", countsTest),
+        ("testCounts", testCounts),
     ]
 }
