@@ -5,6 +5,7 @@ addons:
   homebrew:
     packages:
       - make
+      - xgboost
       - sourcekitten
 before_install:
   - gem install jazzy
