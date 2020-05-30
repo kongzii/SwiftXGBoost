@@ -129,7 +129,7 @@ try xgboost.save(to: "model.xgboost")
 
 ### Documentation
 
-[Jazzy](https://github.com/realm/jazzy) is used for generation of documenation.
+[Jazzy](https://github.com/realm/jazzy) is used for the generation of documentation.
 
 You can generate documentation locally using 
 
@@ -137,7 +137,7 @@ You can generate documentation locally using
 make documentation
 ```
 
-Github pages will be updated automatically, when merged into master.
+Github pages will be updated automatically when merged into master.
 
 ### Tests
 
