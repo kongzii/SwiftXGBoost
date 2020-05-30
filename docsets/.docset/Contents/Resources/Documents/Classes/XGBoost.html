@@ -1,0 +1,2471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>XGBoost Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/XGBoost" class="dashAnchor"></a>
+    <a title="XGBoost Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (76% documented)</p>
+        <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        XGBoost Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XGBoost.html">XGBoost</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Booster.html">Booster</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DataFormat.html">DataFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FeatureType.html">FeatureType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FloatField.html">FloatField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Importance.html">Importance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ModelFormat.html">ModelFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UIntField.html">UIntField</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Shape.html">Shape</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost7DMatrixa">DMatrix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost7Featurea">Feature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost9Parametera">Parameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost7Versiona">Version</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>XGBoost</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">XGBoost</span></code></pre>
+
+                </div>
+              </div>
+            <p>XGBoost model.</p>
+
+<p>Encapsulates BoosterHandle, the model of xgboost, that contains low level routines for
+training, prediction and evaluation.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC7boosterSvSgvp"></a>
+                    <a name="//apple_ref/swift/Property/booster" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC7boosterSvSgvp">booster</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pointer to underlying BoosterHandle.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">booster</span><span class="p">:</span> <span class="kt">BoosterHandle</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC20systemLibraryVersionSi5major_Si5minorSi5patchtvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/systemLibraryVersion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC20systemLibraryVersionSi5major_Si5minorSi5patchtvpZ">systemLibraryVersion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Version of underlying XGBoost system library.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">systemLibraryVersion</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost7Versiona">Version</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC19registerLogCallbackyyySPys4Int8VGSgXCSgKFZ"></a>
+                    <a name="//apple_ref/swift/Method/registerLogCallback(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC19registerLogCallbackyyySPys4Int8VGSgXCSgKFZ">registerLogCallback(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register callback function for LOG(INFO) messages.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">registerLogCallback</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">call</span><span class="p">:</span> <span class="p">(</span><span class="kd">@convention(c)</span> <span class="p">(</span><span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>call</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Function to be called with C-String as parameter. Use String(cString: $0!) co convert it into Swift string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC7boosterABSvSg_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(booster:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC7boosterABSvSg_tcfc">init(booster:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize XGBoost with an existing BoosterHandle pointer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">booster</span><span class="p">:</span> <span class="kt">BoosterHandle</span><span class="p">?</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>booster</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>BoosterHandle pointer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC5modelABs6UInt64V6length_SpySPys4Int8VGSgG4datat_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(model:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC5modelABs6UInt64V6length_SpySPys4Int8VGSgG4datat_tKcfc">init(model:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize XGBoost from buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">model</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a></span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>model</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Model serialized as buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC4with4from6config10parameters18validateParametersABSayAA4DataCG_SSSgAKSaySS4name_SS5valuetGSbtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(with:from:config:parameters:validateParameters:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC4with4from6config10parameters18validateParametersABSayAA4DataCG_SSSgAKSaySS4name_SS5valuetGSbtKcfc">init(with:<wbr>from:<wbr>config:<wbr>parameters:<wbr>validateParameters:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize new XGBoost.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="n">with</span> <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="n">from</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">config</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost9Parametera">Parameter</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">validateParameters</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>with</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data that will be cached.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Loads model from path.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>config</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Loads model from config.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of parameters to be set.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>validateParameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If true, parameters will be valided. This basically adds parameter validate_parameters=1.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC6configSSyKF"></a>
+                    <a name="//apple_ref/swift/Method/config()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC6configSSyKF">config()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">config</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>XGBoost&rsquo;s internal configuration into a JSON document.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC10attributesSDyS2SGyKF"></a>
+                    <a name="//apple_ref/swift/Method/attributes()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC10attributesSDyS2SGyKF">attributes()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">attributes</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Attributes stored in the Booster as a dictionary.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC7predict4from12outputMargin9treeLimit14predictionLeaf0H13Contributions011approximateJ00H12Interactions8training16validateFeaturesSaySfGAA4DataC_Sbs6UInt32VS6btKF"></a>
+                    <a name="//apple_ref/swift/Method/predict(from:outputMargin:treeLimit:predictionLeaf:predictionContributions:approximateContributions:predictionInteractions:training:validateFeatures:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC7predict4from12outputMargin9treeLimit14predictionLeaf0H13Contributions011approximateJ00H12Interactions8training16validateFeaturesSaySfGAA4DataC_Sbs6UInt32VS6btKF">predict(from:<wbr>outputMargin:<wbr>treeLimit:<wbr>predictionLeaf:<wbr>predictionContributions:<wbr>approximateContributions:<wbr>predictionInteractions:<wbr>training:<wbr>validateFeatures:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Predict from data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">predict</span><span class="p">(</span>
+    <span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">,</span>
+    <span class="nv">outputMargin</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">treeLimit</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nv">predictionLeaf</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">predictionContributions</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">approximateContributions</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">predictionInteractions</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">training</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">validateFeatures</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to predict from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outputMargin</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to output the raw untransformed margin value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>treeLimit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Limit number of trees in the prediction. Zero means use all trees.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>predictionLeaf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Each record indicating the predicted leaf index of each sample in each tree.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>predictionContributions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Each record indicating the feature contributions (SHAP values) for that prediction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>approximateContributions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Approximate the contributions of each feature.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>predictionInteractions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Indicate the SHAP interaction values for each pair of features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>training</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the prediction will be used for traning.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>validateFeatures</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Validate booster and data features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC7predict8features12outputMargin9treeLimit14predictionLeaf0H13Contributions011approximateJ00H12Interactions8training12missingValueSfSaySfG_Sbs6UInt32VS5bSftKF"></a>
+                    <a name="//apple_ref/swift/Method/predict(features:outputMargin:treeLimit:predictionLeaf:predictionContributions:approximateContributions:predictionInteractions:training:missingValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC7predict8features12outputMargin9treeLimit14predictionLeaf0H13Contributions011approximateJ00H12Interactions8training12missingValueSfSaySfG_Sbs6UInt32VS5bSftKF">predict(features:<wbr>outputMargin:<wbr>treeLimit:<wbr>predictionLeaf:<wbr>predictionContributions:<wbr>approximateContributions:<wbr>predictionInteractions:<wbr>training:<wbr>missingValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Predict directly from array of floats, will build Data structure automatically with one row and features.count features.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">predict</span><span class="p">(</span>
+    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">],</span>
+    <span class="nv">outputMargin</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">treeLimit</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nv">predictionLeaf</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">predictionContributions</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">approximateContributions</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">predictionInteractions</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">training</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">missingValue</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="kt">Float</span><span class="o">.</span><span class="n">greatestFiniteMagnitude</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>features</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Features to base prediction at..</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outputMargin</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to output the raw untransformed margin value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>treeLimit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Limit number of trees in the prediction. Zero means use all trees.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>predictionLeaf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Each record indicating the predicted leaf index of each sample in each tree.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>predictionContributions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Each record indicating the feature contributions (SHAP values) for that prediction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>approximateContributions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Approximate the contributions of each feature.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>predictionInteractions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Indicate the SHAP interaction values for each pair of features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>training</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the prediction will be used for traning.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>missingValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Value in features representing missing values.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC10serializeds6UInt64V6length_SpySPys4Int8VGSgG4datatyKF"></a>
+                    <a name="//apple_ref/swift/Method/serialized()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC10serializeds6UInt64V6length_SpySPys4Int8VGSgG4datatyKF">serialized()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">serialized</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Everything states in buffer.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC4save2toySS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/save(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC4save2toySS_tKF">save(to:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Saves modes into file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">save</span><span class="p">(</span>
+    <span class="n">to</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Path to output file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC3raws6UInt64V6length_SpySPys4Int8VGSgG4datatyKF"></a>
+                    <a name="//apple_ref/swift/Method/raw()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC3raws6UInt64V6length_SpySPys4Int8VGSgG4datatyKF">raw()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">raw</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Model as binary raw bytes.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC6dumped10featureMap14withStatistics6formatS2S_SbAA11ModelFormatOtKF"></a>
+                    <a name="//apple_ref/swift/Method/dumped(featureMap:withStatistics:format:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC6dumped10featureMap14withStatistics6formatS2S_SbAA11ModelFormatOtKF">dumped(featureMap:<wbr>withStatistics:<wbr>format:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dump model into a string.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dumped</span><span class="p">(</span>
+    <span class="nv">featureMap</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
+    <span class="nv">withStatistics</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/ModelFormat.html">ModelFormat</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">text</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>featureMap</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of the file containing feature map.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withStatistics</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Controls whether the split statistics are output.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>format</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired output format type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Formated output into ModelFormat format.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC9rawDumped10featureMap14withStatistics6formatSaySSGSS_SbAA11ModelFormatOtKF"></a>
+                    <a name="//apple_ref/swift/Method/rawDumped(featureMap:withStatistics:format:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC9rawDumped10featureMap14withStatistics6formatSaySSGSS_SbAA11ModelFormatOtKF">rawDumped(featureMap:<wbr>withStatistics:<wbr>format:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dump model into an array of strings.
+In most cases you will want to use <code>dumped</code> method to get output in expected format.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rawDumped</span><span class="p">(</span>
+    <span class="nv">featureMap</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
+    <span class="nv">withStatistics</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/ModelFormat.html">ModelFormat</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">text</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>featureMap</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of the file containing feature map.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withStatistics</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Controls whether the split statistics are output.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>format</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired output format type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Raw output from XGBoosterDumpModelEx provided as array of strings.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC6dumped8features14withStatistics6formatSSSaySS4name_AA11FeatureTypeO4typetG_SbAA11ModelFormatOtKF"></a>
+                    <a name="//apple_ref/swift/Method/dumped(features:withStatistics:format:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC6dumped8features14withStatistics6formatSSSaySS4name_AA11FeatureTypeO4typetG_SbAA11ModelFormatOtKF">dumped(features:<wbr>withStatistics:<wbr>format:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dump model into a string.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dumped</span><span class="p">(</span>
+    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost7Featurea">Feature</a></span><span class="p">],</span>
+    <span class="nv">withStatistics</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/ModelFormat.html">ModelFormat</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">text</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>features</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withStatistics</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Controls whether the split statistics are output.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>format</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired output format type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Formated output into ModelFormat format.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC9rawDumped8features14withStatistics6formatSaySSGSaySS4name_AA11FeatureTypeO4typetG_SbAA11ModelFormatOtKF"></a>
+                    <a name="//apple_ref/swift/Method/rawDumped(features:withStatistics:format:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC9rawDumped8features14withStatistics6formatSaySSGSaySS4name_AA11FeatureTypeO4typetG_SbAA11ModelFormatOtKF">rawDumped(features:<wbr>withStatistics:<wbr>format:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dump model into an array of strings.
+In most cases you will want to use <code>dumped</code> method to get output in expected format.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rawDumped</span><span class="p">(</span>
+    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost7Featurea">Feature</a></span><span class="p">],</span>
+    <span class="nv">withStatistics</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/ModelFormat.html">ModelFormat</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">text</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>features</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withStatistics</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Controls whether the split statistics are output.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>format</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired output format type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Raw output from XGBoosterDumpModelEx provided as array of strings.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC5score10featureMap10importanceSDySSSiG8features_SDySSSfGSg5gainstSS_AA10ImportanceOtKF"></a>
+                    <a name="//apple_ref/swift/Method/score(featureMap:importance:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC5score10featureMap10importanceSDySSSiG8features_SDySSSfGSg5gainstSS_AA10ImportanceOtKF">score(featureMap:<wbr>importance:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get feature importance of each feature.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">score</span><span class="p">(</span>
+    <span class="nv">featureMap</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
+    <span class="nv">importance</span><span class="p">:</span> <span class="kt"><a href="../Enums/Importance.html">Importance</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">weight</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Int</span><span class="p">],</span> <span class="nv">gains</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Float</span><span class="p">]?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>featureMap</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Path to the feature map.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>importance</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Type of importance you want to compute.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Tuple of features and gains, in case importance = weight, gains will be nil.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC4load5modelys6UInt64V6length_SpySPys4Int8VGSgG4datat_tKF"></a>
+                    <a name="//apple_ref/swift/Method/load(model:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC4load5modelys6UInt64V6length_SpySPys4Int8VGSgG4datat_tKF">load(model:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Loads model from buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span>
+    <span class="n">model</span> <span class="nv">buffer</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a></span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>model</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Buffer to load from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC4load5modelySS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/load(model:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC4load5modelySS_tKF">load(model:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Loads model from file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span>
+    <span class="n">model</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>model</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Path of file to load model from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC4load6configySS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/load(config:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC4load6configySS_tKF">load(config:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Loads model from config.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span>
+    <span class="nv">config</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>model</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Config to load from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC19saveRabitCheckpointyyKF"></a>
+                    <a name="//apple_ref/swift/Method/saveRabitCheckpoint()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC19saveRabitCheckpointyyKF">saveRabitCheckpoint()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Save the current checkpoint to rabit.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">saveRabitCheckpoint</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC19loadRabitCheckpointSiyKF"></a>
+                    <a name="//apple_ref/swift/Method/loadRabitCheckpoint()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC19loadRabitCheckpointSiyKF">loadRabitCheckpoint()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize the booster from rabit checkpoint.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadRabitCheckpoint</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The output version of the model.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC9attribute4nameSSSgSS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/attribute(name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC9attribute4nameSSSgSS_tKF">attribute(name:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get attribute string from the Booster.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">attribute</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of attribute to get.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Value of attribute.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC3set9attribute5valueySS_SStKF"></a>
+                    <a name="//apple_ref/swift/Method/set(attribute:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC3set9attribute5valueySS_SStKF">set(attribute:<wbr>value:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set string attribute.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span>
+    <span class="nv">attribute</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>attribute</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of attribute.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Value of attribute.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC3set9parameter5valueySS_SStKF"></a>
+                    <a name="//apple_ref/swift/Method/set(parameter:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC3set9parameter5valueySS_SStKF">set(parameter:<wbr>value:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set string parameter.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span>
+    <span class="nv">parameter</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of parameter.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Value of parameter.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC6update9iteration4data16validateFeaturesySi_AA4DataCSbtKF"></a>
+                    <a name="//apple_ref/swift/Method/update(iteration:data:validateFeatures:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC6update9iteration4data16validateFeaturesySi_AA4DataCSbtKF">update(iteration:<wbr>data:<wbr>validateFeatures:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update for one iteration, with objective function calculated internally.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span>
+    <span class="nv">iteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">,</span>
+    <span class="nv">validateFeatures</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>iteration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current iteration number.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Training data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>validateFeatures</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to validate features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC6update4data9objective16validateFeaturesyAA4DataC_SaySfG8gradient_AI7hessiantAI_AHtXESbtKF"></a>
+                    <a name="//apple_ref/swift/Method/update(data:objective:validateFeatures:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC6update4data9objective16validateFeaturesyAA4DataC_SaySfG8gradient_AI7hessiantAI_AHtXESbtKF">update(data:<wbr>objective:<wbr>validateFeatures:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update for one iteration with custom objective.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span>
+    <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">,</span>
+    <span class="nv">objective</span><span class="p">:</span> <span class="p">([</span><span class="kt">Float</span><span class="p">],</span> <span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">gradient</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">],</span> <span class="nv">hessian</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]),</span>
+    <span class="nv">validateFeatures</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Training data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>objective</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Objective function returning gradient and hessian.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>validateFeatures</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to validate features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC5boost4data8gradient7hessian16validateFeaturesyAA4DataC_SaySfGAJSbtKF"></a>
+                    <a name="//apple_ref/swift/Method/boost(data:gradient:hessian:validateFeatures:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC5boost4data8gradient7hessian16validateFeaturesyAA4DataC_SaySfGAJSbtKF">boost(data:<wbr>gradient:<wbr>hessian:<wbr>validateFeatures:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Boost the booster for one iteration, with customized gradient statistics.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">boost</span><span class="p">(</span>
+    <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">,</span>
+    <span class="nv">gradient</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">],</span>
+    <span class="nv">hessian</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">],</span>
+    <span class="nv">validateFeatures</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Training data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gradient</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The first order of gradient.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hessian</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The second order of gradient.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>validateFeatures</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to validate features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC8evaluate9iteration4dataSDySSSDyS2SGGSi_SayAA4DataCGtKF"></a>
+                    <a name="//apple_ref/swift/Method/evaluate(iteration:data:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC8evaluate9iteration4dataSDySSSDyS2SGGSi_SayAA4DataCGtKF">evaluate(iteration:<wbr>data:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Evaluate array of data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">evaluate</span><span class="p">(</span>
+    <span class="nv">iteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>iteration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current iteration.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to evaluate.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Dictionary in format [data_name: [eval_name: eval_value, &hellip;], &hellip;]</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC8evaluate9iteration4dataSDySSSDyS2SGGSi_AA4DataCtKF"></a>
+                    <a name="//apple_ref/swift/Method/evaluate(iteration:data:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC8evaluate9iteration4dataSDySSSDyS2SGGSi_AA4DataCtKF">evaluate(iteration:<wbr>data:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Evaluate data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">evaluate</span><span class="p">(</span>
+    <span class="nv">iteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Classes/Data.html">Data</a></span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>iteration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current iteration.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to evaluate.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Dictionary in format [data_name: [eval_name: eval_value]]</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC5train10iterations12trainingData010evaluationE015beforeIteration05afterH0ySi_AA0E0CSayAJGyAB_SitKXEAA05AfterH14CallbackOutputOAB_SiSDySSSDyS2SGGSgtKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/train(iterations:trainingData:evaluationData:beforeIteration:afterIteration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC5train10iterations12trainingData010evaluationE015beforeIteration05afterH0ySi_AA0E0CSayAJGyAB_SitKXEAA05AfterH14CallbackOutputOAB_SiSDySSSDyS2SGGSgtKXEtKF">train(iterations:<wbr>trainingData:<wbr>evaluationData:<wbr>beforeIteration:<wbr>afterIteration:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Train booster.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">train</span><span class="p">(</span>
+    <span class="nv">iterations</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">trainingData</span><span class="p">:</span> <span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">,</span>
+    <span class="nv">evaluationData</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">beforeIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt">XGBoost</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="p">},</span>
+    <span class="nv">afterIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt">XGBoost</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]]?)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">}</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>iterations</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of training iterations, but training can be stopped early.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>trainingData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to train on.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>evaluationData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to evaluate on, if provided.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>beforeIteration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Callback called before each iteration.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>afterIteration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Callback called after each iteration.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC8validate8featuresySaySS4name_AA11FeatureTypeO4typetG_tKF"></a>
+                    <a name="//apple_ref/swift/Method/validate(features:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC8validate8featuresySaySS4name_AA11FeatureTypeO4typetG_tKF">validate(features:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validate features.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span>
+    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost7Featurea">Feature</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>features</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Features to validate.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC8validate4datayAA4DataC_tKF"></a>
+                    <a name="//apple_ref/swift/Method/validate(data:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC8validate4datayAA4DataC_tKF">validate(data:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validate features.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span>
+    <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Classes/Data.html">Data</a></span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data which features will be validated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC8validate4dataySayAA4DataCG_tKF"></a>
+                    <a name="//apple_ref/swift/Method/validate(data:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC8validate4dataySayAA4DataCG_tKF">validate(data:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validate features.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span>
+    <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Data.html">Data</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of data which features will be validated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoostAAC19saveImportanceGraph8fileName10featureMap10importance5label5title10xAxisLabel01ylM019maxNumberOfFeatures16graphOrientation10enableGrid4size8rendererySS_SSAA0C0OS4SSiSg9SwiftPlot03BarD0V0dS0OySSSf_GSbAS4SizeVAS8Renderer_ptKF"></a>
+                    <a name="//apple_ref/swift/Method/saveImportanceGraph(fileName:featureMap:importance:label:title:xAxisLabel:yAxisLabel:maxNumberOfFeatures:graphOrientation:enableGrid:size:renderer:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoostAAC19saveImportanceGraph8fileName10featureMap10importance5label5title10xAxisLabel01ylM019maxNumberOfFeatures16graphOrientation10enableGrid4size8rendererySS_SSAA0C0OS4SSiSg9SwiftPlot03BarD0V0dS0OySSSf_GSbAS4SizeVAS8Renderer_ptKF">saveImportanceGraph(fileName:<wbr>featureMap:<wbr>importance:<wbr>label:<wbr>title:<wbr>xAxisLabel:<wbr>yAxisLabel:<wbr>maxNumberOfFeatures:<wbr>graphOrientation:<wbr>enableGrid:<wbr>size:<wbr>renderer:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Saves plot with importance based on fitted trees.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">saveImportanceGraph</span><span class="p">(</span>
+    <span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">featureMap</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
+    <span class="nv">importance</span><span class="p">:</span> <span class="kt"><a href="../Enums/Importance.html">Importance</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">weight</span><span class="p">,</span>
+    <span class="nv">label</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Feature importance"</span><span class="p">,</span>
+    <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Feature importance"</span><span class="p">,</span>
+    <span class="nv">xAxisLabel</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Score"</span><span class="p">,</span>
+    <span class="nv">yAxisLabel</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Features"</span><span class="p">,</span>
+    <span class="nv">maxNumberOfFeatures</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">graphOrientation</span><span class="p">:</span> <span class="kt">BarGraph</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="kt">Float</span><span class="o">&gt;.</span><span class="kt">GraphOrientation</span> <span class="o">=</span> <span class="o">.</span><span class="n">horizontal</span><span class="p">,</span>
+    <span class="nv">enableGrid</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">size</span><span class="p">:</span> <span class="kt">Size</span> <span class="o">=</span> <span class="kt">Size</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">660</span><span class="p">),</span>
+    <span class="nv">renderer</span><span class="p">:</span> <span class="kt">Renderer</span> <span class="o">=</span> <span class="kt">AGGRenderer</span><span class="p">()</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>File where graph will be saved, .png extension will be added.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>featureMap</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Path to the feature map, if provided, replaces default f0, f1, &hellip; feature names.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>importance</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Type of importance to plot.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>label</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Label of graph.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Title of graph.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>xAxisLabel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Label of X-axis.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>yAxisLabel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Label of Y-axis.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maxNumberOfFeatures</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Maximum number of top features displayed on plot. If None, all features will be displayed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>graphOrientation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Orientaton of ploted graph.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>enableGrid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>urn the axes grids on or off.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Size of ploted graph.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>renderer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Renderer to use.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-05-30)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
