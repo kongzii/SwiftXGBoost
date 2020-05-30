@@ -54,7 +54,7 @@ final class ExampleTests: XCTestCase {
         try xgboost.save(to: "model.xgboost")
 
         // Assert outputs
-        XCTAssertEqual(try data.label(), labels)
+        XCTAssertEqual(try data.get(field: .label), labels)
         XCTAssertEqual(try data.rowCount(), 100)
         XCTAssertEqual(try data.columnCount(), 10)
         XCTAssertEqual(try train.rowCount(), 90)

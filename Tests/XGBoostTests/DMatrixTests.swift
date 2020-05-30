@@ -40,7 +40,7 @@ final class DMatrixTests: XCTestCase {
             labelColumn: 0
         )
 
-        XCTAssertEqual(try data.label(), [1.0, 0.0, 1.0])
+        XCTAssertEqual(try data.get(field: .label), [1.0, 0.0, 1.0])
         XCTAssertEqual(try data.rowCount(), 3)
         XCTAssertEqual(try data.columnCount(), 2)
         XCTAssertEqual(try data.shape(), [3, 2])
@@ -66,7 +66,7 @@ final class DMatrixTests: XCTestCase {
             format: .binary
         )
 
-        XCTAssertEqual(try data.label(), try loadedData.label())
+        XCTAssertEqual(try data.get(field: .label), try loadedData.get(field: .label))
         XCTAssertEqual(try data.rowCount(), try loadedData.rowCount())
         XCTAssertEqual(try data.columnCount(), try loadedData.columnCount())
         XCTAssertEqual(try data.shape(), try loadedData.shape())
@@ -88,6 +88,16 @@ final class DMatrixTests: XCTestCase {
         let loadedFeatures = try [Feature](fromFeatureMap: path)
 
         XCTAssertEqual(features, loadedFeatures)
+
+        let data = try DMatrix(
+            name: "data",
+            from: [1, 2, 3, 3, 4, 6],
+            shape: Shape(3, 2),
+            label: [1, 0, 1]
+        )
+        try data.loadFeatureMap(from: path)
+
+        XCTAssertEqual(try data.features(), loadedFeatures)
     }
 
     func testSlice() throws {
@@ -104,7 +114,7 @@ final class DMatrixTests: XCTestCase {
         )
         XCTAssertEqual(firstSlice.name, "firstSlice")
         XCTAssertEqual(try firstSlice.shape(), [2, 2])
-        XCTAssertEqual(try firstSlice.label(), [1, 1])
+        XCTAssertEqual(try firstSlice.get(field: .label), [1, 1])
 
         let secondSlice = try data.slice(
             indexes: [1],
@@ -112,7 +122,7 @@ final class DMatrixTests: XCTestCase {
         )
         XCTAssertEqual(secondSlice.name, "secondSlice")
         XCTAssertEqual(try secondSlice.shape(), [1, 2])
-        XCTAssertEqual(try secondSlice.label(), [0])
+        XCTAssertEqual(try secondSlice.get(field: .label), [0])
 
         let thirdSlice = try data.slice(
             indexes: 0 ..< 2,
@@ -120,7 +130,21 @@ final class DMatrixTests: XCTestCase {
         )
         XCTAssertEqual(thirdSlice.name, "thirdSlice")
         XCTAssertEqual(try thirdSlice.shape(), [2, 2])
-        XCTAssertEqual(try thirdSlice.label(), [1, 0])
+        XCTAssertEqual(try thirdSlice.get(field: .label), [1, 0])
+    }
+
+    func testSetGetFloatInfo() throws {
+        let data = try DMatrix(
+            name: "data",
+            from: [1, 2, 3, 3, 4, 6],
+            shape: Shape(3, 2)
+        )
+
+        try data.set(field: .label, values: [1, 2, 3])
+        XCTAssertEqual(try data.get(field: .label), [1, 2, 3])
+
+        try data.set(field: .weight, values: [1, 3, 3])
+        XCTAssertEqual(try data.get(field: .weight), [1, 3, 3])
     }
 
     static var allTests = [
@@ -129,5 +153,6 @@ final class DMatrixTests: XCTestCase {
         ("testSaveAndLoadBinary", testSaveAndLoadBinary),
         ("testSaveAndLoadFeatureMap", testSaveAndLoadFeatureMap),
         ("testSlice", testSlice),
+        ("testSetGetFloatInfo", testSetGetFloatInfo),
     ]
 }

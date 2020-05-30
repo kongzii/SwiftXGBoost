@@ -37,15 +37,15 @@ public class DMatrix {
         }
 
         if let label = label {
-            try set(label: label)
+            try set(field: .label, values: label)
         }
 
         if let weight = weight {
-            try set(weight: weight)
+            try set(field: .weight, values: weight)
         }
 
         if let baseMargin = baseMargin {
-            try set(baseMargin: baseMargin)
+            try set(field: .baseMargin, values: baseMargin)
         }
     }
 
@@ -345,13 +345,13 @@ public class DMatrix {
     /// - Parameter field: The field name of the information.
     /// - Returns: An array of unsigned integer information of the data.
     public func getUIntInfo(
-        field: UIntField
+        field: String
     ) throws -> [UInt32] {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafePointer<UInt32>?>.allocate(capacity: 1)
 
         try safe {
-            XGDMatrixGetUIntInfo(dmatrix, field.rawValue, outLenght, outResult)
+            XGDMatrixGetUIntInfo(dmatrix, field, outLenght, outResult)
         }
 
         return (0 ..< Int(outLenght.pointee)).lazy.map { outResult.pointee![$0] }
@@ -362,13 +362,13 @@ public class DMatrix {
     /// - Parameter field: The field name of the information.
     /// - Returns: An array of float information of the data.
     public func getFloatInfo(
-        field: FloatField
+        field: String
     ) throws -> [Float] {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafePointer<Float>?>.allocate(capacity: 1)
 
         try safe {
-            XGDMatrixGetFloatInfo(dmatrix, field.rawValue, outLenght, outResult)
+            XGDMatrixGetFloatInfo(dmatrix, field, outLenght, outResult)
         }
 
         return (0 ..< Int(outLenght.pointee)).lazy.map { outResult.pointee![$0] }
@@ -394,42 +394,6 @@ public class DMatrix {
         values: [Float]
     ) throws {
         try setFloatInfo(field: field.rawValue, values: values)
-    }
-
-    /// Set float type property named "label" into the DMatrixHandle.
-    ///
-    /// - Parameter label: The array of labels to be set.
-    public func set(
-        label: [Float]
-    ) throws {
-        try set(field: .label, values: label)
-    }
-
-    /// Set float type property named "weight" into the DMatrixHandle.
-    ///
-    /// - Parameter label: The array of weights to be set.
-    public func set(
-        weight: [Float]
-    ) throws {
-        try set(field: .weight, values: weight)
-    }
-
-    /// Set float type property named "base_margin" into the DMatrixHandle.
-    ///
-    /// - Parameter label: The array of values to be set.
-    public func set(
-        baseMargin: [Float]
-    ) throws {
-        try set(field: .baseMargin, values: baseMargin)
-    }
-
-    /// Set uint type property named "group" into the DMatrixHandle.
-    ///
-    /// - Parameter label: The array of values to be set.
-    public func set(
-        group: [UInt32]
-    ) throws {
-        try set(field: .group, values: group)
     }
 
     /// Save names and types of features.
@@ -462,42 +426,22 @@ public class DMatrix {
         _features = features
     }
 
-    /// - Returns: An array of label information of the data.
-    public func label() throws -> [Float] {
-        try getFloatInfo(field: .label)
-    }
-
-    /// - Returns: An array of label information of the data.
-    public func labelUpperBound() throws -> [Float] {
-        try getFloatInfo(field: .labelUpperBound)
-    }
-
-    /// - Returns: An array of label information of the data.
-    public func labelLowerBound() throws -> [Float] {
-        try getFloatInfo(field: .labelLowerBound)
-    }
-
-    /// - Returns: An array of weight information of the data.
-    public func weight() throws -> [Float] {
-        try getFloatInfo(field: .weight)
-    }
-
-    /// - Returns: An array of base margin information of the data.
-    public func baseMargin() throws -> [Float] {
-        try getFloatInfo(field: .baseMargin)
-    }
-
-    /// - Returns: An array of group information of the data.
-    public func group() throws -> [UInt32] {
-        try getUIntInfo(field: .group)
-    }
-
-    /// - Returns: Features of data, generates universal names if not previously set by user.
+    /// - Returns: Features of data, generates universal names with quantitative type if not previously set by user.
     public func features() throws -> [Feature] {
         if let features = _features {
             return features
         }
 
         return try (0 ..< columnCount()).map { Feature(name: String($0), type: .quantitative) }
+    }
+
+    /// - Returns: An array of float information of the data.
+    public func get(field: FloatField) throws -> [Float] {
+        try getFloatInfo(field: field.rawValue)
+    }
+
+    /// - Returns: An array of uint information of the data.
+    public func get(field: UIntField) throws -> [UInt32] {
+        try getUIntInfo(field: field.rawValue)
     }
 }

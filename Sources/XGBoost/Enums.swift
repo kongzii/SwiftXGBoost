@@ -38,6 +38,7 @@ public enum FloatField: String {
 /// You can set also another fields using method accepting strings.
 public enum UIntField: String {
     case group
+    case groupPtr = "group_ptr"
 }
 
 public enum Importance: String {
