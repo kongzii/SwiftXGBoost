@@ -5,7 +5,7 @@ import XCTest
 final class DataTests: XCTestCase {
     func countsTest() throws {
         let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
-        let data = try Data(
+        let data = try DMatrix(
             name: "data",
             values: randomArray,
             shape: Shape(5, 2),

@@ -16,7 +16,7 @@ final class ExampleTests: XCTestCase {
         let labels = (0 ..< 100).map { _ in Float([0, 1].randomElement()!) }
 
         // Initialize data, DMatrixHandle in the background
-        let data = try Data(
+        let data = try DMatrix(
             name: "data",
             values: randomArray,
             shape: Shape(100, 10),

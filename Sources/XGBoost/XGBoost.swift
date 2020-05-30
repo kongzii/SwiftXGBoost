@@ -238,7 +238,7 @@ public class XGBoost {
         missingValue: Float = Float.greatestFiniteMagnitude
     ) throws -> Float {
         try predict(
-            from: Data(
+            from: DMatrix(
                 name: "predict",
                 values: features,
                 shape: Shape(1, features.count),

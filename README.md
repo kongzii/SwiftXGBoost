@@ -111,7 +111,7 @@ If you are using one of the S4TF swift toolchains, you can combine its power dir
 
 ```swift
 let tensor = Tensor<Float>(shape: TensorShape([2, 3]), scalars: [1, 2, 3, 4, 5, 6])
-let data = try Data(name: "training", from: tensor)
+let data = try DMatrix(name: "training", from: tensor)
 ```
 
 ## Examples
@@ -144,7 +144,7 @@ let randomArray = (0 ..< 1000).map { _ in Float.random(in: 0 ..< 2) }
 let labels = (0 ..< 100).map { _ in Float([0, 1].randomElement()!) }
 
 // Initialize data, DMatrixHandle in the background
-let data = try Data(
+let data = try DMatrix(
     name: "data",
     values: randomArray,
     shape: Shape(100, 10),

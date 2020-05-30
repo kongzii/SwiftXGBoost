@@ -270,7 +270,7 @@ public class DMatrix {
             )
         }
 
-        return try Data(
+        return try DMatrix(
             name: newName ?? name,
             dmatrix: slicedDmatrix,
             features: _features

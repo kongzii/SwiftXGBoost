@@ -30,7 +30,7 @@ final class XGBoostTests: XCTestCase {
     func testJsonDumped() throws {
         let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
-        let data = try Data(
+        let data = try DMatrix(
             name: "data",
             values: randomArray,
             shape: Shape(10, 1),
@@ -53,7 +53,7 @@ final class XGBoostTests: XCTestCase {
     func testTextDumped() throws {
         let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
-        let data = try Data(
+        let data = try DMatrix(
             name: "data",
             values: randomArray,
             shape: Shape(10, 1),
@@ -75,7 +75,7 @@ final class XGBoostTests: XCTestCase {
     func testScoreEmptyFeatureMap() throws {
         let randomArray = (0 ..< 50).map { _ in Float.random(in: 0 ..< 2) }
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
-        let data = try Data(
+        let data = try DMatrix(
             name: "data",
             values: randomArray,
             shape: Shape(10, 5),
@@ -130,7 +130,7 @@ final class XGBoostTests: XCTestCase {
         let randomArray = (0 ..< 50).map { _ in Float.random(in: 0 ..< 2) }
         let features = (0 ..< 5).map { Feature(name: "Feature-\($0)", type: .quantitative) }
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
-        let data = try Data(
+        let data = try DMatrix(
             name: "data",
             values: randomArray,
             shape: Shape(10, 5),

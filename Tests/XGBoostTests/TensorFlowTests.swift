@@ -10,7 +10,7 @@ final class TensorFlowTests: XCTestCase {
     #if canImport(TensorFlow)
         func testDataFromTensor() throws {
             let x = Tensor<Float>(shape: TensorShape([2, 3]), scalars: [1, 2, 3, 4, 5, 6])
-            let data = try Data(name: "test", from: x)
+            let data = try DMatrix(name: "test", from: x)
             XCTAssertEqual(try data.rowCount(), 2)
             XCTAssertEqual(try data.columnCount(), 3)
         }
