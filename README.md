@@ -137,7 +137,6 @@ You can generate documentation locally using
 make documentation
 ```
 
-Jazzy is currently supposed to run only on OSX.
 Github pages will be updated automatically, when merged into master.
 
 ### Tests
@@ -154,6 +153,14 @@ XCTAssertEqual(fMap, pyFMap)
 
 #### Run locally
 
+On ubuntu using docker
+
 ```
 docker-compose run test 
+```
+
+On host
+
+```
+swift test
 ```
