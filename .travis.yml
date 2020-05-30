@@ -1,6 +1,6 @@
 language: generic
 os: osx
-osx_image: xcode11
+osx_image: xcode11.5
 addons:
   homebrew:
     packages:
@@ -8,7 +8,7 @@ addons:
       - xgboost
       - sourcekitten
 before_install:
-  - gem install jazzy -v 0.12.0
+  - gem install jazzy
 after_success:
   - gmake documentation
 deploy:
