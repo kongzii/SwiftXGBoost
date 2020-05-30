@@ -4,7 +4,7 @@ import XCTest
     public func XGBoostAllTests() -> [XCTestCaseEntry] {
         [
             testCase(ExampleTests.allTests),
-            testCase(DataTests.allTests),
+            testCase(DMatrixTests.allTests),
             testCase(XGBoostTests.allTests),
             testCase(PlotTests.allTests),
             testCase(TensorFlowTests.allTests),

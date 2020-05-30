@@ -2,7 +2,7 @@ import XCTest
 
 @testable import XGBoost
 
-final class DataTests: XCTestCase {
+final class DMatrixTests: XCTestCase {
     func countsTest() throws {
         let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
         let data = try DMatrix(
