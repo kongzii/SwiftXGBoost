@@ -34,7 +34,7 @@ Or you can use provided installation script
 ./install.sh
 ```
 
-#### OSX
+#### macOS
 
 You can build and install similarly as on Linux, or just use brew
 
