@@ -1,213 +1,115 @@
 {
   "warnings": [
     {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Data.swift",
-      "line": 11,
-      "symbol": "Data._features",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 7,
+      "symbol": "skLearnModelSelection",
+      "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Data.swift",
-      "line": 151,
-      "symbol": "Data.deinit",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 19,
-      "symbol": "AfterIterationCallbackOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 20,
-      "symbol": "AfterIterationCallbackOutput.next",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 20,
-      "symbol": "AfterIterationCallbackOutput.stop",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 25,
-      "symbol": "FeatureType.quantitative",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 26,
-      "symbol": "FeatureType.indicator",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 31,
-      "symbol": "ModelFormat.json",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 31,
-      "symbol": "ModelFormat.text",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 36,
-      "symbol": "DataFormat.binary",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 36,
-      "symbol": "DataFormat.csv",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 42,
-      "symbol": "FloatField.label",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 43,
-      "symbol": "FloatField.weight",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 44,
-      "symbol": "FloatField.baseMargin",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 50,
-      "symbol": "UIntField.group",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 53,
-      "symbol": "Importance",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 54,
-      "symbol": "Importance.weight",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 55,
-      "symbol": "Importance.gain",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 56,
-      "symbol": "Importance.cover",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 57,
-      "symbol": "Importance.totalGain",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 58,
-      "symbol": "Importance.totalCover",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 63,
-      "symbol": "Booster.gbtree",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 64,
-      "symbol": "Booster.gblinear",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 65,
-      "symbol": "Booster.dart",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Safe.swift",
-      "line": 4,
-      "symbol": "XGBoostError",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Safe.swift",
-      "line": 9,
-      "symbol": "ValueError",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/XGBoost.swift",
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
       "line": 8,
-      "symbol": "XGBoost.features",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "symbol": "pandas",
+      "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/XGBoost.swift",
-      "line": 9,
-      "symbol": "XGBoost.type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 11,
+      "symbol": "dataFrame",
+      "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/XGBoost.swift",
-      "line": 115,
-      "symbol": "XGBoost.deinit",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 14,
+      "symbol": "yLowerBound",
+      "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/XGBoost.swift",
-      "line": 307,
-      "symbol": "XGBoost.formatModelDump(models:format:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 15,
+      "symbol": "yUpperBound",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 23,
+      "symbol": "X",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 26,
+      "symbol": "rs",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 29,
+      "symbol": "splitted",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 31,
+      "symbol": "trainIndex",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 31,
+      "symbol": "validIndex",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 33,
+      "symbol": "trainingData",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 41,
+      "symbol": "validationData",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 50,
+      "symbol": "parameters",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 63,
+      "symbol": "xgboost",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 78,
+      "symbol": "predicted",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Examples/AftSurvival/main.swift",
+      "line": 82,
+      "symbol": "compare",
+      "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     }
   ],
