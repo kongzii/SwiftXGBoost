@@ -16,5 +16,5 @@ deploy:
   github_token: $GH_TOKEN
   local_dir: Documentation
   keep_history: true
-  # on:
-  #   branch: master
+  on:
+    branch: master
