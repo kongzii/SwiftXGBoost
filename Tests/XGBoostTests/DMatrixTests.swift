@@ -90,10 +90,44 @@ final class DMatrixTests: XCTestCase {
         XCTAssertEqual(features, loadedFeatures)
     }
 
+    func testSlice() throws {
+        let data = try DMatrix(
+            name: "data",
+            from: [1, 2, 3, 3, 4, 6],
+            shape: Shape(3, 2),
+            label: [1, 0, 1]
+        )
+
+        let firstSlice = try data.slice(
+            indexes: [0, 2],
+            newName: "firstSlice"
+        )
+        XCTAssertEqual(firstSlice.name, "firstSlice")
+        XCTAssertEqual(try firstSlice.shape(), [2, 2])
+        XCTAssertEqual(try firstSlice.label(), [1, 1])
+
+        let secondSlice = try data.slice(
+            indexes: [1],
+            newName: "secondSlice"
+        )
+        XCTAssertEqual(secondSlice.name, "secondSlice")
+        XCTAssertEqual(try secondSlice.shape(), [1, 2])
+        XCTAssertEqual(try secondSlice.label(), [0])
+
+        let thirdSlice = try data.slice(
+            indexes: 0 ..< 2,
+            newName: "thirdSlice"
+        )
+        XCTAssertEqual(thirdSlice.name, "thirdSlice")
+        XCTAssertEqual(try thirdSlice.shape(), [2, 2])
+        XCTAssertEqual(try thirdSlice.label(), [1, 0])
+    }
+
     static var allTests = [
         ("testCounts", testCounts),
         ("testFromCSVFile", testFromCSVFile),
         ("testSaveAndLoadBinary", testSaveAndLoadBinary),
         ("testSaveAndLoadFeatureMap", testSaveAndLoadFeatureMap),
+        ("testSlice", testSlice),
     ]
 }
