@@ -32,7 +32,7 @@ public class XGBoost {
 
     /// Register callback function for LOG(INFO) messages.
     ///
-    /// - Parameter call: Function to be called with C-String as parameter.
+    /// - Parameter call: Function to be called with C-String as parameter. Use String(cString: $0!) co convert it into Swift string.
     public static func registerLogCallback(
         _ call: (@convention(c) (UnsafePointer<Int8>?) -> Void)?
     ) throws {
