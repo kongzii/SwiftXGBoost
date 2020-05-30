@@ -7,20 +7,11 @@ public typealias Parameter = (name: String, value: String)
 /// Typealias for underlying XGBoost version.
 public typealias Version = (major: Int, minor: Int, patch: Int)
 
-/// Information about feature.
-public typealias Feature = (name: String, type: FeatureType)
-
 /// Tuple holding length of buffer along with it, so it can be easily read.
 public typealias BufferModel = (length: UInt64, data: UnsafeMutablePointer<UnsafePointer<Int8>?>)
 
 public enum AfterIterationCallbackOutput {
     case stop, next
-}
-
-/// Type of feature.
-public enum FeatureType: String {
-    case quantitative = "q"
-    case indicator = "i"
 }
 
 /// Currently supported model formats.
@@ -30,7 +21,7 @@ public enum ModelFormat: String {
 
 /// Currently supported data formats.
 public enum DataFormat: String {
-    case binary, csv
+    case libsvm, csv, binary
 }
 
 /// Predefined names of float fields settable in Data.

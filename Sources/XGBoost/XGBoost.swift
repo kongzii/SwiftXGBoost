@@ -240,7 +240,7 @@ public class XGBoost {
         try predict(
             from: DMatrix(
                 name: "predict",
-                values: features,
+                from: features,
                 shape: Shape(1, features.count),
                 features: self.features,
                 missingValue: missingValue

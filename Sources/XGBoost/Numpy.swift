@@ -59,7 +59,7 @@ extension Data {
 
         try self.init(
             name: name,
-            values: pointer,
+            from: pointer,
             shape: Shape(array.shape[0], array.shape[1]),
             label: label,
             weight: weight,

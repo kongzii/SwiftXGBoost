@@ -9,7 +9,7 @@ final class PlotTests: XCTestCase {
         let features = (0 ..< 5).map { Feature(name: "Name-\($0)", type: .quantitative) }
         let data = try DMatrix(
             name: "data",
-            values: randomArray,
+            from: randomArray,
             shape: Shape(10, 5),
             label: label,
             features: features,

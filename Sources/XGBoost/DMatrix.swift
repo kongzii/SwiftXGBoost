@@ -52,7 +52,7 @@ public class DMatrix {
     /// Initialize Data.
     ///
     /// - Parameter name: Name of dataset.
-    /// - Parameter values: Values source.
+    /// - Parameter from: Values source.
     /// - Parameter shape: Shape of resulting DMatrixHandle.
     /// - Parameter label: Array of labels for data.
     /// - Parameter weight: Weight for each instance.
@@ -62,7 +62,7 @@ public class DMatrix {
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
         name: String,
-        values: UnsafePointer<Float>,
+        from values: UnsafePointer<Float>,
         shape: Shape,
         label: [Float]? = nil,
         weight: [Float]? = nil,
@@ -106,7 +106,7 @@ public class DMatrix {
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
         name: String,
-        values: [Float],
+        from values: [Float],
         shape: Shape,
         label: [Float]? = nil,
         weight: [Float]? = nil,
@@ -118,7 +118,7 @@ public class DMatrix {
         var values = values
         try self.init(
             name: name,
-            values: &values,
+            from: &values,
             shape: shape,
             label: label,
             weight: weight,
@@ -142,7 +142,7 @@ public class DMatrix {
     /// - Parameter fileQuery: Additional parameters that will be appended to the file path as query.
     public convenience init(
         name: String,
-        file: String,
+        from file: String,
         format: DataFormat = .csv,
         features: [Feature]? = nil,
         labelColumn: Int? = nil,
@@ -153,8 +153,11 @@ public class DMatrix {
     ) throws {
         var fileQuery = fileQuery
 
-        if format == .csv {
+        switch format {
+        case .csv, .libsvm:
             fileQuery.append("format=\(format)")
+        case .binary:
+            break
         }
 
         if let labelColumn = labelColumn {
@@ -209,6 +212,15 @@ public class DMatrix {
         to path: String
     ) throws {
         try features().saveFeatureMap(to: path)
+    }
+
+    /// Load previously saved feature map.
+    ///
+    /// - Parameter from: Path to the feature map.
+    public func loadFeatureMap(
+        from path: String
+    ) throws {
+        try set(features: try [Feature](fromFeatureMap: path))
     }
 
     /// - Returns: The number of rows.

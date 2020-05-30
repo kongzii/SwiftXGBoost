@@ -12,4 +12,25 @@ public extension Array where Element == Feature {
                 encoding: .utf8
             )
     }
+
+    /// Load previously saved feature map.
+    ///
+    /// - Parameter from: Path to the feature map.
+    init(fromFeatureMap path: String) throws {
+        let content = try String(contentsOfFile: path)
+        var features = [Feature]()
+
+        for line in content.components(separatedBy: .newlines) {
+            let splitted = line.components(separatedBy: " ")
+            let (name, type) = (splitted[1], splitted[2])
+
+            guard let featureType = FeatureType(rawValue: type) else {
+                throw ValueError.runtimeError("Invalid feature type \(type).")
+            }
+
+            features.append(Feature(name: name, type: featureType))
+        }
+
+        self.init(features)
+    }
 }

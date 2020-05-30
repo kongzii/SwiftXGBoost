@@ -18,7 +18,7 @@ final class ExampleTests: XCTestCase {
         // Initialize data, DMatrixHandle in the background
         let data = try DMatrix(
             name: "data",
-            values: randomArray,
+            from: randomArray,
             shape: Shape(100, 10),
             label: labels,
             threads: 1

@@ -29,7 +29,7 @@
 
             try self.init(
                 name: name,
-                values: values.scalars,
+                from: values.scalars,
                 shape: Shape(values.shape[0], values.shape[1]),
                 label: label,
                 weight: weight,

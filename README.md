@@ -147,7 +147,7 @@ let labels = (0 ..< 100).map { _ in Float([0, 1].randomElement()!) }
 // Initialize data, DMatrixHandle in the background
 let data = try DMatrix(
     name: "data",
-    values: randomArray,
+    from: randomArray,
     shape: Shape(100, 10),
     label: labels,
     threads: 1

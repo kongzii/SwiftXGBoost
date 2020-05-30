@@ -32,7 +32,7 @@ final class XGBoostTests: XCTestCase {
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
         let data = try DMatrix(
             name: "data",
-            values: randomArray,
+            from: randomArray,
             shape: Shape(10, 1),
             label: label,
             threads: 1
@@ -55,7 +55,7 @@ final class XGBoostTests: XCTestCase {
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
         let data = try DMatrix(
             name: "data",
-            values: randomArray,
+            from: randomArray,
             shape: Shape(10, 1),
             label: label,
             threads: 1
@@ -77,7 +77,7 @@ final class XGBoostTests: XCTestCase {
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
         let data = try DMatrix(
             name: "data",
-            values: randomArray,
+            from: randomArray,
             shape: Shape(10, 5),
             label: label,
             threads: 1
@@ -132,7 +132,7 @@ final class XGBoostTests: XCTestCase {
         let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
         let data = try DMatrix(
             name: "data",
-            values: randomArray,
+            from: randomArray,
             shape: Shape(10, 5),
             label: label,
             features: features,
