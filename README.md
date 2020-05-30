@@ -65,8 +65,9 @@ import CXGBoost
 both `XGBoost` and `Data` classes are exposing pointers to the underlying C,
 so you can utilize C-API directly for more advanced usage.
 
-As the library is still evolving, there can be incompatible changes, 
-use the exact version if you do not want to worry about updating your packages.
+As the library is still evolving, there can be incompatible changes between updates, 
+the releases before version 1.0.0 doesn't follow [Semantic Versioning](https://semver.org/).
+Please use the exact version if you do not want to worry about updating your packages.
 
 ```swift
 .package(url: "https://github.com/kongzii/SwiftXGBoost.git", .exact("0.1.0")),
