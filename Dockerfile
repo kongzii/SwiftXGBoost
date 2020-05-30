@@ -19,10 +19,6 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.15.2/cmake-3.15.2
     && make install \
     && cmake --version
 
-RUN git clone https://github.com/SwiftDocOrg/swift-doc \
-    && cd swift-doc \
-    && make install
-
 RUN python3.8 -m pip install xgboost==1.1.0
 
 COPY install.sh install.sh
