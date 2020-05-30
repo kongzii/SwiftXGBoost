@@ -65,14 +65,14 @@ import CXGBoost
 both `XGBoost` and `Data` classes are exposing pointers to the underlying C,
 so you can utilize C-API directly for more advanced usage.
 
-As library is still evolving, there can be incompatible changes, 
-use exact version if you do not want to worry about updating your packages.
+As the library is still evolving, there can be incompatible changes, 
+use the exact version if you do not want to worry about updating your packages.
 
 ```swift
 .package(url: "https://github.com/kongzii/SwiftXGBoost.git", .exact("0.1.0")),
 ```
 
-## Python compability
+## Python compatibility
 
 DMatrix can be created from numpy array just like in Python
 
@@ -85,7 +85,7 @@ let data = try DMatrix(
 )
 ```
 
-and swift array can be converted back to numpy
+and the swift array can be converted back to numpy
 
 ```swift
 let predicted = try xgboost.predict(
@@ -102,7 +102,17 @@ print(compare)
 ```
 
 This is possible thanks to the [PythonKit](https://github.com/pvieito/PythonKit.git). 
-For more detailed usage and workarounds for known issues check out [examples](https://github.com/kongzii/SwiftXGBoost/tree/master/Examples).
+For more detailed usage and workarounds for known issues, check out [examples](https://github.com/kongzii/SwiftXGBoost/tree/master/Examples).
+
+## TensorFlow compability
+
+[Swift4TensorFlow](https://github.com/tensorflow/swift) is a great project from Google. 
+If you are using one of the S4TF swift toolchains, you can combine its power directly with XGBoost.
+
+```swift
+let tensor = Tensor<Float>(shape: TensorShape([2, 3]), scalars: [1, 2, 3, 4, 5, 6])
+let data = try Data(name: "training", from: tensor)
+```
 
 ## Examples
 
