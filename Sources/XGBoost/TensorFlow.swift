@@ -41,37 +41,4 @@
         }
     }
 
-    extension Tensor where Scalar == Float {
-        /// Convert TensorFlow Tensor to Data.
-        ///
-        /// - Parameter name: Name of dataset.
-        /// - Parameter label: Array of labels for data.
-        /// - Parameter weight: Weight for each instance.
-        /// - Parameter baseMargin: Set base margin of booster to start from.
-        /// - Parameter features: Names and types of features.
-        /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
-        /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
-        /// - Returns: Data from tensor.
-        public func toXGBoostData(
-            name: String,
-            label: [Float]? = nil,
-            weight: [Float]? = nil,
-            baseMargin: [Float]? = nil,
-            features: [Feature]? = nil,
-            missingValue: Float = Float.greatestFiniteMagnitude,
-            threads: Int = 0
-        ) throws -> Data {
-            try Data(
-                name: name,
-                from: self,
-                label: label,
-                weight: weight,
-                baseMargin: baseMargin,
-                features: features,
-                missingValue: missingValue,
-                threads: threads
-            )
-        }
-    }
-
 #endif

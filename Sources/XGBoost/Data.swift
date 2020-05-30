@@ -23,8 +23,11 @@ public class Data {
     /// - Parameter dmatrix: DMatrixHandle pointer.
     public init(
         name: String,
+        dmatrix: DMatrixHandle?,
         features: [Feature]? = nil,
-        dmatrix: DMatrixHandle?
+        label: [Float]? = nil,
+        weight: [Float]? = nil,
+        baseMargin: [Float]? = nil
     ) throws {
         self.name = name
         self.dmatrix = dmatrix
@@ -32,44 +35,6 @@ public class Data {
         if let features = features {
             try set(features: features)
         }
-    }
-
-    /// Initialize Data.
-    ///
-    /// - Parameter name: Name of dataset.
-    /// - Parameter values: Values source.
-    /// - Parameter shape: Shape of resulting DMatrixHandle.
-    /// - Parameter label: Array of labels for data.
-    /// - Parameter weight: Weight for each instance.
-    /// - Parameter baseMargin: Set base margin of booster to start from.
-    /// - Parameter features: Names and types of features.
-    /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
-    /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
-    public init(
-        name: String,
-        values: [Float],
-        shape: Shape,
-        label: [Float]? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil,
-        features: [Feature]? = nil,
-        missingValue: Float = Float.greatestFiniteMagnitude,
-        threads: Int = 0
-    ) throws {
-        self.name = name
-
-        var dmatrix: DMatrixHandle?
-        try safe {
-            XGDMatrixCreateFromMat_omp(
-                values,
-                UInt64(shape.row),
-                UInt64(shape.column),
-                missingValue,
-                &dmatrix,
-                Int32(threads)
-            )
-        }
-        self.dmatrix = dmatrix
 
         if let label = label {
             try set(label: label)
@@ -82,10 +47,6 @@ public class Data {
         if let baseMargin = baseMargin {
             try set(baseMargin: baseMargin)
         }
-
-        if let features = features {
-            try set(features: features)
-        }
     }
 
     /// Initialize Data.
@@ -99,7 +60,7 @@ public class Data {
     /// - Parameter features: Names and types of features.
     /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
-    public init(
+    public convenience init(
         name: String,
         values: UnsafePointer<Float>,
         shape: Shape,
@@ -110,8 +71,6 @@ public class Data {
         missingValue: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
     ) throws {
-        self.name = name
-
         var dmatrix: DMatrixHandle?
         try safe {
             XGDMatrixCreateFromMat_omp(
@@ -123,23 +82,51 @@ public class Data {
                 Int32(threads)
             )
         }
-        self.dmatrix = dmatrix
 
-        if let label = label {
-            try set(label: label)
-        }
+        try self.init(
+            name: name,
+            dmatrix: dmatrix,
+            features: features,
+            label: label,
+            weight: weight,
+            baseMargin: baseMargin
+        )
+    }
 
-        if let weight = weight {
-            try set(weight: weight)
-        }
-
-        if let baseMargin = baseMargin {
-            try set(baseMargin: baseMargin)
-        }
-
-        if let features = features {
-            try set(features: features)
-        }
+    /// Initialize Data.
+    ///
+    /// - Parameter name: Name of dataset.
+    /// - Parameter values: Values source.
+    /// - Parameter shape: Shape of resulting DMatrixHandle.
+    /// - Parameter label: Array of labels for data.
+    /// - Parameter weight: Weight for each instance.
+    /// - Parameter baseMargin: Set base margin of booster to start from.
+    /// - Parameter features: Names and types of features.
+    /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
+    /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
+    public convenience init(
+        name: String,
+        values: [Float],
+        shape: Shape,
+        label: [Float]? = nil,
+        weight: [Float]? = nil,
+        baseMargin: [Float]? = nil,
+        features: [Feature]? = nil,
+        missingValue: Float = Float.greatestFiniteMagnitude,
+        threads: Int = 0
+    ) throws {
+        var values = values
+        try self.init(
+            name: name,
+            values: &values,
+            shape: shape,
+            label: label,
+            weight: weight,
+            baseMargin: baseMargin,
+            features: features,
+            missingValue: missingValue,
+            threads: threads
+        )
     }
 
     /// Initialize Data from file.
@@ -154,7 +141,7 @@ public class Data {
     /// - Parameter baseMargin: Set base margin of booster to start from.
     /// - Parameter silent: Whether print messages during construction.
     /// - Parameter fileQuery: Additional parameters that will be appended to the file path as query.
-    public init(
+    public convenience init(
         name: String,
         file: String,
         format: DataFormat = .csv,
@@ -166,8 +153,6 @@ public class Data {
         silent: Bool = true,
         fileQuery: [String] = []
     ) throws {
-        self.name = name
-
         var fileQuery = fileQuery
 
         if format == .csv {
@@ -186,23 +171,15 @@ public class Data {
                 &dmatrix
             )
         }
-        self.dmatrix = dmatrix
 
-        if let label = label {
-            try set(label: label)
-        }
-
-        if let weight = weight {
-            try set(weight: weight)
-        }
-
-        if let baseMargin = baseMargin {
-            try set(baseMargin: baseMargin)
-        }
-
-        if let features = features {
-            try set(features: features)
-        }
+        try self.init(
+            name: name,
+            dmatrix: dmatrix,
+            features: features,
+            label: label,
+            weight: weight,
+            baseMargin: baseMargin
+        )
     }
 
     deinit {
@@ -295,8 +272,8 @@ public class Data {
 
         return try Data(
             name: newName ?? name,
-            features: _features,
-            dmatrix: slicedDmatrix
+            dmatrix: slicedDmatrix,
+            features: _features
         )
     }
 
