@@ -3,7 +3,7 @@
     import TensorFlow
 
     extension Data {
-        /// Initialize Data from Tensor.
+        /// Initialize Data from TensorFLow Tensors.
         ///
         /// - Parameter name: Name of dataset.
         /// - Parameter from: 2D Tensor to get values from.
@@ -42,7 +42,7 @@
     }
 
     extension Tensor where Scalar == Float {
-        /// Convert Tensor to Data.
+        /// Convert TensorFlow Tensor to Data.
         ///
         /// - Parameter name: Name of dataset.
         /// - Parameter label: Array of labels for data.
