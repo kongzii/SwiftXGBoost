@@ -33,7 +33,7 @@ final class XGBoostTests: XCTestCase {
         let data = try Data(
             name: "data",
             values: randomArray,
-            shape: (10, 1),
+            shape: Shape(10, 1),
             label: label,
             threads: 1
         )
@@ -56,7 +56,7 @@ final class XGBoostTests: XCTestCase {
         let data = try Data(
             name: "data",
             values: randomArray,
-            shape: (10, 1),
+            shape: Shape(10, 1),
             label: label,
             threads: 1
         )
@@ -78,7 +78,7 @@ final class XGBoostTests: XCTestCase {
         let data = try Data(
             name: "data",
             values: randomArray,
-            shape: (10, 5),
+            shape: Shape(10, 5),
             label: label,
             threads: 1
         )
@@ -133,7 +133,7 @@ final class XGBoostTests: XCTestCase {
         let data = try Data(
             name: "data",
             values: randomArray,
-            shape: (10, 5),
+            shape: Shape(10, 5),
             label: label,
             features: features,
             threads: 1

@@ -1,5 +1,8 @@
 import CXGBoost
 
+/// Convient alias for Python data name.
+public typealias DMatrix = Data
+
 /// Data class used with XGBoost.
 ///
 /// Data is encapsulation of DMatrixHandle, internal structure used by XGBoost,
@@ -45,6 +48,60 @@ public class Data {
     public init(
         name: String,
         values: [Float],
+        shape: Shape,
+        label: [Float]? = nil,
+        weight: [Float]? = nil,
+        baseMargin: [Float]? = nil,
+        features: [Feature]? = nil,
+        missingValue: Float = Float.greatestFiniteMagnitude,
+        threads: Int = 0
+    ) throws {
+        self.name = name
+
+        var dmatrix: DMatrixHandle?
+        try safe {
+            XGDMatrixCreateFromMat_omp(
+                values,
+                UInt64(shape.row),
+                UInt64(shape.column),
+                missingValue,
+                &dmatrix,
+                Int32(threads)
+            )
+        }
+        self.dmatrix = dmatrix
+
+        if let label = label {
+            try set(label: label)
+        }
+
+        if let weight = weight {
+            try set(weight: weight)
+        }
+
+        if let baseMargin = baseMargin {
+            try set(baseMargin: baseMargin)
+        }
+
+        if let features = features {
+            try set(features: features)
+        }
+    }
+
+    /// Initialize Data.
+    ///
+    /// - Parameter name: Name of dataset.
+    /// - Parameter values: Values source.
+    /// - Parameter shape: Shape of resulting DMatrixHandle.
+    /// - Parameter label: Array of labels for data.
+    /// - Parameter weight: Weight for each instance.
+    /// - Parameter baseMargin: Set base margin of booster to start from.
+    /// - Parameter features: Names and types of features.
+    /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
+    /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
+    public init(
+        name: String,
+        values: UnsafePointer<Float>,
         shape: Shape,
         label: [Float]? = nil,
         weight: [Float]? = nil,
@@ -422,6 +479,16 @@ public class Data {
     /// - Returns: An array of label information of the data.
     public func label() throws -> [Float] {
         try getFloatInfo(field: .label)
+    }
+
+    /// - Returns: An array of label information of the data.
+    public func labelUpperBound() throws -> [Float] {
+        try getFloatInfo(field: .labelUpperBound)
+    }
+
+    /// - Returns: An array of label information of the data.
+    public func labelLowerBound() throws -> [Float] {
+        try getFloatInfo(field: .labelLowerBound)
     }
 
     /// - Returns: An array of weight information of the data.

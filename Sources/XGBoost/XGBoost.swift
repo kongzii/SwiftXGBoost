@@ -118,7 +118,7 @@ public class XGBoost {
         }
     }
 
-    /// - Return: XGBoost's internal configuration into a JSON document.
+    /// - Returns: XGBoost's internal configuration into a JSON document.
     public func config() throws -> String {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -130,7 +130,7 @@ public class XGBoost {
         return String(cString: outResult.pointee!)
     }
 
-    /// - Return: Attributes stored in the Booster as a dictionary.
+    /// - Returns: Attributes stored in the Booster as a dictionary.
     public func attributes() throws -> [String: String] {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
@@ -241,7 +241,7 @@ public class XGBoost {
             from: Data(
                 name: "predict",
                 values: features,
-                shape: (1, features.count),
+                shape: Shape(1, features.count),
                 features: self.features,
                 missingValue: missingValue
             ),
@@ -255,7 +255,7 @@ public class XGBoost {
         )[0]
     }
 
-    /// - Return: Everything states in buffer.
+    /// - Returns: Everything states in buffer.
     public func serialized() throws -> BufferModel {
         let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -285,7 +285,7 @@ public class XGBoost {
         }
     }
 
-    /// - Return: Model as binary raw bytes.
+    /// - Returns: Model as binary raw bytes.
     public func raw() throws -> BufferModel {
         let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -328,7 +328,7 @@ public class XGBoost {
     /// - Parameter featureMap: Name of the file containing feature map.
     /// - Parameter withStatistics: Controls whether the split statistics are output.
     /// - Parameter format: Desired output format type.
-    /// - Return: Formated output into ModelFormat format.
+    /// - Returns: Formated output into ModelFormat format.
     public func dumped(
         featureMap: String = "",
         withStatistics: Bool = false,
@@ -350,7 +350,7 @@ public class XGBoost {
     /// - Parameter featureMap: Name of the file containing feature map.
     /// - Parameter withStatistics: Controls whether the split statistics are output.
     /// - Parameter format: Desired output format type.
-    /// - Return: Raw output from XGBoosterDumpModelEx provided as array of strings.
+    /// - Returns: Raw output from XGBoosterDumpModelEx provided as array of strings.
     public func rawDumped(
         featureMap: String = "",
         withStatistics: Bool = false,
@@ -377,7 +377,7 @@ public class XGBoost {
     /// - Parameter features: Array of features.
     /// - Parameter withStatistics: Controls whether the split statistics are output.
     /// - Parameter format: Desired output format type.
-    /// - Return: Formated output into ModelFormat format.
+    /// - Returns: Formated output into ModelFormat format.
     public func dumped(
         features: [Feature],
         withStatistics: Bool = false,
@@ -399,7 +399,7 @@ public class XGBoost {
     /// - Parameter features: Array of features.
     /// - Parameter withStatistics: Controls whether the split statistics are output.
     /// - Parameter format: Desired output format type.
-    /// - Return: Raw output from XGBoosterDumpModelEx provided as array of strings.
+    /// - Returns: Raw output from XGBoosterDumpModelEx provided as array of strings.
     public func rawDumped(
         features: [Feature],
         withStatistics: Bool = false,
@@ -431,7 +431,7 @@ public class XGBoost {
     ///
     /// - Parameter featureMap: Path to the feature map.
     /// - Parameter importance: Type of importance you want to compute.
-    /// - Return: Tuple of features and gains, in case importance = weight, gains will be nil.
+    /// - Returns: Tuple of features and gains, in case importance = weight, gains will be nil.
     public func score(
         featureMap: String = "",
         importance: Importance = .weight
@@ -569,7 +569,7 @@ public class XGBoost {
 
     /// Initialize the booster from rabit checkpoint.
     ///
-    /// - Return: The output version of the model.
+    /// - Returns: The output version of the model.
     public func loadRabitCheckpoint() throws -> Int {
         var version: Int32 = -1
         try safe {
@@ -581,7 +581,7 @@ public class XGBoost {
     /// Get attribute string from the Booster.
     ///
     /// - Parameter name: Name of attribute to get.
-    /// - Return: Value of attribute.
+    /// - Returns: Value of attribute.
     public func attribute(
         name: String
     ) throws -> String? {
@@ -715,7 +715,7 @@ public class XGBoost {
     ///
     /// - Parameter iteration: Current iteration.
     /// - Parameter data: Data to evaluate.
-    /// - Return: Dictionary in format [data_name: [eval_name: eval_value, ...], ...]
+    /// - Returns: Dictionary in format [data_name: [eval_name: eval_value, ...], ...]
     public func evaluate(
         iteration: Int,
         data: [Data]
@@ -766,7 +766,7 @@ public class XGBoost {
     ///
     /// - Parameter iteration: Current iteration.
     /// - Parameter data: Data to evaluate.
-    /// - Return: Dictionary in format [data_name: [eval_name: eval_value]]
+    /// - Returns: Dictionary in format [data_name: [eval_name: eval_value]]
     public func evaluate(
         iteration: Int,
         data: Data

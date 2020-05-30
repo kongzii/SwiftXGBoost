@@ -8,7 +8,7 @@ final class DataTests: XCTestCase {
         let data = try Data(
             name: "data",
             values: randomArray,
-            shape: (5, 2),
+            shape: Shape(5, 2),
             threads: 1
         )
         XCTAssertEqual(try data.rowCount(), 5)

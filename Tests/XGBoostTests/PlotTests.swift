@@ -10,7 +10,7 @@ final class PlotTests: XCTestCase {
         let data = try Data(
             name: "data",
             values: randomArray,
-            shape: (10, 5),
+            shape: Shape(10, 5),
             label: label,
             features: features,
             threads: 1

@@ -13,9 +13,6 @@ public typealias Feature = (name: String, type: FeatureType)
 /// Tuple holding length of buffer along with it, so it can be easily read.
 public typealias BufferModel = (length: UInt64, data: UnsafeMutablePointer<UnsafePointer<Int8>?>)
 
-/// Shape of Data.
-public typealias Shape = (row: Int, column: Int)
-
 public enum AfterIterationCallbackOutput {
     case stop, next
 }
@@ -42,6 +39,8 @@ public enum FloatField: String {
     case label
     case weight
     case baseMargin = "base_margin"
+    case labelLowerBound = "label_lower_bound"
+    case labelUpperBound = "label_upper_bound"
 }
 
 /// Predefined names of uint fields settable in Data.

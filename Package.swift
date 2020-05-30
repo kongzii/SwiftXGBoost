@@ -32,6 +32,7 @@ let package = Package(
             name: "XGBoost",
             dependencies: [
                 "CXGBoost",
+                "PythonKit",
                 "SwiftPlot",
                 "AGGRenderer",
             ],
@@ -54,6 +55,14 @@ let package = Package(
                 "XGBoost",
                 "PythonKit",
             ]
+        ),
+        .target(
+            name: "AftSurvival",
+            dependencies: [
+                "XGBoost",
+                "PythonKit",
+            ],
+            path: "Examples/AftSurvival"
         ),
     ]
 )

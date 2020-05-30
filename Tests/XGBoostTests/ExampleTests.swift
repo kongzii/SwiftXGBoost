@@ -19,7 +19,7 @@ final class ExampleTests: XCTestCase {
         let data = try Data(
             name: "data",
             values: randomArray,
-            shape: (100, 10),
+            shape: Shape(100, 10),
             label: labels,
             threads: 1
         )

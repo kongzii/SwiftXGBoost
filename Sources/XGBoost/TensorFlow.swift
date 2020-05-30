@@ -30,7 +30,7 @@
             try self.init(
                 name: name,
                 values: values.scalars,
-                shape: (values.shape[0], values.shape[1]),
+                shape: Shape(values.shape[0], values.shape[1]),
                 label: label,
                 weight: weight,
                 baseMargin: baseMargin,
@@ -51,7 +51,7 @@
         /// - Parameter features: Names and types of features.
         /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
         /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
-        /// - Return: Data from tensor.
+        /// - Returns: Data from tensor.
         public func toXGBoostData(
             name: String,
             label: [Float]? = nil,

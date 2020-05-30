@@ -72,7 +72,54 @@ use exact version if you do not want to worry about updating your packages.
 .package(url: "https://github.com/kongzii/SwiftXGBoost.git", .exact("0.1.0")),
 ```
 
-## Example usage
+## Python compability
+
+DMatrix can be created from numpy array just like in Python
+
+```swift
+let pandas = Python.import("pandas")
+let dataFrame = pandas.read_csv("data.csv")
+let data = try DMatrix(
+    name: "training",
+    from: dataFrame.values
+)
+```
+
+and swift array can be converted back to numpy
+
+```swift
+let predicted = try xgboost.predict(
+    from: validationData
+)
+
+let compare = pandas.DataFrame([
+    "Label lower bound": yLowerBound[validIndex],
+    "Label upper bound": yUpperBound[validIndex],
+    "Prediced": predicted.makeNumpyArray(),
+])
+
+print(compare)
+```
+
+This is possible thanks to the [PythonKit](https://github.com/pvieito/PythonKit.git). 
+For more detailed usage and workarounds for known issues check out [examples](https://github.com/kongzii/SwiftXGBoost/tree/master/Examples).
+
+## Examples
+
+More examples can be found in [Examples directory](https://github.com/kongzii/SwiftXGBoost/tree/master/Examples) 
+and run inside docker
+
+```
+docker-compose run swiftxgboost swift run exampleName
+```
+
+or on host
+
+```
+swift run exampleName
+```
+
+### Basic functionality
 
 ```swift
 import XGBoost
@@ -90,7 +137,7 @@ let labels = (0 ..< 100).map { _ in Float([0, 1].randomElement()!) }
 let data = try Data(
     name: "data",
     values: randomArray,
-    shape: (100, 10),
+    shape: Shape(100, 10),
     label: labels,
     threads: 1
 )
