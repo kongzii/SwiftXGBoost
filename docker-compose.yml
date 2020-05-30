@@ -16,12 +16,3 @@ services:
     volumes:
       - "./:/app"
     command: swift test
-
-  documentation:
-    build:
-      context: .
-      target: build
-    image: swiftxgboost
-    volumes:
-      - "./:/app"
-    command: swift-doc generate ./Sources --module-name XGBoost --base-url https://github.com/kongzii/SwiftXGBoost/wiki --output Documentation
