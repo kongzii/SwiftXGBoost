@@ -19,9 +19,9 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Install dependencies from brew
-        run: brew install xgboost
+        run: brew install xgboost python3
       - name: Install dependencies for python
-        run: pip install xgboost
+        run: pip3 install xgboost
       - name: Create CodeCoverage
         run: swift test --enable-code-coverage
       - name: Upload CodeCoverage
