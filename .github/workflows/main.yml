@@ -25,6 +25,8 @@ jobs:
         run: pip3 install xgboost coverage
       - name: Test and create CodeCoverage
         run: swift test --enable-code-coverage
+      - name: Swiftenv install
+        run: brew install kylef/formulae/swiftenv && echo 'if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi' >> ~/.bash_profile && source ~/.bash_profile
       - name: Export coverage
         run: llvm cov report .build/x86_64-apple-macosx/debug/SwiftXGBoostPackageTests.xctest/Contents/MacOS/SwiftXGBoostPackageTests --instr-profile .build/x86_64-apple-macosx/debug/codecov/default.profdata > coverage.txt
       - name: Upload CodeCoverage
