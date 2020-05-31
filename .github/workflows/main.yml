@@ -18,6 +18,7 @@ jobs:
   CodeCoverage:
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Install dependencies from brew
         run: brew install xgboost python3
       - name: Install dependencies for python
