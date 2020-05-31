@@ -147,6 +147,17 @@ final class DMatrixTests: XCTestCase {
         XCTAssertEqual(try data.get(field: .weight), [1, 3, 3])
     }
 
+    func testSetGetUIntInfo() throws {
+        let data = try DMatrix(
+            name: "data",
+            from: [1, 2, 3, 3, 4, 6],
+            shape: Shape(6, 1)
+        )
+
+        try data.set(field: .group, values: [1, 1, 1, 3])
+        XCTAssertEqual(try data.get(field: .groupPtr), [0, 1, 2, 3, 6])
+    }
+
     static var allTests = [
         ("testCounts", testCounts),
         ("testFromCSVFile", testFromCSVFile),
@@ -154,5 +165,6 @@ final class DMatrixTests: XCTestCase {
         ("testSaveAndLoadFeatureMap", testSaveAndLoadFeatureMap),
         ("testSlice", testSlice),
         ("testSetGetFloatInfo", testSetGetFloatInfo),
+        ("testSetGetUIntInfo", testSetGetUIntInfo),
     ]
 }

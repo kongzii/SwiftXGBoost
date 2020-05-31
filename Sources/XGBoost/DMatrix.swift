@@ -382,6 +382,10 @@ public class DMatrix {
         field: UIntField,
         values: [UInt32]
     ) throws {
+        if field == .group, try values.reduce(0, +) != rowCount() {
+            throw ValueError.runtimeError("The sum of groups must equal to the number of rows in the dmatrix.")
+        }
+
         try setUIntInfo(field: field.rawValue, values: values)
     }
 
@@ -393,6 +397,15 @@ public class DMatrix {
         field: FloatField,
         values: [Float]
     ) throws {
+        switch field {
+        case .label, .weight, .labelLowerBound, .labelUpperBound:
+            if try values.count != rowCount() {
+                throw ValueError.runtimeError("The count of values must equal to the number of rows in the dmatrix.")
+            }
+        case .baseMargin:
+            break
+        }
+
         try setFloatInfo(field: field.rawValue, values: values)
     }
 
