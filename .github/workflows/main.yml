@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies from brew
-        run: brew install xgboost python3
+        run: brew install xgboost python3 llvm
       - name: Install dependencies for python
         run: pip3 install xgboost coverage
       - name: Test and create CodeCoverage
