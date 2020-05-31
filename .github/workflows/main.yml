@@ -18,8 +18,14 @@ jobs:
   CodeCoverage:
     runs-on: macos-latest
     steps:
-      - name: CodeCoverage
-        run: bash <(curl -s https://codecov.io/bash) -X xcodellvm
+      - name: Install dependencies from brew
+        run: brew install xgboost
+      - name: Install dependencies for python
+        run: pip install xgboost
+      - name: Create CodeCoverage
+        run: swift test --enable-code-coverage
+      - name: Upload CodeCoverage
+        run: bash <(curl -s https://codecov.io/bash)
   SwiftLint:
     runs-on: ubuntu-latest
     steps:
