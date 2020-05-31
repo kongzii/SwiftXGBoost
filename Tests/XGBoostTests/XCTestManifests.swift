@@ -5,7 +5,7 @@ import XCTest
         [
             testCase(ExampleTests.allTests),
             testCase(DMatrixTests.allTests),
-            testCase(XGBoostTests.allTests),
+            testCase(BoosterTests.allTests),
             testCase(PlotTests.allTests),
             testCase(TensorFlowTests.allTests),
         ]

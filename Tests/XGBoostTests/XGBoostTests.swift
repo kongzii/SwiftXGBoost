@@ -12,19 +12,19 @@ func assertEqualDictionary(_ a: [String: Float], _ b: [String: Float], accuracy:
     }
 }
 
-final class XGBoostTests: XCTestCase {
+final class BoosterTests: XCTestCase {
     func testAttribute() throws {
-        let xgboost = try XGBoost()
-        try xgboost.set(attribute: "testName", value: "testValue")
-        XCTAssertEqual(try xgboost.attribute(name: "testName"), "testValue")
-        XCTAssertNil(try xgboost.attribute(name: "unknownName"))
+        let booster = try Booster()
+        try booster.set(attribute: "testName", value: "testValue")
+        XCTAssertEqual(try booster.attribute(name: "testName"), "testValue")
+        XCTAssertNil(try booster.attribute(name: "unknownName"))
     }
 
     func testAttributes() throws {
-        let xgboost = try XGBoost()
-        try xgboost.set(attribute: "attribute1", value: "value1")
-        try xgboost.set(attribute: "attribute2", value: "value2")
-        XCTAssertEqual(try xgboost.attributes(), ["attribute1": "value1", "attribute2": "value2"])
+        let booster = try Booster()
+        try booster.set(attribute: "attribute1", value: "value1")
+        try booster.set(attribute: "attribute2", value: "value2")
+        XCTAssertEqual(try booster.attributes(), ["attribute1": "value1", "attribute2": "value2"])
     }
 
     func testJsonDumped() throws {
@@ -37,12 +37,12 @@ final class XGBoostTests: XCTestCase {
             label: label,
             threads: 1
         )
-        let xgboost = try XGBoost(with: [data])
-        try xgboost.train(
+        let booster = try Booster(with: [data])
+        try booster.train(
             iterations: 5,
             trainingData: data
         )
-        let jsonData = try xgboost.dumped(
+        let jsonData = try booster.dumped(
             features: try data.features(),
             format: .json
         ).data(using: String.Encoding.utf8)!
@@ -60,12 +60,12 @@ final class XGBoostTests: XCTestCase {
             label: label,
             threads: 1
         )
-        let xgboost = try XGBoost(with: [data])
-        try xgboost.train(
+        let booster = try Booster(with: [data])
+        try booster.train(
             iterations: 5,
             trainingData: data
         )
-        let text = try xgboost.dumped(
+        let text = try booster.dumped(
             features: [Feature(name: "x", type: .quantitative)],
             format: .text
         )
@@ -82,8 +82,8 @@ final class XGBoostTests: XCTestCase {
             label: label,
             threads: 1
         )
-        let xgboost = try XGBoost(with: [data])
-        try xgboost.train(
+        let booster = try Booster(with: [data])
+        try booster.train(
             iterations: 10,
             trainingData: data
         )
@@ -92,37 +92,37 @@ final class XGBoostTests: XCTestCase {
             "testScoreEmptyFeatureMap.xgboost", isDirectory: false
         ).absoluteString
 
-        try xgboost.save(to: temporaryModelFile)
-        let pyXgboost = PXGBOOST.Booster(model_file: temporaryModelFile)
+        try booster.save(to: temporaryModelFile)
+        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
 
-        let pyWeightMap = [String: Int](pyXgboost.get_score(
+        let pyWeightMap = [String: Int](pyBooster.get_score(
             fmap: "", importance_type: "weight"
         ))!
-        let (weightMap, _) = try xgboost.score(featureMap: "", importance: .weight)
+        let (weightMap, _) = try booster.score(featureMap: "", importance: .weight)
         XCTAssertEqual(weightMap, pyWeightMap)
 
-        let pyGainMap = [String: Float](pyXgboost.get_score(
+        let pyGainMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "gain"
         ))!
-        let (_, gainMap) = try xgboost.score(featureMap: "", importance: .gain)
+        let (_, gainMap) = try booster.score(featureMap: "", importance: .gain)
         assertEqualDictionary(gainMap!, pyGainMap, accuracy: 1e-6)
 
-        let pyTotalGainMap = [String: Float](pyXgboost.get_score(
+        let pyTotalGainMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "total_gain"
         ))!
-        let (_, totalGainMap) = try xgboost.score(featureMap: "", importance: .totalGain)
+        let (_, totalGainMap) = try booster.score(featureMap: "", importance: .totalGain)
         assertEqualDictionary(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
 
-        let pyCoverMap = [String: Float](pyXgboost.get_score(
+        let pyCoverMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "cover"
         ))!
-        let (_, coverMap) = try xgboost.score(featureMap: "", importance: .cover)
+        let (_, coverMap) = try booster.score(featureMap: "", importance: .cover)
         assertEqualDictionary(coverMap!, pyCoverMap, accuracy: 1e-6)
 
-        let pyTotalCoverMap = [String: Float](pyXgboost.get_score(
+        let pyTotalCoverMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "total_cover"
         ))!
-        let (_, totalCoverMap) = try xgboost.score(featureMap: "", importance: .totalCover)
+        let (_, totalCoverMap) = try booster.score(featureMap: "", importance: .totalCover)
         assertEqualDictionary(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
     }
 
@@ -138,8 +138,8 @@ final class XGBoostTests: XCTestCase {
             features: features,
             threads: 1
         )
-        let xgboost = try XGBoost(with: [data])
-        try xgboost.train(
+        let booster = try Booster(with: [data])
+        try booster.train(
             iterations: 10,
             trainingData: data
         )
@@ -153,45 +153,45 @@ final class XGBoostTests: XCTestCase {
 
         try features.saveFeatureMap(to: temporaryNamesFile)
 
-        try xgboost.save(to: temporaryModelFile)
-        let pyXgboost = PXGBOOST.Booster(model_file: temporaryModelFile)
+        try booster.save(to: temporaryModelFile)
+        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
 
-        let pyWeightMap = [String: Int](pyXgboost.get_score(
+        let pyWeightMap = [String: Int](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "weight"
         ))!
-        let (weightMap, _) = try xgboost.score(
+        let (weightMap, _) = try booster.score(
             featureMap: temporaryNamesFile, importance: .weight
         )
         XCTAssertEqual(weightMap, pyWeightMap)
 
-        let pyGainMap = [String: Float](pyXgboost.get_score(
+        let pyGainMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "gain"
         ))!
-        let (_, gainMap) = try xgboost.score(
+        let (_, gainMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .gain
         )
         assertEqualDictionary(gainMap!, pyGainMap, accuracy: 1e-6)
 
-        let pyTotalGainMap = [String: Float](pyXgboost.get_score(
+        let pyTotalGainMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "total_gain"
         ))!
-        let (_, totalGainMap) = try xgboost.score(
+        let (_, totalGainMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .totalGain
         )
         assertEqualDictionary(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
 
-        let pyCoverMap = [String: Float](pyXgboost.get_score(
+        let pyCoverMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "cover"
         ))!
-        let (_, coverMap) = try xgboost.score(
+        let (_, coverMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .cover
         )
         assertEqualDictionary(coverMap!, pyCoverMap, accuracy: 1e-6)
 
-        let pyTotalCoverMap = [String: Float](pyXgboost.get_score(
+        let pyTotalCoverMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "total_cover"
         ))!
-        let (_, totalCoverMap) = try xgboost.score(
+        let (_, totalCoverMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .totalCover
         )
         assertEqualDictionary(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)

@@ -3,7 +3,7 @@ import CXGBoost
 /// Backward compatible alias for Data
 public typealias Data = DMatrix
 
-/// Data class used with XGBoost.
+/// Data class used with Booster.
 ///
 /// Data is encapsulation of DMatrixHandle, internal structure used by XGBoost,
 /// which is optimized for both memory efficiency and training speed.

@@ -15,8 +15,8 @@ final class PlotTests: XCTestCase {
             features: features,
             threads: 1
         )
-        let xgboost = try XGBoost(with: [data])
-        try xgboost.train(
+        let booster = try Booster(with: [data])
+        try booster.train(
             iterations: 10,
             trainingData: data
         )
@@ -29,7 +29,7 @@ final class PlotTests: XCTestCase {
         ).path
 
         try data.saveFeatureMap(to: featureMapFile)
-        try xgboost.saveImportanceGraph(fileName: graphFile, featureMap: featureMapFile)
+        try booster.saveImportanceGraph(fileName: graphFile, featureMap: featureMapFile)
 
         XCTAssertTrue(FileManager.default.fileExists(atPath: featureMapFile))
         XCTAssertTrue(FileManager.default.fileExists(atPath: graphFile + ".png"))

@@ -60,12 +60,12 @@ let parameters: [Parameter] = [
     ("alpha", "0.02"),
 ]
 
-let xgboost = try XGBoost(
+let booster = try Booster(
     with: [trainingData, validationData],
     parameters: parameters
 )
 
-try xgboost.train(
+try booster.train(
     iterations: 10000,
     trainingData: trainingData,
     evaluationData: [trainingData, validationData]
@@ -75,7 +75,7 @@ try xgboost.train(
     return .next
 }
 
-let predicted = try xgboost.predict(
+let predicted = try booster.predict(
     from: validationData
 )
 
@@ -87,4 +87,4 @@ let compare = pandas.DataFrame([
 
 print(compare)
 
-try xgboost.save(to: "aft_model.xgboost")
+try booster.save(to: "aft_model.xgboost")

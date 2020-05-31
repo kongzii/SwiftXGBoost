@@ -62,7 +62,7 @@ or directly C library
 import CXGBoost
 ```
 
-both `XGBoost` and `Data` classes are exposing pointers to the underlying C,
+both `Booster` and `DMatrix` classes are exposing pointers to the underlying C,
 so you can utilize C-API directly for more advanced usage.
 
 As the library is still evolving, there can be incompatible changes between updates, 
@@ -89,7 +89,7 @@ let data = try DMatrix(
 and the swift array can be converted back to numpy
 
 ```swift
-let predicted = try xgboost.predict(
+let predicted = try booster.predict(
     from: validationData
 )
 
@@ -157,30 +157,30 @@ let data = try DMatrix(
 let train = try data.slice(indexes: 0 ..< 90, newName: "train")
 let test = try data.slice(indexes: 90 ..< 100, newName: "test")
 
-// Parameters for XGBoost, check https://xgboost.readthedocs.io/en/latest/parameter.html
+// Parameters for Booster, check https://xgboost.readthedocs.io/en/latest/parameter.html
 let parameters: [Parameter] = [
     ("verbosity", "2"),
     ("seed", "0"),
 ]
 
-// Create XGBoost model, `with` data will be cached
-let xgboost = try XGBoost(
+// Create Booster model, `with` data will be cached
+let booster = try Booster(
     with: [train, test],
     parameters: parameters
 )
 
-// Train xgboost, optionally provide callback functions called before and after each iteration
-try xgboost.train(
+// Train booster, optionally provide callback functions called before and after each iteration
+try booster.train(
     iterations: 10,
     trainingData: train,
     evaluationData: [train, test]
 )
 
 // Predict from test data
-let predictions = try xgboost.predict(from: test)
+let predictions = try booster.predict(from: test)
 
 // Save
-try xgboost.save(to: "model.xgboost")
+try booster.save(to: "model.xgboost")
 ```
 
 ## Development
@@ -204,7 +204,7 @@ Where possible, Swift implementation is tested against reference implementation 
 ```swift
 let pyFMap = [String: Int](pyXgboost.get_score(
     fmap: "", importance_type: "weight"))!
-let (fMap, _) = try xgboost.score(featureMap: "", importance: .weight)
+let (fMap, _) = try booster.score(featureMap: "", importance: .weight)
 
 XCTAssertEqual(fMap, pyFMap)
 ```

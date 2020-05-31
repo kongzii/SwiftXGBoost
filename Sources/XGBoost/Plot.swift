@@ -1,7 +1,7 @@
 import AGGRenderer
 import SwiftPlot
 
-extension XGBoost {
+extension Booster {
     /// Saves plot with importance based on fitted trees.
     ///
     /// - Parameter fileName: File where graph will be saved, .png extension will be added.

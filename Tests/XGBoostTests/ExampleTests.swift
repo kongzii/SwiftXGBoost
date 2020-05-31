@@ -28,30 +28,30 @@ final class ExampleTests: XCTestCase {
         let train = try data.slice(indexes: 0 ..< 90, newName: "train")
         let test = try data.slice(indexes: 90 ..< 100, newName: "test")
 
-        // Parameters for XGBoost, check https://xgboost.readthedocs.io/en/latest/parameter.html
+        // Parameters for Booster, check https://xgboost.readthedocs.io/en/latest/parameter.html
         let parameters: [Parameter] = [
             ("verbosity", "2"),
             ("seed", "0"),
         ]
 
-        // Create XGBoost model, `with` data will be cached
-        let xgboost = try XGBoost(
+        // Create Booster model, `with` data will be cached
+        let booster = try Booster(
             with: [train, test],
             parameters: parameters
         )
 
-        // Train xgboost, optionally provide callback functions called before and after each iteration
-        try xgboost.train(
+        // Train booster, optionally provide callback functions called before and after each iteration
+        try booster.train(
             iterations: 10,
             trainingData: train,
             evaluationData: [train, test]
         )
 
         // Predict from test data
-        let predictions = try xgboost.predict(from: test)
+        let predictions = try booster.predict(from: test)
 
         // Save
-        try xgboost.save(to: "model.xgboost")
+        try booster.save(to: "model.xgboost")
 
         // Assert outputs
         XCTAssertEqual(try data.get(field: .label), labels)

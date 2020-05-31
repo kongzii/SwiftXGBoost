@@ -1,6 +1,6 @@
 import Foundation
 
-/// Parameter for XGBoost.
+/// Parameter for Booster.
 /// See https://xgboost.readthedocs.io/en/latest/parameter.html for available parameters.
 public typealias Parameter = (name: String, value: String)
 
@@ -49,8 +49,8 @@ public enum Importance: String {
     case totalCover = "total_cover"
 }
 
-/// Booster types supported by XGBoost
-public enum Booster: String {
+/// Supported Booster types
+public enum BoosterType: String {
     case gbtree
     case gblinear
     case dart

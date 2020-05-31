@@ -1,12 +1,15 @@
 import CXGBoost
 
-/// XGBoost model.
+/// Alias for backward compatibility
+public typealias XGBoost = Booster
+
+/// Booster model.
 ///
 /// Encapsulates BoosterHandle, the model of xgboost, that contains low level routines for
 /// training, prediction and evaluation.
-public class XGBoost {
+public class Booster {
     var features: [Feature]?
-    var type: Booster?
+    var type: BoosterType?
 
     /// Pointer to underlying BoosterHandle.
     public let booster: BoosterHandle?
@@ -41,7 +44,7 @@ public class XGBoost {
         }
     }
 
-    /// Initialize XGBoost with an existing BoosterHandle pointer.
+    /// Initialize Booster with an existing BoosterHandle pointer.
     ///
     /// - Parameter booster: BoosterHandle pointer.
     public init(
@@ -50,7 +53,7 @@ public class XGBoost {
         self.booster = booster
     }
 
-    /// Initialize XGBoost from buffer.
+    /// Initialize Booster from buffer.
     ///
     /// - Parameter model: Model serialized as buffer.
     public init(
@@ -67,7 +70,7 @@ public class XGBoost {
         self.booster = booster
     }
 
-    /// Initialize new XGBoost.
+    /// Initialize new Booster.
     ///
     /// - Parameter with: Data that will be cached.
     /// - Parameter from: Loads model from path.
@@ -105,7 +108,7 @@ public class XGBoost {
             try set(parameter: name, value: value)
 
             if name == "booster" {
-                type = Booster(rawValue: name)
+                type = BoosterType(rawValue: name)
             }
         }
 
@@ -118,7 +121,7 @@ public class XGBoost {
         }
     }
 
-    /// - Returns: XGBoost's internal configuration into a JSON document.
+    /// - Returns: Booster's internal configuration into a JSON document.
     public func config() throws -> String {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -785,8 +788,8 @@ public class XGBoost {
         iterations: Int,
         trainingData: Data,
         evaluationData: [Data] = [],
-        beforeIteration: (XGBoost, Int) throws -> Void = { _, _ in },
-        afterIteration: (XGBoost, Int, [String: [String: String]]?) throws -> AfterIterationCallbackOutput = { _, _, _ in .next }
+        beforeIteration: (Booster, Int) throws -> Void = { _, _ in },
+        afterIteration: (Booster, Int, [String: [String: String]]?) throws -> AfterIterationCallbackOutput = { _, _, _ in .next }
     ) throws {
         training: for iteration in 0 ..< iterations {
             try beforeIteration(
