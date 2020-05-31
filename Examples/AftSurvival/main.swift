@@ -1,4 +1,4 @@
-/// This example is based on https://github.com/dmlc/xgboost/blob/2c1a439869506532f48d387e7d39beeab358c76b/demo/aft_survival/aft_survival_demo.py.
+// This example is based on https://github.com/dmlc/xgboost/blob/2c1a439869506532f48d387e7d39beeab358c76b/demo/aft_survival/aft_survival_demo.py.
 
 import Foundation
 import PythonKit
