@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  Tests:
+  UbuntuTests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -15,16 +15,18 @@ jobs:
         run: docker build -t swiftxgboost-tests .
       - name: Run tests
         run: docker run swiftxgboost-tests
-  CodeCoverage:
+  CodeCoverageAndMacOSTests:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies from brew
         run: brew install xgboost python3
       - name: Install dependencies for python
-        run: pip3 install xgboost
-      - name: Create CodeCoverage
+        run: pip3 install xgboost coverage
+      - name: Test and create CodeCoverage
         run: swift test --enable-code-coverage
+      - name: Move coverage file
+        run: mv .build/debug/codecov/SwiftXGBoost.json coverage.json
       - name: Upload CodeCoverage
         run: bash <(curl -s https://codecov.io/bash)
   SwiftLint:
