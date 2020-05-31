@@ -16,10 +16,10 @@ jobs:
       - name: Run tests
         run: docker run swiftxgboost-tests
   CodeCoverage:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: CodeCoverage
-        run: bash <(curl -s https://codecov.io/bash)
+        run: bash <(curl -s https://codecov.io/bash) -X xcodellvm
   SwiftLint:
     runs-on: ubuntu-latest
     steps:
