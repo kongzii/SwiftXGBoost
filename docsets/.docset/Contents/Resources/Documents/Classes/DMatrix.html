@@ -14,7 +14,7 @@
     <a title="DMatrix Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (73% documented)</p>
+        <p><a href="../index.html"> Docs</a> (71% documented)</p>
         <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -32,10 +32,10 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/DMatrix.html">DMatrix</a>
+                <a href="../Classes/Booster.html">Booster</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/XGBoost.html">XGBoost</a>
+                <a href="../Classes/DMatrix.html">DMatrix</a>
               </li>
             </ul>
           </li>
@@ -46,7 +46,7 @@
                 <a href="../Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/Booster.html">Booster</a>
+                <a href="../Enums/BoosterType.html">BoosterType</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/DataFormat.html">DataFormat</a>
@@ -111,6 +111,9 @@
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost7Versiona">Version</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoostAAa">XGBoost</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -125,7 +128,7 @@
 
                 </div>
               </div>
-            <p>Data class used with XGBoost.</p>
+            <p>Data class used with Booster.</p>
 
 <p>Data is encapsulation of DMatrixHandle, internal structure used by XGBoost,
 which is optimized for both memory efficiency and training speed.</p>
@@ -1249,9 +1252,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC11getUIntInfo5fieldSays6UInt32VGAA0D5FieldO_tKF"></a>
+                    <a name="/s:7XGBoost7DMatrixC11getUIntInfo5fieldSays6UInt32VGSS_tKF"></a>
                     <a name="//apple_ref/swift/Method/getUIntInfo(field:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC11getUIntInfo5fieldSays6UInt32VGAA0D5FieldO_tKF">getUIntInfo(field:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC11getUIntInfo5fieldSays6UInt32VGSS_tKF">getUIntInfo(field:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1267,7 +1270,7 @@ which is optimized for both memory efficiency and training speed.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getUIntInfo</span><span class="p">(</span>
-    <span class="nv">field</span><span class="p">:</span> <span class="kt"><a href="../Enums/UIntField.html">UIntField</a></span>
+    <span class="nv">field</span><span class="p">:</span> <span class="kt">String</span>
 <span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UInt32</span><span class="p">]</span></code></pre>
 
                         </div>
@@ -1301,9 +1304,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC12getFloatInfo5fieldSaySfGAA0D5FieldO_tKF"></a>
+                    <a name="/s:7XGBoost7DMatrixC12getFloatInfo5fieldSaySfGSS_tKF"></a>
                     <a name="//apple_ref/swift/Method/getFloatInfo(field:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC12getFloatInfo5fieldSaySfGAA0D5FieldO_tKF">getFloatInfo(field:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC12getFloatInfo5fieldSaySfGSS_tKF">getFloatInfo(field:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1319,7 +1322,7 @@ which is optimized for both memory efficiency and training speed.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getFloatInfo</span><span class="p">(</span>
-    <span class="nv">field</span><span class="p">:</span> <span class="kt"><a href="../Enums/FloatField.html">FloatField</a></span>
+    <span class="nv">field</span><span class="p">:</span> <span class="kt">String</span>
 <span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span></code></pre>
 
                         </div>
@@ -1475,198 +1478,6 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC3set5labelySaySfG_tKF"></a>
-                    <a name="//apple_ref/swift/Method/set(label:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC3set5labelySaySfG_tKF">set(label:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Set float type property named &ldquo;label&rdquo; into the DMatrixHandle.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span>
-    <span class="nv">label</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span>
-<span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>label</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The array of labels to be set.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC3set6weightySaySfG_tKF"></a>
-                    <a name="//apple_ref/swift/Method/set(weight:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC3set6weightySaySfG_tKF">set(weight:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Set float type property named &ldquo;weight&rdquo; into the DMatrixHandle.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span>
-    <span class="nv">weight</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span>
-<span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>label</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The array of weights to be set.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC3set10baseMarginySaySfG_tKF"></a>
-                    <a name="//apple_ref/swift/Method/set(baseMargin:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC3set10baseMarginySaySfG_tKF">set(baseMargin:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Set float type property named &ldquo;base_margin&rdquo; into the DMatrixHandle.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span>
-    <span class="nv">baseMargin</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span>
-<span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>label</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The array of values to be set.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC3set5groupySays6UInt32VG_tKF"></a>
-                    <a name="//apple_ref/swift/Method/set(group:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC3set5groupySays6UInt32VG_tKF">set(group:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Set uint type property named &ldquo;group&rdquo; into the DMatrixHandle.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span>
-    <span class="nv">group</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt32</span><span class="p">]</span>
-<span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>label</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The array of values to be set.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:7XGBoost7DMatrixC3set8featuresySayAA7FeatureVGSg_tKF"></a>
                     <a name="//apple_ref/swift/Method/set(features:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:7XGBoost7DMatrixC3set8featuresySayAA7FeatureVGSg_tKF">set(features:<wbr>)</a>
@@ -1715,186 +1526,6 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC5labelSaySfGyKF"></a>
-                    <a name="//apple_ref/swift/Method/label()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC5labelSaySfGyKF">label()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">label</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>An array of label information of the data.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC15labelUpperBoundSaySfGyKF"></a>
-                    <a name="//apple_ref/swift/Method/labelUpperBound()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC15labelUpperBoundSaySfGyKF">labelUpperBound()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">labelUpperBound</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>An array of label information of the data.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC15labelLowerBoundSaySfGyKF"></a>
-                    <a name="//apple_ref/swift/Method/labelLowerBound()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC15labelLowerBoundSaySfGyKF">labelLowerBound()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">labelLowerBound</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>An array of label information of the data.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC6weightSaySfGyKF"></a>
-                    <a name="//apple_ref/swift/Method/weight()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC6weightSaySfGyKF">weight()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">weight</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>An array of weight information of the data.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC10baseMarginSaySfGyKF"></a>
-                    <a name="//apple_ref/swift/Method/baseMargin()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC10baseMarginSaySfGyKF">baseMargin()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">baseMargin</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>An array of base margin information of the data.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC5groupSays6UInt32VGyKF"></a>
-                    <a name="//apple_ref/swift/Method/group()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC5groupSays6UInt32VGyKF">group()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">group</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UInt32</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>An array of group information of the data.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:7XGBoost7DMatrixC8featuresSayAA7FeatureVGyKF"></a>
                     <a name="//apple_ref/swift/Method/features()" class="dashAnchor"></a>
                     <a class="token" href="#/s:7XGBoost7DMatrixC8featuresSayAA7FeatureVGyKF">features()</a>
@@ -1917,7 +1548,67 @@ which is optimized for both memory efficiency and training speed.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>Features of data, generates universal names if not previously set by user.</p>
+                        <p>Features of data, generates universal names with quantitative type if not previously set by user.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost7DMatrixC3get5fieldSaySfGAA10FloatFieldO_tKF"></a>
+                    <a name="//apple_ref/swift/Method/get(field:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC3get5fieldSaySfGAA10FloatFieldO_tKF">get(field:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt"><a href="../Enums/FloatField.html">FloatField</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of float information of the data.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost7DMatrixC3get5fieldSays6UInt32VGAA9UIntFieldO_tKF"></a>
+                    <a name="//apple_ref/swift/Method/get(field:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC3get5fieldSays6UInt32VGAA9UIntFieldO_tKF">get(field:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt"><a href="../Enums/UIntField.html">UIntField</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UInt32</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of uint information of the data.</p>
                       </div>
                     </section>
                   </div>
@@ -1927,7 +1618,7 @@ which is optimized for both memory efficiency and training speed.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-05-30)</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-05-31)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

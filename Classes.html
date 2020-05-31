@@ -14,7 +14,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (73% documented)</p>
+        <p><a href="index.html"> Docs</a> (71% documented)</p>
         <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -32,10 +32,10 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/DMatrix.html">DMatrix</a>
+                <a href="Classes/Booster.html">Booster</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/XGBoost.html">XGBoost</a>
+                <a href="Classes/DMatrix.html">DMatrix</a>
               </li>
             </ul>
           </li>
@@ -46,7 +46,7 @@
                 <a href="Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/Booster.html">Booster</a>
+                <a href="Enums/BoosterType.html">BoosterType</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/DataFormat.html">DataFormat</a>
@@ -111,6 +111,9 @@
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:7XGBoost7Versiona">Version</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7XGBoostAAa">XGBoost</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -128,6 +131,37 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:7XGBoost7BoosterC"></a>
+                    <a name="//apple_ref/swift/Class/Booster" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC">Booster</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Booster model.</p>
+
+<p>Encapsulates BoosterHandle, the model of xgboost, that contains low level routines for
+training, prediction and evaluation.</p>
+
+                        <a href="Classes/Booster.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Booster</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:7XGBoost7DMatrixC"></a>
                     <a name="//apple_ref/swift/Class/DMatrix" class="dashAnchor"></a>
                     <a class="token" href="#/s:7XGBoost7DMatrixC">DMatrix</a>
@@ -138,7 +172,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Data class used with XGBoost.</p>
+                        <p>Data class used with Booster.</p>
 
 <p>Data is encapsulation of DMatrixHandle, internal structure used by XGBoost,
 which is optimized for both memory efficiency and training speed.</p>
@@ -156,43 +190,12 @@ which is optimized for both memory efficiency and training speed.</p>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoostAAC"></a>
-                    <a name="//apple_ref/swift/Class/XGBoost" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoostAAC">XGBoost</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>XGBoost model.</p>
-
-<p>Encapsulates BoosterHandle, the model of xgboost, that contains low level routines for
-training, prediction and evaluation.</p>
-
-                        <a href="Classes/XGBoost.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">XGBoost</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-05-30)</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-05-31)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

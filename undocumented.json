@@ -100,64 +100,71 @@
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 43,
+      "line": 41,
+      "symbol": "UIntField.groupPtr",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
+      "line": 44,
       "symbol": "Importance",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 44,
+      "line": 45,
       "symbol": "Importance.weight",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 45,
+      "line": 46,
       "symbol": "Importance.gain",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 46,
+      "line": 47,
       "symbol": "Importance.cover",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 47,
+      "line": 48,
       "symbol": "Importance.totalGain",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 48,
+      "line": 49,
       "symbol": "Importance.totalCover",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 53,
-      "symbol": "Booster.gbtree",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
       "line": 54,
-      "symbol": "Booster.gblinear",
+      "symbol": "BoosterType.gbtree",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
       "line": 55,
-      "symbol": "Booster.dart",
+      "symbol": "BoosterType.gblinear",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
+      "line": 56,
+      "symbol": "BoosterType.dart",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
