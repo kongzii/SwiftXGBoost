@@ -16,7 +16,7 @@ public enum AfterIterationCallbackOutput {
 
 /// Currently supported model formats.
 public enum ModelFormat: String {
-    case text, json
+    case text, json, dot
 }
 
 /// Currently supported data formats.

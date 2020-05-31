@@ -95,14 +95,49 @@ final class BoosterTests: XCTestCase {
 
         try booster.save(to: temporaryModelFile)
         let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
-        pyBooster.dump_model(fout: temporaryDumpFile, fmap: temporaryFeatureMapFile, dump_format: "text")
+        pyBooster.dump_model(
+            fout: temporaryDumpFile, fmap: temporaryFeatureMapFile, 
+            with_stats: true, dump_format: "text"
+        )
 
-        let textFeatures = try booster.dumped(features: features, format: .text)
-        let textFeatureMap = try booster.dumped(featureMap: temporaryFeatureMapFile, format: .text)
+        let textFeatures = try booster.dumped(
+            features: features, withStatistics: true, format: .text)
+        let textFeatureMap = try booster.dumped(
+            featureMap: temporaryFeatureMapFile, withStatistics: true, format: .text)
         let pyText = try String(contentsOfFile: temporaryDumpFile)
 
         XCTAssertEqual(textFeatures, pyText)
         XCTAssertEqual(textFeatureMap, pyText)
+    }
+
+    func testDotDumped() throws {
+        let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
+        let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
+        let data = try DMatrix(
+            name: "data",
+            from: randomArray,
+            shape: Shape(10, 1),
+            label: label,
+            threads: 1
+        )
+        let booster = try Booster(with: [data])
+        try booster.train(
+            iterations: 5,
+            trainingData: data
+        )
+
+        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+            "testJsonDumped.xgboost", isDirectory: false
+        ).path
+    
+
+        try booster.save(to: temporaryModelFile)
+        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+
+        let dot = try booster.rawDumped(format: .dot)
+        let pyDot = pyBooster.get_dump(dump_format: "dot").map { String($0)! }
+        
+        XCTAssertEqual(dot, pyDot)
     }
 
     func testScoreEmptyFeatureMap() throws {
@@ -235,6 +270,7 @@ final class BoosterTests: XCTestCase {
         ("testAttributes", testAttributes),
         ("testJsonDumped", testJsonDumped),
         ("testTextDumped", testTextDumped),
+        ("testDotDumped", testDotDumped),
         ("testScoreEmptyFeatureMap", testScoreEmptyFeatureMap),
         ("testScoreWithFeatureMap", testScoreWithFeatureMap),
     ]

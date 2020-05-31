@@ -321,6 +321,8 @@ public class Booster {
             for (index, booster) in models.enumerated() {
                 output += "booster[\(index)]:\n\(booster)"
             }
+        case .dot:
+            output = models.joined(separator: "\n")
         }
 
         return output
