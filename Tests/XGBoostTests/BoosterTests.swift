@@ -4,6 +4,7 @@ import XCTest
 @testable import XGBoost
 
 let PXGBOOST = Python.import("xgboost")
+let PJSON = Python.import("json")
 
 func assertEqualDictionary(_ a: [String: Float], _ b: [String: Float], accuracy: Float) {
     for (key, value) in a {
@@ -42,12 +43,25 @@ final class BoosterTests: XCTestCase {
             iterations: 5,
             trainingData: data
         )
-        let jsonData = try booster.dumped(
-            features: try data.features(),
-            format: .json
-        ).data(using: String.Encoding.utf8)!
-        let jsonObject = try? JSONSerialization.jsonObject(with: jsonData)
-        XCTAssertNotNil(jsonObject)
+
+        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+            "testJsonDumped.xgboost", isDirectory: false
+        ).path
+        let temporaryDumpFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+            "testJsonDumped.json", isDirectory: false
+        ).path
+
+        try booster.save(to: temporaryModelFile)
+        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        pyBooster.dump_model(fout: temporaryDumpFile, dump_format: "json")
+
+        let json = try booster.dumped(format: .json)
+        let pyJson = try String(contentsOfFile: temporaryDumpFile)
+        
+        let jsonObject = PJSON.loads(json)
+        let pyJsonObject = PJSON.loads(pyJson)
+
+        XCTAssertTrue(jsonObject == pyJsonObject)
     }
 
     func testTextDumped() throws {
@@ -65,11 +79,30 @@ final class BoosterTests: XCTestCase {
             iterations: 5,
             trainingData: data
         )
-        let text = try booster.dumped(
-            features: [Feature(name: "x", type: .quantitative)],
-            format: .text
-        )
-        XCTAssertNotEqual(text, "")
+
+        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+            "testJsonDumped.xgboost", isDirectory: false
+        ).path
+        let temporaryDumpFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+            "testJsonDumped.json", isDirectory: false
+        ).path
+        let temporaryFeatureMapFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+            "testJsonDumped.featureMap", isDirectory: false
+        ).path
+
+        let features = [Feature(name: "x", type: .quantitative)]
+        try features.saveFeatureMap(to: temporaryFeatureMapFile)
+
+        try booster.save(to: temporaryModelFile)
+        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        pyBooster.dump_model(fout: temporaryDumpFile, fmap: temporaryFeatureMapFile, dump_format: "text")
+
+        let textFeatures = try booster.dumped(features: features, format: .text)
+        let textFeatureMap = try booster.dumped(featureMap: temporaryFeatureMapFile, format: .text)
+        let pyText = try String(contentsOfFile: temporaryDumpFile)
+
+        XCTAssertEqual(textFeatures, pyText)
+        XCTAssertEqual(textFeatureMap, pyText)
     }
 
     func testScoreEmptyFeatureMap() throws {
