@@ -81,13 +81,13 @@ final class BoosterTests: XCTestCase {
         )
 
         let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testJsonDumped.xgboost", isDirectory: false
+            "testTextDumped.xgboost", isDirectory: false
         ).path
         let temporaryDumpFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testJsonDumped.json", isDirectory: false
+            "testTextDumped.json", isDirectory: false
         ).path
         let temporaryFeatureMapFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testJsonDumped.featureMap", isDirectory: false
+            "testTextDumped.featureMap", isDirectory: false
         ).path
 
         let features = [Feature(name: "x", type: .quantitative)]
@@ -129,7 +129,7 @@ final class BoosterTests: XCTestCase {
         )
 
         let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testJsonDumped.xgboost", isDirectory: false
+            "testDotDumped.xgboost", isDirectory: false
         ).path
 
         try booster.save(to: temporaryModelFile)

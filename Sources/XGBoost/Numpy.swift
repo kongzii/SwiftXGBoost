@@ -18,7 +18,7 @@ public extension Array where Element: NumpyScalarCompatible {
     }
 }
 
-extension Data {
+extension DMatrix {
     /// Initialize Data from python object array.
     /// Currently supported: Numpy NDArray.
     ///

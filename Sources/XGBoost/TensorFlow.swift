@@ -2,7 +2,7 @@
 
     import TensorFlow
 
-    extension Data {
+    extension DMatrix {
         /// Initialize Data from TensorFLow Tensors.
         ///
         /// - Parameter name: Name of dataset.
