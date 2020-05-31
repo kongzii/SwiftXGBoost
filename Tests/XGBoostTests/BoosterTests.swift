@@ -57,7 +57,7 @@ final class BoosterTests: XCTestCase {
 
         let json = try booster.dumped(format: .json)
         let pyJson = try String(contentsOfFile: temporaryDumpFile)
-        
+
         let jsonObject = PJSON.loads(json)
         let pyJsonObject = PJSON.loads(pyJson)
 
@@ -96,14 +96,16 @@ final class BoosterTests: XCTestCase {
         try booster.save(to: temporaryModelFile)
         let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
         pyBooster.dump_model(
-            fout: temporaryDumpFile, fmap: temporaryFeatureMapFile, 
+            fout: temporaryDumpFile, fmap: temporaryFeatureMapFile,
             with_stats: true, dump_format: "text"
         )
 
         let textFeatures = try booster.dumped(
-            features: features, withStatistics: true, format: .text)
+            features: features, withStatistics: true, format: .text
+        )
         let textFeatureMap = try booster.dumped(
-            featureMap: temporaryFeatureMapFile, withStatistics: true, format: .text)
+            featureMap: temporaryFeatureMapFile, withStatistics: true, format: .text
+        )
         let pyText = try String(contentsOfFile: temporaryDumpFile)
 
         XCTAssertEqual(textFeatures, pyText)
@@ -129,14 +131,13 @@ final class BoosterTests: XCTestCase {
         let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
             "testJsonDumped.xgboost", isDirectory: false
         ).path
-    
 
         try booster.save(to: temporaryModelFile)
         let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
 
         let dot = try booster.rawDumped(format: .dot)
         let pyDot = pyBooster.get_dump(dump_format: "dot").map { String($0)! }
-        
+
         XCTAssertEqual(dot, pyDot)
     }
 
