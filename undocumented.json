@@ -24,6 +24,13 @@
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
       "line": 19,
+      "symbol": "ModelFormat.dot",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
+      "line": 19,
       "symbol": "ModelFormat.json",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
