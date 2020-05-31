@@ -25,8 +25,10 @@ jobs:
         run: pip3 install xgboost coverage
       - name: Test and create CodeCoverage
         run: swift test --enable-code-coverage
+      - name: Export coverage
+        run: llvm-cov report .build/x86_64-apple-macosx/debug/SwiftXGBoostPackageTests.xctest/Contents/MacOS/SwiftXGBoostPackageTests --instr-profile .build/x86_64-apple-macosx/debug/codecov/default.profdata > coverage.txt
       - name: Upload CodeCoverage
-        run: bash <(curl -s https://codecov.io/bash) -f $(swift test --show-codecov-path)
+        run: bash <(curl -s https://codecov.io/bash)
   SwiftLint:
     runs-on: ubuntu-latest
     steps:
