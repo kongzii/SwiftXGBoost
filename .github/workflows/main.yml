@@ -25,10 +25,8 @@ jobs:
         run: pip3 install xgboost coverage
       - name: Test and create CodeCoverage
         run: swift test --enable-code-coverage
-      - name: Move coverage file
-        run: mv .build/debug/codecov/SwiftXGBoost.json coverage.json
       - name: Upload CodeCoverage
-        run: bash <(curl -s https://codecov.io/bash)
+        run: bash <(curl -s https://codecov.io/bash) -f $(swift test --show-codecov-path)
   SwiftLint:
     runs-on: ubuntu-latest
     steps:
