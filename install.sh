@@ -7,7 +7,7 @@ cd xgboost
 git checkout release_1.1.0
 mkdir build
 cd build
-cmake ..
+cmake -DCMAKE_INSTALL_LIBDIR=/usr/lib ..
 make
 make install
 ldconfig
