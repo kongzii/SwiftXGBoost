@@ -26,7 +26,7 @@ cd xgboost
 git checkout release_1.1.0
 mkdir build
 cd build
-cmake ..
+cmake -DCMAKE_INSTALL_LIBDIR=/usr/lib ..
 make
 make install
 ldconfig
@@ -44,6 +44,20 @@ You can build and install similarly as on Linux, or just use brew
 
 ```
 brew install xgboost
+```
+
+If you get `ld: symbol(s) not found` error message, it most probably means that Swift can not find XGBoost libararies.
+
+In that case, you can either add XGBoost pkgconfig to your system
+
+```
+cp xgboost.pc /usr/local/lib/pkgconfig/
+```
+
+or run commands with specified C and linker flags to the location with XGBoost, e.g.:
+
+```
+swift test -Xcc -I/usr/local/include -Xlinker -L/usr/local/lib
 ```
 
 ### Package
