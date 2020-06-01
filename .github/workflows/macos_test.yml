@@ -1,4 +1,4 @@
-name: MacOSTest
+name: MacOS
 
 on:
   push:

@@ -1,8 +1,9 @@
 [![codecov](https://codecov.io/gh/kongzii/SwiftXGBoost/branch/master/graph/badge.svg)](https://codecov.io/gh/kongzii/SwiftXGBoost)
 [![Platform](https://img.shields.io/badge/platform-linux%2Cmacos-lightgrey)](https://kongzii.github.io/SwiftXGBoost/)
 [![Swift Version](https://img.shields.io/badge/Swift-5.2-green.svg)]()
-[![Test](https://github.com/kongzii/SwiftXGBoost/workflows/Test/badge.svg?branch=master)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
+![Ubuntu](https://github.com/kongzii/SwiftXGBoost/workflows/Ubuntu/badge.svg)
+![MacOS](https://github.com/kongzii/SwiftXGBoost/workflows/MacOS/badge.svg)
 
 # XGBoost for Swift
 
