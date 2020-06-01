@@ -10,6 +10,7 @@ addons:
 before_install:
   - gem install jazzy
 after_success:
+  - cp xgboost.pc /usr/local/lib/pkgconfig/
   - gmake documentation
 deploy:
   provider: pages
