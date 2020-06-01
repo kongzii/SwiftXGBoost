@@ -121,8 +121,9 @@
             <p><a href="https://codecov.io/gh/kongzii/SwiftXGBoost"><img src="https://codecov.io/gh/kongzii/SwiftXGBoost/branch/master/graph/badge.svg" alt="codecov"></a>
 <a href="https://kongzii.github.io/SwiftXGBoost/"><img src="https://img.shields.io/badge/platform-linux%2Cmacos-lightgrey" alt="Platform"></a>
 <a href=""><img src="https://img.shields.io/badge/Swift-5.2-green.svg" alt="Swift Version"></a>
-<a href=""><img src="https://github.com/kongzii/SwiftXGBoost/workflows/Test/badge.svg?branch=master" alt="Test"></a>
-<a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a> </p>
+<a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a> 
+<img src="https://github.com/kongzii/SwiftXGBoost/workflows/Ubuntu/badge.svg" alt="Ubuntu">
+<img src="https://github.com/kongzii/SwiftXGBoost/workflows/MacOS/badge.svg" alt="MacOS"></p>
 <h1 id='xgboost-for-swift' class='heading'>XGBoost for Swift</h1>
 
 <p>Bindings for <a href="https://en.wikipedia.org/wiki/XGBoost">the XGBoost system library</a>. 
@@ -139,7 +140,7 @@ cd xgboost
 git checkout release_1.1.0
 mkdir build
 cd build
-cmake ..
+cmake -DCMAKE_INSTALL_LIBDIR=/usr/lib ..
 make
 make install
 ldconfig
@@ -152,6 +153,16 @@ ldconfig
 
 <p>You can build and install similarly as on Linux, or just use brew</p>
 <pre class="highlight plaintext"><code>brew install xgboost
+</code></pre>
+
+<p>If you get <code>ld: symbol(s) not found</code> error message, it most probably means that Swift can not find XGBoost libararies.</p>
+
+<p>In that case, you can either add XGBoost pkgconfig to your system</p>
+<pre class="highlight plaintext"><code>cp xgboost.pc /usr/local/lib/pkgconfig/
+</code></pre>
+
+<p>or run commands with specified C and linker flags to the location with XGBoost, e.g.:</p>
+<pre class="highlight plaintext"><code>swift test -Xcc -I/usr/local/include -Xlinker -L/usr/local/lib
 </code></pre>
 <h3 id='package' class='heading'>Package</h3>
 
