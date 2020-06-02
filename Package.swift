@@ -22,9 +22,6 @@ let package = Package(
         ),
     ],
     dependencies: [
-        // TODO: Switch to official PythonKit when its versioned.
-        .package(url: "https://github.com/kongzii/PythonKit", .exact("0.0.1")),
-        // .package(url: "https://github.com/pvieito/PythonKit.git", .branch("master")),
         .package(url: "https://github.com/KarthikRIyer/swiftplot.git", from: "2.0.0"),
     ],
     targets: [
@@ -32,7 +29,6 @@ let package = Package(
             name: "XGBoost",
             dependencies: [
                 "CXGBoost",
-                "PythonKit",
                 "SwiftPlot",
                 "AGGRenderer",
             ]
@@ -48,14 +44,12 @@ let package = Package(
             name: "XGBoostTests",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ]
         ),
         .target(
             name: "AftSurvival",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/AftSurvival"
         ),
