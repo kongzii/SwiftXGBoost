@@ -218,37 +218,37 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Python.swift",
+      "line": 22,
+      "symbol": "Shape.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Shape.swift",
-      "line": 6,
+      "line": 5,
       "symbol": "Shape.row",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Shape.swift",
-      "line": 7,
+      "line": 6,
       "symbol": "Shape.column",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Shape.swift",
-      "line": 10,
+      "line": 9,
       "symbol": "Shape.init(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Shape.swift",
-      "line": 15,
+      "line": 14,
       "symbol": "Shape.init(row:column:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Shape.swift",
-      "line": 26,
-      "symbol": "Shape.init(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
