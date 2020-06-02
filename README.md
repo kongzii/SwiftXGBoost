@@ -60,6 +60,8 @@ or run commands with specified C and linker flags to the location with XGBoost, 
 swift test -Xcc -I/usr/local/include -Xlinker -L/usr/local/lib
 ```
 
+Note: This issue is fixed in the master branch thanks to the [Add pkgconfig to cmake #5744](https://github.com/dmlc/xgboost/pull/5744) and hopefully will be available soon in some release. 
+
 ### Package
 
 Add a dependency in your your `Package.swift`
