@@ -1,5 +1,4 @@
 import Foundation
-import PythonKit
 
 /// Shape of Data.
 public struct Shape: ExpressibleByArrayLiteral, Equatable {
@@ -21,14 +20,5 @@ public struct Shape: ExpressibleByArrayLiteral, Equatable {
         precondition(elements.count == 2, "Invalid shape of input.")
         row = elements[0]
         column = elements[1]
-    }
-
-    public init(_ row: PythonObject, _ column: PythonObject) throws {
-        guard let row = Int(row), let column = Int(column) else {
-            throw ValueError.runtimeError("Invalid type of python input.")
-        }
-
-        self.row = row
-        self.column = column
     }
 }

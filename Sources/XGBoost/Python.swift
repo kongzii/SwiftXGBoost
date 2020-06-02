@@ -18,6 +18,17 @@ public extension Array where Element: NumpyScalarCompatible {
     }
 }
 
+extension Shape {
+    public init(_ row: PythonObject, _ column: PythonObject) throws {
+        guard let row = Int(row), let column = Int(column) else {
+            throw ValueError.runtimeError("Invalid type of python input.")
+        }
+
+        self.row = row
+        self.column = column
+    }
+}
+
 extension DMatrix {
     /// Initialize Data from python object array.
     /// Currently supported: Numpy NDArray.
