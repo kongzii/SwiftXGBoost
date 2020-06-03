@@ -7,4 +7,6 @@
 .DS_Store
 Documentation
 *.xgboost
+*.buffer
+*.png
 venv

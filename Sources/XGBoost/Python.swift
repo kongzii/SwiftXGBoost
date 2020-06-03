@@ -80,4 +80,45 @@ extension DMatrix {
             threads: threads
         )
     }
+
+    /// Initialize Data from python object array.
+    /// Currently supported: Numpy NDArray.
+    ///
+    /// - Parameter name: Name of dataset.
+    /// - Parameter from: Python object.
+    /// - Parameter label: Python object.
+    /// - Parameter weight: Weight for each instance.
+    /// - Parameter baseMargin: Set base margin of booster to start from.
+    /// - Parameter features: Names and types of features.
+    /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
+    /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
+    public convenience init(
+        name: String,
+        from: PythonObject,
+        label: PythonObject,
+        weight: [Float]? = nil,
+        baseMargin: [Float]? = nil,
+        features: [Feature]? = nil,
+        missingValue: Float = Float.greatestFiniteMagnitude,
+        threads: Int = 0
+    ) throws {
+        if !Bool(Python.isinstance(label, numpy.ndarray))! {
+            throw ValueError.runtimeError("PythonObject is not a numpy ndarray.")
+
+            if label.shape.count != 1 {
+                throw ValueError.runtimeError("Invalid shape \(label.shape) of label.")
+            }
+        }
+
+        try self.init(
+            name: name,
+            from: from,
+            label: [Float](label)!,
+            weight: weight,
+            baseMargin: baseMargin,
+            features: features,
+            missingValue: missingValue,
+            threads: threads
+        )
+    }
 }

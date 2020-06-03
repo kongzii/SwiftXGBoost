@@ -29,7 +29,7 @@ final class PlotTests: XCTestCase {
         ).path
 
         try data.saveFeatureMap(to: featureMapFile)
-        try booster.saveImportanceGraph(fileName: graphFile, featureMap: featureMapFile)
+        try booster.saveImportanceGraph(to: graphFile, featureMap: featureMapFile)
 
         XCTAssertTrue(FileManager.default.fileExists(atPath: featureMapFile))
         XCTAssertTrue(FileManager.default.fileExists(atPath: graphFile + ".png"))
