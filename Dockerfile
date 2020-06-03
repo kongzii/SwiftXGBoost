@@ -19,7 +19,7 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.15.2/cmake-3.15.2
     && make install \
     && cmake --version
 
-RUN python3.8 -m pip install xgboost==1.1.0
+RUN python3.8 -m pip install xgboost==1.1.0 numpy pandas
 
 COPY install.sh install.sh
 RUN chmod +x install.sh && ./install.sh
