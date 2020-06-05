@@ -20,6 +20,6 @@ jobs:
       - name: Install dependencies from brew
         run: brew install swiftformat
       - name: Run formatting
-        run: swiftformat .
+        run: swiftformat . --exclude Sources/XGBoost/Python.swift
       - name: Run git diff
         run: git diff --exit-code
