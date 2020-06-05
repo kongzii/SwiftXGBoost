@@ -3,6 +3,20 @@ import CXGBoost
 /// Backward compatible alias for Data
 public typealias Data = DMatrix
 
+public protocol DMatrixData {
+    func data() throws -> [Float]
+}
+
+public protocol DMatrixShape {
+    func dataShape() throws -> Shape
+}
+
+extension DMatrixShape {
+    public func isFlat() throws -> Bool {
+        try dataShape().row == 1
+    }
+}
+
 /// Data class used with Booster.
 ///
 /// Data is encapsulation of DMatrixHandle, internal structure used by XGBoost,
@@ -24,10 +38,10 @@ public class DMatrix {
     public init(
         name: String,
         dmatrix: DMatrixHandle?,
-        features: [Feature]? = nil,
-        label: [Float]? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil
+        features: [Feature]?,
+        label: DMatrixData?,
+        weight: DMatrixData?,
+        baseMargin: DMatrixData?
     ) throws {
         self.name = name
         self.dmatrix = dmatrix
@@ -37,15 +51,15 @@ public class DMatrix {
         }
 
         if let label = label {
-            try set(field: .label, values: label)
+            try set(field: .label, values: try label.data())
         }
 
         if let weight = weight {
-            try set(field: .weight, values: weight)
+            try set(field: .weight, values: try weight.data())
         }
 
         if let baseMargin = baseMargin {
-            try set(field: .baseMargin, values: baseMargin)
+            try set(field: .baseMargin, values: try baseMargin.data())
         }
     }
 
@@ -62,11 +76,11 @@ public class DMatrix {
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
         name: String,
-        from values: UnsafePointer<Float>,
+        from data: DMatrixData,
         shape: Shape,
-        label: [Float]? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil,
+        label: DMatrixData? = nil,
+        weight: DMatrixData? = nil,
+        baseMargin: DMatrixData? = nil,
         features: [Feature]? = nil,
         missingValue: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
@@ -74,7 +88,7 @@ public class DMatrix {
         var dmatrix: DMatrixHandle?
         try safe {
             XGDMatrixCreateFromMat_omp(
-                values,
+                try data.data(),
                 UInt64(shape.row),
                 UInt64(shape.column),
                 missingValue,
@@ -96,8 +110,7 @@ public class DMatrix {
     /// Initialize Data.
     ///
     /// - Parameter name: Name of dataset.
-    /// - Parameter values: Values source.
-    /// - Parameter shape: Shape of resulting DMatrixHandle.
+    /// - Parameter from: Data with shape comfortance.
     /// - Parameter label: Array of labels for data.
     /// - Parameter weight: Weight for each instance.
     /// - Parameter baseMargin: Set base margin of booster to start from.
@@ -106,25 +119,22 @@ public class DMatrix {
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
         name: String,
-        from values: [Float],
-        shape: Shape,
-        label: [Float]? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil,
+        from: DMatrixData & DMatrixShape,
+        label: DMatrixData? = nil,
+        weight: DMatrixData? = nil,
+        baseMargin: DMatrixData? = nil,
         features: [Feature]? = nil,
-        missingValue: Float = Float.greatestFiniteMagnitude,
+        missingValue _: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
     ) throws {
-        var values = values
         try self.init(
             name: name,
-            from: &values,
-            shape: shape,
+            from: from,
+            shape: try from.dataShape(),
             label: label,
             weight: weight,
             baseMargin: baseMargin,
             features: features,
-            missingValue: missingValue,
             threads: threads
         )
     }
@@ -146,8 +156,8 @@ public class DMatrix {
         format: DataFormat = .csv,
         features: [Feature]? = nil,
         labelColumn: Int? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil,
+        weight: DMatrixData? = nil,
+        baseMargin: DMatrixData? = nil,
         silent: Bool = true,
         fileQuery: [String] = []
     ) throws {
@@ -177,6 +187,7 @@ public class DMatrix {
             name: name,
             dmatrix: dmatrix,
             features: features,
+            label: nil,
             weight: weight,
             baseMargin: baseMargin
         )
@@ -282,7 +293,10 @@ public class DMatrix {
         return try DMatrix(
             name: newName ?? name,
             dmatrix: slicedDmatrix,
-            features: _features
+            features: _features,
+            label: nil,
+            weight: nil,
+            baseMargin: nil
         )
     }
 

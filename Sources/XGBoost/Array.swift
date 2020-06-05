@@ -1,3 +1,5 @@
+import Foundation
+
 public extension Array where Element == Feature {
     /// Save feature map compatible with XGBoost`s inputs.
     ///
@@ -32,5 +34,15 @@ public extension Array where Element == Feature {
         }
 
         self.init(features)
+    }
+}
+
+extension Array: DMatrixData, DMatrixShape where Element == Float {
+    public func data() throws -> [Float] {
+        self
+    }
+
+    public func dataShape() throws -> Shape {
+        [1, count]
     }
 }

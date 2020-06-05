@@ -14,8 +14,8 @@ enum ValueError: Error {
 /// Helper function to handle C-API calls.
 ///
 /// - Parameter call: Closure returning output of XGBoost C-API function.
-func safe(call: () -> Int32) throws {
-    if call() != 0 {
+func safe(call: () throws -> Int32) throws {
+    if try call() != 0 {
         throw XGBoostError.runtimeError(String(cString: XGBGetLastError()))
     }
 }
