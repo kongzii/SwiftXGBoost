@@ -507,7 +507,7 @@ public class DMatrix {
         if _features == nil {
             _features = try (0 ..< columnCount()).map { Feature(name: "\(defaultPrefix)\($0)", type: .quantitative) }
         }
-      
+
         return _features!
     }
 
