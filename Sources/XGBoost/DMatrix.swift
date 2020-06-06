@@ -43,6 +43,11 @@ public class DMatrix {
     /// - Parameter name: Name of dataset.
     /// - Parameter features: Array describing features in this dataset.
     /// - Parameter dmatrix: DMatrixHandle pointer.
+    /// - Parameter label: Sets label after DMatrix initialization.
+    /// - Parameter weight: Sets weight after DMatrix initialization.
+    /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
+    /// - Parameter labelLowerBound: Sets labelLowerBound after DMatrix initialization.
+    /// - Parameter labelUpperBound: Sets labelUpperBound after DMatrix initialization.
     public init(
         name: String,
         dmatrix: DMatrixHandle?,
@@ -86,10 +91,12 @@ public class DMatrix {
     /// - Parameter name: Name of dataset.
     /// - Parameter from: Values source.
     /// - Parameter shape: Shape of resulting DMatrixHandle.
-    /// - Parameter label: Array of labels for data.
-    /// - Parameter weight: Weight for each instance.
-    /// - Parameter baseMargin: Set base margin of booster to start from.
     /// - Parameter features: Names and types of features.
+    /// - Parameter label: Sets label after DMatrix initialization.
+    /// - Parameter weight: Sets weight after DMatrix initialization.
+    /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
+    /// - Parameter labelLowerBound: Sets labelLowerBound after DMatrix initialization.
+    /// - Parameter labelUpperBound: Sets labelUpperBound after DMatrix initialization.
     /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
@@ -133,9 +140,11 @@ public class DMatrix {
     ///
     /// - Parameter name: Name of dataset.
     /// - Parameter from: Data with shape comfortance.
-    /// - Parameter label: Array of labels for data.
-    /// - Parameter weight: Weight for each instance.
-    /// - Parameter baseMargin: Set base margin of booster to start from.
+    /// - Parameter label: Sets label after DMatrix initialization.
+    /// - Parameter weight: Sets weight after DMatrix initialization.
+    /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
+    /// - Parameter labelLowerBound: Sets labelLowerBound after DMatrix initialization.
+    /// - Parameter labelUpperBound: Sets labelUpperBound after DMatrix initialization.
     /// - Parameter features: Names and types of features.
     /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
@@ -172,8 +181,11 @@ public class DMatrix {
     /// - Parameter format: Format of input file.
     /// - Parameter features: Names and types of features.
     /// - Parameter labelColumn: Which column is for label.
-    /// - Parameter weight: Weight for each instance.
-    /// - Parameter baseMargin: Set base margin of booster to start from.
+    /// - Parameter label: Sets label after DMatrix initialization.
+    /// - Parameter weight: Sets weight after DMatrix initialization.
+    /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
+    /// - Parameter labelLowerBound: Sets labelLowerBound after DMatrix initialization.
+    /// - Parameter labelUpperBound: Sets labelUpperBound after DMatrix initialization.
     /// - Parameter silent: Whether print messages during construction.
     /// - Parameter fileQuery: Additional parameters that will be appended to the file path as query.
     public convenience init(
