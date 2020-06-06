@@ -40,6 +40,10 @@ extension Shape {
         self.row = row
         self.column = column
     }
+
+    public init(_ row: PythonObject, _ column: PythonObject) throws {
+        try self.init(row: row, column: column)
+    }
 }
 
 extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
