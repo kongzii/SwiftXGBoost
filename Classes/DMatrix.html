@@ -14,7 +14,7 @@
     <a title="DMatrix Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (71% documented)</p>
+        <p><a href="../index.html"> Docs</a> (61% documented)</p>
         <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -75,10 +75,30 @@
                 <a href="../Extensions/Array.html">Array</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/DMatrix.html">DMatrix</a>
+                <a href="../Extensions/PythonObject.html">PythonObject</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Tensor.html">Tensor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/FloatData.html">FloatData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Int32Data.html">Int32Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeData.html">ShapeData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UInt32Data.html">UInt32Data</a>
               </li>
             </ul>
           </li>
@@ -191,9 +211,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC4name7dmatrix8features5label6weight10baseMarginACSS_SvSgSayAA7FeatureVGSgSaySfGSgA2PtKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(name:dmatrix:features:label:weight:baseMargin:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC4name7dmatrix8features5label6weight10baseMarginACSS_SvSgSayAA7FeatureVGSgSaySfGSgA2PtKcfc">init(name:<wbr>dmatrix:<wbr>features:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>)</a>
+                    <a name="/s:7XGBoost7DMatrixC4name7dmatrix8features5label6weight10baseMargin0F10LowerBound0f5UpperK0ACSS_SvSgSayAA7FeatureVGSgAA9FloatData_pSgA4RtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:dmatrix:features:label:weight:baseMargin:labelLowerBound:labelUpperBound:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC4name7dmatrix8features5label6weight10baseMargin0F10LowerBound0f5UpperK0ACSS_SvSgSayAA7FeatureVGSgAA9FloatData_pSgA4RtKcfc">init(name:<wbr>dmatrix:<wbr>features:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>labelLowerBound:<wbr>labelUpperBound:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -211,10 +231,12 @@ which is optimized for both memory efficiency and training speed.</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
     <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">dmatrix</span><span class="p">:</span> <span class="kt">DMatrixHandle</span><span class="p">?,</span>
-    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">label</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">weight</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">baseMargin</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span>
+    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?,</span>
+    <span class="nv">label</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?,</span>
+    <span class="nv">weight</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?,</span>
+    <span class="nv">baseMargin</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?,</span>
+    <span class="nv">labelLowerBound</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?,</span>
+    <span class="nv">labelUpperBound</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
@@ -259,6 +281,66 @@ which is optimized for both memory efficiency and training speed.</p>
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>label</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets label after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>weight</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets weight after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>baseMargin</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets baseMargin after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labelLowerBound</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets labelLowerBound after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labelUpperBound</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets labelUpperBound after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -268,9 +350,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC4name4from5shape5label6weight10baseMargin8features12missingValue7threadsACSS_SPySfGAA5ShapeVSaySfGSgA2QSayAA7FeatureVGSgSfSitKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(name:from:shape:label:weight:baseMargin:features:missingValue:threads:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from5shape5label6weight10baseMargin8features12missingValue7threadsACSS_SPySfGAA5ShapeVSaySfGSgA2QSayAA7FeatureVGSgSfSitKcfc">init(name:<wbr>from:<wbr>shape:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>features:<wbr>missingValue:<wbr>threads:<wbr>)</a>
+                    <a name="/s:7XGBoost7DMatrixC4name4from5shape8features5label6weight10baseMargin0G10LowerBound0g5UpperL012missingValue7threadsACSS_AA9FloatData_pAA5ShapeVSayAA7FeatureVGSgAaO_pSgA4VSfSitKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:from:shape:features:label:weight:baseMargin:labelLowerBound:labelUpperBound:missingValue:threads:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from5shape8features5label6weight10baseMargin0G10LowerBound0g5UpperL012missingValue7threadsACSS_AA9FloatData_pAA5ShapeVSayAA7FeatureVGSgAaO_pSgA4VSfSitKcfc">init(name:<wbr>from:<wbr>shape:<wbr>features:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>labelLowerBound:<wbr>labelUpperBound:<wbr>missingValue:<wbr>threads:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -287,12 +369,14 @@ which is optimized for both memory efficiency and training speed.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
     <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="n">from</span> <span class="nv">values</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">,</span>
     <span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Structs/Shape.html">Shape</a></span><span class="p">,</span>
-    <span class="nv">label</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">weight</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">baseMargin</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">label</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">weight</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">baseMargin</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">labelLowerBound</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">labelUpperBound</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">missingValue</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="kt">Float</span><span class="o">.</span><span class="n">greatestFiniteMagnitude</span><span class="p">,</span>
     <span class="nv">threads</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
@@ -342,12 +426,24 @@ which is optimized for both memory efficiency and training speed.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>features</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Names and types of features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>label</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Array of labels for data.</p>
+                                  <p>Sets label after DMatrix initialization.</p>
                                 </div>
                               </td>
                             </tr>
@@ -359,7 +455,7 @@ which is optimized for both memory efficiency and training speed.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Weight for each instance.</p>
+                                  <p>Sets weight after DMatrix initialization.</p>
                                 </div>
                               </td>
                             </tr>
@@ -371,19 +467,31 @@ which is optimized for both memory efficiency and training speed.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Set base margin of booster to start from.</p>
+                                  <p>Sets baseMargin after DMatrix initialization.</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>features</em>
+                                <em>labelLowerBound</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Names and types of features.</p>
+                                  <p>Sets labelLowerBound after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labelUpperBound</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets labelUpperBound after DMatrix initialization.</p>
                                 </div>
                               </td>
                             </tr>
@@ -420,9 +528,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC4name4from5shape5label6weight10baseMargin8features12missingValue7threadsACSS_SaySfGAA5ShapeVAMSgA2PSayAA7FeatureVGSgSfSitKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(name:from:shape:label:weight:baseMargin:features:missingValue:threads:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from5shape5label6weight10baseMargin8features12missingValue7threadsACSS_SaySfGAA5ShapeVAMSgA2PSayAA7FeatureVGSgSfSitKcfc">init(name:<wbr>from:<wbr>shape:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>features:<wbr>missingValue:<wbr>threads:<wbr>)</a>
+                    <a name="/s:7XGBoost7DMatrixC4name4from8features5label6weight10baseMargin0F10LowerBound0f5UpperK012missingValue7threadsACSS_AA9FloatData_AA05ShapeQ0pSayAA7FeatureVGSgAaN_pSgA4TSfSitKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:from:features:label:weight:baseMargin:labelLowerBound:labelUpperBound:missingValue:threads:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from8features5label6weight10baseMargin0F10LowerBound0f5UpperK012missingValue7threadsACSS_AA9FloatData_AA05ShapeQ0pSayAA7FeatureVGSgAaN_pSgA4TSfSitKcfc">init(name:<wbr>from:<wbr>features:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>labelLowerBound:<wbr>labelUpperBound:<wbr>missingValue:<wbr>threads:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -439,13 +547,14 @@ which is optimized for both memory efficiency and training speed.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
     <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="n">from</span> <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">],</span>
-    <span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Structs/Shape.html">Shape</a></span><span class="p">,</span>
-    <span class="nv">label</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">weight</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">baseMargin</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span> <span class="o">&amp;</span> <span class="kt"><a href="../Protocols/ShapeData.html">ShapeData</a></span><span class="p">,</span>
     <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">missingValue</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="kt">Float</span><span class="o">.</span><span class="n">greatestFiniteMagnitude</span><span class="p">,</span>
+    <span class="nv">label</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">weight</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">baseMargin</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">labelLowerBound</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">labelUpperBound</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">missingValue</span> <span class="nv">_</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="kt">Float</span><span class="o">.</span><span class="n">greatestFiniteMagnitude</span><span class="p">,</span>
     <span class="nv">threads</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
@@ -470,24 +579,12 @@ which is optimized for both memory efficiency and training speed.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>values</em>
+                                <em>from</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Values source.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>shape</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Shape of resulting DMatrixHandle.</p>
+                                  <p>Data with shape comfortance.</p>
                                 </div>
                               </td>
                             </tr>
@@ -499,7 +596,7 @@ which is optimized for both memory efficiency and training speed.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Array of labels for data.</p>
+                                  <p>Sets label after DMatrix initialization.</p>
                                 </div>
                               </td>
                             </tr>
@@ -511,7 +608,7 @@ which is optimized for both memory efficiency and training speed.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Weight for each instance.</p>
+                                  <p>Sets weight after DMatrix initialization.</p>
                                 </div>
                               </td>
                             </tr>
@@ -523,7 +620,31 @@ which is optimized for both memory efficiency and training speed.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Set base margin of booster to start from.</p>
+                                  <p>Sets baseMargin after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labelLowerBound</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets labelLowerBound after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labelUpperBound</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets labelUpperBound after DMatrix initialization.</p>
                                 </div>
                               </td>
                             </tr>
@@ -572,9 +693,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC4name4from6format8features11labelColumn6weight10baseMargin6silent9fileQueryACSS_SSAA10DataFormatOSayAA7FeatureVGSgSiSgSaySfGSgAUSbSaySSGtKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(name:from:format:features:labelColumn:weight:baseMargin:silent:fileQuery:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from6format8features11labelColumn6weight10baseMargin6silent9fileQueryACSS_SSAA10DataFormatOSayAA7FeatureVGSgSiSgSaySfGSgAUSbSaySSGtKcfc">init(name:<wbr>from:<wbr>format:<wbr>features:<wbr>labelColumn:<wbr>weight:<wbr>baseMargin:<wbr>silent:<wbr>fileQuery:<wbr>)</a>
+                    <a name="/s:7XGBoost7DMatrixC4name4from6format8features11labelColumn0G06weight10baseMargin0G10LowerBound0g5UpperM06silent9fileQueryACSS_SSAA10DataFormatOSayAA7FeatureVGSgSiSgAA05FloatR0_pSgA4XSbSaySSGtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:from:format:features:labelColumn:label:weight:baseMargin:labelLowerBound:labelUpperBound:silent:fileQuery:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from6format8features11labelColumn0G06weight10baseMargin0G10LowerBound0g5UpperM06silent9fileQueryACSS_SSAA10DataFormatOSayAA7FeatureVGSgSiSgAA05FloatR0_pSgA4XSbSaySSGtKcfc">init(name:<wbr>from:<wbr>format:<wbr>features:<wbr>labelColumn:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>labelLowerBound:<wbr>labelUpperBound:<wbr>silent:<wbr>fileQuery:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -592,11 +713,14 @@ which is optimized for both memory efficiency and training speed.</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
     <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="n">from</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/DataFormat.html">DataFormat</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">csv</span><span class="p">,</span>
+    <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/DataFormat.html">DataFormat</a></span><span class="p">,</span>
     <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">labelColumn</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">weight</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">baseMargin</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">label</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">weight</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">baseMargin</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">labelLowerBound</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">labelUpperBound</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">silent</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
     <span class="nv">fileQuery</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
@@ -670,12 +794,24 @@ which is optimized for both memory efficiency and training speed.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>label</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets label after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>weight</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Weight for each instance.</p>
+                                  <p>Sets weight after DMatrix initialization.</p>
                                 </div>
                               </td>
                             </tr>
@@ -687,7 +823,31 @@ which is optimized for both memory efficiency and training speed.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Set base margin of booster to start from.</p>
+                                  <p>Sets baseMargin after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labelLowerBound</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets labelLowerBound after DMatrix initialization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labelUpperBound</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets labelUpperBound after DMatrix initialization.</p>
                                 </div>
                               </td>
                             </tr>
@@ -971,9 +1131,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC5slice7indexes7newName11allowGroupsACSaySiG_SSSgSbtKF"></a>
+                    <a name="/s:7XGBoost7DMatrixC5slice7indexes7newName11allowGroupsAcA9Int32Data_p_SSSgSbtKF"></a>
                     <a name="//apple_ref/swift/Method/slice(indexes:newName:allowGroups:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC5slice7indexes7newName11allowGroupsACSaySiG_SSSgSbtKF">slice(indexes:<wbr>newName:<wbr>allowGroups:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC5slice7indexes7newName11allowGroupsAcA9Int32Data_p_SSSgSbtKF">slice(indexes:<wbr>newName:<wbr>allowGroups:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -989,7 +1149,7 @@ which is optimized for both memory efficiency and training speed.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">slice</span><span class="p">(</span>
-    <span class="nv">indexes</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">],</span>
+    <span class="nv">indexes</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Int32Data.html">Int32Data</a></span><span class="p">,</span>
     <span class="nv">newName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">allowGroups</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
 <span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span></code></pre>
@@ -1049,9 +1209,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC5slice7indexes7newName11allowGroupsACSnySiG_SSSgSbtKF"></a>
+                    <a name="/s:7XGBoost7DMatrixC5slice7indexes7newName11allowGroupsACSnys5Int32VG_SSSgSbtKF"></a>
                     <a name="//apple_ref/swift/Method/slice(indexes:newName:allowGroups:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC5slice7indexes7newName11allowGroupsACSnySiG_SSSgSbtKF">slice(indexes:<wbr>newName:<wbr>allowGroups:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC5slice7indexes7newName11allowGroupsACSnys5Int32VG_SSSgSbtKF">slice(indexes:<wbr>newName:<wbr>allowGroups:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1067,7 +1227,7 @@ which is optimized for both memory efficiency and training speed.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">slice</span><span class="p">(</span>
-    <span class="nv">indexes</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nv">indexes</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int32</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="nv">newName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">allowGroups</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
 <span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span></code></pre>
@@ -1127,9 +1287,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC11setUIntInfo5field6valuesySS_Says6UInt32VGtKF"></a>
+                    <a name="/s:7XGBoost7DMatrixC11setUIntInfo5field6valuesySS_AA10UInt32Data_ptKF"></a>
                     <a name="//apple_ref/swift/Method/setUIntInfo(field:values:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC11setUIntInfo5field6valuesySS_Says6UInt32VGtKF">setUIntInfo(field:<wbr>values:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC11setUIntInfo5field6valuesySS_AA10UInt32Data_ptKF">setUIntInfo(field:<wbr>values:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1146,7 +1306,7 @@ which is optimized for both memory efficiency and training speed.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setUIntInfo</span><span class="p">(</span>
     <span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt32</span><span class="p">]</span>
+    <span class="nv">values</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UInt32Data.html">UInt32Data</a></span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
@@ -1188,9 +1348,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC12setFloatInfo5field6valuesySS_SaySfGtKF"></a>
+                    <a name="/s:7XGBoost7DMatrixC12setFloatInfo5field6valuesySS_AA0D4Data_ptKF"></a>
                     <a name="//apple_ref/swift/Method/setFloatInfo(field:values:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC12setFloatInfo5field6valuesySS_SaySfGtKF">setFloatInfo(field:<wbr>values:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC12setFloatInfo5field6valuesySS_AA0D4Data_ptKF">setFloatInfo(field:<wbr>values:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1207,7 +1367,7 @@ which is optimized for both memory efficiency and training speed.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setFloatInfo</span><span class="p">(</span>
     <span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span>
+    <span class="nv">values</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
@@ -1353,9 +1513,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC3set5field6valuesyAA9UIntFieldO_Says6UInt32VGtKF"></a>
+                    <a name="/s:7XGBoost7DMatrixC3set5field6valuesyAA9UIntFieldO_AA10UInt32Data_ptKF"></a>
                     <a name="//apple_ref/swift/Method/set(field:values:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC3set5field6valuesyAA9UIntFieldO_Says6UInt32VGtKF">set(field:<wbr>values:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC3set5field6valuesyAA9UIntFieldO_AA10UInt32Data_ptKF">set(field:<wbr>values:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1372,7 +1532,7 @@ which is optimized for both memory efficiency and training speed.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span>
     <span class="nv">field</span><span class="p">:</span> <span class="kt"><a href="../Enums/UIntField.html">UIntField</a></span><span class="p">,</span>
-    <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt32</span><span class="p">]</span>
+    <span class="nv">values</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UInt32Data.html">UInt32Data</a></span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
@@ -1414,9 +1574,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC3set5field6valuesyAA10FloatFieldO_SaySfGtKF"></a>
+                    <a name="/s:7XGBoost7DMatrixC3set5field6valuesyAA10FloatFieldO_AA0F4Data_ptKF"></a>
                     <a name="//apple_ref/swift/Method/set(field:values:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC3set5field6valuesyAA10FloatFieldO_SaySfGtKF">set(field:<wbr>values:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC3set5field6valuesyAA10FloatFieldO_AA0F4Data_ptKF">set(field:<wbr>values:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1433,7 +1593,7 @@ which is optimized for both memory efficiency and training speed.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span>
     <span class="nv">field</span><span class="p">:</span> <span class="kt"><a href="../Enums/FloatField.html">FloatField</a></span><span class="p">,</span>
-    <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span>
+    <span class="nv">values</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
@@ -1523,9 +1683,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC8featuresSayAA7FeatureVGyKF"></a>
-                    <a name="//apple_ref/swift/Method/features()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC8featuresSayAA7FeatureVGyKF">features()</a>
+                    <a name="/s:7XGBoost7DMatrixC8features13defaultPrefixSayAA7FeatureVGSS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/features(defaultPrefix:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC8features13defaultPrefixSayAA7FeatureVGSS_tKF">features(defaultPrefix:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1539,7 +1699,7 @@ which is optimized for both memory efficiency and training speed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">features</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">features</span><span class="p">(</span><span class="n">defaultPrefix</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"F-"</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -1610,292 +1770,12 @@ which is optimized for both memory efficiency and training speed.</p>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC4name4from5label6weight10baseMargin8features12missingValue7threadsACSS_9PythonKit0M6ObjectVSaySfGSgA2PSayAA7FeatureVGSgSfSitKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(name:from:label:weight:baseMargin:features:missingValue:threads:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from5label6weight10baseMargin8features12missingValue7threadsACSS_9PythonKit0M6ObjectVSaySfGSgA2PSayAA7FeatureVGSgSfSitKcfc">init(name:<wbr>from:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>features:<wbr>missingValue:<wbr>threads:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initialize Data from python object array.
-Currently supported: Numpy NDArray.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
-    <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="n">from</span> <span class="nv">array</span><span class="p">:</span> <span class="kt">PythonObject</span><span class="p">,</span>
-    <span class="nv">label</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">weight</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">baseMargin</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">missingValue</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="kt">Float</span><span class="o">.</span><span class="n">greatestFiniteMagnitude</span><span class="p">,</span>
-    <span class="nv">threads</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>name</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Name of dataset.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>from</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Python object.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>label</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Array of labels for data.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>weight</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Weight for each instance.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>baseMargin</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Set base margin of booster to start from.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>features</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Names and types of features.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>missingValue</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Value in the input data which needs to be present as a missing value.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>threads</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7DMatrixC4name4from5label6weight10baseMargin8features12missingValue7threadsACSS_9PythonKit0M6ObjectVANSaySfGSgAPSayAA7FeatureVGSgSfSitKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(name:from:label:weight:baseMargin:features:missingValue:threads:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from5label6weight10baseMargin8features12missingValue7threadsACSS_9PythonKit0M6ObjectVANSaySfGSgAPSayAA7FeatureVGSgSfSitKcfc">init(name:<wbr>from:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>features:<wbr>missingValue:<wbr>threads:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initialize Data from python object array.
-Currently supported: Numpy NDArray.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
-    <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">PythonObject</span><span class="p">,</span>
-    <span class="nv">label</span><span class="p">:</span> <span class="kt">PythonObject</span><span class="p">,</span>
-    <span class="nv">weight</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">baseMargin</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">missingValue</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="kt">Float</span><span class="o">.</span><span class="n">greatestFiniteMagnitude</span><span class="p">,</span>
-    <span class="nv">threads</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>name</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Name of dataset.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>from</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Python object.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>label</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Python object.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>weight</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Weight for each instance.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>baseMargin</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Set base margin of booster to start from.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>features</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Names and types of features.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>missingValue</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Value in the input data which needs to be present as a missing value.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>threads</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-03)</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-06)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

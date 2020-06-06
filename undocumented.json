@@ -1,6 +1,97 @@
 {
   "warnings": [
     {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 41,
+      "symbol": "Array.data()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 47,
+      "symbol": "Array.data()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 53,
+      "symbol": "Array.data()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 6,
+      "symbol": "FloatData",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 7,
+      "symbol": "FloatData.data()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 10,
+      "symbol": "Int32Data",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 11,
+      "symbol": "Int32Data.data()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 14,
+      "symbol": "UInt32Data",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 15,
+      "symbol": "UInt32Data.data()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 18,
+      "symbol": "ShapeData",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 19,
+      "symbol": "ShapeData.dataShape()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 22,
+      "symbol": "ShapeData",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 23,
+      "symbol": "ShapeData.isFlat()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
       "line": 13,
       "symbol": "AfterIterationCallbackOutput",
@@ -220,7 +311,56 @@
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Python.swift",
       "line": 22,
+      "symbol": "Shape.init(shape:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Python.swift",
+      "line": 31,
+      "symbol": "Shape.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Python.swift",
+      "line": 35,
+      "symbol": "Shape.init(row:column:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Python.swift",
+      "line": 44,
       "symbol": "Shape.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Python.swift",
+      "line": 50,
+      "symbol": "PythonObject.data()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Python.swift",
+      "line": 78,
+      "symbol": "PythonObject.data()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Python.swift",
+      "line": 106,
+      "symbol": "PythonObject.data()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Python.swift",
+      "line": 134,
+      "symbol": "PythonObject.dataShape()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
