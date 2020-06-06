@@ -15,23 +15,11 @@ public class Booster {
     public let booster: BoosterHandle?
 
     /// Version of underlying XGBoost system library.
-    public static var systemLibraryVersion: Version {
-        var major: Int32 = -1
-        var minor: Int32 = -1
-        var patch: Int32 = -1
-        XGBoostVersion(&major, &minor, &patch)
-
-        precondition(
-            major >= 0 && minor >= 0 && patch >= 0,
-            "XGBoostVersion does not return version."
-        )
-
-        return Version(
-            major: Int(major),
-            minor: Int(minor),
-            patch: Int(patch)
-        )
-    }
+    public static var systemLibraryVersion = Version(
+        major: Int(XGBOOST_VER_MAJOR),
+        minor: Int(XGBOOST_VER_MINOR),
+        patch: Int(XGBOOST_VER_PATCH)
+    )
 
     /// Register callback function for LOG(INFO) messages.
     ///
