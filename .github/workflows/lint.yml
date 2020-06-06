@@ -14,12 +14,10 @@ jobs:
       - name: SwiftLint
         uses: norio-nomura/action-swiftlint@3.1.0
   SwiftFormat:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Install dependencies from brew
-        run: brew install swiftformat
       - name: Run formatting
-        run: swiftformat . --exclude Sources/XGBoost/Python.swift
+        run: make format
       - name: Run git diff
         run: git diff --exit-code

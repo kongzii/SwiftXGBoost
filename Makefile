@@ -1,5 +1,8 @@
 .PHONY: documentation
 
+format:
+	docker-compose run swiftxgboost swiftformat . --exclude Sources/XGBoost/Python.swift
+
 documentation:
 	@sourcekitten doc \
 		--spm \
