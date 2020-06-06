@@ -2,7 +2,7 @@
 
     import TensorFlow
 
-    extension Tensor: FloatData, DMatrixShape where Scalar == Float {
+    extension Tensor: FloatData, ShapeData where Scalar == Float {
         public func data() throws -> [Float] {
             scalars
         }

@@ -42,7 +42,7 @@ extension Shape {
     }
 }
 
-extension PythonObject: FloatData, Int32Data, UInt32Data, DMatrixShape {
+extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
     public func data() throws -> [Float] {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
             if self.shape.count == 1 {
@@ -137,7 +137,7 @@ extension PythonObject: FloatData, Int32Data, UInt32Data, DMatrixShape {
                 throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
             }
         } else {
-            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) is not supported DMatrixShape.")
+            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) is not supported ShapeData.")
         }
     }
 }

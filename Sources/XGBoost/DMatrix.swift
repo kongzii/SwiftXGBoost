@@ -15,11 +15,11 @@ public protocol UInt32Data {
     func data() throws -> [UInt32]
 }
 
-public protocol DMatrixShape {
+public protocol ShapeData {
     func dataShape() throws -> Shape
 }
 
-extension DMatrixShape {
+extension ShapeData {
     public func isFlat() throws -> Bool {
         try dataShape().row == 1
     }
@@ -127,7 +127,7 @@ public class DMatrix {
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
         name: String,
-        from: FloatData & DMatrixShape,
+        from: FloatData & ShapeData,
         label: FloatData? = nil,
         weight: FloatData? = nil,
         baseMargin: FloatData? = nil,
