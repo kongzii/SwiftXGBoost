@@ -1,5 +1,8 @@
 .PHONY: documentation
 
+test:
+	docker-compose run test
+
 format:
 	docker-compose run swiftxgboost swiftformat . --exclude Sources/XGBoost/Python.swift
 
