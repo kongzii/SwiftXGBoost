@@ -3,8 +3,16 @@ import CXGBoost
 /// Backward compatible alias for Data
 public typealias Data = DMatrix
 
-public protocol DMatrixData {
+public protocol FloatData {
     func data() throws -> [Float]
+}
+
+public protocol Int32Data {
+    func data() throws -> [Int32]
+}
+
+public protocol UInt32Data {
+    func data() throws -> [UInt32]
 }
 
 public protocol DMatrixShape {
@@ -39,9 +47,9 @@ public class DMatrix {
         name: String,
         dmatrix: DMatrixHandle?,
         features: [Feature]?,
-        label: DMatrixData?,
-        weight: DMatrixData?,
-        baseMargin: DMatrixData?
+        label: FloatData?,
+        weight: FloatData?,
+        baseMargin: FloatData?
     ) throws {
         self.name = name
         self.dmatrix = dmatrix
@@ -51,15 +59,15 @@ public class DMatrix {
         }
 
         if let label = label {
-            try set(field: .label, values: try label.data())
+            try set(field: .label, values: label)
         }
 
         if let weight = weight {
-            try set(field: .weight, values: try weight.data())
+            try set(field: .weight, values: weight)
         }
 
         if let baseMargin = baseMargin {
-            try set(field: .baseMargin, values: try baseMargin.data())
+            try set(field: .baseMargin, values: baseMargin)
         }
     }
 
@@ -76,11 +84,11 @@ public class DMatrix {
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
         name: String,
-        from data: DMatrixData,
+        from data: FloatData,
         shape: Shape,
-        label: DMatrixData? = nil,
-        weight: DMatrixData? = nil,
-        baseMargin: DMatrixData? = nil,
+        label: FloatData? = nil,
+        weight: FloatData? = nil,
+        baseMargin: FloatData? = nil,
         features: [Feature]? = nil,
         missingValue: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
@@ -119,10 +127,10 @@ public class DMatrix {
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
         name: String,
-        from: DMatrixData & DMatrixShape,
-        label: DMatrixData? = nil,
-        weight: DMatrixData? = nil,
-        baseMargin: DMatrixData? = nil,
+        from: FloatData & DMatrixShape,
+        label: FloatData? = nil,
+        weight: FloatData? = nil,
+        baseMargin: FloatData? = nil,
         features: [Feature]? = nil,
         missingValue _: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
@@ -153,11 +161,11 @@ public class DMatrix {
     public convenience init(
         name: String,
         from file: String,
-        format: DataFormat = .csv,
+        format: DataFormat,
         features: [Feature]? = nil,
         labelColumn: Int? = nil,
-        weight: DMatrixData? = nil,
-        baseMargin: DMatrixData? = nil,
+        weight: FloatData? = nil,
+        baseMargin: FloatData? = nil,
         silent: Bool = true,
         fileQuery: [String] = []
     ) throws {
@@ -273,11 +281,11 @@ public class DMatrix {
     /// - Parameter allowGroups: Allow slicing of a matrix with a groups attribute.
     /// - Returns: A new data class containing only selected indexes.
     public func slice(
-        indexes: [Int],
+        indexes: Int32Data,
         newName: String? = nil,
         allowGroups: Bool = false
     ) throws -> Data {
-        let indexes: [Int32] = indexes.map { Int32($0) }
+        let indexes = try indexes.data()
         var slicedDmatrix: DMatrixHandle?
 
         try safe {
@@ -307,7 +315,7 @@ public class DMatrix {
     /// - Parameter allowGroups: Allow slicing of a matrix with a groups attribute.
     /// - Returns: A new data class containing only selected indexes.
     public func slice(
-        indexes: Range<Int>,
+        indexes: Range<Int32>,
         newName: String? = nil,
         allowGroups: Bool = false
     ) throws -> Data {
@@ -324,8 +332,9 @@ public class DMatrix {
     /// - Parameter values: The array of data to be set.
     public func setUIntInfo(
         field: String,
-        values: [UInt32]
+        values: UInt32Data
     ) throws {
+        let values = try values.data()
         try safe {
             XGDMatrixSetUIntInfo(
                 dmatrix,
@@ -342,8 +351,9 @@ public class DMatrix {
     /// - Parameter values: The array of data to be set.
     public func setFloatInfo(
         field: String,
-        values: [Float]
+        values: FloatData
     ) throws {
+        let values = try values.data()
         try safe {
             XGDMatrixSetFloatInfo(
                 dmatrix,
@@ -394,8 +404,9 @@ public class DMatrix {
     /// - Parameter values: The array of data to be set.
     public func set(
         field: UIntField,
-        values: [UInt32]
+        values: UInt32Data
     ) throws {
+        let values = try values.data()
         if field == .group, try values.reduce(0, +) != rowCount() {
             throw ValueError.runtimeError("The sum of groups must equal to the number of rows in the dmatrix.")
         }
@@ -409,8 +420,9 @@ public class DMatrix {
     /// - Parameter values: The array of data to be set.
     public func set(
         field: FloatField,
-        values: [Float]
+        values: FloatData
     ) throws {
+        let values = try values.data()
         switch field {
         case .label, .weight, .labelLowerBound, .labelUpperBound:
             if try values.count != rowCount() {

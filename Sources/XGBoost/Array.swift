@@ -37,12 +37,20 @@ public extension Array where Element == Feature {
     }
 }
 
-extension Array: DMatrixData, DMatrixShape where Element == Float {
+extension Array: FloatData where Element == Float {
     public func data() throws -> [Float] {
         self
     }
+}
 
-    public func dataShape() throws -> Shape {
-        [1, count]
+extension Array: Int32Data where Element == Int32 {
+    public func data() throws -> [Int32] {
+        self
+    }
+}
+
+extension Array: UInt32Data where Element == UInt32 {
+    public func data() throws -> [UInt32] {
+        self
     }
 }

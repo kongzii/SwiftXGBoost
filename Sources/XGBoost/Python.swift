@@ -42,7 +42,7 @@ extension Shape {
     }
 }
 
-extension PythonObject: DMatrixData, DMatrixShape {
+extension PythonObject: FloatData, Int32Data, UInt32Data, DMatrixShape {
     public func data() throws -> [Float] {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
             if self.shape.count == 1 {
@@ -67,7 +67,63 @@ extension PythonObject: DMatrixData, DMatrixShape {
 
             return Array(UnsafeBufferPointer(start: pointer, count: size))
         } else {
-            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) is not supported DMatrixData.")
+            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) [\(self.dtype)] is not supported FloatData.")
+        }
+    }
+
+    public func data() throws -> [Int32] {
+        if Bool(Python.isinstance(self, numpy.ndarray))! {
+            if self.shape.count == 1 {
+                return [Int32](self)!
+            }
+
+            if self.shape.count != 2 {
+                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
+            }
+
+            let size = Int(self.size)!
+            let data = numpy.array(self.reshape(size), copy: false, dtype: numpy.int32)
+            let contiguousData = numpy.ascontiguousarray(data)
+
+            guard let ptrVal = UInt(contiguousData.__array_interface__["data"].tuple2.0) else {
+                throw ValueError.runtimeError("Can not get pointer value from numpy object.")
+            }
+
+            guard let pointer = UnsafePointer<Int32>(bitPattern: ptrVal) else {
+                throw ValueError.runtimeError("numpy.ndarray data pointer was nil.")
+            }
+
+            return Array(UnsafeBufferPointer(start: pointer, count: size))
+        } else {
+            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) [\(self.dtype)] is not supported Int32Data.")
+        }
+    }
+
+    public func data() throws -> [UInt32] {
+        if Bool(Python.isinstance(self, numpy.ndarray))! {
+            if self.shape.count == 1 {
+                return [UInt32](self)!
+            }
+
+            if self.shape.count != 2 {
+                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
+            }
+
+            let size = Int(self.size)!
+            let data = numpy.array(self.reshape(size), copy: false, dtype: numpy.uint32)
+            let contiguousData = numpy.ascontiguousarray(data)
+
+            guard let ptrVal = UInt(contiguousData.__array_interface__["data"].tuple2.0) else {
+                throw ValueError.runtimeError("Can not get pointer value from numpy object.")
+            }
+
+            guard let pointer = UnsafePointer<UInt32>(bitPattern: ptrVal) else {
+                throw ValueError.runtimeError("numpy.ndarray data pointer was nil.")
+            }
+
+            return Array(UnsafeBufferPointer(start: pointer, count: size))
+        } else {
+            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) [\(self.dtype)] is not supported UInt32Data.")
         }
     }
 
