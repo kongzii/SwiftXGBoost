@@ -203,8 +203,8 @@ final class BoosterTests: XCTestCase {
             name: "data",
             from: randomArray,
             shape: Shape(10, 5),
-            label: label,
             features: features,
+            label: label,
             threads: 1
         )
         let booster = try Booster(with: [data])

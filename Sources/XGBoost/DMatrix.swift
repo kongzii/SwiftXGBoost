@@ -49,7 +49,9 @@ public class DMatrix {
         features: [Feature]?,
         label: FloatData?,
         weight: FloatData?,
-        baseMargin: FloatData?
+        baseMargin: FloatData?,
+        labelLowerBound: FloatData?,
+        labelUpperBound: FloatData?
     ) throws {
         self.name = name
         self.dmatrix = dmatrix
@@ -69,6 +71,14 @@ public class DMatrix {
         if let baseMargin = baseMargin {
             try set(field: .baseMargin, values: baseMargin)
         }
+
+        if let labelLowerBound = labelLowerBound {
+            try set(field: .labelLowerBound, values: labelLowerBound)
+        }
+
+        if let labelUpperBound = labelUpperBound {
+            try set(field: .labelUpperBound, values: labelUpperBound)
+        }
     }
 
     /// Initialize Data.
@@ -86,10 +96,12 @@ public class DMatrix {
         name: String,
         from data: FloatData,
         shape: Shape,
+        features: [Feature]? = nil,
         label: FloatData? = nil,
         weight: FloatData? = nil,
         baseMargin: FloatData? = nil,
-        features: [Feature]? = nil,
+        labelLowerBound: FloatData? = nil,
+        labelUpperBound: FloatData? = nil,
         missingValue: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
     ) throws {
@@ -111,7 +123,9 @@ public class DMatrix {
             features: features,
             label: label,
             weight: weight,
-            baseMargin: baseMargin
+            baseMargin: baseMargin,
+            labelLowerBound: labelLowerBound,
+            labelUpperBound: labelUpperBound
         )
     }
 
@@ -128,10 +142,12 @@ public class DMatrix {
     public convenience init(
         name: String,
         from: FloatData & ShapeData,
+        features: [Feature]? = nil,
         label: FloatData? = nil,
         weight: FloatData? = nil,
         baseMargin: FloatData? = nil,
-        features: [Feature]? = nil,
+        labelLowerBound: FloatData? = nil,
+        labelUpperBound: FloatData? = nil,
         missingValue _: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
     ) throws {
@@ -139,10 +155,12 @@ public class DMatrix {
             name: name,
             from: from,
             shape: try from.dataShape(),
+            features: features,
             label: label,
             weight: weight,
             baseMargin: baseMargin,
-            features: features,
+            labelLowerBound: labelLowerBound,
+            labelUpperBound: labelUpperBound,
             threads: threads
         )
     }
@@ -164,8 +182,11 @@ public class DMatrix {
         format: DataFormat,
         features: [Feature]? = nil,
         labelColumn: Int? = nil,
+        label: FloatData? = nil,
         weight: FloatData? = nil,
         baseMargin: FloatData? = nil,
+        labelLowerBound: FloatData? = nil,
+        labelUpperBound: FloatData? = nil,
         silent: Bool = true,
         fileQuery: [String] = []
     ) throws {
@@ -195,9 +216,11 @@ public class DMatrix {
             name: name,
             dmatrix: dmatrix,
             features: features,
-            label: nil,
+            label: label,
             weight: weight,
-            baseMargin: baseMargin
+            baseMargin: baseMargin,
+            labelLowerBound: labelLowerBound,
+            labelUpperBound: labelUpperBound
         )
     }
 
@@ -304,7 +327,9 @@ public class DMatrix {
             features: _features,
             label: nil,
             weight: nil,
-            baseMargin: nil
+            baseMargin: nil,
+            labelLowerBound: nil,
+            labelUpperBound: nil
         )
     }
 
