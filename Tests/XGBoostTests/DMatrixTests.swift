@@ -37,6 +37,7 @@ final class DMatrixTests: XCTestCase {
         let data = try DMatrix(
             name: "test",
             from: csvFile,
+            format: .csv,
             labelColumn: 0
         )
 

@@ -35,16 +35,16 @@ let trainingData = try DMatrix(
     from: X.values[trainIndex]
 )
 
-try trainingData.set(field: .labelLowerBound, values: [Float](yLowerBound.values[trainIndex])!)
-try trainingData.set(field: .labelUpperBound, values: [Float](yUpperBound.values[trainIndex])!)
+try trainingData.set(field: .labelLowerBound, values: yLowerBound.values[trainIndex])
+try trainingData.set(field: .labelUpperBound, values: yUpperBound.values[trainIndex])
 
 let validationData = try DMatrix(
     name: "validation",
     from: X.values[validIndex]
 )
 
-try validationData.set(field: .labelLowerBound, values: [Float](yLowerBound.values[validIndex])!)
-try validationData.set(field: .labelUpperBound, values: [Float](yUpperBound.values[validIndex])!)
+try validationData.set(field: .labelLowerBound, values: yLowerBound.values[validIndex])
+try validationData.set(field: .labelUpperBound, values: yUpperBound.values[validIndex])
 
 // Train gradient boosted trees using AFT loss and metric
 let parameters: [Parameter] = [

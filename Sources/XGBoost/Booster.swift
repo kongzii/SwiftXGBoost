@@ -851,7 +851,7 @@ public class Booster {
     ///
     /// - Parameter data: Data which features will be validated.
     public func validate(
-        data: Data
+        data: DMatrix
     ) throws {
         try validate(features: data.features())
     }
@@ -860,7 +860,7 @@ public class Booster {
     ///
     /// - Parameter data: Array of data which features will be validated.
     public func validate(
-        data: [Data]
+        data: [DMatrix]
     ) throws {
         for data in data {
             try validate(features: data.features())

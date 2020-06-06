@@ -3,6 +3,28 @@ import CXGBoost
 /// Backward compatible alias for Data
 public typealias Data = DMatrix
 
+public protocol FloatData {
+    func data() throws -> [Float]
+}
+
+public protocol Int32Data {
+    func data() throws -> [Int32]
+}
+
+public protocol UInt32Data {
+    func data() throws -> [UInt32]
+}
+
+public protocol ShapeData {
+    func dataShape() throws -> Shape
+}
+
+extension ShapeData {
+    public func isFlat() throws -> Bool {
+        try dataShape().row == 1
+    }
+}
+
 /// Data class used with Booster.
 ///
 /// Data is encapsulation of DMatrixHandle, internal structure used by XGBoost,
@@ -21,13 +43,20 @@ public class DMatrix {
     /// - Parameter name: Name of dataset.
     /// - Parameter features: Array describing features in this dataset.
     /// - Parameter dmatrix: DMatrixHandle pointer.
+    /// - Parameter label: Sets label after DMatrix initialization.
+    /// - Parameter weight: Sets weight after DMatrix initialization.
+    /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
+    /// - Parameter labelLowerBound: Sets labelLowerBound after DMatrix initialization.
+    /// - Parameter labelUpperBound: Sets labelUpperBound after DMatrix initialization.
     public init(
         name: String,
         dmatrix: DMatrixHandle?,
-        features: [Feature]? = nil,
-        label: [Float]? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil
+        features: [Feature]?,
+        label: FloatData?,
+        weight: FloatData?,
+        baseMargin: FloatData?,
+        labelLowerBound: FloatData?,
+        labelUpperBound: FloatData?
     ) throws {
         self.name = name
         self.dmatrix = dmatrix
@@ -47,6 +76,14 @@ public class DMatrix {
         if let baseMargin = baseMargin {
             try set(field: .baseMargin, values: baseMargin)
         }
+
+        if let labelLowerBound = labelLowerBound {
+            try set(field: .labelLowerBound, values: labelLowerBound)
+        }
+
+        if let labelUpperBound = labelUpperBound {
+            try set(field: .labelUpperBound, values: labelUpperBound)
+        }
     }
 
     /// Initialize Data.
@@ -54,27 +91,31 @@ public class DMatrix {
     /// - Parameter name: Name of dataset.
     /// - Parameter from: Values source.
     /// - Parameter shape: Shape of resulting DMatrixHandle.
-    /// - Parameter label: Array of labels for data.
-    /// - Parameter weight: Weight for each instance.
-    /// - Parameter baseMargin: Set base margin of booster to start from.
     /// - Parameter features: Names and types of features.
+    /// - Parameter label: Sets label after DMatrix initialization.
+    /// - Parameter weight: Sets weight after DMatrix initialization.
+    /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
+    /// - Parameter labelLowerBound: Sets labelLowerBound after DMatrix initialization.
+    /// - Parameter labelUpperBound: Sets labelUpperBound after DMatrix initialization.
     /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
         name: String,
-        from values: UnsafePointer<Float>,
+        from data: FloatData,
         shape: Shape,
-        label: [Float]? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil,
         features: [Feature]? = nil,
+        label: FloatData? = nil,
+        weight: FloatData? = nil,
+        baseMargin: FloatData? = nil,
+        labelLowerBound: FloatData? = nil,
+        labelUpperBound: FloatData? = nil,
         missingValue: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
     ) throws {
         var dmatrix: DMatrixHandle?
         try safe {
             XGDMatrixCreateFromMat_omp(
-                values,
+                try data.data(),
                 UInt64(shape.row),
                 UInt64(shape.column),
                 missingValue,
@@ -89,42 +130,46 @@ public class DMatrix {
             features: features,
             label: label,
             weight: weight,
-            baseMargin: baseMargin
+            baseMargin: baseMargin,
+            labelLowerBound: labelLowerBound,
+            labelUpperBound: labelUpperBound
         )
     }
 
     /// Initialize Data.
     ///
     /// - Parameter name: Name of dataset.
-    /// - Parameter values: Values source.
-    /// - Parameter shape: Shape of resulting DMatrixHandle.
-    /// - Parameter label: Array of labels for data.
-    /// - Parameter weight: Weight for each instance.
-    /// - Parameter baseMargin: Set base margin of booster to start from.
+    /// - Parameter from: Data with shape comfortance.
+    /// - Parameter label: Sets label after DMatrix initialization.
+    /// - Parameter weight: Sets weight after DMatrix initialization.
+    /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
+    /// - Parameter labelLowerBound: Sets labelLowerBound after DMatrix initialization.
+    /// - Parameter labelUpperBound: Sets labelUpperBound after DMatrix initialization.
     /// - Parameter features: Names and types of features.
     /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
         name: String,
-        from values: [Float],
-        shape: Shape,
-        label: [Float]? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil,
+        from: FloatData & ShapeData,
         features: [Feature]? = nil,
-        missingValue: Float = Float.greatestFiniteMagnitude,
+        label: FloatData? = nil,
+        weight: FloatData? = nil,
+        baseMargin: FloatData? = nil,
+        labelLowerBound: FloatData? = nil,
+        labelUpperBound: FloatData? = nil,
+        missingValue _: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
     ) throws {
-        var values = values
         try self.init(
             name: name,
-            from: &values,
-            shape: shape,
+            from: from,
+            shape: try from.dataShape(),
+            features: features,
             label: label,
             weight: weight,
             baseMargin: baseMargin,
-            features: features,
-            missingValue: missingValue,
+            labelLowerBound: labelLowerBound,
+            labelUpperBound: labelUpperBound,
             threads: threads
         )
     }
@@ -136,18 +181,24 @@ public class DMatrix {
     /// - Parameter format: Format of input file.
     /// - Parameter features: Names and types of features.
     /// - Parameter labelColumn: Which column is for label.
-    /// - Parameter weight: Weight for each instance.
-    /// - Parameter baseMargin: Set base margin of booster to start from.
+    /// - Parameter label: Sets label after DMatrix initialization.
+    /// - Parameter weight: Sets weight after DMatrix initialization.
+    /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
+    /// - Parameter labelLowerBound: Sets labelLowerBound after DMatrix initialization.
+    /// - Parameter labelUpperBound: Sets labelUpperBound after DMatrix initialization.
     /// - Parameter silent: Whether print messages during construction.
     /// - Parameter fileQuery: Additional parameters that will be appended to the file path as query.
     public convenience init(
         name: String,
         from file: String,
-        format: DataFormat = .csv,
+        format: DataFormat,
         features: [Feature]? = nil,
         labelColumn: Int? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil,
+        label: FloatData? = nil,
+        weight: FloatData? = nil,
+        baseMargin: FloatData? = nil,
+        labelLowerBound: FloatData? = nil,
+        labelUpperBound: FloatData? = nil,
         silent: Bool = true,
         fileQuery: [String] = []
     ) throws {
@@ -177,8 +228,11 @@ public class DMatrix {
             name: name,
             dmatrix: dmatrix,
             features: features,
+            label: label,
             weight: weight,
-            baseMargin: baseMargin
+            baseMargin: baseMargin,
+            labelLowerBound: labelLowerBound,
+            labelUpperBound: labelUpperBound
         )
     }
 
@@ -262,11 +316,11 @@ public class DMatrix {
     /// - Parameter allowGroups: Allow slicing of a matrix with a groups attribute.
     /// - Returns: A new data class containing only selected indexes.
     public func slice(
-        indexes: [Int],
+        indexes: Int32Data,
         newName: String? = nil,
         allowGroups: Bool = false
     ) throws -> Data {
-        let indexes: [Int32] = indexes.map { Int32($0) }
+        let indexes = try indexes.data()
         var slicedDmatrix: DMatrixHandle?
 
         try safe {
@@ -282,7 +336,12 @@ public class DMatrix {
         return try DMatrix(
             name: newName ?? name,
             dmatrix: slicedDmatrix,
-            features: _features
+            features: _features,
+            label: nil,
+            weight: nil,
+            baseMargin: nil,
+            labelLowerBound: nil,
+            labelUpperBound: nil
         )
     }
 
@@ -293,7 +352,7 @@ public class DMatrix {
     /// - Parameter allowGroups: Allow slicing of a matrix with a groups attribute.
     /// - Returns: A new data class containing only selected indexes.
     public func slice(
-        indexes: Range<Int>,
+        indexes: Range<Int32>,
         newName: String? = nil,
         allowGroups: Bool = false
     ) throws -> Data {
@@ -310,8 +369,9 @@ public class DMatrix {
     /// - Parameter values: The array of data to be set.
     public func setUIntInfo(
         field: String,
-        values: [UInt32]
+        values: UInt32Data
     ) throws {
+        let values = try values.data()
         try safe {
             XGDMatrixSetUIntInfo(
                 dmatrix,
@@ -328,8 +388,9 @@ public class DMatrix {
     /// - Parameter values: The array of data to be set.
     public func setFloatInfo(
         field: String,
-        values: [Float]
+        values: FloatData
     ) throws {
+        let values = try values.data()
         try safe {
             XGDMatrixSetFloatInfo(
                 dmatrix,
@@ -380,8 +441,9 @@ public class DMatrix {
     /// - Parameter values: The array of data to be set.
     public func set(
         field: UIntField,
-        values: [UInt32]
+        values: UInt32Data
     ) throws {
+        let values = try values.data()
         if field == .group, try values.reduce(0, +) != rowCount() {
             throw ValueError.runtimeError("The sum of groups must equal to the number of rows in the dmatrix.")
         }
@@ -395,8 +457,9 @@ public class DMatrix {
     /// - Parameter values: The array of data to be set.
     public func set(
         field: FloatField,
-        values: [Float]
+        values: FloatData
     ) throws {
+        let values = try values.data()
         switch field {
         case .label, .weight, .labelLowerBound, .labelUpperBound:
             if try values.count != rowCount() {
@@ -440,12 +503,12 @@ public class DMatrix {
     }
 
     /// - Returns: Features of data, generates universal names with quantitative type if not previously set by user.
-    public func features() throws -> [Feature] {
-        if let features = _features {
-            return features
+    public func features(defaultPrefix: String = "F-") throws -> [Feature] {
+        if _features == nil {
+            _features = try (0 ..< columnCount()).map { Feature(name: "\(defaultPrefix)\($0)", type: .quantitative) }
         }
 
-        return try (0 ..< columnCount()).map { Feature(name: String($0), type: .quantitative) }
+        return _features!
     }
 
     /// - Returns: An array of float information of the data.

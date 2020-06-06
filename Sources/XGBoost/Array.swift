@@ -1,3 +1,5 @@
+import Foundation
+
 public extension Array where Element == Feature {
     /// Save feature map compatible with XGBoost`s inputs.
     ///
@@ -32,5 +34,23 @@ public extension Array where Element == Feature {
         }
 
         self.init(features)
+    }
+}
+
+extension Array: FloatData where Element == Float {
+    public func data() throws -> [Float] {
+        self
+    }
+}
+
+extension Array: Int32Data where Element == Int32 {
+    public func data() throws -> [Int32] {
+        self
+    }
+}
+
+extension Array: UInt32Data where Element == UInt32 {
+    public func data() throws -> [UInt32] {
+        self
     }
 }
