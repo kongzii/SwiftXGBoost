@@ -44,18 +44,18 @@ public class Booster {
     /// Initialize Booster from buffer.
     ///
     /// - Parameter model: Model serialized as buffer.
-    public init(
-        model: BufferModel
+    public convenience init(
+        buffer: BufferModel
     ) throws {
         var booster: BoosterHandle?
         try safe {
             XGBoosterUnserializeFromBuffer(
                 &booster,
-                model.data,
-                model.length
+                buffer.data,
+                buffer.length
             )
         }
-        self.booster = booster
+        self.init(booster: booster)
     }
 
     /// Initialize new Booster.
@@ -65,7 +65,7 @@ public class Booster {
     /// - Parameter config: Loads model from config.
     /// - Parameter parameters: Array of parameters to be set.
     /// - Parameter validateParameters: If true, parameters will be valided. This basically adds parameter validate_parameters=1.
-    public init(
+    public convenience init(
         with data: [Data] = [],
         from path: String? = nil,
         config: String? = nil,
@@ -78,7 +78,7 @@ public class Booster {
         try safe {
             XGBoosterCreate(pointees, UInt64(pointees.count), &booster)
         }
-        self.booster = booster
+        self.init(booster: booster)
 
         if let path = path {
             try load(model: path)
@@ -109,7 +109,7 @@ public class Booster {
         }
     }
 
-    /// - Returns: Booster's internal configuration into a JSON document.
+    /// - Returns: Booster's internal configuration in a JSON string.
     public func config() throws -> String {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -152,7 +152,7 @@ public class Booster {
     /// - Parameter training: Whether the prediction will be used for traning.
     /// - Parameter validateFeatures: Validate booster and data features.
     public func predict(
-        from data: Data,
+        from data: DMatrix,
         outputMargin: Bool = false,
         treeLimit: UInt32 = 0,
         predictionLeaf: Bool = false,
@@ -218,7 +218,7 @@ public class Booster {
     /// - Parameter training: Whether the prediction will be used for traning.
     /// - Parameter missingValue: Value in features representing missing values.
     public func predict(
-        features: [Float],
+        features: FloatData,
         outputMargin: Bool = false,
         treeLimit: UInt32 = 0,
         predictionLeaf: Bool = false,
@@ -228,7 +228,8 @@ public class Booster {
         training: Bool = false,
         missingValue: Float = Float.greatestFiniteMagnitude
     ) throws -> Float {
-        try predict(
+        let features = try features.data()
+        return try predict(
             from: DMatrix(
                 name: "predict",
                 from: features,
@@ -277,7 +278,7 @@ public class Booster {
     }
 
     /// - Returns: Model as binary raw bytes.
-    public func raw() throws -> BufferModel {
+    public func raw() throws -> RawModel {
         let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
 
@@ -520,7 +521,7 @@ public class Booster {
     ///
     /// - Parameter model: Buffer to load from.
     public func load(
-        model buffer: BufferModel
+        buffer: BufferModel
     ) throws {
         try safe {
             XGBoosterLoadModelFromBuffer(

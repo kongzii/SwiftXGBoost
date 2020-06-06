@@ -8,6 +8,7 @@ public typealias Parameter = (name: String, value: String)
 public typealias Version = (major: Int, minor: Int, patch: Int)
 
 /// Tuple holding length of buffer along with it, so it can be easily read.
+public typealias RawModel = (length: UInt64, data: UnsafeMutablePointer<UnsafePointer<Int8>?>)
 public typealias BufferModel = (length: UInt64, data: UnsafeMutablePointer<UnsafePointer<Int8>?>)
 
 public enum AfterIterationCallbackOutput {
