@@ -10,7 +10,7 @@
 Bindings for [the XGBoost system library](https://en.wikipedia.org/wiki/XGBoost). 
 The aim of this package is to mimic [XGBoost Python bindings](https://xgboost.readthedocs.io/en/latest/python/python_intro.html) but, at the same time, utilize the power of Swift and C compatibility. Some things thus behave differently but should provide you maximum flexibility over XGBoost.
 
-Documentation is available at [pages](https://kongzii.github.io/SwiftXGBoost/).
+Human written documentation is available at [readthedocs](https://swiftxgboost.readthedocs.io/), automatic, from code generated documentation is available at [pages](https://kongzii.github.io/SwiftXGBoost/).
 
 ## Installation
 
@@ -23,10 +23,9 @@ Install XGBoost from sources
 ```
 git clone --recursive https://github.com/dmlc/xgboost
 cd xgboost
-git checkout release_1.1.0
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_LIBDIR=/usr/lib ..
+cmake ..
 make
 make install
 ldconfig
@@ -46,21 +45,32 @@ You can build and install similarly as on Linux, or just use brew
 brew install xgboost
 ```
 
-If you get `ld: symbol(s) not found` error message, it most probably means that Swift can not find XGBoost libararies.
+##### Note 
 
-In that case, you can either add XGBoost pkgconfig to your system
+Before version 1.1.1, XGBoost did not create pkg-config. This was fixed with PR [Add pkgconfig to cmake #5744](https://github.com/dmlc/xgboost/pull/5744).
 
-```
-cp xgboost.pc /usr/local/lib/pkgconfig/
-```
-
-or run commands with specified C and linker flags to the location with XGBoost, e.g.:
+If you are using for some reason older versions, you may need to specify path to the XGBoost libraries while building, e.g.:
 
 ```
-swift test -Xcc -I/usr/local/include -Xlinker -L/usr/local/lib
+swift build -Xcc -I/usr/local/include -Xlinker -L/usr/local/lib
 ```
 
-Note: This issue is fixed in the master branch thanks to the [Add pkgconfig to cmake #5744](https://github.com/dmlc/xgboost/pull/5744) and hopefully will be available soon in some release. 
+or create pkg-config file manualy. Example of it for `macOS 10.15` and `XGBoost 1.1.0` is
+
+```
+prefix=/usr/local/Cellar/xgboost/1.1.0
+exec_prefix=${prefix}/bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: xgboost
+Description: XGBoost machine learning libarary.
+Version: 1.1.0
+Cflags: -I${includedir}
+Libs: -L${libdir} -lxgboost
+```
+
+and needs to be placed at `/usr/local/lib/pkgconfig/xgboost.pc`
 
 ### Package
 
@@ -134,6 +144,16 @@ If you are using one of the S4TF swift toolchains, you can combine its power dir
 let tensor = Tensor<Float>(shape: TensorShape([2, 3]), scalars: [1, 2, 3, 4, 5, 6])
 let data = try DMatrix(name: "training", from: tensor)
 ```
+
+### Note
+
+[Swift4TensorFlow](https://github.com/tensorflow/swift) toolchains ships with preinstalled [PythonKit](https://github.com/pvieito/PythonKit.git) and you may run into a problem when using package with extra [PythonKit](https://github.com/pvieito/PythonKit.git) dependency. If so, please just add package version with `-tensorflow` suffix, where [PythonKit](https://github.com/pvieito/PythonKit.git) dependency is removed.
+
+```swift
+.package(url: "https://github.com/kongzii/SwiftXGBoost.git", .exact("0.7.0-tensorflow")),
+```
+
+This bug is known and hopefully will be resolved soon.
 
 ## Examples
 
@@ -241,4 +261,12 @@ On host
 
 ```
 swift test
+```
+
+### Code format
+
+[SwiftFormat](https://github.com/nicklockwood/SwiftFormat) is used for code formatting. 
+
+```
+make format
 ```

@@ -23,7 +23,7 @@ RUN git clone https://github.com/yonaskolb/Mint.git && cd Mint && swift run mint
 
 RUN mint install nicklockwood/SwiftFormat && mint install realm/SwiftLint
 
-RUN python3.8 -m pip install xgboost==1.1.0 numpy pandas
+RUN python3.8 -m pip install xgboost numpy pandas
 
 COPY install.sh install.sh
 RUN chmod +x install.sh && ./install.sh
