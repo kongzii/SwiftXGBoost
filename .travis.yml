@@ -10,6 +10,7 @@ addons:
 before_install:
   - gem install jazzy
 after_success:
+  - brew info xgboost
   - gmake documentation
 deploy:
   provider: pages
