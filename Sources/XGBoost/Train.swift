@@ -1,16 +1,14 @@
 import CXGBoost
 import Foundation
 
+/// Dictionary for evaluation in form [data_name: [metric_name: value]]
 public typealias Evaluation = [String: [String: String]]
 
-public typealias State = (
-    maximizeScore: Bool,
-    bestIteration: Int,
-    bestScore: Float,
-    bestMsg: String
-)
-
+/// Protocol for classes and structs that can be called in training
 protocol Callback {
+    /// Paremeter booster: Booster.
+    /// Paremeter iteration: Current iteration.
+    /// Paremeter evaluation: Dictionary with evaluations.
     func call(
         booster: Booster,
         iteration: Int,
@@ -19,6 +17,13 @@ protocol Callback {
 }
 
 public class EarlyStopping: Callback {
+    public typealias State = (
+        maximizeScore: Bool,
+        bestIteration: Int,
+        bestScore: Float,
+        bestMsg: String
+    )
+
     public var state: State
     public var dataName: String
     public var metricName: String
@@ -53,6 +58,11 @@ public class EarlyStopping: Callback {
         return maximizeScore
     }
 
+    /// Paremeter dataName: Name of data used for early stopping.
+    /// Paremeter metricName: Metric to look for.
+    /// Paremeter stoppingRounds: Number of rounds to check improvence for.
+    /// Paremeter state: Initial state.
+    /// Paremeter verbose: Print on new best or stopping.
     public init(
         dataName: String,
         metricName: String,
@@ -67,6 +77,11 @@ public class EarlyStopping: Callback {
         self.state = state
     }
 
+    /// Paremeter dataName: Name of data used for early stopping.
+    /// Paremeter metricName: Metric to look for.
+    /// Paremeter stoppingRounds: Number of rounds to check improvence for.
+    /// Paremeter maximize: If metric should be maximized, minimzed otherwise.
+    /// Paremeter verbose: Print on new best or stopping.
     public convenience init(
         dataName: String,
         metricName: String,
@@ -89,6 +104,12 @@ public class EarlyStopping: Callback {
         )
     }
 
+    /// Paremeter dataName: Name of data used for early stopping.
+    /// Paremeter metricName: Metric to look for.
+    /// Paremeter stoppingRounds: Number of rounds to check improvence for.
+    /// Paremeter maximize: If metric should be maximized, minimzed otherwise.
+    /// Paremeter booster: Booster to load state from.
+    /// Paremeter verbose: Print on new best or stopping.
     public convenience init(
         dataName: String,
         metricName: String,
@@ -127,6 +148,9 @@ public class EarlyStopping: Callback {
         )
     }
 
+    /// Paremeter booster: Booster.
+    /// Paremeter iteration: Current iteration.
+    /// Paremeter evaluation: Dictionary with evaluations.
     public func call(
         booster: Booster,
         iteration: Int,
