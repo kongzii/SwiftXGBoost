@@ -213,8 +213,8 @@ extension Booster {
             let evaluation =
                 evaluationData.isEmpty ? nil : try evaluate(iteration: iteration, data: evaluationData)
 
-            let outputs = try callbacks.map { 
-                try $0.call(booster: self, iteration: iteration, evaluation: evaluation) 
+            let outputs = try callbacks.map {
+                try $0.call(booster: self, iteration: iteration, evaluation: evaluation)
             }
 
             switch try afterIterationCallback(

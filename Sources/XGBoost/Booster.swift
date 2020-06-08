@@ -124,7 +124,7 @@ public class Booster {
                 snapshot.length
             )
         }
-    } 
+    }
 
     /// - Returns: Booster's internal configuration in a JSON string.
     public func config() throws -> String {
