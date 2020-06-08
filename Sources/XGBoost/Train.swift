@@ -1,6 +1,8 @@
 import CXGBoost
 import Foundation
 
+public typealias Evaluation = [String: [String: String]]
+
 public typealias State = (
     maximizeScore: Bool,
     bestIteration: Int,
@@ -8,7 +10,15 @@ public typealias State = (
     bestMsg: String
 )
 
-public class EarlyStopping {
+protocol Callback {
+    func call(
+        booster: Booster,
+        iteration: Int,
+        evaluation: Evaluation?
+    ) throws -> AfterIterationCallbackOutput
+}
+
+public class EarlyStopping: Callback {
     public var state: State
     public var dataName: String
     public var metricName: String
@@ -120,8 +130,12 @@ public class EarlyStopping {
     public func call(
         booster: Booster,
         iteration: Int,
-        evaluation: [String: [String: String]]
+        evaluation: Evaluation?
     ) throws -> AfterIterationCallbackOutput {
+        guard let evaluation = evaluation else {
+            throw ValueError.runtimeError("Evaluation data can not be nil.")
+        }
+
         guard let data = evaluation[dataName] else {
             throw ValueError.runtimeError("Name of DMatrix \(dataName) not found in evaluation.")
         }
@@ -170,14 +184,23 @@ extension Booster {
         trainingData: Data,
         evaluationData: [Data] = [],
         earlyStopping: EarlyStopping? = nil,
-        beforeIteration: (Booster, Int) throws -> Void = { _, _ in },
-        afterIteration: (Booster, Int, [String: [String: String]]?) throws -> AfterIterationCallbackOutput = { _, _, _ in .next }
+        beforeIterationCallback: (Booster, Int) throws -> Void = { _, _ in },
+        afterIterationCallback: (Booster, Int, Evaluation?) throws -> AfterIterationCallbackOutput = { _, _, _ in .next }
     ) throws {
+        if earlyStopping != nil, evaluationData.count == 0 {
+            throw ValueError.runtimeError("Evaluation data needs to be set for early stopping.")
+        }
+
+        var callbacks = [Callback]()
         var version = try loadRabitCheckpoint()
         let startIteration = Int(version / 2)
 
+        if let earlyStopping = earlyStopping {
+            callbacks.append(earlyStopping)
+        }
+
         training: for iteration in startIteration ..< iterations {
-            try beforeIteration(
+            try beforeIterationCallback(
                 self,
                 iteration
             )
@@ -188,22 +211,13 @@ extension Booster {
             )
 
             let evaluation =
-                evaluationData.isEmpty && earlyStopping == nil ? nil : try evaluate(iteration: iteration, data: evaluationData)
+                evaluationData.isEmpty ? nil : try evaluate(iteration: iteration, data: evaluationData)
 
-            if earlyStopping != nil {
-                switch try earlyStopping!.call(
-                    booster: self,
-                    iteration: iteration,
-                    evaluation: evaluation!
-                ) {
-                case .stop:
-                    break training
-                case .next:
-                    break
-                }
+            let outputs = try callbacks.map { 
+                try $0.call(booster: self, iteration: iteration, evaluation: evaluation) 
             }
 
-            switch try afterIteration(
+            switch try afterIterationCallback(
                 self,
                 iteration,
                 evaluation
@@ -212,6 +226,10 @@ extension Booster {
                 break training
             case .next:
                 break
+            }
+
+            if outputs.contains(where: { $0 == .stop }) {
+                break training
             }
 
             try saveRabitCheckpoint()
