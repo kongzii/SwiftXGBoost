@@ -187,9 +187,6 @@ extension Booster {
                 data: trainingData
             )
 
-            try saveRabitCheckpoint()
-            version += 1
-
             let evaluation =
                 evaluationData.isEmpty && earlyStopping == nil ? nil : try evaluate(iteration: iteration, data: evaluationData)
 
@@ -216,6 +213,9 @@ extension Booster {
             case .next:
                 break
             }
+
+            try saveRabitCheckpoint()
+            version += 1
         }
     }
 }
