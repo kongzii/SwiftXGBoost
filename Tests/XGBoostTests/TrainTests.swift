@@ -38,6 +38,7 @@ final class TrainTests: XCTestCase {
         XCTAssertTrue(scores.count >= 10)
         XCTAssertTrue(scores.first! >= scores.last!)
         XCTAssertTrue(scores[scores.count - 10 ..< scores.count].allSatisfy { $0 == scores.last! })
+        XCTAssertEqual(Double(try booster.attribute(name: "best_score")!)!, Double(scores.last!)!)
     }
 
     func testEarlyStoppingMaximize() throws {
@@ -79,6 +80,7 @@ final class TrainTests: XCTestCase {
         XCTAssertTrue(scores.count >= 10)
         XCTAssertTrue(scores.first! <= scores.last!)
         XCTAssertTrue(scores[scores.count - 10 ..< scores.count].allSatisfy { $0 == scores.last! })
+        XCTAssertEqual(Double(try booster.attribute(name: "best_score")!)!, Double(scores.last!)!)
     }
 
     static var allTests = [

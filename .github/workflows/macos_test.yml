@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies for python
         run: pip3 install xgboost coverage numpy pandas
       - name: Test and create CodeCoverage
-        run: swift test --enable-code-coverage
+        run: swift test -Xcc -I/usr/local/include -Xlinker -L/usr/local/lib --enable-code-coverage
       - name: Export coverage
         run: xcrun llvm-cov show .build/x86_64-apple-macosx/debug/SwiftXGBoostPackageTests.xctest/Contents/MacOS/SwiftXGBoostPackageTests --instr-profile .build/x86_64-apple-macosx/debug/codecov/default.profdata --ignore-filename-regex=Tests/ > coverage.txt
       - name: Upload CodeCoverage
