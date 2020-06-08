@@ -14,9 +14,7 @@ jobs:
       - name: Install dependencies from brew
         run: brew install xgboost python3 llvm
       - name: Install dependencies for python
-        run: pip3 install xgboost coverage
-      - name: Add pkgconfig
-        run: cp xgboost.pc /usr/local/lib/pkgconfig/
+        run: pip3 install xgboost coverage numpy pandas
       - name: Test and create CodeCoverage
         run: swift test --enable-code-coverage
       - name: Export coverage

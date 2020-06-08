@@ -11,8 +11,8 @@ final class PlotTests: XCTestCase {
             name: "data",
             from: randomArray,
             shape: Shape(10, 5),
-            label: label,
             features: features,
+            label: label,
             threads: 1
         )
         let booster = try Booster(with: [data])
@@ -29,7 +29,7 @@ final class PlotTests: XCTestCase {
         ).path
 
         try data.saveFeatureMap(to: featureMapFile)
-        try booster.saveImportanceGraph(fileName: graphFile, featureMap: featureMapFile)
+        try booster.saveImportanceGraph(to: graphFile, featureMap: featureMapFile)
 
         XCTAssertTrue(FileManager.default.fileExists(atPath: featureMapFile))
         XCTAssertTrue(FileManager.default.fileExists(atPath: graphFile + ".png"))

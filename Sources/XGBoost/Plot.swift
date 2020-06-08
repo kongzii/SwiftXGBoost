@@ -4,7 +4,7 @@ import SwiftPlot
 extension Booster {
     /// Saves plot with importance based on fitted trees.
     ///
-    /// - Parameter fileName: File where graph will be saved, .png extension will be added.
+    /// - Parameter to: File where graph will be saved, .png extension will be added.
     /// - Parameter featureMap: Path to the feature map, if provided, replaces default f0, f1, ... feature names.
     /// - Parameter importance: Type of importance to plot.
     /// - Parameter label: Label of graph.
@@ -17,7 +17,7 @@ extension Booster {
     /// - Parameter size: Size of ploted graph.
     /// - Parameter renderer: Renderer to use.
     public func saveImportanceGraph(
-        fileName: String,
+        to fileName: String,
         featureMap: String = "",
         importance: Importance = .weight,
         label: String = "Feature importance",

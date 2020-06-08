@@ -19,7 +19,20 @@ public extension Array where Element: NumpyScalarCompatible {
 }
 
 extension Shape {
-    public init(_ row: PythonObject, _ column: PythonObject) throws {
+    public init(shape: PythonObject) throws {
+        guard let row = Int(shape[0]), let column = Int(shape[1]) else {
+            throw ValueError.runtimeError("Invalid type of python input.")
+        }
+
+        self.row = row
+        self.column = column
+    }
+
+    public init(_ shape: PythonObject) throws {
+        try self.init(shape: shape)
+    }
+
+    public init(row: PythonObject, column: PythonObject) throws {
         guard let row = Int(row), let column = Int(column) else {
             throw ValueError.runtimeError("Invalid type of python input.")
         }
@@ -27,57 +40,108 @@ extension Shape {
         self.row = row
         self.column = column
     }
+
+    public init(_ row: PythonObject, _ column: PythonObject) throws {
+        try self.init(row: row, column: column)
+    }
 }
 
-extension DMatrix {
-    /// Initialize Data from python object array.
-    /// Currently supported: Numpy NDArray.
-    ///
-    /// - Parameter name: Name of dataset.
-    /// - Parameter from: Python object.
-    /// - Parameter label: Array of labels for data.
-    /// - Parameter weight: Weight for each instance.
-    /// - Parameter baseMargin: Set base margin of booster to start from.
-    /// - Parameter features: Names and types of features.
-    /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
-    /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
-    public convenience init(
-        name: String,
-        from array: PythonObject,
-        label: [Float]? = nil,
-        weight: [Float]? = nil,
-        baseMargin: [Float]? = nil,
-        features: [Feature]? = nil,
-        missingValue: Float = Float.greatestFiniteMagnitude,
-        threads: Int = 0
-    ) throws {
-        if !Bool(Python.isinstance(array, numpy.ndarray))! {
-            throw ValueError.runtimeError("PythonObject is not a numpy ndarray.")
-        } else if array.shape.count != 2 {
-            throw ValueError.runtimeError("Invalid shape \(array.shape) of input.")
+extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
+    public func data() throws -> [Float] {
+        if Bool(Python.isinstance(self, numpy.ndarray))! {
+            if self.shape.count == 1 {
+                return [Float](self)!
+            }
+
+            if self.shape.count != 2 {
+                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
+            }
+
+            let size = Int(self.size)!
+            let data = numpy.array(self.reshape(size), copy: false, dtype: numpy.float32)
+            let contiguousData = numpy.ascontiguousarray(data)
+
+            guard let ptrVal = UInt(contiguousData.__array_interface__["data"].tuple2.0) else {
+                throw ValueError.runtimeError("Can not get pointer value from numpy object.")
+            }
+
+            guard let pointer = UnsafePointer<Float>(bitPattern: ptrVal) else {
+                throw ValueError.runtimeError("numpy.ndarray data pointer was nil.")
+            }
+
+            return Array(UnsafeBufferPointer(start: pointer, count: size))
+        } else {
+            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) [\(self.dtype)] is not supported FloatData.")
         }
+    }
 
-        let data = numpy.array(array.reshape(array.size), copy: false, dtype: numpy.float32)
-        let contiguousData = numpy.ascontiguousarray(data)
+    public func data() throws -> [Int32] {
+        if Bool(Python.isinstance(self, numpy.ndarray))! {
+            if self.shape.count == 1 {
+                return [Int32](self)!
+            }
 
-        guard let ptrVal = UInt(contiguousData.__array_interface__["data"].tuple2.0) else {
-            throw ValueError.runtimeError("Can not get pointer value from numpy object.")
+            if self.shape.count != 2 {
+                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
+            }
+
+            let size = Int(self.size)!
+            let data = numpy.array(self.reshape(size), copy: false, dtype: numpy.int32)
+            let contiguousData = numpy.ascontiguousarray(data)
+
+            guard let ptrVal = UInt(contiguousData.__array_interface__["data"].tuple2.0) else {
+                throw ValueError.runtimeError("Can not get pointer value from numpy object.")
+            }
+
+            guard let pointer = UnsafePointer<Int32>(bitPattern: ptrVal) else {
+                throw ValueError.runtimeError("numpy.ndarray data pointer was nil.")
+            }
+
+            return Array(UnsafeBufferPointer(start: pointer, count: size))
+        } else {
+            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) [\(self.dtype)] is not supported Int32Data.")
         }
+    }
 
-        guard let pointer = UnsafePointer<Float>(bitPattern: ptrVal) else {
-            throw ValueError.runtimeError("numpy.ndarray data pointer was nil.")
+    public func data() throws -> [UInt32] {
+        if Bool(Python.isinstance(self, numpy.ndarray))! {
+            if self.shape.count == 1 {
+                return [UInt32](self)!
+            }
+
+            if self.shape.count != 2 {
+                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
+            }
+
+            let size = Int(self.size)!
+            let data = numpy.array(self.reshape(size), copy: false, dtype: numpy.uint32)
+            let contiguousData = numpy.ascontiguousarray(data)
+
+            guard let ptrVal = UInt(contiguousData.__array_interface__["data"].tuple2.0) else {
+                throw ValueError.runtimeError("Can not get pointer value from numpy object.")
+            }
+
+            guard let pointer = UnsafePointer<UInt32>(bitPattern: ptrVal) else {
+                throw ValueError.runtimeError("numpy.ndarray data pointer was nil.")
+            }
+
+            return Array(UnsafeBufferPointer(start: pointer, count: size))
+        } else {
+            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) [\(self.dtype)] is not supported UInt32Data.")
         }
+    }
 
-        try self.init(
-            name: name,
-            from: pointer,
-            shape: Shape(array.shape[0], array.shape[1]),
-            label: label,
-            weight: weight,
-            baseMargin: baseMargin,
-            features: features,
-            missingValue: missingValue,
-            threads: threads
-        )
+    public func dataShape() throws -> Shape {
+        if Bool(Python.isinstance(self, numpy.ndarray))! {
+            if self.shape.count == 1 {
+                return try Shape(row: 1, column: self.shape[0])
+            } else if self.shape.count == 2 {
+                return try Shape(shape: self.shape)
+            } else {
+                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
+            }
+        } else {
+            throw ValueError.runtimeError("PythonObject type \(Python.type(self)) is not supported ShapeData.")
+        }
     }
 }

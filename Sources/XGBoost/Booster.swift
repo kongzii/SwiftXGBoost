@@ -15,23 +15,11 @@ public class Booster {
     public let booster: BoosterHandle?
 
     /// Version of underlying XGBoost system library.
-    public static var systemLibraryVersion: Version {
-        var major: Int32 = -1
-        var minor: Int32 = -1
-        var patch: Int32 = -1
-        XGBoostVersion(&major, &minor, &patch)
-
-        precondition(
-            major >= 0 && minor >= 0 && patch >= 0,
-            "XGBoostVersion does not return version."
-        )
-
-        return Version(
-            major: Int(major),
-            minor: Int(minor),
-            patch: Int(patch)
-        )
-    }
+    public static var systemLibraryVersion = Version(
+        major: Int(XGBOOST_VER_MAJOR),
+        minor: Int(XGBOOST_VER_MINOR),
+        patch: Int(XGBOOST_VER_PATCH)
+    )
 
     /// Register callback function for LOG(INFO) messages.
     ///
@@ -56,18 +44,18 @@ public class Booster {
     /// Initialize Booster from buffer.
     ///
     /// - Parameter model: Model serialized as buffer.
-    public init(
-        model: BufferModel
+    public convenience init(
+        buffer: BufferModel
     ) throws {
         var booster: BoosterHandle?
         try safe {
             XGBoosterUnserializeFromBuffer(
                 &booster,
-                model.data,
-                model.length
+                buffer.data,
+                buffer.length
             )
         }
-        self.booster = booster
+        self.init(booster: booster)
     }
 
     /// Initialize new Booster.
@@ -77,7 +65,7 @@ public class Booster {
     /// - Parameter config: Loads model from config.
     /// - Parameter parameters: Array of parameters to be set.
     /// - Parameter validateParameters: If true, parameters will be valided. This basically adds parameter validate_parameters=1.
-    public init(
+    public convenience init(
         with data: [Data] = [],
         from path: String? = nil,
         config: String? = nil,
@@ -90,7 +78,7 @@ public class Booster {
         try safe {
             XGBoosterCreate(pointees, UInt64(pointees.count), &booster)
         }
-        self.booster = booster
+        self.init(booster: booster)
 
         if let path = path {
             try load(model: path)
@@ -121,7 +109,7 @@ public class Booster {
         }
     }
 
-    /// - Returns: Booster's internal configuration into a JSON document.
+    /// - Returns: Booster's internal configuration in a JSON string.
     public func config() throws -> String {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
@@ -164,7 +152,7 @@ public class Booster {
     /// - Parameter training: Whether the prediction will be used for traning.
     /// - Parameter validateFeatures: Validate booster and data features.
     public func predict(
-        from data: Data,
+        from data: DMatrix,
         outputMargin: Bool = false,
         treeLimit: UInt32 = 0,
         predictionLeaf: Bool = false,
@@ -230,7 +218,7 @@ public class Booster {
     /// - Parameter training: Whether the prediction will be used for traning.
     /// - Parameter missingValue: Value in features representing missing values.
     public func predict(
-        features: [Float],
+        features: FloatData,
         outputMargin: Bool = false,
         treeLimit: UInt32 = 0,
         predictionLeaf: Bool = false,
@@ -240,7 +228,8 @@ public class Booster {
         training: Bool = false,
         missingValue: Float = Float.greatestFiniteMagnitude
     ) throws -> Float {
-        try predict(
+        let features = try features.data()
+        return try predict(
             from: DMatrix(
                 name: "predict",
                 from: features,
@@ -289,7 +278,7 @@ public class Booster {
     }
 
     /// - Returns: Model as binary raw bytes.
-    public func raw() throws -> BufferModel {
+    public func raw() throws -> RawModel {
         let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
 
@@ -532,7 +521,7 @@ public class Booster {
     ///
     /// - Parameter model: Buffer to load from.
     public func load(
-        model buffer: BufferModel
+        buffer: BufferModel
     ) throws {
         try safe {
             XGBoosterLoadModelFromBuffer(
@@ -779,48 +768,6 @@ public class Booster {
         try evaluate(iteration: iteration, data: [data])
     }
 
-    /// Train booster.
-    ///
-    /// - Parameter iterations: Number of training iterations, but training can be stopped early.
-    /// - Parameter trainingData: Data to train on.
-    /// - Parameter evaluationData: Data to evaluate on, if provided.
-    /// - Parameter beforeIteration: Callback called before each iteration.
-    /// - Parameter afterIteration: Callback called after each iteration.
-    public func train(
-        iterations: Int,
-        trainingData: Data,
-        evaluationData: [Data] = [],
-        beforeIteration: (Booster, Int) throws -> Void = { _, _ in },
-        afterIteration: (Booster, Int, [String: [String: String]]?) throws -> AfterIterationCallbackOutput = { _, _, _ in .next }
-    ) throws {
-        training: for iteration in 0 ..< iterations {
-            try beforeIteration(
-                self,
-                iteration
-            )
-
-            try update(
-                iteration: iteration,
-                data: trainingData
-            )
-
-            let evaluation =
-                evaluationData.isEmpty ? nil : try evaluate(iteration: iteration, data: evaluationData)
-            let output = try afterIteration(
-                self,
-                iteration,
-                evaluation
-            )
-
-            switch output {
-            case .stop:
-                break training
-            case .next:
-                break
-            }
-        }
-    }
-
     /// Validate features.
     ///
     /// - Parameter features: Features to validate.
@@ -851,7 +798,7 @@ public class Booster {
     ///
     /// - Parameter data: Data which features will be validated.
     public func validate(
-        data: Data
+        data: DMatrix
     ) throws {
         try validate(features: data.features())
     }
@@ -860,7 +807,7 @@ public class Booster {
     ///
     /// - Parameter data: Array of data which features will be validated.
     public func validate(
-        data: [Data]
+        data: [DMatrix]
     ) throws {
         for data in data {
             try validate(features: data.features())
