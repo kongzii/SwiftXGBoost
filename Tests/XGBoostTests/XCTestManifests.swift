@@ -9,6 +9,7 @@ import XCTest
             testCase(PlotTests.allTests),
             testCase(TensorFlowTests.allTests),
             testCase(XGBoostDocsTests.allTests),
+            testCase(TrainTests.allTests),
         ]
     }
 #endif

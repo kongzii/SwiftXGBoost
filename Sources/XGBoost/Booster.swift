@@ -768,48 +768,6 @@ public class Booster {
         try evaluate(iteration: iteration, data: [data])
     }
 
-    /// Train booster.
-    ///
-    /// - Parameter iterations: Number of training iterations, but training can be stopped early.
-    /// - Parameter trainingData: Data to train on.
-    /// - Parameter evaluationData: Data to evaluate on, if provided.
-    /// - Parameter beforeIteration: Callback called before each iteration.
-    /// - Parameter afterIteration: Callback called after each iteration.
-    public func train(
-        iterations: Int,
-        trainingData: Data,
-        evaluationData: [Data] = [],
-        beforeIteration: (Booster, Int) throws -> Void = { _, _ in },
-        afterIteration: (Booster, Int, [String: [String: String]]?) throws -> AfterIterationCallbackOutput = { _, _, _ in .next }
-    ) throws {
-        training: for iteration in 0 ..< iterations {
-            try beforeIteration(
-                self,
-                iteration
-            )
-
-            try update(
-                iteration: iteration,
-                data: trainingData
-            )
-
-            let evaluation =
-                evaluationData.isEmpty ? nil : try evaluate(iteration: iteration, data: evaluationData)
-            let output = try afterIteration(
-                self,
-                iteration,
-                evaluation
-            )
-
-            switch output {
-            case .stop:
-                break training
-            case .next:
-                break
-            }
-        }
-    }
-
     /// Validate features.
     ///
     /// - Parameter features: Features to validate.
