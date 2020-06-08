@@ -139,7 +139,7 @@ public class EarlyStopping {
 
             try booster.set(attribute: "best_score", value: String(state.bestScore))
             try booster.set(attribute: "best_iteration", value: String(state.bestIteration))
-            try booster.set(attribute: "best_best", value: state.bestMsg)
+            try booster.set(attribute: "best_msg", value: state.bestMsg)
 
             if verbose {
                 print(state.bestMsg)
