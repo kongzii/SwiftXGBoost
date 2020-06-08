@@ -12,7 +12,7 @@ public class Booster {
     var type: BoosterType?
 
     /// Pointer to underlying BoosterHandle.
-    public let booster: BoosterHandle?
+    public var booster: BoosterHandle?
 
     /// Version of underlying XGBoost system library.
     public static var systemLibraryVersion = Version(
@@ -108,6 +108,23 @@ public class Booster {
             XGBoosterFree(booster)
         }
     }
+
+    /// Serializes and unserializes booster to reset state and free training memory
+    public func reset() throws {
+        let snapshot = try serialized()
+
+        try safe {
+            XGBoosterFree(booster)
+        }
+
+        try safe {
+            XGBoosterUnserializeFromBuffer(
+                &booster,
+                snapshot.data,
+                snapshot.length
+            )
+        }
+    } 
 
     /// - Returns: Booster's internal configuration in a JSON string.
     public func config() throws -> String {
@@ -248,7 +265,7 @@ public class Booster {
     }
 
     /// - Returns: Everything states in buffer.
-    public func serialized() throws -> BufferModel {
+    public func serialized() throws -> SerializedBuffer {
         let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
 
@@ -521,7 +538,7 @@ public class Booster {
     ///
     /// - Parameter model: Buffer to load from.
     public func load(
-        buffer: BufferModel
+        modelBuffer buffer: BufferModel
     ) throws {
         try safe {
             XGBoosterLoadModelFromBuffer(
