@@ -3,6 +3,7 @@ os: osx
 osx_image: xcode11.5
 addons:
   homebrew:
+    update: true
     packages:
       - make
       - xgboost
