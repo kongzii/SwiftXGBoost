@@ -22,16 +22,16 @@ final class TrainTests: XCTestCase {
         var iterations = [Int]()
 
         try booster.train(
-            iterations: 5000,
+            iterations: 500,
             trainingData: data,
             evaluationData: [data],
-            earlyStopping: .init(
+            callbacks: [EarlyStopping(
                 dataName: "data",
                 metricName: "rmse",
                 stoppingRounds: 10,
                 verbose: true
-            )
-        ) { _, iteration, evaluation in
+            )]
+        ) { _, iteration, evaluation, _ in
             iterations.append(iteration)
             scores.append(evaluation!["data"]!["rmse"]!)
             return .next
@@ -67,16 +67,16 @@ final class TrainTests: XCTestCase {
         var iterations = [Int]()
 
         try booster.train(
-            iterations: 5000,
+            iterations: 500,
             trainingData: data,
             evaluationData: [data],
-            earlyStopping: .init(
+            callbacks: [EarlyStopping(
                 dataName: "data",
                 metricName: "auc",
                 stoppingRounds: 10,
                 verbose: true
-            )
-        ) { _, iteration, evaluation in
+            )]
+        ) { _, iteration, evaluation, _ in
             iterations.append(iteration)
             scores.append(evaluation!["data"]!["auc"]!)
             return .next

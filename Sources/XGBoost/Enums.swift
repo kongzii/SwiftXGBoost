@@ -12,7 +12,7 @@ public typealias RawModel = (length: UInt64, data: UnsafeMutablePointer<UnsafePo
 public typealias BufferModel = (length: UInt64, data: UnsafeMutablePointer<UnsafePointer<Int8>?>)
 public typealias SerializedBuffer = (length: UInt64, data: UnsafeMutablePointer<UnsafePointer<Int8>?>)
 
-public enum AfterIterationCallbackOutput {
+public enum AfterIterationOutput {
     case stop, next
 }
 

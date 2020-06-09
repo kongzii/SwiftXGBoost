@@ -69,7 +69,7 @@ try booster.train(
     iterations: 10000,
     trainingData: trainingData,
     evaluationData: [trainingData, validationData]
-) { _, iteration, evaluation in
+) { _, iteration, evaluation, _ in
     print("Traning stats at \(iteration): \(evaluation!["training"]!)")
     print("Validation stats at \(iteration): \(evaluation!["validation"]!)")
     return .next

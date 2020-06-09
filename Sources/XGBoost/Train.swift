@@ -4,19 +4,29 @@ import Foundation
 /// Dictionary for evaluation in form [data_name: [metric_name: value]]
 public typealias Evaluation = [String: [String: String]]
 
-/// Protocol for classes and structs that can be called in training
-protocol Callback {
-    /// Paremeter booster: Booster.
-    /// Paremeter iteration: Current iteration.
-    /// Paremeter evaluation: Dictionary with evaluations.
+/// Specify if should be executed at beginning of iteration or at the end
+public enum LoopPosition {
+    case before, after
+}
+
+/// Protocol for classes and structs that can be passed to traning in callbacks array.
+public protocol Callback {
+    /// Time when to execute the callback in training loop.
+    var execute: [LoopPosition] { get }
+
+    /// - Parameter booster: Booster.
+    /// - Parameter iteration: Current iteration.
+    /// - Parameter evaluation: Dictionary with evaluations.
     func call(
         booster: Booster,
         iteration: Int,
         evaluation: Evaluation?
-    ) throws -> AfterIterationCallbackOutput
+    ) throws -> AfterIterationOutput
 }
 
 public class EarlyStopping: Callback {
+    public var execute: [LoopPosition] = [.after]
+
     public typealias State = (
         maximizeScore: Bool,
         bestIteration: Int,
@@ -58,11 +68,11 @@ public class EarlyStopping: Callback {
         return maximizeScore
     }
 
-    /// Paremeter dataName: Name of data used for early stopping.
-    /// Paremeter metricName: Metric to look for.
-    /// Paremeter stoppingRounds: Number of rounds to check improvence for.
-    /// Paremeter state: Initial state.
-    /// Paremeter verbose: Print on new best or stopping.
+    /// - Parameter dataName: Name of data used for early stopping.
+    /// - Parameter metricName: Metric to look for.
+    /// - Parameter stoppingRounds: Number of rounds to check improvence for.
+    /// - Parameter state: Initial state.
+    /// - Parameter verbose: Print on new best or stopping.
     public init(
         dataName: String,
         metricName: String,
@@ -77,11 +87,11 @@ public class EarlyStopping: Callback {
         self.state = state
     }
 
-    /// Paremeter dataName: Name of data used for early stopping.
-    /// Paremeter metricName: Metric to look for.
-    /// Paremeter stoppingRounds: Number of rounds to check improvence for.
-    /// Paremeter maximize: If metric should be maximized, minimzed otherwise.
-    /// Paremeter verbose: Print on new best or stopping.
+    /// - Parameter dataName: Name of data used for early stopping.
+    /// - Parameter metricName: Metric to look for.
+    /// - Parameter stoppingRounds: Number of rounds to check improvence for.
+    /// - Parameter maximize: If metric should be maximized, minimzed otherwise.
+    /// - Parameter verbose: Print on new best or stopping.
     public convenience init(
         dataName: String,
         metricName: String,
@@ -104,12 +114,12 @@ public class EarlyStopping: Callback {
         )
     }
 
-    /// Paremeter dataName: Name of data used for early stopping.
-    /// Paremeter metricName: Metric to look for.
-    /// Paremeter stoppingRounds: Number of rounds to check improvence for.
-    /// Paremeter maximize: If metric should be maximized, minimzed otherwise.
-    /// Paremeter booster: Booster to load state from.
-    /// Paremeter verbose: Print on new best or stopping.
+    /// - Parameter dataName: Name of data used for early stopping.
+    /// - Parameter metricName: Metric to look for.
+    /// - Parameter stoppingRounds: Number of rounds to check improvence for.
+    /// - Parameter maximize: If metric should be maximized, minimzed otherwise.
+    /// - Parameter booster: Booster to load state from.
+    /// - Parameter verbose: Print on new best or stopping.
     public convenience init(
         dataName: String,
         metricName: String,
@@ -148,14 +158,14 @@ public class EarlyStopping: Callback {
         )
     }
 
-    /// Paremeter booster: Booster.
-    /// Paremeter iteration: Current iteration.
-    /// Paremeter evaluation: Dictionary with evaluations.
+    /// - Parameter booster: Booster.
+    /// - Parameter iteration: Current iteration.
+    /// - Parameter evaluation: Dictionary with evaluations.
     public func call(
         booster: Booster,
         iteration: Int,
         evaluation: Evaluation?
-    ) throws -> AfterIterationCallbackOutput {
+    ) throws -> AfterIterationOutput {
         guard let evaluation = evaluation else {
             throw ValueError.runtimeError("Evaluation data can not be nil.")
         }
@@ -194,6 +204,58 @@ public class EarlyStopping: Callback {
     }
 }
 
+public class VariableLearningRate: Callback {
+    public var execute: [LoopPosition] = [.before]
+
+    public typealias Function = (Int, Int) -> String
+
+    var iterations: Int
+    var learningRates: [String]?
+    var learningRateFunction: Function?
+
+    public init(
+        learningRates: [String],
+        iterations: Int
+    ) {
+        precondition(
+            iterations == learningRates.count,
+            "Learning rates count must be equal to iterations."
+        )
+
+        self.learningRates = learningRates
+        self.iterations = iterations
+    }
+
+    public init(
+        learningRate: @escaping Function,
+        iterations: Int
+    ) {
+        learningRateFunction = learningRate
+        self.iterations = iterations
+    }
+
+    /// - Parameter booster: Booster.
+    /// - Parameter iteration: Current iteration.
+    /// - Parameter evaluation: Dictionary with evaluations.
+    public func call(
+        booster: Booster,
+        iteration: Int,
+        evaluation _: Evaluation?
+    ) throws -> AfterIterationOutput {
+        let newLearningRate: String = {
+            if let rates = learningRates {
+                return rates[iteration]
+            } else {
+                return learningRateFunction!(iteration, iterations)
+            }
+        }()
+
+        try booster.set(parameter: "learning_rate", value: newLearningRate)
+
+        return .next
+    }
+}
+
 extension Booster {
     /// Train booster.
     ///
@@ -207,27 +269,33 @@ extension Booster {
         iterations: Int,
         trainingData: Data,
         evaluationData: [Data] = [],
-        earlyStopping: EarlyStopping? = nil,
-        beforeIterationCallback: (Booster, Int) throws -> Void = { _, _ in },
-        afterIterationCallback: (Booster, Int, Evaluation?) throws -> AfterIterationCallbackOutput = { _, _, _ in .next }
+        beforeIteration: (Booster, Int) throws -> AfterIterationOutput = { _, _ in .next },
+        callbacks: [Callback] = [],
+        afterIteration: (Booster, Int, Evaluation?, [AfterIterationOutput]) throws -> AfterIterationOutput = { _, _, _, _ in .next }
     ) throws {
-        if earlyStopping != nil, evaluationData.count == 0 {
-            throw ValueError.runtimeError("Evaluation data needs to be set for early stopping.")
-        }
-
-        var callbacks = [Callback]()
         var version = try loadRabitCheckpoint()
         let startIteration = Int(version / 2)
 
-        if let earlyStopping = earlyStopping {
-            callbacks.append(earlyStopping)
-        }
-
         training: for iteration in startIteration ..< iterations {
-            try beforeIterationCallback(
+            var outputs = [AfterIterationOutput]()
+
+            switch try beforeIteration(
                 self,
                 iteration
-            )
+            ) {
+            case .stop:
+                break training
+            case .next:
+                break
+            }
+
+            outputs.append(contentsOf: try callbacks.filter { $0.execute.contains(.before) }.map {
+                try $0.call(booster: self, iteration: iteration, evaluation: nil)
+            })
+
+            if outputs.contains(where: { $0 == .stop }) {
+                break training
+            }
 
             try update(
                 iteration: iteration,
@@ -235,16 +303,19 @@ extension Booster {
             )
 
             let evaluation =
-                evaluationData.isEmpty ? nil : try evaluate(iteration: iteration, data: evaluationData)
+                evaluationData.isEmpty ? nil : try evaluate(
+                    iteration: iteration, data: evaluationData
+                )
 
-            let outputs = try callbacks.map {
+            outputs.append(contentsOf: try callbacks.filter { $0.execute.contains(.after) }.map {
                 try $0.call(booster: self, iteration: iteration, evaluation: evaluation)
-            }
+            })
 
-            switch try afterIterationCallback(
+            switch try afterIteration(
                 self,
                 iteration,
-                evaluation
+                evaluation,
+                outputs
             ) {
             case .stop:
                 break training
