@@ -13,7 +13,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (61% documented)</p>
+        <p><a href="index.html"> Docs</a> (59% documented)</p>
         <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -35,6 +35,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DMatrix.html">DMatrix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/EarlyStopping.html">EarlyStopping</a>
               </li>
             </ul>
           </li>
@@ -122,10 +125,16 @@
                 <a href="Typealiases.html#/s:7XGBoost4Dataa">Data</a>
               </li>
               <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Typealiases.html#/s:7XGBoost9Parametera">Parameter</a>
               </li>
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:7XGBoost8RawModela">RawModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7XGBoost16SerializedBuffera">SerializedBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:7XGBoost7Versiona">Version</a>
@@ -152,7 +161,7 @@
 <p>Bindings for <a href="https://en.wikipedia.org/wiki/XGBoost">the XGBoost system library</a>. 
 The aim of this package is to mimic <a href="https://xgboost.readthedocs.io/en/latest/python/python_intro.html">XGBoost Python bindings</a> but, at the same time, utilize the power of Swift and C compatibility. Some things thus behave differently but should provide you maximum flexibility over XGBoost.</p>
 
-<p>Documentation is available at <a href="https://kongzii.github.io/SwiftXGBoost/">pages</a>.</p>
+<p>Human written documentation is available at <a href="https://swiftxgboost.readthedocs.io/">readthedocs</a>, automatic, from code generated documentation is available at <a href="https://kongzii.github.io/SwiftXGBoost/">pages</a>.</p>
 <h2 id='installation' class='heading'>Installation</h2>
 <h3 id='system-library-dependency' class='heading'>System library dependency</h3>
 <h4 id='linux' class='heading'>Linux</h4>
@@ -160,10 +169,9 @@ The aim of this package is to mimic <a href="https://xgboost.readthedocs.io/en/l
 <p>Install XGBoost from sources</p>
 <pre class="highlight plaintext"><code>git clone --recursive https://github.com/dmlc/xgboost
 cd xgboost
-git checkout release_1.1.0
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_LIBDIR=/usr/lib ..
+cmake ..
 make
 make install
 ldconfig
@@ -177,18 +185,28 @@ ldconfig
 <p>You can build and install similarly as on Linux, or just use brew</p>
 <pre class="highlight plaintext"><code>brew install xgboost
 </code></pre>
+<h5 id='note' class='heading'>Note</h5>
 
-<p>If you get <code>ld: symbol(s) not found</code> error message, it most probably means that Swift can not find XGBoost libararies.</p>
+<p>Before version 1.1.1, XGBoost did not create pkg-config. This was fixed with PR <a href="https://github.com/dmlc/xgboost/pull/5744">Add pkgconfig to cmake #5744</a>.</p>
 
-<p>In that case, you can either add XGBoost pkgconfig to your system</p>
-<pre class="highlight plaintext"><code>cp xgboost.pc /usr/local/lib/pkgconfig/
+<p>If you are using for some reason older versions, you may need to specify path to the XGBoost libraries while building, e.g.:</p>
+<pre class="highlight plaintext"><code>swift build -Xcc -I/usr/local/include -Xlinker -L/usr/local/lib
 </code></pre>
 
-<p>or run commands with specified C and linker flags to the location with XGBoost, e.g.:</p>
-<pre class="highlight plaintext"><code>swift test -Xcc -I/usr/local/include -Xlinker -L/usr/local/lib
+<p>or create pkg-config file manualy. Example of it for <code>macOS 10.15</code> and <code>XGBoost 1.1.0</code> is</p>
+<pre class="highlight plaintext"><code>prefix=/usr/local/Cellar/xgboost/1.1.0
+exec_prefix=${prefix}/bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: xgboost
+Description: XGBoost machine learning libarary.
+Version: 1.1.0
+Cflags: -I${includedir}
+Libs: -L${libdir} -lxgboost
 </code></pre>
 
-<p>Note: This issue is fixed in the master branch thanks to the <a href="https://github.com/dmlc/xgboost/pull/5744">Add pkgconfig to cmake #5744</a> and hopefully will be available soon in some release. </p>
+<p>and needs to be placed at <code>/usr/local/lib/pkgconfig/xgboost.pc</code></p>
 <h3 id='package' class='heading'>Package</h3>
 
 <p>Add a dependency in your your <code>Package.swift</code></p>
@@ -245,6 +263,13 @@ If you are using one of the S4TF swift toolchains, you can combine its power dir
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">tensor</span> <span class="o">=</span> <span class="kt">Tensor</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt">TensorShape</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="nv">scalars</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
 <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">DMatrix</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"training"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">tensor</span><span class="p">)</span>
 </code></pre>
+<h3 id='note' class='heading'>Note</h3>
+
+<p><a href="https://github.com/tensorflow/swift">Swift4TensorFlow</a> toolchains ships with preinstalled <a href="https://github.com/pvieito/PythonKit.git">PythonKit</a> and you may run into a problem when using package with extra <a href="https://github.com/pvieito/PythonKit.git">PythonKit</a> dependency. If so, please just add package version with <code>-tensorflow</code> suffix, where <a href="https://github.com/pvieito/PythonKit.git">PythonKit</a> dependency is removed.</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/kongzii/SwiftXGBoost.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.7.0-tensorflow"</span><span class="p">)),</span>
+</code></pre>
+
+<p>This bug is known and hopefully will be resolved soon.</p>
 <h2 id='examples' class='heading'>Examples</h2>
 
 <p>More examples can be found in <a href="https://github.com/kongzii/SwiftXGBoost/tree/master/Examples">Examples directory</a> 
@@ -333,11 +358,16 @@ and run inside docker</p>
 <p>On host</p>
 <pre class="highlight plaintext"><code>swift test
 </code></pre>
+<h3 id='code-format' class='heading'>Code format</h3>
+
+<p><a href="https://github.com/nicklockwood/SwiftFormat">SwiftFormat</a> is used for code formatting. </p>
+<pre class="highlight plaintext"><code>make format
+</code></pre>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-06)</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

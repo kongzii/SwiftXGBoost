@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Shape Structure Reference</title>
+    <title>EarlyStopping Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/Shape" class="dashAnchor"></a>
-    <a title="Shape Structure Reference"></a>
+    <a name="//apple_ref/swift/Class/EarlyStopping" class="dashAnchor"></a>
+    <a title="EarlyStopping Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (59% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Shape Structure Reference
+        EarlyStopping Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -150,14 +150,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Shape</h1>
+            <h1>EarlyStopping</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Shape</span> <span class="p">:</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">EarlyStopping</span> <span class="p">:</span> <span class="kt">Callback</span></code></pre>
 
                 </div>
               </div>
-            <p>Shape of Data.</p>
+            <p>Undocumented</p>
 
           </section>
           <section class="section task-group-section">
@@ -166,9 +166,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost5ShapeV3rowSivp"></a>
-                    <a name="//apple_ref/swift/Property/row" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost5ShapeV3rowSivp">row</a>
+                    <a name="/s:7XGBoost13EarlyStoppingC5Statea"></a>
+                    <a name="//apple_ref/swift/Alias/State" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC5Statea">State</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -183,7 +183,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">row</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">State</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="nv">maximizeScore</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="nv">bestIteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">bestScore</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span>
+    <span class="nv">bestMsg</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -193,9 +198,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost5ShapeV6columnSivp"></a>
-                    <a name="//apple_ref/swift/Property/column" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost5ShapeV6columnSivp">column</a>
+                    <a name="/s:7XGBoost13EarlyStoppingC5stateSb13maximizeScore_Si13bestIterationSf0gF0SS0G3Msgtvp"></a>
+                    <a name="//apple_ref/swift/Property/state" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC5stateSb13maximizeScore_Si13bestIterationSf0gF0SS0G3Msgtvp">state</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -210,7 +215,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Classes/EarlyStopping.html#/s:7XGBoost13EarlyStoppingC5Statea">State</a></span></code></pre>
 
                         </div>
                       </div>
@@ -220,35 +225,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s25ExpressibleByArrayLiteralP0cD7ElementQa"></a>
-                    <a name="//apple_ref/swift/Alias/ArrayLiteralElement" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s25ExpressibleByArrayLiteralP0cD7ElementQa">ArrayLiteralElement</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ArrayLiteralElement</span> <span class="o">=</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost5ShapeVyACSi_Sitcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost5ShapeVyACSi_Sitcfc">init(_:<wbr>_:<wbr>)</a>
+                    <a name="/s:7XGBoost13EarlyStoppingC8dataNameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/dataName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC8dataNameSSvp">dataName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -263,7 +242,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">row</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">_</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dataName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -273,9 +252,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost5ShapeV3row6columnACSi_Sitcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(row:column:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost5ShapeV3row6columnACSi_Sitcfc">init(row:<wbr>column:<wbr>)</a>
+                    <a name="/s:7XGBoost13EarlyStoppingC10metricNameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/metricName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC10metricNameSSvp">metricName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -290,7 +269,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">row</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">metricName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -300,35 +279,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s25ExpressibleByArrayLiteralP05arrayD0x0cD7ElementQzd_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(arrayLiteral:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s25ExpressibleByArrayLiteralP05arrayD0x0cD7ElementQzd_tcfc">init(arrayLiteral:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">arrayLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">Int</span><span class="o">...</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost5ShapeV5shapeAC9PythonKit0D6ObjectV_tKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(shape:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost5ShapeV5shapeAC9PythonKit0D6ObjectV_tKcfc">init(shape:<wbr>)</a>
+                    <a name="/s:7XGBoost13EarlyStoppingC14stoppingRoundsSivp"></a>
+                    <a name="//apple_ref/swift/Property/stoppingRounds" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC14stoppingRoundsSivp">stoppingRounds</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -343,7 +296,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">shape</span><span class="p">:</span> <span class="kt">PythonObject</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">stoppingRounds</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -353,9 +306,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost5ShapeVyAC9PythonKit0C6ObjectVKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost5ShapeVyAC9PythonKit0C6ObjectVKcfc">init(_:<wbr>)</a>
+                    <a name="/s:7XGBoost13EarlyStoppingC7verboseSbvp"></a>
+                    <a name="//apple_ref/swift/Property/verbose" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC7verboseSbvp">verbose</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -370,7 +323,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt">PythonObject</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">verbose</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -380,9 +333,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost5ShapeV3row6columnAC9PythonKit0E6ObjectV_AHtKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(row:column:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost5ShapeV3row6columnAC9PythonKit0E6ObjectV_AHtKcfc">init(row:<wbr>column:<wbr>)</a>
+                    <a name="/s:7XGBoost13EarlyStoppingC8dataName06metricE014stoppingRounds5state7verboseACSS_SSSiSb13maximizeScore_Si13bestIterationSf0mL0SS0M3MsgtSbtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(dataName:metricName:stoppingRounds:state:verbose:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC8dataName06metricE014stoppingRounds5state7verboseACSS_SSSiSb13maximizeScore_Si13bestIterationSf0mL0SS0M3MsgtSbtcfc">init(dataName:<wbr>metricName:<wbr>stoppingRounds:<wbr>state:<wbr>verbose:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -390,14 +343,24 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Paremeter dataName: Name of data used for early stopping.
+Paremeter metricName: Metric to look for.
+Paremeter stoppingRounds: Number of rounds to check improvence for.
+Paremeter state: Initial state.
+Paremeter verbose: Print on new best or stopping.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">row</span><span class="p">:</span> <span class="kt">PythonObject</span><span class="p">,</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">PythonObject</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">dataName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">metricName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">stoppingRounds</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Classes/EarlyStopping.html#/s:7XGBoost13EarlyStoppingC5Statea">State</a></span><span class="p">,</span>
+    <span class="nv">verbose</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -407,9 +370,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost5ShapeVyAC9PythonKit0C6ObjectV_AFtKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost5ShapeVyAC9PythonKit0C6ObjectV_AFtKcfc">init(_:<wbr>_:<wbr>)</a>
+                    <a name="/s:7XGBoost13EarlyStoppingC8dataName06metricE014stoppingRounds8maximize7verboseACSS_SSSiS2btcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(dataName:metricName:stoppingRounds:maximize:verbose:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC8dataName06metricE014stoppingRounds8maximize7verboseACSS_SSSiS2btcfc">init(dataName:<wbr>metricName:<wbr>stoppingRounds:<wbr>maximize:<wbr>verbose:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -417,14 +380,96 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Paremeter dataName: Name of data used for early stopping.
+Paremeter metricName: Metric to look for.
+Paremeter stoppingRounds: Number of rounds to check improvence for.
+Paremeter maximize: If metric should be maximized, minimzed otherwise.
+Paremeter verbose: Print on new best or stopping.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">row</span><span class="p">:</span> <span class="kt">PythonObject</span><span class="p">,</span> <span class="n">_</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">PythonObject</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">dataName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">metricName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">stoppingRounds</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">maximize</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">verbose</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost13EarlyStoppingC8dataName06metricE014stoppingRounds8maximize7booster7verboseACSS_SSSiSbAA7BoosterCSbtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(dataName:metricName:stoppingRounds:maximize:booster:verbose:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC8dataName06metricE014stoppingRounds8maximize7booster7verboseACSS_SSSiSbAA7BoosterCSbtKcfc">init(dataName:<wbr>metricName:<wbr>stoppingRounds:<wbr>maximize:<wbr>booster:<wbr>verbose:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Paremeter dataName: Name of data used for early stopping.
+Paremeter metricName: Metric to look for.
+Paremeter stoppingRounds: Number of rounds to check improvence for.
+Paremeter maximize: If metric should be maximized, minimzed otherwise.
+Paremeter booster: Booster to load state from.
+Paremeter verbose: Print on new best or stopping.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">dataName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">metricName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">stoppingRounds</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">maximize</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="nv">booster</span><span class="p">:</span> <span class="kt"><a href="../Classes/Booster.html">Booster</a></span><span class="p">,</span>
+    <span class="nv">verbose</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost13EarlyStoppingC4call7booster9iteration10evaluationAA28AfterIterationCallbackOutputOAA7BoosterC_SiSDySSSDyS2SGGSgtKF"></a>
+                    <a name="//apple_ref/swift/Method/call(booster:iteration:evaluation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC4call7booster9iteration10evaluationAA28AfterIterationCallbackOutputOAA7BoosterC_SiSDySSSDyS2SGGSgtKF">call(booster:<wbr>iteration:<wbr>evaluation:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Paremeter booster: Booster.
+Paremeter iteration: Current iteration.
+Paremeter evaluation: Dictionary with evaluations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">call</span><span class="p">(</span>
+    <span class="nv">booster</span><span class="p">:</span> <span class="kt"><a href="../Classes/Booster.html">Booster</a></span><span class="p">,</span>
+    <span class="nv">iteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">evaluation</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a></span><span class="p">?</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a></span></code></pre>
 
                         </div>
                       </div>
