@@ -40,13 +40,16 @@
               <li class="nav-group-task">
                 <a href="../Classes/EarlyStopping.html">EarlyStopping</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VariableLearningRate.html">VariableLearningRate</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a>
+                <a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/BoosterType.html">BoosterType</a>
@@ -62,6 +65,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Importance.html">Importance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LoopPosition.html">LoopPosition</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModelFormat.html">ModelFormat</a>
@@ -91,6 +97,9 @@
           <li class="nav-group-name">
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Callback.html">Callback</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Protocols/FloatData.html">FloatData</a>
               </li>
@@ -153,7 +162,7 @@
             <h1>EarlyStopping</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">EarlyStopping</span> <span class="p">:</span> <span class="kt">Callback</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">EarlyStopping</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Callback.html">Callback</a></span></code></pre>
 
                 </div>
               </div>
@@ -163,6 +172,32 @@
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost8CallbackP7executeSayAA12LoopPositionOGvp"></a>
+                    <a name="//apple_ref/swift/Property/execute" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost8CallbackP7executeSayAA12LoopPositionOGvp">execute</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">execute</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/LoopPosition.html">LoopPosition</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -343,12 +378,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Paremeter dataName: Name of data used for early stopping.
-Paremeter metricName: Metric to look for.
-Paremeter stoppingRounds: Number of rounds to check improvence for.
-Paremeter state: Initial state.
-Paremeter verbose: Print on new best or stopping.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -363,6 +393,73 @@ Paremeter verbose: Print on new best or stopping.</p>
 <span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of data used for early stopping.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>metricName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Metric to look for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stoppingRounds</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of rounds to check improvence for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Initial state.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>verbose</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Print on new best or stopping.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -380,12 +477,7 @@ Paremeter verbose: Print on new best or stopping.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Paremeter dataName: Name of data used for early stopping.
-Paremeter metricName: Metric to look for.
-Paremeter stoppingRounds: Number of rounds to check improvence for.
-Paremeter maximize: If metric should be maximized, minimzed otherwise.
-Paremeter verbose: Print on new best or stopping.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -400,6 +492,73 @@ Paremeter verbose: Print on new best or stopping.</p>
 <span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of data used for early stopping.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>metricName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Metric to look for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stoppingRounds</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of rounds to check improvence for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maximize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If metric should be maximized, minimzed otherwise.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>verbose</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Print on new best or stopping.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -417,13 +576,7 @@ Paremeter verbose: Print on new best or stopping.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Paremeter dataName: Name of data used for early stopping.
-Paremeter metricName: Metric to look for.
-Paremeter stoppingRounds: Number of rounds to check improvence for.
-Paremeter maximize: If metric should be maximized, minimzed otherwise.
-Paremeter booster: Booster to load state from.
-Paremeter verbose: Print on new best or stopping.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -440,15 +593,94 @@ Paremeter verbose: Print on new best or stopping.</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of data used for early stopping.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>metricName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Metric to look for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stoppingRounds</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of rounds to check improvence for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maximize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If metric should be maximized, minimzed otherwise.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>booster</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Booster to load state from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>verbose</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Print on new best or stopping.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost13EarlyStoppingC4call7booster9iteration10evaluationAA28AfterIterationCallbackOutputOAA7BoosterC_SiSDySSSDyS2SGGSgtKF"></a>
+                    <a name="/s:7XGBoost13EarlyStoppingC4call7booster9iteration10evaluationAA20AfterIterationOutputOAA7BoosterC_SiSDySSSDyS2SGGSgtKF"></a>
                     <a name="//apple_ref/swift/Method/call(booster:iteration:evaluation:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC4call7booster9iteration10evaluationAA28AfterIterationCallbackOutputOAA7BoosterC_SiSDySSSDyS2SGGSgtKF">call(booster:<wbr>iteration:<wbr>evaluation:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost13EarlyStoppingC4call7booster9iteration10evaluationAA20AfterIterationOutputOAA7BoosterC_SiSDySSSDyS2SGGSgtKF">call(booster:<wbr>iteration:<wbr>evaluation:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -456,10 +688,7 @@ Paremeter verbose: Print on new best or stopping.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Paremeter booster: Booster.
-Paremeter iteration: Current iteration.
-Paremeter evaluation: Dictionary with evaluations.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -469,9 +698,52 @@ Paremeter evaluation: Dictionary with evaluations.</p>
     <span class="nv">booster</span><span class="p">:</span> <span class="kt"><a href="../Classes/Booster.html">Booster</a></span><span class="p">,</span>
     <span class="nv">iteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
     <span class="nv">evaluation</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a></span><span class="p">?</span>
-<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a></span></code></pre>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>booster</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Booster.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>iteration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current iteration.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>evaluation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Dictionary with evaluations.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

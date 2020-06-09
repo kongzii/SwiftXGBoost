@@ -40,13 +40,16 @@
               <li class="nav-group-task">
                 <a href="../Classes/EarlyStopping.html">EarlyStopping</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VariableLearningRate.html">VariableLearningRate</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a>
+                <a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/BoosterType.html">BoosterType</a>
@@ -62,6 +65,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Importance.html">Importance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LoopPosition.html">LoopPosition</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModelFormat.html">ModelFormat</a>
@@ -91,6 +97,9 @@
           <li class="nav-group-name">
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Callback.html">Callback</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Protocols/FloatData.html">FloatData</a>
               </li>
@@ -2421,9 +2430,9 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC5train10iterations12trainingData010evaluationF013earlyStopping23beforeIterationCallback05afterkL0ySi_AA7DMatrixCSayALGAA05EarlyI0CSgyAC_SitKXEAA05AfterkL6OutputOAC_SiSDySSSDyS2SGGSgtKXEtKF"></a>
-                    <a name="//apple_ref/swift/Method/train(iterations:trainingData:evaluationData:earlyStopping:beforeIterationCallback:afterIterationCallback:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC5train10iterations12trainingData010evaluationF013earlyStopping23beforeIterationCallback05afterkL0ySi_AA7DMatrixCSayALGAA05EarlyI0CSgyAC_SitKXEAA05AfterkL6OutputOAC_SiSDySSSDyS2SGGSgtKXEtKF">train(iterations:<wbr>trainingData:<wbr>evaluationData:<wbr>earlyStopping:<wbr>beforeIterationCallback:<wbr>afterIterationCallback:<wbr>)</a>
+                    <a name="/s:7XGBoost7BoosterC5train10iterations12trainingData010evaluationF015beforeIteration9callbacks05afterI0ySi_AA7DMatrixCSayALGAA05AfterI6OutputOAC_SitKXESayAA8Callback_pGAoC_SiSDySSSDyS2SGGSgSayAOGtKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/train(iterations:trainingData:evaluationData:beforeIteration:callbacks:afterIteration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC5train10iterations12trainingData010evaluationF015beforeIteration9callbacks05afterI0ySi_AA7DMatrixCSayALGAA05AfterI6OutputOAC_SitKXESayAA8Callback_pGAoC_SiSDySSSDyS2SGGSgSayAOGtKXEtKF">train(iterations:<wbr>trainingData:<wbr>evaluationData:<wbr>beforeIteration:<wbr>callbacks:<wbr>afterIteration:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2442,9 +2451,9 @@ In most cases you will want to use <code>dumped</code> method to get output in e
     <span class="nv">iterations</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
     <span class="nv">trainingData</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">,</span>
     <span class="nv">evaluationData</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-    <span class="nv">earlyStopping</span><span class="p">:</span> <span class="kt"><a href="../Classes/EarlyStopping.html">EarlyStopping</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">beforeIterationCallback</span><span class="p">:</span> <span class="p">(</span><span class="kt">Booster</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="p">},</span>
-    <span class="nv">afterIterationCallback</span><span class="p">:</span> <span class="p">(</span><span class="kt">Booster</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a></span><span class="p">?)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationCallbackOutput.html">AfterIterationCallbackOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">}</span>
+    <span class="nv">beforeIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt">Booster</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">},</span>
+    <span class="nv">callbacks</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Callback.html">Callback</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">afterIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt">Booster</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a></span><span class="p">?,</span> <span class="p">[</span><span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">}</span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
