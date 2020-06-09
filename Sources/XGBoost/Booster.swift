@@ -757,10 +757,11 @@ public class Booster {
             }
 
             let resultSplitted = result.components(separatedBy: ":")
+           
             let nameSplitted = resultSplitted[0].components(separatedBy: "-")
-
             let name = nameSplitted[0]
             let metric = nameSplitted[1]
+            
             let value = resultSplitted[1]
 
             if results[name] == nil {
