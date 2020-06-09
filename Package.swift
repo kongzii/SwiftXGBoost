@@ -26,12 +26,14 @@ let package = Package(
         .package(url: "https://github.com/kongzii/PythonKit", .exact("0.0.1")),
         // .package(url: "https://github.com/pvieito/PythonKit.git", .branch("master")),
         .package(url: "https://github.com/KarthikRIyer/swiftplot.git", from: "2.0.0"),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
     ],
     targets: [
         .target(
             name: "XGBoost",
             dependencies: [
                 "CXGBoost",
+                "Logging",
                 "PythonKit",
                 "SwiftPlot",
                 "AGGRenderer",

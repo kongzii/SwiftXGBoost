@@ -190,11 +190,11 @@ public class EarlyStopping: Callback {
             try booster.set(attribute: "best_msg", value: state.bestMsg)
 
             if verbose {
-                print(state.bestMsg)
+                log(state.bestMsg)
             }
         } else if iteration - state.bestIteration >= stoppingRounds {
             if verbose {
-                print("Stopping at iteration \(iteration): " + state.bestMsg)
+                log("Stopping at iteration \(iteration): " + state.bestMsg)
             }
 
             return .stop
