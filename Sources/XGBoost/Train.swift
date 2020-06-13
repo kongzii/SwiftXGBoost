@@ -22,6 +22,9 @@ public protocol Callback {
         iteration: Int,
         evaluation: Evaluation?
     ) throws -> AfterIterationOutput
+
+    /// - Returns: Copy of itself
+    func copy() -> Self
 }
 
 public class EarlyStopping: Callback {
@@ -73,7 +76,7 @@ public class EarlyStopping: Callback {
     /// - Parameter stoppingRounds: Number of rounds to check improvence for.
     /// - Parameter state: Initial state.
     /// - Parameter verbose: Print on new best or stopping.
-    public init(
+    public required init(
         dataName: String,
         metricName: String,
         stoppingRounds: Int,
@@ -202,6 +205,16 @@ public class EarlyStopping: Callback {
 
         return .next
     }
+
+    public func copy() -> Self {
+        .init(
+            dataName: dataName,
+            metricName: metricName,
+            stoppingRounds: stoppingRounds,
+            state: state,
+            verbose: verbose
+        )
+    }
 }
 
 public class VariableLearningRate: Callback {
@@ -212,6 +225,21 @@ public class VariableLearningRate: Callback {
     var iterations: Int
     var learningRates: [String]?
     var learningRateFunction: Function?
+
+    required init(
+        learningRateFunction: Function?,
+        learningRates: [String]?,
+        iterations: Int
+    ) {
+        precondition(
+            iterations == (learningRates?.count ?? iterations),
+            "Learning rates count must be equal to iterations."
+        )
+
+        self.learningRateFunction = learningRateFunction
+        self.learningRates = learningRates
+        self.iterations = iterations
+    }
 
     public init(
         learningRates: [String],
@@ -254,6 +282,14 @@ public class VariableLearningRate: Callback {
 
         return .next
     }
+
+    public func copy() -> Self {
+        .init(
+            learningRateFunction: learningRateFunction,
+            learningRates: learningRates,
+            iterations: iterations
+        )
+    }
 }
 
 extension Booster {
@@ -268,7 +304,9 @@ extension Booster {
     public func train(
         iterations: Int,
         trainingData: Data,
+        objectiveFunction: ObjectiveFunction? = nil,
         evaluationData: [Data] = [],
+        evaluationFunction: EvaluationFunction? = nil,
         beforeIteration: (Booster, Int) throws -> AfterIterationOutput = { _, _ in .next },
         callbacks: [Callback] = [],
         afterIteration: (Booster, Int, Evaluation?, [AfterIterationOutput]) throws -> AfterIterationOutput = { _, _, _, _ in .next }
@@ -297,14 +335,21 @@ extension Booster {
                 break training
             }
 
-            try update(
-                iteration: iteration,
-                data: trainingData
-            )
+            if let objectiveFunction = objectiveFunction {
+                try update(
+                    data: trainingData,
+                    objective: objectiveFunction
+                )
+            } else {
+                try update(
+                    iteration: iteration,
+                    data: trainingData
+                )
+            }
 
             let evaluation =
                 evaluationData.isEmpty ? nil : try evaluate(
-                    iteration: iteration, data: evaluationData
+                    iteration: iteration, data: evaluationData, function: evaluationFunction
                 )
 
             outputs.append(contentsOf: try callbacks.filter { $0.execute.contains(.after) }.map {

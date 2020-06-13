@@ -10,6 +10,7 @@ import XCTest
             testCase(TensorFlowTests.allTests),
             testCase(XGBoostDocsTests.allTests),
             testCase(TrainTests.allTests),
+            testCase(CrossValidationTests.allTests),
         ]
     }
 #endif

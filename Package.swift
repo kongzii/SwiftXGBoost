@@ -61,5 +61,13 @@ let package = Package(
             ],
             path: "Examples/AftSurvival"
         ),
+        .target(
+            name: "CrossValidation",
+            dependencies: [
+                "XGBoost",
+                "PythonKit",
+            ],
+            path: "Examples/CrossValidation"
+        ),
     ]
 )

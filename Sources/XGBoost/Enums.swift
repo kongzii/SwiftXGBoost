@@ -1,9 +1,5 @@
 import Foundation
 
-/// Parameter for Booster.
-/// See https://xgboost.readthedocs.io/en/latest/parameter.html for available parameters.
-public typealias Parameter = (name: String, value: String)
-
 /// Typealias for underlying XGBoost version.
 public typealias Version = (major: Int, minor: Int, patch: Int)
 

@@ -54,3 +54,54 @@ extension Array: UInt32Data where Element == UInt32 {
         self
     }
 }
+
+public extension Array {
+    func chunked(into chunks: Int) -> [[Element]] {
+        let size = (count / chunks)
+            + Int((Float(count % chunks) / Float(chunks)).rounded(.up))
+
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+}
+
+public extension Array where Element: AdditiveArithmetic {
+    func diff() -> [Element] {
+        var result = [Element]()
+
+        for i in 0 ..< count - 1 {
+            result.append(self[i + 1] - self[i])
+        }
+
+        return result
+    }
+}
+
+public extension Array where Element: FloatingPoint {
+    func sum() -> Element {
+        reduce(0, +)
+    }
+
+    func mean(
+        sum: Element? = nil
+    ) -> Element {
+        sum ?? self.sum() / Element(count)
+    }
+
+    func std(
+        sum: Element? = nil,
+        mean: Element? = nil,
+        ddof: Int = 0
+    ) -> Element {
+        let mean = mean ?? self.mean(sum: sum)
+        let v = reduce(0) { $0 + ($1 - mean) * ($1 - mean) }
+        return (v / Element(count - ddof)).squareRoot()
+    }
+}
+
+public extension Array where Element == AfterIterationOutput {
+    var willStop: Bool {
+        contains(where: { $0 == .stop })
+    }
+}

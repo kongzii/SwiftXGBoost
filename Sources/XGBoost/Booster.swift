@@ -3,6 +3,11 @@ import CXGBoost
 /// Alias for backward compatibility
 public typealias XGBoost = Booster
 
+/// Typealias for objective function
+public typealias ObjectiveFunction = ([Float], Data) throws -> (gradient: [Float], hessian: [Float])
+
+public typealias EvaluationFunction = ([Float], Data) throws -> (String, String)
+
 /// Booster model.
 ///
 /// Encapsulates BoosterHandle, the model of xgboost, that contains low level routines for
@@ -92,11 +97,11 @@ public class Booster {
             try set(parameter: "validate_parameters", value: "1")
         }
 
-        for (name, value) in parameters {
-            try set(parameter: name, value: value)
+        for parameter in parameters {
+            try set(parameter: parameter.name, value: parameter.value)
 
-            if name == "booster" {
-                type = BoosterType(rawValue: name)
+            if parameter.name == "booster" {
+                type = BoosterType(rawValue: parameter.name)
             }
         }
 
@@ -668,7 +673,7 @@ public class Booster {
     /// - Parameter validateFeatures: Whether to validate features.
     public func update(
         data: Data,
-        objective: ([Float], Data) -> (gradient: [Float], hessian: [Float]),
+        objective: ObjectiveFunction,
         validateFeatures: Bool = true
     ) throws {
         let predicted = try predict(
@@ -677,7 +682,7 @@ public class Booster {
             training: true,
             validateFeatures: validateFeatures
         )
-        let (gradient, hessian) = objective(predicted, data)
+        let (gradient, hessian) = try objective(predicted, data)
         try boost(
             data: data,
             gradient: gradient,
@@ -729,7 +734,8 @@ public class Booster {
     /// - Returns: Dictionary in format [data_name: [eval_name: eval_value, ...], ...]
     public func evaluate(
         iteration: Int,
-        data: [Data]
+        data: [Data],
+        function: EvaluationFunction? = nil
     ) throws -> [String: [String: String]] {
         try validate(data: data)
 
@@ -771,6 +777,17 @@ public class Booster {
             results[name]![metric] = value
         }
 
+        if let function = function {
+            for data in data {
+                let (name, result) = try function(
+                    try predict(from: data, training: false),
+                    data
+                )
+
+                results[data.name]![name] = result
+            }
+        }
+
         return results
     }
 
@@ -781,9 +798,10 @@ public class Booster {
     /// - Returns: Dictionary in format [data_name: [eval_name: eval_value]]
     public func evaluate(
         iteration: Int,
-        data: Data
+        data: Data,
+        function: EvaluationFunction? = nil
     ) throws -> [String: [String: String]] {
-        try evaluate(iteration: iteration, data: [data])
+        try evaluate(iteration: iteration, data: [data], function: function)
     }
 
     /// Validate features.

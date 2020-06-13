@@ -198,9 +198,9 @@ let train = try data.slice(indexes: 0 ..< 90, newName: "train")
 let test = try data.slice(indexes: 90 ..< 100, newName: "test")
 
 // Parameters for Booster, check https://xgboost.readthedocs.io/en/latest/parameter.html
-let parameters: [Parameter] = [
-    ("verbosity", "2"),
-    ("seed", "0"),
+let parameters = [
+    Parameter("verbosity", "2"),
+    Parameter("seed", "0"),
 ]
 
 // Create Booster model, `with` data will be cached

@@ -3,15 +3,8 @@ import XCTest
 
 @testable import XGBoost
 
-let PXGBOOST = Python.import("xgboost")
-let PJSON = Python.import("json")
-
-func assertEqualDictionary(_ a: [String: Float], _ b: [String: Float], accuracy: Float) {
-    for (key, value) in a {
-        XCTAssertNotNil(b[key])
-        XCTAssertEqual(value, b[key]!, accuracy: accuracy)
-    }
-}
+private let PXGBOOST = Python.import("xgboost")
+private let PJSON = Python.import("json")
 
 final class BoosterTests: XCTestCase {
     func testAttribute() throws {
