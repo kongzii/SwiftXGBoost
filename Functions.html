@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Structures  Reference</title>
+    <title>Functions  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Section/Structures" class="dashAnchor"></a>
-    <a title="Structures  Reference"></a>
+    <a name="//apple_ref/swift/Section/Functions" class="dashAnchor"></a>
+    <a title="Functions  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html"> Docs</a> (55% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="index.html"> Reference</a>
         <img id="carat" src="img/carat.png" />
-        Structures  Reference
+        Functions  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -182,8 +182,8 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Structures</h1>
-            <p>The following structures are available globally.</p>
+            <h1>Functions</h1>
+            <p>The following functions are available globally.</p>
 
           </section>
           <section class="section task-group-section">
@@ -192,9 +192,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7FeatureV"></a>
-                    <a name="//apple_ref/swift/Struct/Feature" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7FeatureV">Feature</a>
+                    <a name="/s:7XGBoost23crossValidationTraining5folds10iterations17objectiveFunction010evaluationH015beforeIteration9callbacks05afterK0SDySSSaySfGG7results_SayAA6CVPackCGACtAO_SiAJ8gradient_AJ7hessiantAJ_AA7DMatrixCtKcSgSS_SStAJ_AStKcSgAA05AfterK6OutputOAA7BoosterC_SitKXESayAA8Callback_pGAwY_SiSDySSSDyS2SGGSgSayAWGtKXEtKF"></a>
+                    <a name="//apple_ref/swift/Function/crossValidationTraining(folds:iterations:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost23crossValidationTraining5folds10iterations17objectiveFunction010evaluationH015beforeIteration9callbacks05afterK0SDySSSaySfGG7results_SayAA6CVPackCGACtAO_SiAJ8gradient_AJ7hessiantAJ_AA7DMatrixCtKcSgSS_SStAJ_AStKcSgAA05AfterK6OutputOAA7BoosterC_SitKXESayAA8Callback_pGAwY_SiSDySSSDyS2SGGSgSayAWGtKXEtKF">crossValidationTraining(folds:<wbr>iterations:<wbr>objectiveFunction:<wbr>evaluationFunction:<wbr>beforeIteration:<wbr>callbacks:<wbr>afterIteration:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -202,15 +202,22 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Information about feature.</p>
+                        <p>Undocumented</p>
 
-                        <a href="Structs/Feature.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Feature</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">crossValidationTraining</span><span class="p">(</span>
+    <span class="nv">folds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Classes/CVPack.html">CVPack</a></span><span class="p">],</span>
+    <span class="nv">iterations</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">objectiveFunction</span><span class="p">:</span> <span class="kt"><a href="Typealiases.html#/s:7XGBoost17ObjectiveFunctiona">ObjectiveFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">evaluationFunction</span><span class="p">:</span> <span class="kt"><a href="Typealiases.html#/s:7XGBoost18EvaluationFunctiona">EvaluationFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">beforeIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="Classes/Booster.html">Booster</a></span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">},</span>
+    <span class="nv">callbacks</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Protocols/Callback.html">Callback</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">afterIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="Classes/Booster.html">Booster</a></span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt"><a href="Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a></span><span class="p">?,</span> <span class="p">[</span><span class="kt"><a href="Enums/AfterIterationOutput.html">AfterIterationOutput</a></span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">}</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">results</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]],</span> <span class="nv">folds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Classes/CVPack.html">CVPack</a></span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -220,9 +227,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost9ParameterV"></a>
-                    <a name="//apple_ref/swift/Struct/Parameter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost9ParameterV">Parameter</a>
+                    <a name="/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters17objectiveFunction010evaluationJ07shuffle15beforeIteration9callbacks05afterN0SDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAM8gradient_AM7hessiantAM_AUtKcSgSS_SStAM_AUtKcSgSbAA05AfterN6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA2_A4__SiSDySSSDyS2SGGSgSayA2_GtKXEtKF"></a>
+                    <a name="//apple_ref/swift/Function/crossValidationTraining(data:splits:iterations:parameters:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters17objectiveFunction010evaluationJ07shuffle15beforeIteration9callbacks05afterN0SDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAM8gradient_AM7hessiantAM_AUtKcSgSS_SStAM_AUtKcSgSbAA05AfterN6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA2_A4__SiSDySSSDyS2SGGSgSayA2_GtKXEtKF">crossValidationTraining(data:<wbr>splits:<wbr>iterations:<wbr>parameters:<wbr>objectiveFunction:<wbr>evaluationFunction:<wbr>shuffle:<wbr>beforeIteration:<wbr>callbacks:<wbr>afterIteration:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -230,44 +237,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Parameter for Booster.
-See <a href="https://xgboost.readthedocs.io/en/latest/parameter.html">https://xgboost.readthedocs.io/en/latest/parameter.html</a> for available parameters.</p>
+                        <p>Undocumented</p>
 
-                        <a href="Structs/Parameter.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Parameter</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost5ShapeV"></a>
-                    <a name="//apple_ref/swift/Struct/Shape" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost5ShapeV">Shape</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Shape of Data.</p>
-
-                        <a href="Structs/Shape.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Shape</span> <span class="p">:</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">crossValidationTraining</span><span class="p">(</span>
+    <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">,</span>
+    <span class="nv">splits</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">iterations</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Structs/Parameter.html">Parameter</a></span><span class="p">],</span>
+    <span class="nv">objectiveFunction</span><span class="p">:</span> <span class="kt"><a href="Typealiases.html#/s:7XGBoost17ObjectiveFunctiona">ObjectiveFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">evaluationFunction</span><span class="p">:</span> <span class="kt"><a href="Typealiases.html#/s:7XGBoost18EvaluationFunctiona">EvaluationFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">shuffle</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">beforeIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="Classes/Booster.html">Booster</a></span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">},</span>
+    <span class="nv">callbacks</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Protocols/Callback.html">Callback</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">afterIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="Classes/Booster.html">Booster</a></span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt"><a href="Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a></span><span class="p">?,</span> <span class="p">[</span><span class="kt"><a href="Enums/AfterIterationOutput.html">AfterIterationOutput</a></span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">}</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">results</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]],</span> <span class="nv">folds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Classes/CVPack.html">CVPack</a></span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>

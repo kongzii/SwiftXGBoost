@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Int32Data Protocol Reference</title>
+    <title>CVPack Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/Int32Data" class="dashAnchor"></a>
-    <a title="Int32Data Protocol Reference"></a>
+    <a name="//apple_ref/swift/Class/CVPack" class="dashAnchor"></a>
+    <a title="CVPack Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (55% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Int32Data Protocol Reference
+        CVPack Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -182,10 +182,10 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Int32Data</h1>
+            <h1>CVPack</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Int32Data</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CVPack</span></code></pre>
 
                 </div>
               </div>
@@ -198,9 +198,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost9Int32DataP4dataSays0B0VGyKF"></a>
-                    <a name="//apple_ref/swift/Method/data()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost9Int32DataP4dataSays0B0VGyKF">data()</a>
+                    <a name="/s:7XGBoost6CVPackC5trainAA7DMatrixCvp"></a>
+                    <a name="//apple_ref/swift/Property/train" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost6CVPackC5trainAA7DMatrixCvp">train</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -215,7 +215,92 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">data</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Int32</span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">train</span><span class="p">:</span> <span class="kt"><a href="../Classes/DMatrix.html">DMatrix</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost6CVPackC4testAA7DMatrixCvp"></a>
+                    <a name="//apple_ref/swift/Property/test" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost6CVPackC4testAA7DMatrixCvp">test</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">test</span><span class="p">:</span> <span class="kt"><a href="../Classes/DMatrix.html">DMatrix</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost6CVPackC7boosterAA7BoosterCvp"></a>
+                    <a name="//apple_ref/swift/Property/booster" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost6CVPackC7boosterAA7BoosterCvp">booster</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">booster</span><span class="p">:</span> <span class="kt"><a href="../Classes/Booster.html">Booster</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost6CVPackC5train4test10parametersAcA7DMatrixC_AHSayAA9ParameterVGtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(train:test:parameters:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost6CVPackC5train4test10parametersAcA7DMatrixC_AHSayAA9ParameterVGtKcfc">init(train:<wbr>test:<wbr>parameters:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">train</span><span class="p">:</span> <span class="kt"><a href="../Classes/DMatrix.html">DMatrix</a></span><span class="p">,</span>
+    <span class="nv">test</span><span class="p">:</span> <span class="kt"><a href="../Classes/DMatrix.html">DMatrix</a></span><span class="p">,</span>
+    <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Parameter.html">Parameter</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>

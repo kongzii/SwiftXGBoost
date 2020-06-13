@@ -22,6 +22,104 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 59,
+      "symbol": "Array.chunked(into:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 70,
+      "symbol": "Array.diff()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 82,
+      "symbol": "Array.sum()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 86,
+      "symbol": "Array.mean(sum:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 92,
+      "symbol": "Array.std(sum:mean:ddof:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 104,
+      "symbol": "Array.willStop",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Booster.swift",
+      "line": 9,
+      "symbol": "EvaluationFunction",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
+      "line": 4,
+      "symbol": "CVPack",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
+      "line": 5,
+      "symbol": "CVPack.test",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
+      "line": 5,
+      "symbol": "CVPack.train",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
+      "line": 6,
+      "symbol": "CVPack.booster",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
+      "line": 8,
+      "symbol": "CVPack.init(train:test:parameters:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
+      "line": 173,
+      "symbol": "crossValidationTraining(folds:iterations:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
+      "line": 220,
+      "symbol": "crossValidationTraining(data:splits:iterations:parameters:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
       "line": 6,
       "symbol": "FloatData",
@@ -92,190 +190,197 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Dictionary.swift",
+      "line": 2,
+      "symbol": "Dictionary.subscript(_:or:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 12,
+      "line": 8,
       "symbol": "BufferModel",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 13,
+      "line": 9,
       "symbol": "SerializedBuffer",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 15,
+      "line": 11,
       "symbol": "AfterIterationOutput",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 16,
+      "line": 12,
       "symbol": "AfterIterationOutput.next",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 16,
+      "line": 12,
       "symbol": "AfterIterationOutput.stop",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 21,
+      "line": 17,
       "symbol": "ModelFormat.dot",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 21,
+      "line": 17,
       "symbol": "ModelFormat.json",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 21,
+      "line": 17,
       "symbol": "ModelFormat.text",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 26,
+      "line": 22,
       "symbol": "DataFormat.binary",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 26,
+      "line": 22,
       "symbol": "DataFormat.csv",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 26,
+      "line": 22,
       "symbol": "DataFormat.libsvm",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 32,
+      "line": 28,
       "symbol": "FloatField.label",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 33,
+      "line": 29,
       "symbol": "FloatField.weight",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 34,
+      "line": 30,
       "symbol": "FloatField.baseMargin",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 35,
+      "line": 31,
       "symbol": "FloatField.labelLowerBound",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 36,
+      "line": 32,
       "symbol": "FloatField.labelUpperBound",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 42,
+      "line": 38,
       "symbol": "UIntField.group",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 43,
+      "line": 39,
       "symbol": "UIntField.groupPtr",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 46,
+      "line": 42,
       "symbol": "Importance",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 47,
+      "line": 43,
       "symbol": "Importance.weight",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 48,
+      "line": 44,
       "symbol": "Importance.gain",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 49,
+      "line": 45,
       "symbol": "Importance.cover",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 50,
+      "line": 46,
       "symbol": "Importance.totalGain",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 51,
+      "line": 47,
       "symbol": "Importance.totalCover",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 56,
+      "line": 52,
       "symbol": "BoosterType.gbtree",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 57,
+      "line": 53,
       "symbol": "BoosterType.gblinear",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
-      "line": 58,
+      "line": 54,
       "symbol": "BoosterType.dart",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
@@ -319,6 +424,34 @@
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Feature.swift",
       "line": 17,
       "symbol": "Feature.init(name:type:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Parameter.swift",
+      "line": 6,
+      "symbol": "Parameter.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Parameter.swift",
+      "line": 7,
+      "symbol": "Parameter.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Parameter.swift",
+      "line": 9,
+      "symbol": "Parameter.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Parameter.swift",
+      "line": 14,
+      "symbol": "Parameter.init(name:value:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -422,77 +555,77 @@
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 27,
+      "line": 30,
       "symbol": "EarlyStopping",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 30,
+      "line": 33,
       "symbol": "EarlyStopping.State",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 37,
+      "line": 40,
       "symbol": "EarlyStopping.state",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 38,
+      "line": 41,
       "symbol": "EarlyStopping.dataName",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 39,
+      "line": 42,
       "symbol": "EarlyStopping.metricName",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 40,
+      "line": 43,
       "symbol": "EarlyStopping.stoppingRounds",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 41,
+      "line": 44,
       "symbol": "EarlyStopping.verbose",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 207,
+      "line": 220,
       "symbol": "VariableLearningRate",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 210,
+      "line": 223,
       "symbol": "VariableLearningRate.Function",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 216,
+      "line": 244,
       "symbol": "VariableLearningRate.init(learningRates:iterations:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Train.swift",
-      "line": 229,
+      "line": 257,
       "symbol": "VariableLearningRate.init(learningRate:iterations:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

@@ -14,7 +14,7 @@
     <a title="Booster Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (59% documented)</p>
+        <p><a href="../index.html"> Docs</a> (55% documented)</p>
         <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/Booster.html">Booster</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CVPack.html">CVPack</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DMatrix.html">DMatrix</a>
@@ -84,6 +87,9 @@
                 <a href="../Extensions/Array.html">Array</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Dictionary.html">Dictionary</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/PythonObject.html">PythonObject</a>
               </li>
               <li class="nav-group-task">
@@ -91,6 +97,17 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Tensor.html">Tensor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters17objectiveFunction010evaluationJ07shuffle15beforeIteration9callbacks05afterN0SDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAM8gradient_AM7hessiantAM_AUtKcSgSS_SStAM_AUtKcSgSbAA05AfterN6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA2_A4__SiSDySSSDyS2SGGSgSayA2_GtKXEtKF">crossValidationTraining(data:splits:iterations:parameters:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining5folds10iterations17objectiveFunction010evaluationH015beforeIteration9callbacks05afterK0SDySSSaySfGG7results_SayAA6CVPackCGACtAO_SiAJ8gradient_AJ7hessiantAJ_AA7DMatrixCtKcSgSS_SStAJ_AStKcSgAA05AfterK6OutputOAA7BoosterC_SitKXESayAA8Callback_pGAwY_SiSDySSSDyS2SGGSgSayAWGtKXEtKF">crossValidationTraining(folds:iterations:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:)</a>
               </li>
             </ul>
           </li>
@@ -121,6 +138,9 @@
                 <a href="../Structs/Feature.html">Feature</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Parameter.html">Parameter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Shape.html">Shape</a>
               </li>
             </ul>
@@ -138,7 +158,10 @@
                 <a href="../Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:7XGBoost9Parametera">Parameter</a>
+                <a href="../Typealiases.html#/s:7XGBoost18EvaluationFunctiona">EvaluationFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost17ObjectiveFunctiona">ObjectiveFunction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost8RawModela">RawModel</a>
@@ -376,9 +399,9 @@ training, prediction and evaluation.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC4with4from6config10parameters18validateParametersACSayAA7DMatrixCG_SSSgALSaySS4name_SS5valuetGSbtKcfc"></a>
+                    <a name="/s:7XGBoost7BoosterC4with4from6config10parameters18validateParametersACSayAA7DMatrixCG_SSSgALSayAA9ParameterVGSbtKcfc"></a>
                     <a name="//apple_ref/swift/Method/init(with:from:config:parameters:validateParameters:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC4with4from6config10parameters18validateParametersACSayAA7DMatrixCG_SSSgALSaySS4name_SS5valuetGSbtKcfc">init(with:<wbr>from:<wbr>config:<wbr>parameters:<wbr>validateParameters:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC4with4from6config10parameters18validateParametersACSayAA7DMatrixCG_SSSgALSayAA9ParameterVGSbtKcfc">init(with:<wbr>from:<wbr>config:<wbr>parameters:<wbr>validateParameters:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -397,7 +420,7 @@ training, prediction and evaluation.</p>
     <span class="n">with</span> <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="n">from</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">config</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost9Parametera">Parameter</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Parameter.html">Parameter</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nv">validateParameters</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
@@ -1804,9 +1827,9 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC6update4data9objective16validateFeaturesyAA7DMatrixC_SaySfG8gradient_AJ7hessiantAJ_AItXESbtKF"></a>
+                    <a name="/s:7XGBoost7BoosterC6update4data9objective16validateFeaturesyAA7DMatrixC_SaySfG8gradient_AJ7hessiantAJ_AItKXESbtKF"></a>
                     <a name="//apple_ref/swift/Method/update(data:objective:validateFeatures:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC6update4data9objective16validateFeaturesyAA7DMatrixC_SaySfG8gradient_AJ7hessiantAJ_AItXESbtKF">update(data:<wbr>objective:<wbr>validateFeatures:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC6update4data9objective16validateFeaturesyAA7DMatrixC_SaySfG8gradient_AJ7hessiantAJ_AItKXESbtKF">update(data:<wbr>objective:<wbr>validateFeatures:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1823,7 +1846,7 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span>
     <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">,</span>
-    <span class="nv">objective</span><span class="p">:</span> <span class="p">([</span><span class="kt">Float</span><span class="p">],</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">gradient</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">],</span> <span class="nv">hessian</span><span class="p">:</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]),</span>
+    <span class="nv">objective</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost17ObjectiveFunctiona">ObjectiveFunction</a></span><span class="p">,</span>
     <span class="nv">validateFeatures</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
@@ -1965,9 +1988,9 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC8evaluate9iteration4dataSDySSSDyS2SGGSi_SayAA7DMatrixCGtKF"></a>
-                    <a name="//apple_ref/swift/Method/evaluate(iteration:data:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC8evaluate9iteration4dataSDySSSDyS2SGGSi_SayAA7DMatrixCGtKF">evaluate(iteration:<wbr>data:<wbr>)</a>
+                    <a name="/s:7XGBoost7BoosterC8evaluate9iteration4data8functionSDySSSDyS2SGGSi_SayAA7DMatrixCGSS_SStSaySfG_AKtKcSgtKF"></a>
+                    <a name="//apple_ref/swift/Method/evaluate(iteration:data:function:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC8evaluate9iteration4data8functionSDySSSDyS2SGGSi_SayAA7DMatrixCGSS_SStSaySfG_AKtKcSgtKF">evaluate(iteration:<wbr>data:<wbr>function:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1984,7 +2007,8 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">evaluate</span><span class="p">(</span>
     <span class="nv">iteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
-    <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">]</span>
+    <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">],</span>
+    <span class="nv">function</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost18EvaluationFunctiona">EvaluationFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
 <span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]]</span></code></pre>
 
                         </div>
@@ -2030,9 +2054,9 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC8evaluate9iteration4dataSDySSSDyS2SGGSi_AA7DMatrixCtKF"></a>
-                    <a name="//apple_ref/swift/Method/evaluate(iteration:data:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC8evaluate9iteration4dataSDySSSDyS2SGGSi_AA7DMatrixCtKF">evaluate(iteration:<wbr>data:<wbr>)</a>
+                    <a name="/s:7XGBoost7BoosterC8evaluate9iteration4data8functionSDySSSDyS2SGGSi_AA7DMatrixCSS_SStSaySfG_AKtKcSgtKF"></a>
+                    <a name="//apple_ref/swift/Method/evaluate(iteration:data:function:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC8evaluate9iteration4data8functionSDySSSDyS2SGGSi_AA7DMatrixCSS_SStSaySfG_AKtKcSgtKF">evaluate(iteration:<wbr>data:<wbr>function:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2049,7 +2073,8 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">evaluate</span><span class="p">(</span>
     <span class="nv">iteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
-    <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span>
+    <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">,</span>
+    <span class="nv">function</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost18EvaluationFunctiona">EvaluationFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
 <span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]]</span></code></pre>
 
                         </div>
@@ -2430,9 +2455,9 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC5train10iterations12trainingData010evaluationF015beforeIteration9callbacks05afterI0ySi_AA7DMatrixCSayALGAA05AfterI6OutputOAC_SitKXESayAA8Callback_pGAoC_SiSDySSSDyS2SGGSgSayAOGtKXEtKF"></a>
-                    <a name="//apple_ref/swift/Method/train(iterations:trainingData:evaluationData:beforeIteration:callbacks:afterIteration:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC5train10iterations12trainingData010evaluationF015beforeIteration9callbacks05afterI0ySi_AA7DMatrixCSayALGAA05AfterI6OutputOAC_SitKXESayAA8Callback_pGAoC_SiSDySSSDyS2SGGSgSayAOGtKXEtKF">train(iterations:<wbr>trainingData:<wbr>evaluationData:<wbr>beforeIteration:<wbr>callbacks:<wbr>afterIteration:<wbr>)</a>
+                    <a name="/s:7XGBoost7BoosterC5train10iterations12trainingData17objectiveFunction010evaluationF00iH015beforeIteration9callbacks05afterK0ySi_AA7DMatrixCSaySfG8gradient_AO7hessiantAO_ANtKcSgSayANGSS_SStAO_ANtKcSgAA05AfterK6OutputOAC_SitKXESayAA8Callback_pGAvC_SiSDySSSDyS2SGGSgSayAVGtKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/train(iterations:trainingData:objectiveFunction:evaluationData:evaluationFunction:beforeIteration:callbacks:afterIteration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC5train10iterations12trainingData17objectiveFunction010evaluationF00iH015beforeIteration9callbacks05afterK0ySi_AA7DMatrixCSaySfG8gradient_AO7hessiantAO_ANtKcSgSayANGSS_SStAO_ANtKcSgAA05AfterK6OutputOAC_SitKXESayAA8Callback_pGAvC_SiSDySSSDyS2SGGSgSayAVGtKXEtKF">train(iterations:<wbr>trainingData:<wbr>objectiveFunction:<wbr>evaluationData:<wbr>evaluationFunction:<wbr>beforeIteration:<wbr>callbacks:<wbr>afterIteration:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2450,7 +2475,9 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">train</span><span class="p">(</span>
     <span class="nv">iterations</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
     <span class="nv">trainingData</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">,</span>
+    <span class="nv">objectiveFunction</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost17ObjectiveFunctiona">ObjectiveFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">evaluationData</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">evaluationFunction</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost18EvaluationFunctiona">EvaluationFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">beforeIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt">Booster</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">},</span>
     <span class="nv">callbacks</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Callback.html">Callback</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nv">afterIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt">Booster</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a></span><span class="p">?,</span> <span class="p">[</span><span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">}</span>
@@ -2545,7 +2572,7 @@ In most cases you will want to use <code>dumped</code> method to get output in e
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-09)</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
