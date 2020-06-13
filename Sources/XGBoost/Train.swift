@@ -296,6 +296,7 @@ extension Booster {
     /// Train booster.
     ///
     /// - Parameter iterations: Number of training iterations, but training can be stopped early.
+    /// - Parameter startIteration: N. of starting iteration.
     /// - Parameter trainingData: Data to train on.
     /// - Parameter evaluationData: Data to evaluate on, if provided.
     /// - Parameter earlyStopping: Early stopping.
@@ -303,6 +304,7 @@ extension Booster {
     /// - Parameter afterIteration: Callback called after each iteration.
     public func train(
         iterations: Int,
+        startIteration: Int? = nil,
         trainingData: Data,
         objectiveFunction: ObjectiveFunction? = nil,
         evaluationData: [Data] = [],
@@ -312,7 +314,7 @@ extension Booster {
         afterIteration: (Booster, Int, Evaluation?, [AfterIterationOutput]) throws -> AfterIterationOutput = { _, _, _, _ in .next }
     ) throws {
         var version = try loadRabitCheckpoint()
-        let startIteration = Int(version / 2)
+        let startIteration = startIteration ?? Int(version / 2)
 
         training: for iteration in startIteration ..< iterations {
             var outputs = [AfterIterationOutput]()
