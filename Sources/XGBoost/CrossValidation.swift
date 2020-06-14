@@ -2,20 +2,25 @@ import CXGBoost
 import Foundation
 
 public class CVPack {
+    public let id: String
     public let train, test: DMatrix
     public let booster: Booster
 
     public init(
+        id: String,
         train: DMatrix,
         test: DMatrix,
         parameters: [Parameter]
     ) throws {
+        self.id = id
         self.train = train
         self.test = test
         booster = try Booster(
             with: [train, test],
             parameters: parameters
         )
+
+        try booster.set(attribute: "cvpack_id", value: self.id)
     }
 }
 
@@ -80,6 +85,7 @@ func makeGroupNFold(
         )
         packs.append(
             try CVPack(
+                id: "\(k)",
                 train: train,
                 test: test,
                 parameters: parameters
@@ -132,6 +138,7 @@ func makeNFold(
 
         packs.append(
             try CVPack(
+                id: "\(k)",
                 train: train,
                 test: test,
                 parameters: parameters
