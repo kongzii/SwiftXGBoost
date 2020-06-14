@@ -11,14 +11,17 @@ public enum LoopPosition {
 
 /// Protocol for classes and structs that can be passed to traning in callbacks array.
 public protocol Callback {
+    // Name of the callback
+    var name: String { get }
+
     /// Time when to execute the callback in training loop.
     var execute: [LoopPosition] { get }
 
-    /// - Parameter booster: Booster.
+    /// - Parameter booster: Optional booster.
     /// - Parameter iteration: Current iteration.
     /// - Parameter evaluation: Dictionary with evaluations.
     func call(
-        booster: Booster,
+        booster: Booster?,
         iteration: Int,
         evaluation: Evaluation?
     ) throws -> AfterIterationOutput
@@ -28,6 +31,7 @@ public protocol Callback {
 }
 
 public class EarlyStopping: Callback {
+    public var name: String = "EarlyStopping"
     public var execute: [LoopPosition] = [.after]
 
     public typealias State = (
@@ -165,7 +169,7 @@ public class EarlyStopping: Callback {
     /// - Parameter iteration: Current iteration.
     /// - Parameter evaluation: Dictionary with evaluations.
     public func call(
-        booster: Booster,
+        booster: Booster? = nil,
         iteration: Int,
         evaluation: Evaluation?
     ) throws -> AfterIterationOutput {
@@ -188,9 +192,11 @@ public class EarlyStopping: Callback {
             state.bestIteration = iteration
             state.bestMsg = EarlyStopping.formatMessage(bestIteration: iteration, bestEvaluation: evaluation)
 
-            try booster.set(attribute: "best_score", value: String(state.bestScore))
-            try booster.set(attribute: "best_iteration", value: String(state.bestIteration))
-            try booster.set(attribute: "best_msg", value: state.bestMsg)
+            if let booster = booster {
+                try booster.set(attribute: "best_score", value: String(state.bestScore))
+                try booster.set(attribute: "best_iteration", value: String(state.bestIteration))
+                try booster.set(attribute: "best_msg", value: state.bestMsg)
+            }
 
             if verbose {
                 log(state.bestMsg)
@@ -218,6 +224,7 @@ public class EarlyStopping: Callback {
 }
 
 public class VariableLearningRate: Callback {
+    public var name: String = "VariableLearningRate"
     public var execute: [LoopPosition] = [.before]
 
     public typealias Function = (Int, Int) -> String
@@ -266,7 +273,7 @@ public class VariableLearningRate: Callback {
     /// - Parameter iteration: Current iteration.
     /// - Parameter evaluation: Dictionary with evaluations.
     public func call(
-        booster: Booster,
+        booster: Booster?,
         iteration: Int,
         evaluation _: Evaluation?
     ) throws -> AfterIterationOutput {
@@ -277,6 +284,10 @@ public class VariableLearningRate: Callback {
                 return learningRateFunction!(iteration, iterations)
             }
         }()
+
+        guard let booster = booster else {
+            throw ValueError.runtimeError("Booster is required to set learning rate.")
+        }
 
         try booster.set(parameter: "learning_rate", value: newLearningRate)
 
@@ -370,12 +381,12 @@ extension Booster {
                 break
             }
 
+            try saveRabitCheckpoint()
+            version += 1
+
             if outputs.contains(where: { $0 == .stop }) {
                 break training
             }
-
-            try saveRabitCheckpoint()
-            version += 1
         }
     }
 }

@@ -179,38 +179,43 @@ public func crossValidationTraining(
     callbacks: [Callback] = [],
     afterIteration: (Booster, Int, Evaluation?, [AfterIterationOutput]) throws -> AfterIterationOutput = { _, _, _, _ in .next }
 ) throws -> (results: [String: [Float]], folds: [CVPack]) {
+    var cvResults = [String: [Float]]()
     var iterationsEvaluations = [Int: [Evaluation]]()
 
-    for fold in folds {
-        let callbacks = callbacks.map { $0.copy() }
-        try fold.booster.train(
-            iterations: iterations,
-            trainingData: fold.train,
-            objectiveFunction: objectiveFunction,
-            evaluationData: [fold.train, fold.test],
-            evaluationFunction: evaluationFunction,
-            beforeIteration: beforeIteration,
-            callbacks: callbacks
-        ) { booster, iteration, evaluation, outputs in
-            iterationsEvaluations[iteration, or: []].append(evaluation!)
-            return try afterIteration(booster, iteration, evaluation, outputs)
-        }
-    }
-
-    var cvResults = [String: [Float]]()
-
     for iteration in 0 ..< iterations {
-        guard let evaluations = iterationsEvaluations[iteration] else {
-            break
+        var notImproved = 0
+
+        for (index, fold) in folds.enumerated() {
+            try fold.booster.train(
+                iterations: iteration + 1,
+                startIteration: iteration,
+                trainingData: fold.train,
+                objectiveFunction: objectiveFunction,
+                evaluationData: [fold.train, fold.test],
+                evaluationFunction: evaluationFunction,
+                beforeIteration: beforeIteration,
+                callbacks: callbacks
+            ) { booster, iteration, evaluation, outputs in
+                if outputs.contains(.stop) {
+                    notImproved += 1
+                }
+
+                iterationsEvaluations[iteration, or: []].append(evaluation!)
+                return try afterIteration(booster, iteration, evaluation, outputs)
+            }
         }
 
         let aggregatedEvaluation = try aggregateCrossValidationResults(
-            results: evaluations
+            results: iterationsEvaluations[iteration]!
         )
 
         for (metricName, mean, std) in aggregatedEvaluation {
             cvResults[metricName + "-mean", or: []].append(mean)
             cvResults[metricName + "-std", or: []].append(std)
+        }
+
+        if notImproved == folds.count {
+            break
         }
     }
 
