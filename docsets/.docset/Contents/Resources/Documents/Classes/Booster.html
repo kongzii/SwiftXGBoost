@@ -14,7 +14,7 @@
     <a title="Booster Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (55% documented)</p>
+        <p><a href="../index.html"> Docs</a> (81% documented)</p>
         <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -45,6 +45,20 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/VariableLearningRate.html">VariableLearningRate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost23DefaultAfterCVIterationyAA0C15IterationOutputOSi_SDySSSaySfGGSbtKcvp">DefaultAfterCVIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost21DefaultAfterIterationyAA0cD6OutputOAA7BoosterC_SiSDySSSDyS2SGGSgSayADGtKcvp">DefaultAfterIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost22DefaultBeforeIterationyAA05AfterD6OutputOAA7BoosterC_SitKcvp">DefaultBeforeIteration</a>
               </li>
             </ul>
           </li>
@@ -104,10 +118,10 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters17objectiveFunction010evaluationJ07shuffle15beforeIteration9callbacks05afterN0SDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAM8gradient_AM7hessiantAM_AUtKcSgSS_SStAM_AUtKcSgSbAA05AfterN6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA2_A4__SiSDySSSDyS2SGGSgSayA2_GtKXEtKF">crossValidationTraining(data:splits:iterations:parameters:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:)</a>
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters13earlyStopping17objectiveFunction010evaluationL07shuffle15beforeIteration9callbacks05afterP00R11CVIterationSDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAA05EarlyJ0CSgAO8gradient_AO7hessiantAO_AWtKcSgSS_SStAO_AWtKcSgSbAA05AfterP6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA7_A9__SiSDySSSDyS2SGGSgSayA7_GtKXEA7_Si_APSbtKXEtKF">crossValidationTraining(data:splits:iterations:parameters:earlyStopping:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:afterCVIteration:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining5folds10iterations17objectiveFunction010evaluationH015beforeIteration9callbacks05afterK0SDySSSaySfGG7results_SayAA6CVPackCGACtAO_SiAJ8gradient_AJ7hessiantAJ_AA7DMatrixCtKcSgSS_SStAJ_AStKcSgAA05AfterK6OutputOAA7BoosterC_SitKXESayAA8Callback_pGAwY_SiSDySSSDyS2SGGSgSayAWGtKXEtKF">crossValidationTraining(folds:iterations:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:)</a>
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining5folds10iterations13earlyStopping17objectiveFunction010evaluationJ015beforeIteration9callbacks05afterM00O11CVIterationSDySSSaySfGG7results_SayAA6CVPackCGACtAQ_SiAA05EarlyH0CSgAL8gradient_AL7hessiantAL_AA7DMatrixCtKcSgSS_SStAL_AXtKcSgAA05AfterM6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA0_A2__SiSDySSSDyS2SGGSgSayA0_GtKXEA0_Si_AMSbtKXEtKF">crossValidationTraining(folds:iterations:earlyStopping:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:afterCVIteration:)</a>
               </li>
             </ul>
           </li>
@@ -149,7 +163,19 @@
             <a href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost16AfterCVIterationa">AfterCVIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost14AfterIterationa">AfterIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost15BeforeIterationa">BeforeIteration</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost12CVEvaluationa">CVEvaluation</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a>
@@ -381,7 +407,7 @@ training, prediction and evaluation.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>model</em>
+                                <em>buffer</em>
                                 </code>
                               </td>
                               <td>
@@ -509,7 +535,7 @@ training, prediction and evaluation.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Serializes and unserializes booster to reset state and free training memory</p>
+                        <p>Serializes and unserializes booster to reset state and free training memory.</p>
 
                       </div>
                       <div class="declaration">
@@ -1623,7 +1649,7 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>Value of attribute.</p>
+                        <p>Value of attribute or nil if not set.</p>
                       </div>
                     </section>
                   </div>
@@ -2041,6 +2067,18 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>function</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Custom function for evaluation.</p>
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -2054,9 +2092,9 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC8evaluate9iteration4data8functionSDySSSDyS2SGGSi_AA7DMatrixCSS_SStSaySfG_AKtKcSgtKF"></a>
+                    <a name="/s:7XGBoost7BoosterC8evaluate9iteration4data8functionSDyS2SGSi_AA7DMatrixCSS_SStSaySfG_AJtKcSgtKF"></a>
                     <a name="//apple_ref/swift/Method/evaluate(iteration:data:function:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC8evaluate9iteration4data8functionSDySSSDyS2SGGSi_AA7DMatrixCSS_SStSaySfG_AKtKcSgtKF">evaluate(iteration:<wbr>data:<wbr>function:<wbr>)</a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC8evaluate9iteration4data8functionSDyS2SGSi_AA7DMatrixCSS_SStSaySfG_AJtKcSgtKF">evaluate(iteration:<wbr>data:<wbr>function:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2075,7 +2113,7 @@ In most cases you will want to use <code>dumped</code> method to get output in e
     <span class="nv">iteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
     <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">,</span>
     <span class="nv">function</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost18EvaluationFunctiona">EvaluationFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
-<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]]</span></code></pre>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -2104,6 +2142,18 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                               <td>
                                 <div>
                                   <p>Data to evaluate.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>function</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Custom function for evaluation.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2455,9 +2505,9 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC5train10iterations12trainingData17objectiveFunction010evaluationF00iH015beforeIteration9callbacks05afterK0ySi_AA7DMatrixCSaySfG8gradient_AO7hessiantAO_ANtKcSgSayANGSS_SStAO_ANtKcSgAA05AfterK6OutputOAC_SitKXESayAA8Callback_pGAvC_SiSDySSSDyS2SGGSgSayAVGtKXEtKF"></a>
-                    <a name="//apple_ref/swift/Method/train(iterations:trainingData:objectiveFunction:evaluationData:evaluationFunction:beforeIteration:callbacks:afterIteration:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC5train10iterations12trainingData17objectiveFunction010evaluationF00iH015beforeIteration9callbacks05afterK0ySi_AA7DMatrixCSaySfG8gradient_AO7hessiantAO_ANtKcSgSayANGSS_SStAO_ANtKcSgAA05AfterK6OutputOAC_SitKXESayAA8Callback_pGAvC_SiSDySSSDyS2SGGSgSayAVGtKXEtKF">train(iterations:<wbr>trainingData:<wbr>objectiveFunction:<wbr>evaluationData:<wbr>evaluationFunction:<wbr>beforeIteration:<wbr>callbacks:<wbr>afterIteration:<wbr>)</a>
+                    <a name="/s:7XGBoost7BoosterC5train10iterations14startIteration12trainingData17objectiveFunction010evaluationH00kJ006beforeF09callbacks05afterF0ySi_SiSgAA7DMatrixCSaySfG8gradient_AQ7hessiantAQ_APtKcSgSayAPGSS_SStAQ_APtKcSgAA05AfterF6OutputOAC_SitKXESayAA8Callback_pGAxC_SiSDySSSDyS2SGGSgSayAXGtKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/train(iterations:startIteration:trainingData:objectiveFunction:evaluationData:evaluationFunction:beforeIteration:callbacks:afterIteration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC5train10iterations14startIteration12trainingData17objectiveFunction010evaluationH00kJ006beforeF09callbacks05afterF0ySi_SiSgAA7DMatrixCSaySfG8gradient_AQ7hessiantAQ_APtKcSgSayAPGSS_SStAQ_APtKcSgAA05AfterF6OutputOAC_SitKXESayAA8Callback_pGAxC_SiSDySSSDyS2SGGSgSayAXGtKXEtKF">train(iterations:<wbr>startIteration:<wbr>trainingData:<wbr>objectiveFunction:<wbr>evaluationData:<wbr>evaluationFunction:<wbr>beforeIteration:<wbr>callbacks:<wbr>afterIteration:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2474,13 +2524,14 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">train</span><span class="p">(</span>
     <span class="nv">iterations</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">startIteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">trainingData</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">,</span>
     <span class="nv">objectiveFunction</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost17ObjectiveFunctiona">ObjectiveFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">evaluationData</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nv">evaluationFunction</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost18EvaluationFunctiona">EvaluationFunction</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="nv">beforeIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt">Booster</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">},</span>
+    <span class="nv">beforeIteration</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost15BeforeIterationa">BeforeIteration</a></span> <span class="o">=</span> <span class="kt"><a href="../Global%20Variables.html#/s:7XGBoost22DefaultBeforeIterationyAA05AfterD6OutputOAA7BoosterC_SitKcvp">DefaultBeforeIteration</a></span><span class="p">,</span>
     <span class="nv">callbacks</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Callback.html">Callback</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-    <span class="nv">afterIteration</span><span class="p">:</span> <span class="p">(</span><span class="kt">Booster</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a></span><span class="p">?,</span> <span class="p">[</span><span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span> <span class="o">.</span><span class="n">next</span> <span class="p">}</span>
+    <span class="nv">afterIteration</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost14AfterIterationa">AfterIteration</a></span> <span class="o">=</span> <span class="kt"><a href="../Global%20Variables.html#/s:7XGBoost21DefaultAfterIterationyAA0cD6OutputOAA7BoosterC_SiSDySSSDyS2SGGSgSayADGtKcvp">DefaultAfterIteration</a></span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
@@ -2498,6 +2549,18 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                               <td>
                                 <div>
                                   <p>Number of training iterations, but training can be stopped early.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startIteration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>N. of starting iteration.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2528,12 +2591,12 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                             <tr>
                               <td>
                                 <code>
-                                <em>earlyStopping</em>
+                                <em>evaluationFunction</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Early stopping.</p>
+                                  <p>Custom evaluation function.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2546,6 +2609,18 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                               <td>
                                 <div>
                                   <p>Callback called before each iteration.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callbacks</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of callbacks called at each iteration.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2572,7 +2647,7 @@ In most cases you will want to use <code>dumped</code> method to get output in e
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-13)</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

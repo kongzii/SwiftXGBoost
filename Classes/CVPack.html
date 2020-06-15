@@ -14,7 +14,7 @@
     <a title="CVPack Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (55% documented)</p>
+        <p><a href="../index.html"> Docs</a> (81% documented)</p>
         <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -45,6 +45,20 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/VariableLearningRate.html">VariableLearningRate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost23DefaultAfterCVIterationyAA0C15IterationOutputOSi_SDySSSaySfGGSbtKcvp">DefaultAfterCVIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost21DefaultAfterIterationyAA0cD6OutputOAA7BoosterC_SiSDySSSDyS2SGGSgSayADGtKcvp">DefaultAfterIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost22DefaultBeforeIterationyAA05AfterD6OutputOAA7BoosterC_SitKcvp">DefaultBeforeIteration</a>
               </li>
             </ul>
           </li>
@@ -104,10 +118,10 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters17objectiveFunction010evaluationJ07shuffle15beforeIteration9callbacks05afterN0SDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAM8gradient_AM7hessiantAM_AUtKcSgSS_SStAM_AUtKcSgSbAA05AfterN6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA2_A4__SiSDySSSDyS2SGGSgSayA2_GtKXEtKF">crossValidationTraining(data:splits:iterations:parameters:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:)</a>
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters13earlyStopping17objectiveFunction010evaluationL07shuffle15beforeIteration9callbacks05afterP00R11CVIterationSDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAA05EarlyJ0CSgAO8gradient_AO7hessiantAO_AWtKcSgSS_SStAO_AWtKcSgSbAA05AfterP6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA7_A9__SiSDySSSDyS2SGGSgSayA7_GtKXEA7_Si_APSbtKXEtKF">crossValidationTraining(data:splits:iterations:parameters:earlyStopping:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:afterCVIteration:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining5folds10iterations17objectiveFunction010evaluationH015beforeIteration9callbacks05afterK0SDySSSaySfGG7results_SayAA6CVPackCGACtAO_SiAJ8gradient_AJ7hessiantAJ_AA7DMatrixCtKcSgSS_SStAJ_AStKcSgAA05AfterK6OutputOAA7BoosterC_SitKXESayAA8Callback_pGAwY_SiSDySSSDyS2SGGSgSayAWGtKXEtKF">crossValidationTraining(folds:iterations:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:)</a>
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining5folds10iterations13earlyStopping17objectiveFunction010evaluationJ015beforeIteration9callbacks05afterM00O11CVIterationSDySSSaySfGG7results_SayAA6CVPackCGACtAQ_SiAA05EarlyH0CSgAL8gradient_AL7hessiantAL_AA7DMatrixCtKcSgSS_SStAL_AXtKcSgAA05AfterM6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA0_A2__SiSDySSSDyS2SGGSgSayA0_GtKXEA0_Si_AMSbtKXEtKF">crossValidationTraining(folds:iterations:earlyStopping:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:afterCVIteration:)</a>
               </li>
             </ul>
           </li>
@@ -149,7 +163,19 @@
             <a href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost16AfterCVIterationa">AfterCVIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost14AfterIterationa">AfterIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost15BeforeIterationa">BeforeIteration</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost12CVEvaluationa">CVEvaluation</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a>
@@ -189,12 +215,39 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Auxiliary class to hold one fold of CrossValidation.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost6CVPackC2idSSvp"></a>
+                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost6CVPackC2idSSvp">id</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -279,9 +332,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost6CVPackC5train4test10parametersAcA7DMatrixC_AHSayAA9ParameterVGtKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(train:test:parameters:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost6CVPackC5train4test10parametersAcA7DMatrixC_AHSayAA9ParameterVGtKcfc">init(train:<wbr>test:<wbr>parameters:<wbr>)</a>
+                    <a name="/s:7XGBoost6CVPackC2id5train4test10parametersACSS_AA7DMatrixCAISayAA9ParameterVGtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:train:test:parameters:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost6CVPackC2id5train4test10parametersACSS_AA7DMatrixCAISayAA9ParameterVGtKcfc">init(id:<wbr>train:<wbr>test:<wbr>parameters:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -289,7 +342,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initialization of CVPack. Booster will get attribute <code>cvpack_id</code> with value of <code><a href="../Classes/CVPack.html#/s:7XGBoost6CVPackC2idSSvp">id</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -297,12 +350,68 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">train</span><span class="p">:</span> <span class="kt"><a href="../Classes/DMatrix.html">DMatrix</a></span><span class="p">,</span>
     <span class="nv">test</span><span class="p">:</span> <span class="kt"><a href="../Classes/DMatrix.html">DMatrix</a></span><span class="p">,</span>
     <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Parameter.html">Parameter</a></span><span class="p">]</span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifier for this fold.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>train</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Training DMatrix.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>test</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Testing DMatrix.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Parameters pased to Booster.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -312,7 +421,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-13)</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

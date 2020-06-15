@@ -14,7 +14,7 @@
     <a title="DMatrix Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (55% documented)</p>
+        <p><a href="../index.html"> Docs</a> (81% documented)</p>
         <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -45,6 +45,20 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/VariableLearningRate.html">VariableLearningRate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost23DefaultAfterCVIterationyAA0C15IterationOutputOSi_SDySSSaySfGGSbtKcvp">DefaultAfterCVIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost21DefaultAfterIterationyAA0cD6OutputOAA7BoosterC_SiSDySSSDyS2SGGSgSayADGtKcvp">DefaultAfterIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost22DefaultBeforeIterationyAA05AfterD6OutputOAA7BoosterC_SitKcvp">DefaultBeforeIteration</a>
               </li>
             </ul>
           </li>
@@ -104,10 +118,10 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters17objectiveFunction010evaluationJ07shuffle15beforeIteration9callbacks05afterN0SDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAM8gradient_AM7hessiantAM_AUtKcSgSS_SStAM_AUtKcSgSbAA05AfterN6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA2_A4__SiSDySSSDyS2SGGSgSayA2_GtKXEtKF">crossValidationTraining(data:splits:iterations:parameters:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:)</a>
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters13earlyStopping17objectiveFunction010evaluationL07shuffle15beforeIteration9callbacks05afterP00R11CVIterationSDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAA05EarlyJ0CSgAO8gradient_AO7hessiantAO_AWtKcSgSS_SStAO_AWtKcSgSbAA05AfterP6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA7_A9__SiSDySSSDyS2SGGSgSayA7_GtKXEA7_Si_APSbtKXEtKF">crossValidationTraining(data:splits:iterations:parameters:earlyStopping:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:afterCVIteration:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining5folds10iterations17objectiveFunction010evaluationH015beforeIteration9callbacks05afterK0SDySSSaySfGG7results_SayAA6CVPackCGACtAO_SiAJ8gradient_AJ7hessiantAJ_AA7DMatrixCtKcSgSS_SStAJ_AStKcSgAA05AfterK6OutputOAA7BoosterC_SitKXESayAA8Callback_pGAwY_SiSDySSSDyS2SGGSgSayAWGtKXEtKF">crossValidationTraining(folds:iterations:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:)</a>
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining5folds10iterations13earlyStopping17objectiveFunction010evaluationJ015beforeIteration9callbacks05afterM00O11CVIterationSDySSSaySfGG7results_SayAA6CVPackCGACtAQ_SiAA05EarlyH0CSgAL8gradient_AL7hessiantAL_AA7DMatrixCtKcSgSS_SStAL_AXtKcSgAA05AfterM6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA0_A2__SiSDySSSDyS2SGGSgSayA0_GtKXEA0_Si_AMSbtKXEtKF">crossValidationTraining(folds:iterations:earlyStopping:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:afterCVIteration:)</a>
               </li>
             </ul>
           </li>
@@ -149,7 +163,19 @@
             <a href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost16AfterCVIterationa">AfterCVIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost14AfterIterationa">AfterIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost15BeforeIterationa">BeforeIteration</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost12CVEvaluationa">CVEvaluation</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a>
@@ -304,24 +330,24 @@ which is optimized for both memory efficiency and training speed.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>features</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Array describing features in this dataset.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
                                 <em>dmatrix</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
                                   <p>DMatrixHandle pointer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>features</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array describing features in this dataset.</p>
                                 </div>
                               </td>
                             </tr>
@@ -635,6 +661,18 @@ which is optimized for both memory efficiency and training speed.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>features</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Names and types of features.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>label</em>
                                 </code>
                               </td>
@@ -689,18 +727,6 @@ which is optimized for both memory efficiency and training speed.</p>
                               <td>
                                 <div>
                                   <p>Sets labelUpperBound after DMatrix initialization.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>features</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Names and types of features.</p>
                                 </div>
                               </td>
                             </tr>
@@ -790,7 +816,7 @@ which is optimized for both memory efficiency and training speed.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>file</em>
+                                <em>from</em>
                                 </code>
                               </td>
                               <td>
@@ -1167,7 +1193,7 @@ which is optimized for both memory efficiency and training speed.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The shape of data, i.e. (rowCount(), columnCount()).</p>
+                        <p>The shape of dmatrix, i.e. (rowCount(), columnCount()).</p>
                       </div>
                     </section>
                   </div>
@@ -1196,7 +1222,7 @@ which is optimized for both memory efficiency and training speed.</p>
     <span class="nv">indexes</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Int32Data.html">Int32Data</a></span><span class="p">,</span>
     <span class="nv">newName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">allowGroups</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
-<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span></code></pre>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">DMatrix</span></code></pre>
 
                         </div>
                       </div>
@@ -1245,7 +1271,7 @@ which is optimized for both memory efficiency and training speed.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A new data class containing only selected indexes.</p>
+                        <p>A new dmatrix class containing only selected indexes.</p>
                       </div>
                     </section>
                   </div>
@@ -1274,7 +1300,7 @@ which is optimized for both memory efficiency and training speed.</p>
     <span class="nv">indexes</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int32</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="nv">newName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">allowGroups</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
-<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a></span></code></pre>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">DMatrix</span></code></pre>
 
                         </div>
                       </div>
@@ -1323,7 +1349,7 @@ which is optimized for both memory efficiency and training speed.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A new data class containing only selected indexes.</p>
+                        <p>A new DMatrix class containing only selected indexes.</p>
                       </div>
                     </section>
                   </div>
@@ -1819,7 +1845,7 @@ which is optimized for both memory efficiency and training speed.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-13)</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
