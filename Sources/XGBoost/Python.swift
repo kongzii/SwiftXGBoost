@@ -19,6 +19,9 @@ public extension Array where Element: NumpyScalarCompatible {
 }
 
 extension Shape {
+    /// Init shape from PythonObject.
+    ///
+    /// - Parameter shape: Python object holding integers that can be subscribed for 0 and 1 index.
     public init(shape: PythonObject) throws {
         guard let row = Int(shape[0]), let column = Int(shape[1]) else {
             throw ValueError.runtimeError("Invalid type of python input.")
@@ -26,12 +29,19 @@ extension Shape {
 
         self.row = row
         self.column = column
-    }
+    }   
 
+    /// Init shape from PythonObject.
+    ///
+    /// - Parameter: Python object that can be subscribed for 0 and 1 index.
     public init(_ shape: PythonObject) throws {
         try self.init(shape: shape)
     }
 
+    /// Init shape from PythonObjects.
+    ///
+    /// - Parameter row: Python object that can be converted to integer.
+    /// - Parameter column: Python object that can be converted to integer.
     public init(row: PythonObject, column: PythonObject) throws {
         guard let row = Int(row), let column = Int(column) else {
             throw ValueError.runtimeError("Invalid type of python input.")
@@ -41,12 +51,18 @@ extension Shape {
         self.column = column
     }
 
+    /// Init shape from PythonObjects.
+    ///
+    /// - Parameter: Python object that can be converted to integer.
+    /// - Parameter: Python object that can be converted to integer.
     public init(_ row: PythonObject, _ column: PythonObject) throws {
         try self.init(row: row, column: column)
     }
 }
 
+/// PythonObject comfortances for protocols that allows using python objects seamlessly with Booster and DMatrix.
 extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
+    /// Comfortance for FloatData.
     public func data() throws -> [Float] {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
             if self.shape.count == 1 {
@@ -75,6 +91,7 @@ extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
         }
     }
 
+    /// Comfortance for Int32Data.
     public func data() throws -> [Int32] {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
             if self.shape.count == 1 {
@@ -103,6 +120,7 @@ extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
         }
     }
 
+    /// Comfortance for UInt32Data.
     public func data() throws -> [UInt32] {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
             if self.shape.count == 1 {
@@ -131,6 +149,7 @@ extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
         }
     }
 
+    /// Comfortance for ShapeData.
     public func dataShape() throws -> Shape {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
             if self.shape.count == 1 {
