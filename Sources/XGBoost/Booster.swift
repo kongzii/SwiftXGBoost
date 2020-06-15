@@ -1,11 +1,12 @@
 import CXGBoost
 
-/// Alias for backward compatibility
+/// Alias for backward compatibility.
 public typealias XGBoost = Booster
 
-/// Typealias for objective function
+/// Typealias for objective function.
 public typealias ObjectiveFunction = ([Float], Data) throws -> (gradient: [Float], hessian: [Float])
 
+/// Typealias for evaluation function.
 public typealias EvaluationFunction = ([Float], Data) throws -> (String, String)
 
 /// Booster model.
@@ -48,7 +49,7 @@ public class Booster {
 
     /// Initialize Booster from buffer.
     ///
-    /// - Parameter model: Model serialized as buffer.
+    /// - Parameter buffer: Model serialized as buffer.
     public convenience init(
         buffer: BufferModel
     ) throws {
@@ -114,7 +115,7 @@ public class Booster {
         }
     }
 
-    /// Serializes and unserializes booster to reset state and free training memory
+    /// Serializes and unserializes booster to reset state and free training memory.
     public func reset() throws {
         let snapshot = try serialized()
 
@@ -597,7 +598,7 @@ public class Booster {
     /// Get attribute string from the Booster.
     ///
     /// - Parameter name: Name of attribute to get.
-    /// - Returns: Value of attribute.
+    /// - Returns: Value of attribute or nil if not set.
     public func attribute(
         name: String
     ) throws -> String? {
@@ -731,6 +732,7 @@ public class Booster {
     ///
     /// - Parameter iteration: Current iteration.
     /// - Parameter data: Data to evaluate.
+    /// - Parameter function: Custom function for evaluation.
     /// - Returns: Dictionary in format [data_name: [eval_name: eval_value, ...], ...]
     public func evaluate(
         iteration: Int,
@@ -795,13 +797,14 @@ public class Booster {
     ///
     /// - Parameter iteration: Current iteration.
     /// - Parameter data: Data to evaluate.
+    /// - Parameter function: Custom function for evaluation.
     /// - Returns: Dictionary in format [data_name: [eval_name: eval_value]]
     public func evaluate(
         iteration: Int,
         data: Data,
         function: EvaluationFunction? = nil
-    ) throws -> [String: [String: String]] {
-        try evaluate(iteration: iteration, data: [data], function: function)
+    ) throws -> [String: String] {
+        try evaluate(iteration: iteration, data: [data], function: function)[data.name]!
     }
 
     /// Validate features.
