@@ -1,11 +1,18 @@
 import CXGBoost
 import Foundation
 
+/// Auxiliary class to hold one fold of CrossValidation.
 public class CVPack {
     public let id: String
     public let train, test: DMatrix
     public let booster: Booster
 
+    /// Initialization of CVPack. Booster will get attribute `cvpack_id` with value of `id`.
+    ///
+    /// - Parameter id: Identifier for this fold.
+    /// - Parameter train: Training DMatrix.
+    /// - Parameter test: Testing DMatrix.
+    /// - Parameter parameters: Parameters pased to Booster.
     public init(
         id: String,
         train: DMatrix,
@@ -24,6 +31,11 @@ public class CVPack {
     }
 }
 
+/// Given group row boundaries, convert ground indexes to row indexes
+///
+/// - Parameter groups: Array of groups.
+/// - Parameter boundaries: Rows index limits of each group.
+/// - Returns: Row in group.
 func groupsToRows(
     groups: [Int],
     boundaries: [UInt32]
@@ -33,6 +45,13 @@ func groupsToRows(
     }.flatMap { $0 }
 }
 
+/// Make folds for cross-validation maintaining groups.
+///
+/// - Parameter data: DMatrix data.
+/// - Parameter splits: Number of folds to create.
+/// - Parameter parameters: Parameters passed to Booster in CVPack.
+/// - Parameter shuffle: If true, rows in folds will be shuffled.
+/// - Returns: Array of CVPacks.
 func makeGroupNFold(
     data: Data,
     splits: Int,
@@ -96,6 +115,13 @@ func makeGroupNFold(
     return packs
 }
 
+/// Make folds for cross-validation.
+///
+/// - Parameter data: DMatrix data.
+/// - Parameter splits: Number of folds to create.
+/// - Parameter parameters: Parameters passed to Booster in CVPack.
+/// - Parameter shuffle: If true, rows in folds will be shuffled.
+/// - Returns: Array of CVPacks.
 func makeNFold(
     data: Data,
     splits: Int,
@@ -149,6 +175,8 @@ func makeNFold(
     return packs
 }
 
+/// - Parameter results: Array of Evaluation.
+/// - Returns: Metrics for cross-validation.
 func aggregateCrossValidationResults(
     results: [Evaluation]
 ) throws -> [(metricName: String, mean: Float, std: Float)] {
@@ -176,10 +204,26 @@ func aggregateCrossValidationResults(
     return results
 }
 
+/// Typealias for dictionary of cross-validation evaluations.
 public typealias CVEvaluation = [String: [Float]]
+
+/// Typealias for function called after CV iteration.
 public typealias AfterCVIteration = (Int, CVEvaluation, Bool) throws -> AfterIterationOutput
+
+/// Default function called after CV iteration.
 public let DefaultAfterCVIteration: AfterCVIteration = { _, _, _ in .next }
 
+/// Training with cross-validation.
+///
+/// - Parameter folds: Cross-validation folds to train.
+/// - Parameter iterations: Number training of iterations.
+/// - Parameter earlyStopping: Early stopping used for cross-validation results.
+/// - Parameter objectiveFunction: Custom objective function passed to the booster.train.
+/// - Parameter evaluationFunction: Custom evaluation function passed to the booster.train.
+/// - Parameter beforeIteration: Before iteration function passed to the booster.train.
+/// - Parameter callbacks: Callbacks passed to the booster.train.
+/// - Parameter afterIteration: After iteration function passed to the booster.train.
+/// - Parameter afterCVIteration: Function called after one cv iteration, e.g. after one training iteration of every fold.
 public func crossValidationTraining(
     folds: [CVPack],
     iterations: Int,
@@ -263,6 +307,19 @@ public func crossValidationTraining(
     return (cvResults, folds)
 }
 
+/// Training with cross-validation.
+///
+/// - Parameter data: Data to split.
+/// - Parameter splits: Number of cvfoolds that will be created.
+/// - Parameter iterations: Number training of iterations.
+/// - Parameter parameters: Parameters passed to the Booster initialized in CVPack.
+/// - Parameter earlyStopping: Early stopping used for cross-validation results.
+/// - Parameter objectiveFunction: Custom objective function passed to the booster.train.
+/// - Parameter evaluationFunction: Custom evaluation function passed to the booster.train.
+/// - Parameter beforeIteration: Before iteration function passed to the booster.train.
+/// - Parameter callbacks: Callbacks passed to the booster.train.
+/// - Parameter afterIteration: After iteration function passed to the booster.train.
+/// - Parameter afterCVIteration: Function called after one cv iteration, e.g. after one training iteration of every fold.
 public func crossValidationTraining(
     data: Data,
     splits: Int,
