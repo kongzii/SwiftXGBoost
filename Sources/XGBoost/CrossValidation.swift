@@ -3,8 +3,13 @@ import Foundation
 
 /// Auxiliary class to hold one fold of CrossValidation.
 public class CVPack {
+    /// CVPack identifier.
     public let id: String
+
+    /// DMatrixes used for training and testing.
     public let train, test: DMatrix
+
+    /// Booster class.
     public let booster: Booster
 
     /// Initialization of CVPack. Booster will get attribute `cvpack_id` with value of `id`.
