@@ -4,7 +4,7 @@ import Foundation
 /// Dictionary for evaluation in form [data_name: [metric_name: value]]
 public typealias Evaluation = [String: [String: String]]
 
-/// Specify if should be executed at beginning of iteration or at the end
+/// Specify if should be executed at beginning of iteration or at the end.
 public enum LoopPosition {
     case before, after
 }
@@ -19,7 +19,7 @@ public protocol Callback {
 
     /// - Parameter booster: Optional booster.
     /// - Parameter iteration: Current iteration.
-    /// - Parameter evaluation: Dictionary with evaluations.
+    /// - Parameter evaluation: Optional dictionary with evaluations.
     func call(
         booster: Booster?,
         iteration: Int,
@@ -27,10 +27,15 @@ public protocol Callback {
     ) throws -> AfterIterationOutput
 }
 
+/// Class used for early stopping feature.
 public class EarlyStopping: Callback {
+    /// Name of the callback.
     public var name: String = "EarlyStopping"
+
+    /// Position of the execution.
     public var execute: [LoopPosition] = [.after]
 
+    /// Typealais for tuple holding current state.
     public typealias State = (
         maximizeScore: Bool,
         bestIteration: Int,
@@ -38,12 +43,23 @@ public class EarlyStopping: Callback {
         bestMsg: String
     )
 
+    /// Current state of training.
     public var state: State
+
+    /// Name of watched DMatrix.
     public var dataName: String
+
+    /// Name of watched metric.
     public var metricName: String
+
+    /// Number of stopping rounds.
     public var stoppingRounds: Int
+
+    /// If true, statistics will be printed.
     public var verbose: Bool
 
+    /// - Parameter bestIteration: Number of booster best iteration.
+    /// - Parameter bestEvaluation: Booster best evaluation.
     static func formatMessage(
         bestIteration: Int,
         bestEvaluation: Any
@@ -51,6 +67,10 @@ public class EarlyStopping: Callback {
         "Best iteration: \(bestIteration), best evaluation: \(bestEvaluation)."
     }
 
+    /// Decides whenever metric should be maximized or minimized.
+    ///
+    /// - Parameter maximize: Force maximization.
+    /// - Parameter metricName: Metric name to check, if it should be maximized.
     static func shouldMaximize(
         maximize: Bool,
         metricName: String
@@ -162,6 +182,8 @@ public class EarlyStopping: Callback {
         )
     }
 
+    /// Call used in Booster training.
+    ///
     /// - Parameter booster: Booster.
     /// - Parameter iteration: Current iteration.
     /// - Parameter evaluation: Dictionary with evaluations.
@@ -209,6 +231,10 @@ public class EarlyStopping: Callback {
         return .next
     }
 
+    /// Call used in cross-validation training.
+    ///
+    /// - Parameter iteration: Current iteration.
+    /// - Parameter evaluation: Cross-validation evaluation.
     public func call(
         iteration: Int,
         evaluation: CVEvaluation
@@ -243,16 +269,31 @@ public class EarlyStopping: Callback {
     }
 }
 
+/// Class used for variable learning rate feature.
 public class VariableLearningRate: Callback {
+    /// Name of the callback.
     public var name: String = "VariableLearningRate"
+
+    /// Position of the execution.
     public var execute: [LoopPosition] = [.before]
 
+    /// Typealias for learningRateFunction.
     public typealias Function = (Int, Int) -> String
 
+    /// Number of iterations in training.
     var iterations: Int
+
+    /// List with learning rates.
     var learningRates: [String]?
+
+    /// Function returning learning rate as string based on current iteration and maximum number of iterations.
     var learningRateFunction: Function?
 
+    /// Initialize VariableLearningRate by array of learning rates.
+    ///
+    /// - Precondition: iterations == learningRates.count.
+    /// - Parameter learningRates: Array of learning rates that will be accessed at every iteration.
+    /// - Parameter iterations: Number of iteration in training.
     public init(
         learningRates: [String],
         iterations: Int
@@ -266,6 +307,10 @@ public class VariableLearningRate: Callback {
         self.iterations = iterations
     }
 
+    /// Initialize VariableLearningRate with function generating learning rate.
+    ///
+    /// - Parameter learningRate: Function that will return learning rate at each iteration.
+    /// - Parameter iterations: Number of iteration in training.
     public init(
         learningRate: @escaping Function,
         iterations: Int
@@ -300,9 +345,16 @@ public class VariableLearningRate: Callback {
     }
 }
 
+/// Typealias for function called before each iteration at training.
 public typealias BeforeIteration = (Booster, Int) throws -> AfterIterationOutput
+
+/// Typealias for function called after each iteration at training.
 public typealias AfterIteration = (Booster, Int, Evaluation?, [AfterIterationOutput]) throws -> AfterIterationOutput
+
+/// Default before iteration function, basically does nothing.
 public let DefaultBeforeIteration: BeforeIteration = { _, _ in .next }
+
+/// Default after iteration function, basically does nothing.
 public let DefaultAfterIteration: AfterIteration = { _, _, _, _ in .next }
 
 extension Booster {
@@ -312,8 +364,9 @@ extension Booster {
     /// - Parameter startIteration: N. of starting iteration.
     /// - Parameter trainingData: Data to train on.
     /// - Parameter evaluationData: Data to evaluate on, if provided.
-    /// - Parameter earlyStopping: Early stopping.
+    /// - Parameter evaluationFunction: Custom evaluation function.
     /// - Parameter beforeIteration: Callback called before each iteration.
+    /// - Parameter callbacks: Array of callbacks called at each iteration.
     /// - Parameter afterIteration: Callback called after each iteration.
     public func train(
         iterations: Int,
