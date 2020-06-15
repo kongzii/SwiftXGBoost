@@ -38,24 +38,29 @@ public extension Array where Element == Feature {
 }
 
 extension Array: FloatData where Element == Float {
+    /// - Returns: self
     public func data() throws -> [Float] {
         self
     }
 }
 
 extension Array: Int32Data where Element == Int32 {
+    /// - Returns: self
     public func data() throws -> [Int32] {
         self
     }
 }
 
 extension Array: UInt32Data where Element == UInt32 {
+    /// - Returns: self
     public func data() throws -> [UInt32] {
         self
     }
 }
 
 public extension Array {
+    /// - Parameter into: Number of chunks.
+    /// - Returns: Self splitted into n equally sized chunks.
     func chunked(into chunks: Int) -> [[Element]] {
         let size = (count / chunks)
             + Int((Float(count % chunks) / Float(chunks)).rounded(.up))
@@ -67,6 +72,7 @@ public extension Array {
 }
 
 public extension Array where Element: AdditiveArithmetic {
+    /// - Returns: Array calucated from self as [self[i + 1] - self[i]] for i = 0 ..< count - 1.
     func diff() -> [Element] {
         var result = [Element]()
 
@@ -79,16 +85,26 @@ public extension Array where Element: AdditiveArithmetic {
 }
 
 public extension Array where Element: FloatingPoint {
-    func sum() -> Element {
-        reduce(0, +)
+    /// - Parameter from: Initial value for sum.
+    /// - Returns: Sum of elements.
+    func sum(
+        from initialValue: Element = 0
+    ) -> Element {
+        reduce(initialValue, +)
     }
 
+    /// - Parameter sum: Precalculated sum.
+    /// - Returns: Mean of elements.
     func mean(
         sum: Element? = nil
     ) -> Element {
         sum ?? self.sum() / Element(count)
     }
 
+    /// - Parameter sum: Precalculated sum.
+    /// - Parameter mean: Precalculated mean.
+    /// - Parameter ddof: DDOF.
+    /// - Returns: STD of elements.
     func std(
         sum: Element? = nil,
         mean: Element? = nil,
@@ -101,6 +117,7 @@ public extension Array where Element: FloatingPoint {
 }
 
 public extension Array where Element == AfterIterationOutput {
+    /// - Returns: Whether array contains `AfterIterationOutput.stop`.
     var willStop: Bool {
         contains(where: { $0 == .stop })
     }
