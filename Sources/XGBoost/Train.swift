@@ -25,9 +25,6 @@ public protocol Callback {
         iteration: Int,
         evaluation: Evaluation?
     ) throws -> AfterIterationOutput
-
-    /// - Returns: Copy of itself
-    func copy() -> Self
 }
 
 public class EarlyStopping: Callback {
@@ -49,7 +46,7 @@ public class EarlyStopping: Callback {
 
     static func formatMessage(
         bestIteration: Int,
-        bestEvaluation: [String: [String: String]]
+        bestEvaluation: Any
     ) -> String {
         "Best iteration: \(bestIteration), best evaluation: \(bestEvaluation)."
     }
@@ -212,14 +209,37 @@ public class EarlyStopping: Callback {
         return .next
     }
 
-    public func copy() -> Self {
-        .init(
-            dataName: dataName,
-            metricName: metricName,
-            stoppingRounds: stoppingRounds,
-            state: state,
-            verbose: verbose
-        )
+    public func call(
+        iteration: Int,
+        evaluation: CVEvaluation
+    ) throws -> AfterIterationOutput {
+        let name = dataName + "-test-" + metricName + "-mean"
+
+        guard let scores = evaluation[name] else {
+            throw ValueError.runtimeError("Name \(name) not found in evaluation \(evaluation).")
+        }
+
+        guard let score = scores.last else {
+            throw ValueError.runtimeError("Scores for \(name) are empty.")
+        }
+
+        if (state.maximizeScore && score > state.bestScore) || (!state.maximizeScore && score < state.bestScore) {
+            state.bestScore = score
+            state.bestIteration = iteration
+            state.bestMsg = EarlyStopping.formatMessage(bestIteration: iteration, bestEvaluation: evaluation)
+
+            if verbose {
+                log(state.bestMsg)
+            }
+        } else if iteration - state.bestIteration >= stoppingRounds {
+            if verbose {
+                log("Stopping at iteration \(iteration): " + state.bestMsg)
+            }
+
+            return .stop
+        }
+
+        return .next
     }
 }
 
@@ -232,21 +252,6 @@ public class VariableLearningRate: Callback {
     var iterations: Int
     var learningRates: [String]?
     var learningRateFunction: Function?
-
-    required init(
-        learningRateFunction: Function?,
-        learningRates: [String]?,
-        iterations: Int
-    ) {
-        precondition(
-            iterations == (learningRates?.count ?? iterations),
-            "Learning rates count must be equal to iterations."
-        )
-
-        self.learningRateFunction = learningRateFunction
-        self.learningRates = learningRates
-        self.iterations = iterations
-    }
 
     public init(
         learningRates: [String],
@@ -293,15 +298,12 @@ public class VariableLearningRate: Callback {
 
         return .next
     }
-
-    public func copy() -> Self {
-        .init(
-            learningRateFunction: learningRateFunction,
-            learningRates: learningRates,
-            iterations: iterations
-        )
-    }
 }
+
+public typealias BeforeIteration = (Booster, Int) throws -> AfterIterationOutput
+public typealias AfterIteration = (Booster, Int, Evaluation?, [AfterIterationOutput]) throws -> AfterIterationOutput
+public let DefaultBeforeIteration: BeforeIteration = { _, _ in .next }
+public let DefaultAfterIteration: AfterIteration = { _, _, _, _ in .next }
 
 extension Booster {
     /// Train booster.
@@ -320,9 +322,9 @@ extension Booster {
         objectiveFunction: ObjectiveFunction? = nil,
         evaluationData: [Data] = [],
         evaluationFunction: EvaluationFunction? = nil,
-        beforeIteration: (Booster, Int) throws -> AfterIterationOutput = { _, _ in .next },
+        beforeIteration: BeforeIteration = DefaultBeforeIteration,
         callbacks: [Callback] = [],
-        afterIteration: (Booster, Int, Evaluation?, [AfterIterationOutput]) throws -> AfterIterationOutput = { _, _, _, _ in .next }
+        afterIteration: AfterIteration = DefaultAfterIteration
     ) throws {
         var version = try loadRabitCheckpoint()
         let startIteration = startIteration ?? Int(version / 2)
@@ -369,6 +371,9 @@ extension Booster {
                 try $0.call(booster: self, iteration: iteration, evaluation: evaluation)
             })
 
+            try saveRabitCheckpoint()
+            version += 1
+
             switch try afterIteration(
                 self,
                 iteration,
@@ -380,9 +385,6 @@ extension Booster {
             case .next:
                 break
             }
-
-            try saveRabitCheckpoint()
-            version += 1
 
             if outputs.contains(where: { $0 == .stop }) {
                 break training

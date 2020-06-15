@@ -129,11 +129,11 @@ func makeNFold(
     for k in 0 ..< splits {
         let train = try data.slice(
             indexes: inIdSet[k],
-            newName: "train"
+            newName: "\(data.name)-train"
         )
         let test = try data.slice(
             indexes: outIdSet[k],
-            newName: "test"
+            newName: "\(data.name)-test"
         )
 
         packs.append(
@@ -152,7 +152,7 @@ func makeNFold(
 func aggregateCrossValidationResults(
     results: [Evaluation]
 ) throws -> [(metricName: String, mean: Float, std: Float)] {
-    var crossDict = [String: [Float]]()
+    var crossDict = CVEvaluation()
 
     for result in results {
         for (dataName, dataResults) in result {
@@ -163,9 +163,8 @@ func aggregateCrossValidationResults(
     }
 
     var results = [(metricName: String, mean: Float, std: Float)]()
-    let crossTuples = crossDict.map { $0 }
 
-    for (metricName, values) in crossTuples {
+    for (metricName, values) in crossDict {
         let mean = values.mean()
         results.append((
             metricName: metricName,
@@ -177,20 +176,26 @@ func aggregateCrossValidationResults(
     return results
 }
 
+public typealias CVEvaluation = [String: [Float]]
+public typealias AfterCVIteration = (Int, CVEvaluation, Bool) throws -> AfterIterationOutput
+public let DefaultAfterCVIteration: AfterCVIteration = { _, _, _ in .next }
+
 public func crossValidationTraining(
     folds: [CVPack],
     iterations: Int,
+    earlyStopping: EarlyStopping? = nil,
     objectiveFunction: ObjectiveFunction? = nil,
     evaluationFunction: EvaluationFunction? = nil,
-    beforeIteration: (Booster, Int) throws -> AfterIterationOutput = { _, _ in .next },
+    beforeIteration: BeforeIteration = DefaultBeforeIteration,
     callbacks: [Callback] = [],
-    afterIteration: (Booster, Int, Evaluation?, [AfterIterationOutput]) throws -> AfterIterationOutput = { _, _, _, _ in .next }
-) throws -> (results: [String: [Float]], folds: [CVPack]) {
-    var cvResults = [String: [Float]]()
-    var iterationsEvaluations = [Int: [Evaluation]]()
+    afterIteration: AfterIteration = DefaultAfterIteration,
+    afterCVIteration: AfterCVIteration = DefaultAfterCVIteration
+) throws -> (results: CVEvaluation, folds: [CVPack]) {
+    var cvResults = CVEvaluation()
 
-    for iteration in 0 ..< iterations {
-        var notImproved = 0
+    training: for iteration in 0 ..< iterations {
+        var stopped = 0
+        var iterationEvaluations = [Evaluation]()
 
         for (index, fold) in folds.enumerated() {
             try fold.booster.train(
@@ -203,26 +208,55 @@ public func crossValidationTraining(
                 beforeIteration: beforeIteration,
                 callbacks: callbacks
             ) { booster, iteration, evaluation, outputs in
-                if outputs.contains(.stop) {
-                    notImproved += 1
+                if outputs.willStop {
+                    stopped += 1
                 }
 
-                iterationsEvaluations[iteration, or: []].append(evaluation!)
+                iterationEvaluations.append(evaluation!)
                 return try afterIteration(booster, iteration, evaluation, outputs)
             }
         }
 
         let aggregatedEvaluation = try aggregateCrossValidationResults(
-            results: iterationsEvaluations[iteration]!
+            results: iterationEvaluations
         )
-
         for (metricName, mean, std) in aggregatedEvaluation {
             cvResults[metricName + "-mean", or: []].append(mean)
             cvResults[metricName + "-std", or: []].append(std)
         }
 
-        if notImproved == folds.count {
+        let earlyStop: Bool = try {
+            if let earlyStopping = earlyStopping {
+                return try earlyStopping.call(
+                    iteration: iteration,
+                    evaluation: cvResults
+                ) == .stop
+            }
+
+            return false
+        }()
+
+        let willStop = earlyStop || stopped == folds.count
+
+        switch try afterCVIteration(
+            iteration,
+            cvResults,
+            willStop
+        ) {
+        case .stop:
+            break training
+        case .next:
             break
+        }
+
+        if willStop {
+            break training
+        }
+    }
+
+    if let earlyStopping = earlyStopping {
+        for (key, values) in cvResults {
+            cvResults[key] = Array(values[0 ... earlyStopping.state.bestIteration])
         }
     }
 
@@ -234,13 +268,15 @@ public func crossValidationTraining(
     splits: Int,
     iterations: Int,
     parameters: [Parameter],
+    earlyStopping: EarlyStopping? = nil,
     objectiveFunction: ObjectiveFunction? = nil,
     evaluationFunction: EvaluationFunction? = nil,
     shuffle: Bool = true,
-    beforeIteration: (Booster, Int) throws -> AfterIterationOutput = { _, _ in .next },
+    beforeIteration: BeforeIteration = DefaultBeforeIteration,
     callbacks: [Callback] = [],
-    afterIteration: (Booster, Int, Evaluation?, [AfterIterationOutput]) throws -> AfterIterationOutput = { _, _, _, _ in .next }
-) throws -> (results: [String: [Float]], folds: [CVPack]) {
+    afterIteration: AfterIteration = DefaultAfterIteration,
+    afterCVIteration: AfterCVIteration = DefaultAfterCVIteration
+) throws -> (results: CVEvaluation, folds: [CVPack]) {
     try crossValidationTraining(
         folds: try makeNFold(
             data: data,
@@ -249,10 +285,12 @@ public func crossValidationTraining(
             shuffle: shuffle
         ),
         iterations: iterations,
+        earlyStopping: earlyStopping,
         objectiveFunction: objectiveFunction,
         evaluationFunction: evaluationFunction,
         beforeIteration: beforeIteration,
         callbacks: callbacks,
-        afterIteration: afterIteration
+        afterIteration: afterIteration,
+        afterCVIteration: afterCVIteration
     )
 }

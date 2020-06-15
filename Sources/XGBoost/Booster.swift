@@ -765,8 +765,8 @@ public class Booster {
             let resultSplitted = result.components(separatedBy: ":")
 
             let nameSplitted = resultSplitted[0].components(separatedBy: "-")
-            let name = nameSplitted[0]
-            let metric = nameSplitted[1]
+            let name = nameSplitted[0 ..< nameSplitted.count - 1].joined(separator: "-")
+            let metric = nameSplitted.last!
 
             let value = resultSplitted[1]
 

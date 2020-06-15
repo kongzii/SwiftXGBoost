@@ -34,12 +34,13 @@ let cv2 = try crossValidationTraining(
     splits: 5,
     iterations: 10,
     parameters: parameters,
-    shuffle: false,
-    callbacks: [EarlyStopping(
-        dataName: "test",
+    earlyStopping: EarlyStopping(
+        dataName: "data",
         metricName: "error",
         stoppingRounds: 3
-    )]
+
+    ),
+    shuffle: false
 )
 print(pandas.DataFrame.from_dict(cv2.results))
 
