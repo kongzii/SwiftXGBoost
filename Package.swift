@@ -69,5 +69,13 @@ let package = Package(
             ],
             path: "Examples/CrossValidation"
         ),
+        .target(
+            name: "BoostFromPrediction",
+            dependencies: [
+                "XGBoost",
+                "PythonKit",
+            ],
+            path: "Examples/BoostFromPrediction"
+        ),
     ]
 )
