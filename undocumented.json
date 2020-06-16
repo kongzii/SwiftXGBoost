@@ -1,34 +1,6 @@
 {
   "warnings": [
     {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
-      "line": 6,
-      "symbol": "CVPack.id",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
-      "line": 7,
-      "symbol": "CVPack.test",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
-      "line": 7,
-      "symbol": "CVPack.train",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/CrossValidation.swift",
-      "line": 8,
-      "symbol": "CVPack.booster",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
       "line": 8,
       "symbol": "BufferModel",
