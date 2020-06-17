@@ -22,7 +22,7 @@ final class TrainTests: XCTestCase {
         var iterations = [Int]()
 
         try booster.train(
-            iterations: 500,
+            iterations: 100,
             trainingData: data,
             evaluationData: [data],
             callbacks: [EarlyStopping(
@@ -67,7 +67,7 @@ final class TrainTests: XCTestCase {
         var iterations = [Int]()
 
         try booster.train(
-            iterations: 500,
+            iterations: 100,
             trainingData: data,
             evaluationData: [data],
             callbacks: [EarlyStopping(

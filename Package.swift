@@ -77,5 +77,13 @@ let package = Package(
             ],
             path: "Examples/BoostFromPrediction"
         ),
+        .target(
+            name: "CustomObjective",
+            dependencies: [
+                "XGBoost",
+                "PythonKit",
+            ],
+            path: "Examples/CustomObjective"
+        ),
     ]
 )
