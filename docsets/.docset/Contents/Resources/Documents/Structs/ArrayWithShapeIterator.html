@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Callback Protocol Reference</title>
+    <title>ArrayWithShapeIterator Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/Callback" class="dashAnchor"></a>
-    <a title="Callback Protocol Reference"></a>
+    <a name="//apple_ref/swift/Struct/ArrayWithShapeIterator" class="dashAnchor"></a>
+    <a title="ArrayWithShapeIterator Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (78% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Callback Protocol Reference
+        ArrayWithShapeIterator Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -217,14 +217,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Callback</h1>
+            <h1>ArrayWithShapeIterator</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Callback</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ArrayWithShapeIterator</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">IteratorProtocol</span> <span class="k">where</span> <span class="kt">Element</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                 </div>
               </div>
-            <p>Protocol for classes and structs that can be passed to traning in callbacks array.</p>
+            <p>Undocumented</p>
 
           </section>
           <section class="section task-group-section">
@@ -233,63 +233,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost8CallbackP4nameSSvp"></a>
-                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost8CallbackP4nameSSvp">name</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost8CallbackP7executeSayAA12LoopPositionOGvp"></a>
-                    <a name="//apple_ref/swift/Property/execute" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost8CallbackP7executeSayAA12LoopPositionOGvp">execute</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Time when to execute the callback in training loop.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">execute</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/LoopPosition.html">LoopPosition</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost8CallbackP4call7booster9iteration10evaluationAA20AfterIterationOutputOAA7BoosterCSg_SiSDySSSDyS2SGGSgtKF"></a>
-                    <a name="//apple_ref/swift/Method/call(booster:iteration:evaluation:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost8CallbackP4call7booster9iteration10evaluationAA20AfterIterationOutputOAA7BoosterCSg_SiSDySSSDyS2SGGSgtKF">call(booster:<wbr>iteration:<wbr>evaluation:<wbr>)</a>
+                    <a name="/s:St4next7ElementQzSgyF"></a>
+                    <a name="//apple_ref/swift/Method/next()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:St4next7ElementQzSgyF">next()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -303,56 +249,9 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">call</span><span class="p">(</span>
-    <span class="nv">booster</span><span class="p">:</span> <span class="kt"><a href="../Classes/Booster.html">Booster</a></span><span class="p">?,</span>
-    <span class="nv">iteration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
-    <span class="nv">evaluation</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a></span><span class="p">?</span>
-<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Element</span><span class="p">?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>booster</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Optional booster.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>iteration</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Current iteration.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>evaluation</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Optional dictionary with evaluations.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                     </section>
                   </div>

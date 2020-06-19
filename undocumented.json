@@ -1,6 +1,111 @@
 {
   "warnings": [
     {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 21,
+      "symbol": "ArrayWithShape",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 126,
+      "symbol": "ArrayWithShape",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 127,
+      "symbol": "ArrayWithShape.array",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 128,
+      "symbol": "ArrayWithShape.shape",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 130,
+      "symbol": "ArrayWithShape.count",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 134,
+      "symbol": "ArrayWithShape.init(_:shape:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 143,
+      "symbol": "ArrayWithShape.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 156,
+      "symbol": "ArrayWithShape.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 160,
+      "symbol": "ArrayWithShape.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 169,
+      "symbol": "ArrayWithShapeIterator",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 187,
+      "symbol": "ArrayWithShape",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 194,
+      "symbol": "ArrayWithShape",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
+      "line": 201,
+      "symbol": "ArrayWithShape",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 41,
+      "symbol": "Shape.rank",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/DMatrix.swift",
+      "line": 45,
+      "symbol": "Shape.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Enums.swift",
       "line": 8,
       "symbol": "BufferModel",
@@ -214,20 +319,6 @@
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Parameter.swift",
       "line": 7,
       "symbol": "Parameter.value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Shape.swift",
-      "line": 5,
-      "symbol": "Shape.row",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Shape.swift",
-      "line": 6,
-      "symbol": "Shape.column",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },

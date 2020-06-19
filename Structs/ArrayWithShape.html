@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ArrayWithShape Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/ArrayWithShape" class="dashAnchor"></a>
+    <a title="ArrayWithShape Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (78% documented)</p>
+        <p class="header-right"><a href="https://github.com/kongzii/SwiftXGBoost"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ArrayWithShape Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Booster.html">Booster</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CVPack.html">CVPack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DMatrix.html">DMatrix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EarlyStopping.html">EarlyStopping</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VariableLearningRate.html">VariableLearningRate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost23DefaultAfterCVIterationyAA0C15IterationOutputOSi_SDySSSaySfGGSbtKcvp">DefaultAfterCVIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost21DefaultAfterIterationyAA0cD6OutputOAA7BoosterC_SiSDySSSDyS2SGGSgSayADGtKcvp">DefaultAfterIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7XGBoost22DefaultBeforeIterationyAA05AfterD6OutputOAA7BoosterC_SitKcvp">DefaultBeforeIteration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AfterIterationOutput.html">AfterIterationOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BoosterType.html">BoosterType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DataFormat.html">DataFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FeatureType.html">FeatureType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FloatField.html">FloatField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Importance.html">Importance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LoopPosition.html">LoopPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ModelFormat.html">ModelFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UIntField.html">UIntField</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Dictionary.html">Dictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/PythonObject.html">PythonObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Shape.html">Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Tensor.html">Tensor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining4data6splits10iterations10parameters13earlyStopping17objectiveFunction010evaluationL07shuffle15beforeIteration9callbacks05afterP00R11CVIterationSDySSSaySfGG7results_SayAA6CVPackCG5foldstAA7DMatrixC_S2iSayAA9ParameterVGAA05EarlyJ0CSgAO8gradient_AO7hessiantAA14ArrayWithShapeVySfG_AWtKcSgSS_SStA6__AWtKcSgSbAA05AfterP6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA10_A12__SiSDySSSDyS2SGGSgSayA10_GtKXEA10_Si_APSbtKXEtKF">crossValidationTraining(data:splits:iterations:parameters:earlyStopping:objectiveFunction:evaluationFunction:shuffle:beforeIteration:callbacks:afterIteration:afterCVIteration:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:7XGBoost23crossValidationTraining5folds10iterations13earlyStopping17objectiveFunction010evaluationJ015beforeIteration9callbacks05afterM00O11CVIterationSDySSSaySfGG7results_SayAA6CVPackCGACtAQ_SiAA05EarlyH0CSgAL8gradient_AL7hessiantAA14ArrayWithShapeVySfG_AA7DMatrixCtKcSgSS_SStAY_A_tKcSgAA05AfterM6OutputOAA7BoosterC_SitKXESayAA8Callback_pGA3_A5__SiSDySSSDyS2SGGSgSayA3_GtKXEA3_Si_AMSbtKXEtKF">crossValidationTraining(folds:iterations:earlyStopping:objectiveFunction:evaluationFunction:beforeIteration:callbacks:afterIteration:afterCVIteration:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Callback.html">Callback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/FloatData.html">FloatData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Int32Data.html">Int32Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ShapeData.html">ShapeData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UInt32Data.html">UInt32Data</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ArrayWithShape.html">ArrayWithShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ArrayWithShapeIterator.html">ArrayWithShapeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Feature.html">Feature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Parameter.html">Parameter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost16AfterCVIterationa">AfterCVIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost14AfterIterationa">AfterIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost15BeforeIterationa">BeforeIteration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost11BufferModela">BufferModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost12CVEvaluationa">CVEvaluation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost4Dataa">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost10Evaluationa">Evaluation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost18EvaluationFunctiona">EvaluationFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost17ObjectiveFunctiona">ObjectiveFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost8RawModela">RawModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost16SerializedBuffera">SerializedBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost5Shapea">Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoost7Versiona">Version</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7XGBoostAAa">XGBoost</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ArrayWithShape</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ArrayWithShape</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Sequence</span><span class="p">,</span> <span class="kt"><a href="../Protocols/ShapeData.html">ShapeData</a></span> <span class="k">where</span> <span class="kt">Element</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ArrayWithShape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span> <span class="k">where</span> <span class="kt">Element</span> <span class="o">==</span> <span class="kt">Float</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ArrayWithShape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Int32Data.html">Int32Data</a></span> <span class="k">where</span> <span class="kt">Element</span> <span class="o">==</span> <span class="kt">Int32</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ArrayWithShape</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UInt32Data.html">UInt32Data</a></span> <span class="k">where</span> <span class="kt">Element</span> <span class="o">==</span> <span class="kt">UInt32</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeV5arraySayxGvp"></a>
+                    <a name="//apple_ref/swift/Property/array" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeV5arraySayxGvp">array</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">array</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeV5shapeSaySiGvp"></a>
+                    <a name="//apple_ref/swift/Property/shape" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeV5shapeSaySiGvp">shape</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost5Shapea">Shape</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeV5countSivp"></a>
+                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeV5countSivp">count</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeV_5shapeACyxGSayxG_SaySiGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:shape:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeV_5shapeACyxGSayxG_SaySiGtcfc">init(_:<wbr>shape:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">array</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">],</span> <span class="nv">shape</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost5Shapea">Shape</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost9ShapeDataP04dataB0SaySiGyKF"></a>
+                    <a name="//apple_ref/swift/Method/dataShape()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost9ShapeDataP04dataB0SaySiGyKF">dataShape()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dataShape</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:7XGBoost5Shapea">Shape</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeVyxSicip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeVyxSicip">subscript(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Element</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="err">`</span><span class="k">Self</span><span class="err">`</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="err">`</span><span class="k">Self</span><span class="err">`</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeV2eeoiySbSayxG_ACyxGtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeV2eeoiySbSayxG_ACyxGtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">],</span> <span class="nv">rhs</span><span class="p">:</span> <span class="err">`</span><span class="k">Self</span><span class="err">`</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeV2eeoiySbACyxG_SayxGtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeV2eeoiySbACyxG_SayxGtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="err">`</span><span class="k">Self</span><span class="err">`</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ST12makeIterator0B0QzyF"></a>
+                    <a name="//apple_ref/swift/Method/makeIterator()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ST12makeIterator0B0QzyF">makeIterator()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeIterator</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ArrayWithShapeIterator.html">ArrayWithShapeIterator</a></span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Element%60%20%3D%3D%20%60Float%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Element` == `Float`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Element%60%20%3D%3D%20%60Float%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Element</code> == <code>Float</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeVAASfRszrlE4dataSaySfGyKF"></a>
+                    <a name="//apple_ref/swift/Method/data()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeVAASfRszrlE4dataSaySfGyKF">data()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">data</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Float</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>[Float]</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Element%60%20%3D%3D%20%60Int32%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Element` == `Int32`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Element%60%20%3D%3D%20%60Int32%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Element</code> == <code>Int32</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeVAAs5Int32VRszrlE4dataSayAEGyKF"></a>
+                    <a name="//apple_ref/swift/Method/data()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeVAAs5Int32VRszrlE4dataSayAEGyKF">data()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">data</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Int32</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>[Int32]</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Element%60%20%3D%3D%20%60UInt32%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Element` == `UInt32`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Element%60%20%3D%3D%20%60UInt32%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Element</code> == <code>UInt32</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeVAAs6UInt32VRszrlE4dataSayAEGyKF"></a>
+                    <a name="//apple_ref/swift/Method/data()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeVAAs6UInt32VRszrlE4dataSayAEGyKF">data()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">data</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UInt32</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>[UInt32]</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Element%60%3A%20%60NumpyScalarCompatible%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Element`: `NumpyScalarCompatible`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Element%60%3A%20%60NumpyScalarCompatible%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Element</code>: <code>NumpyScalarCompatible</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7XGBoost14ArrayWithShapeVAA9PythonKit21NumpyScalarCompatibleRzrlE04makegB0AD0E6ObjectVyF"></a>
+                    <a name="//apple_ref/swift/Method/makeNumpyArray()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost14ArrayWithShapeVAA9PythonKit21NumpyScalarCompatibleRzrlE04makegB0AD0E6ObjectVyF">makeNumpyArray()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <div class="aside aside-precondition">
+    <p class="aside-title">Precondition</p>
+    The <code>numpy</code> Python package must be installed.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">makeNumpyArray</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">PythonObject</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Properly shaped numpy array.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
