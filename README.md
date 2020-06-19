@@ -10,7 +10,11 @@
 Bindings for [the XGBoost system library](https://en.wikipedia.org/wiki/XGBoost). 
 The aim of this package is to mimic [XGBoost Python bindings](https://xgboost.readthedocs.io/en/latest/python/python_intro.html) but, at the same time, utilize the power of Swift and C compatibility. Some things thus behave differently but should provide you maximum flexibility over XGBoost.
 
-Human written documentation is available at [readthedocs](https://swiftxgboost.readthedocs.io/), automatic, from code generated documentation is available at [pages](https://kongzii.github.io/SwiftXGBoost/).
+Check out:
+
+- [Examples](https://github.com/kongzii/SwiftXGBoost/tree/master/Examples) 
+- [Code documentation](https://kongzii.github.io/SwiftXGBoost/)
+- [ReadTheDocs](https://swiftxgboost.readthedocs.io/)
 
 ## Installation
 
