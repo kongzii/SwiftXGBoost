@@ -17,7 +17,6 @@ let test = try DMatrix(
     format: .libsvm
 )
 
-
 // change booster to gblinear, so that we are fitting a linear model
 // alpha is the L1 regularizer
 // lambda is the L2 regularizer

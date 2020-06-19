@@ -109,5 +109,13 @@ let package = Package(
             ],
             path: "Examples/GeneralizedLinearModel"
         ),
+        .target(
+            name: "PredictFirstNTree",
+            dependencies: [
+                "XGBoost",
+                "PythonKit",
+            ],
+            path: "Examples/PredictFirstNTree"
+        ),
     ]
 )
