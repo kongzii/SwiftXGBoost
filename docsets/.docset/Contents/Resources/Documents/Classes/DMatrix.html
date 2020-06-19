@@ -763,9 +763,9 @@ which is optimized for both memory efficiency and training speed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7DMatrixC4name4from6format8features11labelColumn0G06weight10baseMargin0G10LowerBound0g5UpperM06silent9fileQueryACSS_SSAA10DataFormatOSayAA7FeatureVGSgSiSgAA05FloatR0_pSgA4XSbSaySSGtKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(name:from:format:features:labelColumn:label:weight:baseMargin:labelLowerBound:labelUpperBound:silent:fileQuery:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from6format8features11labelColumn0G06weight10baseMargin0G10LowerBound0g5UpperM06silent9fileQueryACSS_SSAA10DataFormatOSayAA7FeatureVGSgSiSgAA05FloatR0_pSgA4XSbSaySSGtKcfc">init(name:<wbr>from:<wbr>format:<wbr>features:<wbr>labelColumn:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>labelLowerBound:<wbr>labelUpperBound:<wbr>silent:<wbr>fileQuery:<wbr>)</a>
+                    <a name="/s:7XGBoost7DMatrixC4name4from6format8useCache8features11labelColumn0I06weight10baseMargin0I10LowerBound0i5UpperO06silent9fileQueryACSS_SSAA10DataFormatOSbSayAA7FeatureVGSgSiSgAA05FloatT0_pSgA4YSbSaySSGtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:from:format:useCache:features:labelColumn:label:weight:baseMargin:labelLowerBound:labelUpperBound:silent:fileQuery:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7DMatrixC4name4from6format8useCache8features11labelColumn0I06weight10baseMargin0I10LowerBound0i5UpperO06silent9fileQueryACSS_SSAA10DataFormatOSbSayAA7FeatureVGSgSiSgAA05FloatT0_pSgA4YSbSaySSGtKcfc">init(name:<wbr>from:<wbr>format:<wbr>useCache:<wbr>features:<wbr>labelColumn:<wbr>label:<wbr>weight:<wbr>baseMargin:<wbr>labelLowerBound:<wbr>labelUpperBound:<wbr>silent:<wbr>fileQuery:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -784,6 +784,7 @@ which is optimized for both memory efficiency and training speed.</p>
     <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="n">from</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/DataFormat.html">DataFormat</a></span><span class="p">,</span>
+    <span class="nv">useCache</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">labelColumn</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">label</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FloatData.html">FloatData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
@@ -834,6 +835,18 @@ which is optimized for both memory efficiency and training speed.</p>
                               <td>
                                 <div>
                                   <p>Format of input file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>useCache</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Use external memory.</p>
                                 </div>
                               </td>
                             </tr>
