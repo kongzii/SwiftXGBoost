@@ -30,7 +30,16 @@ public protocol ShapeData {
 extension ShapeData {
     /// - Returns: Whether shape indicates flat structure.
     public func isFlat() throws -> Bool {
-        try dataShape().row == 1
+        try dataShape().count == 1
+    }
+}
+
+/// Shape of data structure.
+public typealias Shape = [Int]
+
+public extension Shape {
+    init(_ elements: Int...) {
+        self = elements
     }
 }
 
@@ -125,8 +134,8 @@ public class DMatrix {
         try safe {
             XGDMatrixCreateFromMat_omp(
                 try data.data(),
-                UInt64(shape.row),
-                UInt64(shape.column),
+                UInt64(shape[0]),
+                UInt64(shape[1]),
                 missingValue,
                 &dmatrix,
                 Int32(threads)
@@ -324,8 +333,8 @@ public class DMatrix {
     /// - Returns: The shape of dmatrix, i.e. (rowCount(), columnCount()).
     public func shape() throws -> Shape {
         Shape(
-            row: try rowCount(),
-            column: try columnCount()
+            try rowCount(),
+            try columnCount()
         )
     }
 

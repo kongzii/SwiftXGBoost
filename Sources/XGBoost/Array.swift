@@ -122,3 +122,81 @@ public extension Array where Element == AfterIterationOutput {
         contains(where: { $0 == .stop })
     }
 }
+
+public struct ArrayWithShape<Element>: Equatable, Sequence where Element: Equatable {
+    public var array: [Element]
+    public var shape: Shape
+
+    public var count: Int {
+        array.count
+    }
+
+    public init(_ array: [Element], shape: Shape) {
+        self.array = array
+        self.shape = shape
+    }
+
+    public subscript(index: Int) -> Element {
+        get {
+            array[index]
+        }
+        set(newValue) {
+            array[index] = newValue
+        }
+    }
+
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.array == rhs.array && lhs.shape == rhs.shape
+    }
+
+    public static func == (lhs: [Element], rhs: Self) -> Bool {
+        lhs == rhs.array
+    }
+
+    public static func == (lhs: Self, rhs: [Element]) -> Bool {
+        lhs.array == rhs
+    }
+
+    public func makeIterator() -> ArrayWithShapeIterator<Element> {
+        ArrayWithShapeIterator<Element>(self)
+    }
+}
+
+public struct ArrayWithShapeIterator<Element>: IteratorProtocol where Element: Equatable {
+    var index = 0
+    let arrayWithShape: ArrayWithShape<Element>
+
+    init(_ arrayWithShape: ArrayWithShape<Element>) {
+        self.arrayWithShape = arrayWithShape
+    }
+
+    public mutating func next() -> Element? {
+        if index == arrayWithShape.count {
+            return nil
+        }
+
+        defer { index += 1 }
+        return arrayWithShape[index]
+    }
+}
+
+extension ArrayWithShape: FloatData where Element == Float {
+    /// - Returns: [Float]
+    public func data() throws -> [Float] {
+        array
+    }
+}
+
+extension ArrayWithShape: Int32Data where Element == Int32 {
+    /// - Returns: [Int32]
+    public func data() throws -> [Int32] {
+        array
+    }
+}
+
+extension ArrayWithShape: UInt32Data where Element == UInt32 {
+    /// - Returns: [UInt32]
+    public func data() throws -> [UInt32] {
+        array
+    }
+}

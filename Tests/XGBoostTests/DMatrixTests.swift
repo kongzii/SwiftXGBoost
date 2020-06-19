@@ -13,8 +13,7 @@ final class DMatrixTests: XCTestCase {
         )
         XCTAssertEqual(try data.rowCount(), 5)
         XCTAssertEqual(try data.columnCount(), 2)
-        XCTAssertEqual(try data.shape().row, 5)
-        XCTAssertEqual(try data.shape().column, 2)
+        XCTAssertEqual(try data.shape(), [5, 2])
     }
 
     func testFromCSVFile() throws {

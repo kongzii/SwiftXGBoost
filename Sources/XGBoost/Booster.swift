@@ -4,10 +4,10 @@ import CXGBoost
 public typealias XGBoost = Booster
 
 /// Typealias for objective function.
-public typealias ObjectiveFunction = ([Float], Data) throws -> (gradient: [Float], hessian: [Float])
+public typealias ObjectiveFunction = (ArrayWithShape<Float>, Data) throws -> (gradient: [Float], hessian: [Float])
 
 /// Typealias for evaluation function.
-public typealias EvaluationFunction = ([Float], Data) throws -> (String, String)
+public typealias EvaluationFunction = (ArrayWithShape<Float>, Data) throws -> (String, String)
 
 /// Booster model.
 ///
@@ -184,7 +184,7 @@ public class Booster {
         predictionInteractions: Bool = false,
         training: Bool = false,
         validateFeatures: Bool = true
-    ) throws -> [Float] {
+    ) throws -> ArrayWithShape<Float> {
         if validateFeatures {
             try validate(data: data)
         }
@@ -226,12 +226,41 @@ public class Booster {
             )
         }
 
-        return (0 ..< Int(outLenght.pointee)).map { outResult.pointee![$0] }
+        let predictions = (0 ..< Int(outLenght.pointee)).map { outResult.pointee![$0] }
+        let rowCount = try data.rowCount()
+        let columnCount = try data.columnCount()
+        var shape = Shape(rowCount, 1)
+
+        if predictions.count != rowCount, predictions.count % rowCount == 0 {
+            let chunkSize = predictions.count / rowCount
+
+            if predictionInteractions {
+                let nGroup = chunkSize / ((columnCount + 1) * (columnCount + 1))
+
+                if nGroup == 1 {
+                    shape = Shape(rowCount, columnCount + 1, columnCount + 1)
+                } else {
+                    shape = Shape(rowCount, nGroup, columnCount + 1, columnCount + 1)
+                }
+            } else if predictionContributions {
+                let nGroup = chunkSize / (columnCount + 1)
+
+                if nGroup == 1 {
+                    shape = Shape(rowCount, columnCount + 1)
+                } else {
+                    shape = Shape(rowCount, nGroup, columnCount + 1)
+                }
+            } else {
+                shape = Shape(rowCount, chunkSize)
+            }
+        }
+
+        return ArrayWithShape<Float>(predictions, shape: shape)
     }
 
     /// Predict directly from array of floats, will build Data structure automatically with one row and features.count features.
     ///
-    /// - Parameter features: Features to base prediction at..
+    /// - Parameter features: Features to base prediction at.
     /// - Parameter outputMargin: Whether to output the raw untransformed margin value.
     /// - Parameter treeLimit: Limit number of trees in the prediction. Zero means use all trees.
     /// - Parameter predictionLeaf: Each record indicating the predicted leaf index of each sample in each tree.
