@@ -85,5 +85,13 @@ let package = Package(
             ],
             path: "Examples/CustomObjective"
         ),
+        .target(
+            name: "EvalsResult",
+            dependencies: [
+                "XGBoost",
+                "PythonKit",
+            ],
+            path: "Examples/EvalsResult"
+        ),
     ]
 )
