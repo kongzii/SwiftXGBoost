@@ -117,5 +117,13 @@ let package = Package(
             ],
             path: "Examples/PredictFirstNTree"
         ),
+        .target(
+            name: "PredictLeafIndices",
+            dependencies: [
+                "XGBoost",
+                "PythonKit",
+            ],
+            path: "Examples/PredictLeafIndices"
+        ),
     ]
 )
