@@ -123,7 +123,7 @@ public extension Array where Element == AfterIterationOutput {
     }
 }
 
-public struct ArrayWithShape<Element>: Equatable, Sequence where Element: Equatable {
+public struct ArrayWithShape<Element>: Equatable, Sequence, ShapeData where Element: Equatable {
     public var array: [Element]
     public var shape: Shape
 
@@ -134,6 +134,10 @@ public struct ArrayWithShape<Element>: Equatable, Sequence where Element: Equata
     public init(_ array: [Element], shape: Shape) {
         self.array = array
         self.shape = shape
+    }
+
+    public func dataShape() throws -> Shape {
+        shape
     }
 
     public subscript(index: Int) -> Element {

@@ -34,14 +34,14 @@ extension Shape {
     /// Init shape from PythonObject.
     ///
     /// - Parameter shape: Python object holding integers that can be converted to [Int].
-    public init(_ shape: PythonObject) throws {
+    public init(_ shape: PythonObject) {
         self = [Int](shape)!
     }   
 
     /// Init shape from PythonObjects.
     ///
     /// - Parameter shape: Python object holding integers that can be converted to [Int].
-    public init(_ elements: PythonObject...) throws {
+    public init(_ elements: PythonObject...) {
         self = elements.map { Int($0)! }
     }   
 }
@@ -51,14 +51,6 @@ extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
     /// Comfortance for FloatData.
     public func data() throws -> [Float] {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
-            if self.shape.count == 1 {
-                return [Float](self)!
-            }
-
-            if self.shape.count != 2 {
-                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
-            }
-
             let size = Int(self.size)!
             let data = numpy.array(self.reshape(size), copy: false, dtype: numpy.float32)
             let contiguousData = numpy.ascontiguousarray(data)
@@ -80,14 +72,6 @@ extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
     /// Comfortance for Int32Data.
     public func data() throws -> [Int32] {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
-            if self.shape.count == 1 {
-                return [Int32](self)!
-            }
-
-            if self.shape.count != 2 {
-                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
-            }
-
             let size = Int(self.size)!
             let data = numpy.array(self.reshape(size), copy: false, dtype: numpy.int32)
             let contiguousData = numpy.ascontiguousarray(data)
@@ -109,14 +93,6 @@ extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
     /// Comfortance for UInt32Data.
     public func data() throws -> [UInt32] {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
-            if self.shape.count == 1 {
-                return [UInt32](self)!
-            }
-
-            if self.shape.count != 2 {
-                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
-            }
-
             let size = Int(self.size)!
             let data = numpy.array(self.reshape(size), copy: false, dtype: numpy.uint32)
             let contiguousData = numpy.ascontiguousarray(data)
@@ -138,13 +114,7 @@ extension PythonObject: FloatData, Int32Data, UInt32Data, ShapeData {
     /// Comfortance for ShapeData.
     public func dataShape() throws -> Shape {
         if Bool(Python.isinstance(self, numpy.ndarray))! {
-            if self.shape.count == 1 {
-                return try Shape(1, self.shape[0])
-            } else if self.shape.count == 2 {
-                return try Shape(self.shape)
-            } else {
-                throw ValueError.runtimeError("Invalid shape \(self.shape) of self.")
-            }
+            return Shape(self.shape)
         } else {
             throw ValueError.runtimeError("PythonObject type \(Python.type(self)) is not supported ShapeData.")
         }

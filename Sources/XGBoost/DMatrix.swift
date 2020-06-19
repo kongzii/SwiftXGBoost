@@ -30,7 +30,7 @@ public protocol ShapeData {
 extension ShapeData {
     /// - Returns: Whether shape indicates flat structure.
     public func isFlat() throws -> Bool {
-        try dataShape().count == 1
+        try dataShape().rank == 1
     }
 }
 
@@ -38,6 +38,10 @@ extension ShapeData {
 public typealias Shape = [Int]
 
 public extension Shape {
+    var rank: Int {
+        count
+    }
+
     init(_ elements: Int...) {
         self = elements
     }
@@ -108,7 +112,7 @@ public class DMatrix {
     ///
     /// - Parameter name: Name of dataset.
     /// - Parameter from: Values source.
-    /// - Parameter shape: Shape of resulting DMatrixHandle.
+    /// - Parameter shape: Shape of resulting DMatrixHandle, needs to be of rank two, e.g. [row, column].
     /// - Parameter features: Names and types of features.
     /// - Parameter label: Sets label after DMatrix initialization.
     /// - Parameter weight: Sets weight after DMatrix initialization.
@@ -130,6 +134,10 @@ public class DMatrix {
         missingValue: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
     ) throws {
+        if shape.rank != 2 {
+            throw ValueError.runtimeError("Invalid shape \(shape), required rank 2.")
+        }
+
         var dmatrix: DMatrixHandle?
         try safe {
             XGDMatrixCreateFromMat_omp(
