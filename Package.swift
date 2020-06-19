@@ -101,5 +101,13 @@ let package = Package(
             ],
             path: "Examples/ExternalMemory"
         ),
+        .target(
+            name: "GeneralizedLinearModel",
+            dependencies: [
+                "XGBoost",
+                "PythonKit",
+            ],
+            path: "Examples/GeneralizedLinearModel"
+        ),
     ]
 )
