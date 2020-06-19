@@ -188,6 +188,7 @@ public class DMatrix {
     /// - Parameter name: Name of dataset.
     /// - Parameter from: File to laod from.
     /// - Parameter format: Format of input file.
+    /// - Parameter useCache: Use external memory.
     /// - Parameter features: Names and types of features.
     /// - Parameter labelColumn: Which column is for label.
     /// - Parameter label: Sets label after DMatrix initialization.
@@ -201,6 +202,7 @@ public class DMatrix {
         name: String,
         from file: String,
         format: DataFormat,
+        useCache: Bool = false,
         features: [Feature]? = nil,
         labelColumn: Int? = nil,
         label: FloatData? = nil,
@@ -211,6 +213,7 @@ public class DMatrix {
         silent: Bool = true,
         fileQuery: [String] = []
     ) throws {
+        var file = file
         var fileQuery = fileQuery
 
         switch format {
@@ -222,6 +225,14 @@ public class DMatrix {
 
         if let labelColumn = labelColumn {
             fileQuery.append("label_column=\(labelColumn)")
+        }
+
+        if useCache {
+            if format != .libsvm {
+                throw ValueError.runtimeError("Cache currently only support convert from libsvm file.")
+            }
+
+            file += "#\(name).cache"
         }
 
         var dmatrix: DMatrixHandle?

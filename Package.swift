@@ -93,5 +93,13 @@ let package = Package(
             ],
             path: "Examples/EvalsResult"
         ),
+        .target(
+            name: "ExternalMemory",
+            dependencies: [
+                "XGBoost",
+                "PythonKit",
+            ],
+            path: "Examples/ExternalMemory"
+        ),
     ]
 )
