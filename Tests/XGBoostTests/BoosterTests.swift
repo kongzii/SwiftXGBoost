@@ -37,15 +37,10 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testJsonDumped.xgboost", isDirectory: false
-        ).path
-        let temporaryDumpFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testJsonDumped.json", isDirectory: false
-        ).path
+        let pyBooster = try python(booster: booster)
 
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        let temporaryDumpFile = temporaryFile()
+
         pyBooster.dump_model(fout: temporaryDumpFile, dump_format: "json")
 
         let json = try booster.dumped(format: .json)
@@ -73,21 +68,14 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testTextDumped.xgboost", isDirectory: false
-        ).path
-        let temporaryDumpFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testTextDumped.json", isDirectory: false
-        ).path
-        let temporaryFeatureMapFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testTextDumped.featureMap", isDirectory: false
-        ).path
+        let pyBooster = try python(booster: booster)
+
+        let temporaryDumpFile = temporaryFile()
+        let temporaryFeatureMapFile = temporaryFile()
 
         let features = [Feature(name: "x", type: .quantitative)]
         try features.saveFeatureMap(to: temporaryFeatureMapFile)
 
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
         pyBooster.dump_model(
             fout: temporaryDumpFile, fmap: temporaryFeatureMapFile,
             with_stats: true, dump_format: "text"
@@ -121,12 +109,7 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testDotDumped.xgboost", isDirectory: false
-        ).path
-
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        let pyBooster = try python(booster: booster)
 
         let dot = try booster.rawDumped(format: .dot)
         let pyDot = pyBooster.get_dump(dump_format: "dot").map { String($0)! }
@@ -150,12 +133,7 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testScoreEmptyFeatureMap.xgboost", isDirectory: false
-        ).absoluteString
-
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        let pyBooster = try python(booster: booster)
 
         let pyWeightMap = [String: Int](pyBooster.get_score(
             fmap: "", importance_type: "weight"
@@ -206,17 +184,11 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testScoreWithFeatureMap.xgboost", isDirectory: false
-        ).path
-        let temporaryNamesFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testScoreWithFeatureMap.featuremap.txt", isDirectory: false
-        ).path
+        let temporaryNamesFile = temporaryFile()
 
         try features.saveFeatureMap(to: temporaryNamesFile)
 
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        let pyBooster = try python(booster: booster)
 
         let pyWeightMap = [String: Int](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "weight"

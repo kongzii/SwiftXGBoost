@@ -1,6 +1,8 @@
 import PythonKit
 import XCTest
 
+@testable import XGBoost
+
 func assertEqual(
     _ a: [String: Float],
     _ b: [String: Float],
@@ -23,4 +25,23 @@ func assertEqual(
             XCTAssertEqual(valueA, valueB, accuracy: accuracy)
         }
     }
+}
+
+func temporaryFile(name: String = "xgboost") -> String {
+    FileManager.default.temporaryDirectory.appendingPathComponent(
+        "\(name).\(Int.random(in: 0 ..< Int.max))", isDirectory: false
+    ).path
+}
+
+func python(
+    booster: Booster
+) throws -> PythonObject {
+    let temporaryModelFile = temporaryFile()
+
+    try booster.save(to: temporaryModelFile)
+
+    let pyXgboost = try Python.attemptImport("xgboost")
+    let pyBooster = pyXgboost.Booster(model_file: temporaryModelFile)
+
+    return pyBooster
 }
