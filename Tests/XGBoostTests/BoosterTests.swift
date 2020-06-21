@@ -167,25 +167,25 @@ final class BoosterTests: XCTestCase {
             fmap: "", importance_type: "gain"
         ))!
         let (_, gainMap) = try booster.score(featureMap: "", importance: .gain)
-        assertEqualDictionary(gainMap!, pyGainMap, accuracy: 1e-6)
+        assertEqual(gainMap!, pyGainMap, accuracy: 1e-6)
 
         let pyTotalGainMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "total_gain"
         ))!
         let (_, totalGainMap) = try booster.score(featureMap: "", importance: .totalGain)
-        assertEqualDictionary(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
+        assertEqual(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
 
         let pyCoverMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "cover"
         ))!
         let (_, coverMap) = try booster.score(featureMap: "", importance: .cover)
-        assertEqualDictionary(coverMap!, pyCoverMap, accuracy: 1e-6)
+        assertEqual(coverMap!, pyCoverMap, accuracy: 1e-6)
 
         let pyTotalCoverMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "total_cover"
         ))!
         let (_, totalCoverMap) = try booster.score(featureMap: "", importance: .totalCover)
-        assertEqualDictionary(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
+        assertEqual(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
     }
 
     func testScoreWithFeatureMap() throws {
@@ -232,7 +232,7 @@ final class BoosterTests: XCTestCase {
         let (_, gainMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .gain
         )
-        assertEqualDictionary(gainMap!, pyGainMap, accuracy: 1e-6)
+        assertEqual(gainMap!, pyGainMap, accuracy: 1e-6)
 
         let pyTotalGainMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "total_gain"
@@ -240,7 +240,7 @@ final class BoosterTests: XCTestCase {
         let (_, totalGainMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .totalGain
         )
-        assertEqualDictionary(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
+        assertEqual(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
 
         let pyCoverMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "cover"
@@ -248,7 +248,7 @@ final class BoosterTests: XCTestCase {
         let (_, coverMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .cover
         )
-        assertEqualDictionary(coverMap!, pyCoverMap, accuracy: 1e-6)
+        assertEqual(coverMap!, pyCoverMap, accuracy: 1e-6)
 
         let pyTotalCoverMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "total_cover"
@@ -256,7 +256,7 @@ final class BoosterTests: XCTestCase {
         let (_, totalCoverMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .totalCover
         )
-        assertEqualDictionary(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
+        assertEqual(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
     }
 
     static var allTests = [

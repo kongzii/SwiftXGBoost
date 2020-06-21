@@ -1,7 +1,7 @@
 import PythonKit
 import XCTest
 
-func assertEqualDictionary(
+func assertEqual(
     _ a: [String: Float],
     _ b: [String: Float],
     accuracy: Float
