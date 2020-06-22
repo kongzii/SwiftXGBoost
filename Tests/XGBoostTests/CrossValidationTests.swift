@@ -18,12 +18,7 @@ final class CrossValidationTests: XCTestCase {
             threads: 1
         )
 
-        let temporaryDataFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testBasicCrossValidation.data", isDirectory: false
-        ).path
-
-        try data.save(to: temporaryDataFile)
-        let pyData = PXGBOOST.DMatrix(data: temporaryDataFile)
+        let pyData = try python(dmatrix: data)
 
         let (results, folds) = try crossValidationTraining(
             data: data,
@@ -64,12 +59,7 @@ final class CrossValidationTests: XCTestCase {
             threads: 1
         )
 
-        let temporaryDataFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testBasicCrossValidation.data", isDirectory: false
-        ).path
-
-        try data.save(to: temporaryDataFile)
-        let pyData = PXGBOOST.DMatrix(data: temporaryDataFile)
+        let pyData = try python(dmatrix: data)
 
         let (results, folds) = try crossValidationTraining(
             data: data,

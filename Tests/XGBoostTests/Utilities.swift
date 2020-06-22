@@ -37,11 +37,22 @@ func python(
     booster: Booster
 ) throws -> PythonObject {
     let temporaryModelFile = temporaryFile()
-
     try booster.save(to: temporaryModelFile)
 
     let pyXgboost = try Python.attemptImport("xgboost")
     let pyBooster = pyXgboost.Booster(model_file: temporaryModelFile)
 
     return pyBooster
+}
+
+func python(
+    dmatrix: DMatrix
+) throws -> PythonObject {
+    let temporaryDataFile = temporaryFile()
+    try dmatrix.save(to: temporaryDataFile)
+
+    let pyXgboost = try Python.attemptImport("xgboost")
+    let pyData = pyXgboost.DMatrix(data: temporaryDataFile)
+
+    return pyData
 }
