@@ -3,9 +3,6 @@ import XCTest
 
 @testable import XGBoost
 
-private let PXGBOOST = Python.import("xgboost")
-private let PJSON = Python.import("json")
-
 final class CrossValidationTests: XCTestCase {
     func testBasicCrossValidation() throws {
         let randomArray = (0 ..< 10000).map { _ in Float.random(in: 0 ..< 2) }
@@ -30,7 +27,7 @@ final class CrossValidationTests: XCTestCase {
             shuffle: false
         )
 
-        let pyJsonResults = PXGBOOST.cv(
+        let pyJsonResults = try pythonXGBoost().cv(
             params: ["seed": 0],
             dtrain: pyData,
             nfold: 5,
@@ -76,14 +73,14 @@ final class CrossValidationTests: XCTestCase {
             shuffle: false
         )
 
-        let pyJsonResults = PXGBOOST.cv(
+        let pyJsonResults = try pythonXGBoost().cv(
             params: ["seed": 0],
             dtrain: pyData,
             nfold: 5,
             num_boost_round: 10,
             as_pandas: false,
             seed: 0,
-            callbacks: [PXGBOOST.callback.early_stop(3)],
+            callbacks: [try pythonXGBoost().callback.early_stop(3)],
             shuffle: false
         )
 

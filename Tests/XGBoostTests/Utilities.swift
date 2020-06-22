@@ -33,16 +33,18 @@ func temporaryFile(name: String = "xgboost") -> String {
     ).path
 }
 
+func pythonXGBoost() throws -> PythonObject {
+    try Python.attemptImport("xgboost")
+}
+
 func python(
     booster: Booster
 ) throws -> PythonObject {
     let temporaryModelFile = temporaryFile()
     try booster.save(to: temporaryModelFile)
-
     let pyXgboost = try Python.attemptImport("xgboost")
-    let pyBooster = pyXgboost.Booster(model_file: temporaryModelFile)
 
-    return pyBooster
+    return pyXgboost.Booster(model_file: temporaryModelFile)
 }
 
 func python(
@@ -50,9 +52,7 @@ func python(
 ) throws -> PythonObject {
     let temporaryDataFile = temporaryFile()
     try dmatrix.save(to: temporaryDataFile)
-
     let pyXgboost = try Python.attemptImport("xgboost")
-    let pyData = pyXgboost.DMatrix(data: temporaryDataFile)
 
-    return pyData
+    return pyXgboost.DMatrix(data: temporaryDataFile)
 }
