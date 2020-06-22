@@ -3,7 +3,6 @@ import XCTest
 
 @testable import XGBoost
 
-private let PXGBOOST = Python.import("xgboost")
 private let PJSON = Python.import("json")
 
 final class BoosterTests: XCTestCase {
