@@ -21,12 +21,8 @@ final class PlotTests: XCTestCase {
             trainingData: data
         )
 
-        let graphFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testSaveImportanceGraph", isDirectory: false
-        ).path
-        let featureMapFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testSaveImportanceGraph.featureMap", isDirectory: false
-        ).path
+        let graphFile = temporaryFile()
+        let featureMapFile = temporaryFile()
 
         try data.saveFeatureMap(to: featureMapFile)
         try booster.saveImportanceGraph(to: graphFile, featureMap: featureMapFile)
