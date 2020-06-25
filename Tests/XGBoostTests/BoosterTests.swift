@@ -230,6 +230,14 @@ final class BoosterTests: XCTestCase {
         assertEqual(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
     }
 
+    func testSystemLibraryVersion() throws {
+        let version = XGBoost.systemLibraryVersion
+
+        XCTAssertGreaterThanOrEqual(version.major, 1)
+        XCTAssertGreaterThanOrEqual(version.minor, 1)
+        XCTAssertGreaterThanOrEqual(version.patch, 0)
+    }
+
     static var allTests = [
         ("testAttribute", testAttribute),
         ("testAttributes", testAttributes),
@@ -238,5 +246,6 @@ final class BoosterTests: XCTestCase {
         ("testDotDumped", testDotDumped),
         ("testScoreEmptyFeatureMap", testScoreEmptyFeatureMap),
         ("testScoreWithFeatureMap", testScoreWithFeatureMap),
+        ("testSystemLibraryVersion", testSystemLibraryVersion),
     ]
 }
