@@ -33,6 +33,25 @@ func temporaryFile(name: String = "xgboost") -> String {
     ).path
 }
 
+func randomTrainedBooster(
+    iterations: Int = 1,
+    threads: Int = 1
+) throws -> Booster {
+    let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
+    let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
+    let data = try DMatrix(
+        name: "data",
+        from: randomArray,
+        shape: Shape(10, 1),
+        label: label,
+        threads: threads
+    )
+    let booster = try Booster(with: [data])
+    try booster.train(iterations: iterations, trainingData: data)
+
+    return booster
+}
+
 func pythonXGBoost() throws -> PythonObject {
     try Python.attemptImport("xgboost")
 }
