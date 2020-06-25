@@ -31,7 +31,6 @@ let package = Package(
             dependencies: [
                 "CXGBoost",
                 "Logging",
-                "PythonKit",
                 "SwiftPlot",
                 "AGGRenderer",
             ]
@@ -60,7 +59,6 @@ let package = Package(
             name: "CrossValidation",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/CrossValidation"
         ),
@@ -68,7 +66,6 @@ let package = Package(
             name: "BoostFromPrediction",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/BoostFromPrediction"
         ),
@@ -76,7 +73,6 @@ let package = Package(
             name: "CustomObjective",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/CustomObjective"
         ),
@@ -84,7 +80,6 @@ let package = Package(
             name: "EvalsResult",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/EvalsResult"
         ),
@@ -92,7 +87,6 @@ let package = Package(
             name: "ExternalMemory",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/ExternalMemory"
         ),
@@ -100,7 +94,6 @@ let package = Package(
             name: "GeneralizedLinearModel",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/GeneralizedLinearModel"
         ),
@@ -108,7 +101,6 @@ let package = Package(
             name: "PredictFirstNTree",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/PredictFirstNTree"
         ),
@@ -116,7 +108,6 @@ let package = Package(
             name: "PredictLeafIndices",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/PredictLeafIndices"
         ),
