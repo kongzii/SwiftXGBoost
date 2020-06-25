@@ -3,25 +3,47 @@ import CXGBoost
 /// Backward compatible alias for Data
 public typealias Data = DMatrix
 
+/// Protocol used where [Float] values are expected.
 public protocol FloatData {
+    /// - Returns: Value as [Float]
     func data() throws -> [Float]
 }
 
+/// Protocol used where [Int32] values are expected.
 public protocol Int32Data {
+    /// - Returns: Value as [Int32]
     func data() throws -> [Int32]
 }
 
+/// Protocol used where [UInt32] values are expected.
 public protocol UInt32Data {
+    /// - Returns: Value as [UInt32]
     func data() throws -> [UInt32]
 }
 
+/// Protocol declaring that structure has shape.
 public protocol ShapeData {
+    /// - Returns: Shape of self.
     func dataShape() throws -> Shape
 }
 
 extension ShapeData {
+    /// - Returns: Whether shape indicates flat structure.
     public func isFlat() throws -> Bool {
-        try dataShape().row == 1
+        try dataShape().rank == 1
+    }
+}
+
+/// Shape of data structure.
+public typealias Shape = [Int]
+
+public extension Shape {
+    var rank: Int {
+        count
+    }
+
+    init(_ elements: Int...) {
+        self = elements
     }
 }
 
@@ -41,8 +63,8 @@ public class DMatrix {
     /// Initialize Data with an existing DMatrixHandle pointer.
     ///
     /// - Parameter name: Name of dataset.
-    /// - Parameter features: Array describing features in this dataset.
     /// - Parameter dmatrix: DMatrixHandle pointer.
+    /// - Parameter features: Array describing features in this dataset.
     /// - Parameter label: Sets label after DMatrix initialization.
     /// - Parameter weight: Sets weight after DMatrix initialization.
     /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
@@ -90,7 +112,7 @@ public class DMatrix {
     ///
     /// - Parameter name: Name of dataset.
     /// - Parameter from: Values source.
-    /// - Parameter shape: Shape of resulting DMatrixHandle.
+    /// - Parameter shape: Shape of resulting DMatrixHandle, needs to be of rank two, e.g. [row, column].
     /// - Parameter features: Names and types of features.
     /// - Parameter label: Sets label after DMatrix initialization.
     /// - Parameter weight: Sets weight after DMatrix initialization.
@@ -112,12 +134,16 @@ public class DMatrix {
         missingValue: Float = Float.greatestFiniteMagnitude,
         threads: Int = 0
     ) throws {
+        if shape.rank != 2 {
+            throw ValueError.runtimeError("Invalid shape \(shape), required rank 2.")
+        }
+
         var dmatrix: DMatrixHandle?
         try safe {
             XGDMatrixCreateFromMat_omp(
                 try data.data(),
-                UInt64(shape.row),
-                UInt64(shape.column),
+                UInt64(shape[0]),
+                UInt64(shape[1]),
                 missingValue,
                 &dmatrix,
                 Int32(threads)
@@ -140,12 +166,12 @@ public class DMatrix {
     ///
     /// - Parameter name: Name of dataset.
     /// - Parameter from: Data with shape comfortance.
+    /// - Parameter features: Names and types of features.
     /// - Parameter label: Sets label after DMatrix initialization.
     /// - Parameter weight: Sets weight after DMatrix initialization.
     /// - Parameter baseMargin: Sets baseMargin after DMatrix initialization.
     /// - Parameter labelLowerBound: Sets labelLowerBound after DMatrix initialization.
     /// - Parameter labelUpperBound: Sets labelUpperBound after DMatrix initialization.
-    /// - Parameter features: Names and types of features.
     /// - Parameter missingValue: Value in the input data which needs to be present as a missing value.
     /// - Parameter threads:  Number of threads to use for loading data when parallelization is applicable. If 0, uses maximum threads available on the system.
     public convenience init(
@@ -177,8 +203,9 @@ public class DMatrix {
     /// Initialize Data from file.
     ///
     /// - Parameter name: Name of dataset.
-    /// - Parameter file: File to laod from.
+    /// - Parameter from: File to laod from.
     /// - Parameter format: Format of input file.
+    /// - Parameter useCache: Use external memory.
     /// - Parameter features: Names and types of features.
     /// - Parameter labelColumn: Which column is for label.
     /// - Parameter label: Sets label after DMatrix initialization.
@@ -192,6 +219,7 @@ public class DMatrix {
         name: String,
         from file: String,
         format: DataFormat,
+        useCache: Bool = false,
         features: [Feature]? = nil,
         labelColumn: Int? = nil,
         label: FloatData? = nil,
@@ -202,6 +230,7 @@ public class DMatrix {
         silent: Bool = true,
         fileQuery: [String] = []
     ) throws {
+        var file = file
         var fileQuery = fileQuery
 
         switch format {
@@ -213,6 +242,14 @@ public class DMatrix {
 
         if let labelColumn = labelColumn {
             fileQuery.append("label_column=\(labelColumn)")
+        }
+
+        if useCache {
+            if format != .libsvm {
+                throw ValueError.runtimeError("Cache currently only support convert from libsvm file.")
+            }
+
+            file += "#\(name).cache"
         }
 
         var dmatrix: DMatrixHandle?
@@ -301,11 +338,11 @@ public class DMatrix {
         return Int(count)
     }
 
-    /// - Returns: The shape of data, i.e. (rowCount(), columnCount()).
+    /// - Returns: The shape of dmatrix, i.e. (rowCount(), columnCount()).
     public func shape() throws -> Shape {
         Shape(
-            row: try rowCount(),
-            column: try columnCount()
+            try rowCount(),
+            try columnCount()
         )
     }
 
@@ -314,12 +351,12 @@ public class DMatrix {
     /// - Parameter indexes: Array of indices to be selected.
     /// - Parameter newName: New name of the returned Data.
     /// - Parameter allowGroups: Allow slicing of a matrix with a groups attribute.
-    /// - Returns: A new data class containing only selected indexes.
+    /// - Returns: A new dmatrix class containing only selected indexes.
     public func slice(
         indexes: Int32Data,
         newName: String? = nil,
         allowGroups: Bool = false
-    ) throws -> Data {
+    ) throws -> DMatrix {
         let indexes = try indexes.data()
         var slicedDmatrix: DMatrixHandle?
 
@@ -350,12 +387,12 @@ public class DMatrix {
     /// - Parameter indexes: Range of indices to be selected.
     /// - Parameter newName: New name of the returned Data.
     /// - Parameter allowGroups: Allow slicing of a matrix with a groups attribute.
-    /// - Returns: A new data class containing only selected indexes.
+    /// - Returns: A new DMatrix class containing only selected indexes.
     public func slice(
         indexes: Range<Int32>,
         newName: String? = nil,
         allowGroups: Bool = false
-    ) throws -> Data {
+    ) throws -> DMatrix {
         try slice(
             indexes: Array(indexes),
             newName: newName,

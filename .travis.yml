@@ -3,6 +3,7 @@ os: osx
 osx_image: xcode11.5
 addons:
   homebrew:
+    update: true
     packages:
       - make
       - xgboost
@@ -10,7 +11,7 @@ addons:
 before_install:
   - gem install jazzy
 after_success:
-  - cp xgboost.pc /usr/local/lib/pkgconfig/
+  - brew info xgboost
   - gmake documentation
 deploy:
   provider: pages

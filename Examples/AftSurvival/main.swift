@@ -47,17 +47,17 @@ try validationData.set(field: .labelLowerBound, values: yLowerBound.values[valid
 try validationData.set(field: .labelUpperBound, values: yUpperBound.values[validIndex])
 
 // Train gradient boosted trees using AFT loss and metric
-let parameters: [Parameter] = [
-    ("verbosity", "0"),
-    ("objective", "survival:aft"),
-    ("eval_metric", "aft-nloglik"),
-    ("tree_method", "hist"),
-    ("learning_rate", "0.05"),
-    ("aft_loss_distribution", "normal"),
-    ("aft_loss_distribution_scale", "1.20"),
-    ("max_depth", "6"),
-    ("lambda", "0.01"),
-    ("alpha", "0.02"),
+let parameters = [
+    Parameter("verbosity", "0"),
+    Parameter("objective", "survival:aft"),
+    Parameter("eval_metric", "aft-nloglik"),
+    Parameter("tree_method", "hist"),
+    Parameter("learning_rate", "0.05"),
+    Parameter("aft_loss_distribution", "normal"),
+    Parameter("aft_loss_distribution_scale", "1.20"),
+    Parameter("max_depth", "6"),
+    Parameter("lambda", "0.01"),
+    Parameter("alpha", "0.02"),
 ]
 
 let booster = try Booster(
@@ -69,7 +69,7 @@ try booster.train(
     iterations: 10000,
     trainingData: trainingData,
     evaluationData: [trainingData, validationData]
-) { _, iteration, evaluation in
+) { _, iteration, evaluation, _ in
     print("Traning stats at \(iteration): \(evaluation!["training"]!)")
     print("Validation stats at \(iteration): \(evaluation!["validation"]!)")
     return .next

@@ -13,14 +13,11 @@ final class DMatrixTests: XCTestCase {
         )
         XCTAssertEqual(try data.rowCount(), 5)
         XCTAssertEqual(try data.columnCount(), 2)
-        XCTAssertEqual(try data.shape().row, 5)
-        XCTAssertEqual(try data.shape().column, 2)
+        XCTAssertEqual(try data.shape(), [5, 2])
     }
 
     func testFromCSVFile() throws {
-        let csvFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testFromCSVFile.csv", isDirectory: false
-        ).path
+        let csvFile = temporaryFile()
 
         let fileContent = """
         1.0,2.0,3.0
@@ -55,9 +52,7 @@ final class DMatrixTests: XCTestCase {
             label: [1, 0, 1]
         )
 
-        let path = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testSaveAndLoadBinary.dmatrix", isDirectory: false
-        ).path
+        let path = temporaryFile()
 
         try data.save(to: path)
 
@@ -80,9 +75,7 @@ final class DMatrixTests: XCTestCase {
             Feature("y", .quantitative),
         ]
 
-        let path = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testSaveAndLoadFeatureMap.featuremap", isDirectory: false
-        ).path
+        let path = temporaryFile()
 
         try features.saveFeatureMap(to: path)
 

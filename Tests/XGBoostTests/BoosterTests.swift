@@ -3,15 +3,7 @@ import XCTest
 
 @testable import XGBoost
 
-let PXGBOOST = Python.import("xgboost")
-let PJSON = Python.import("json")
-
-func assertEqualDictionary(_ a: [String: Float], _ b: [String: Float], accuracy: Float) {
-    for (key, value) in a {
-        XCTAssertNotNil(b[key])
-        XCTAssertEqual(value, b[key]!, accuracy: accuracy)
-    }
-}
+private let PJSON = Python.import("json")
 
 final class BoosterTests: XCTestCase {
     func testAttribute() throws {
@@ -44,15 +36,10 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testJsonDumped.xgboost", isDirectory: false
-        ).path
-        let temporaryDumpFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testJsonDumped.json", isDirectory: false
-        ).path
+        let pyBooster = try python(booster: booster)
 
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        let temporaryDumpFile = temporaryFile()
+
         pyBooster.dump_model(fout: temporaryDumpFile, dump_format: "json")
 
         let json = try booster.dumped(format: .json)
@@ -80,21 +67,14 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testTextDumped.xgboost", isDirectory: false
-        ).path
-        let temporaryDumpFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testTextDumped.json", isDirectory: false
-        ).path
-        let temporaryFeatureMapFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testTextDumped.featureMap", isDirectory: false
-        ).path
+        let pyBooster = try python(booster: booster)
+
+        let temporaryDumpFile = temporaryFile()
+        let temporaryFeatureMapFile = temporaryFile()
 
         let features = [Feature(name: "x", type: .quantitative)]
         try features.saveFeatureMap(to: temporaryFeatureMapFile)
 
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
         pyBooster.dump_model(
             fout: temporaryDumpFile, fmap: temporaryFeatureMapFile,
             with_stats: true, dump_format: "text"
@@ -128,12 +108,7 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testDotDumped.xgboost", isDirectory: false
-        ).path
-
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        let pyBooster = try python(booster: booster)
 
         let dot = try booster.rawDumped(format: .dot)
         let pyDot = pyBooster.get_dump(dump_format: "dot").map { String($0)! }
@@ -157,12 +132,7 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testScoreEmptyFeatureMap.xgboost", isDirectory: false
-        ).absoluteString
-
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        let pyBooster = try python(booster: booster)
 
         let pyWeightMap = [String: Int](pyBooster.get_score(
             fmap: "", importance_type: "weight"
@@ -174,25 +144,25 @@ final class BoosterTests: XCTestCase {
             fmap: "", importance_type: "gain"
         ))!
         let (_, gainMap) = try booster.score(featureMap: "", importance: .gain)
-        assertEqualDictionary(gainMap!, pyGainMap, accuracy: 1e-6)
+        assertEqual(gainMap!, pyGainMap, accuracy: 1e-6)
 
         let pyTotalGainMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "total_gain"
         ))!
         let (_, totalGainMap) = try booster.score(featureMap: "", importance: .totalGain)
-        assertEqualDictionary(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
+        assertEqual(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
 
         let pyCoverMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "cover"
         ))!
         let (_, coverMap) = try booster.score(featureMap: "", importance: .cover)
-        assertEqualDictionary(coverMap!, pyCoverMap, accuracy: 1e-6)
+        assertEqual(coverMap!, pyCoverMap, accuracy: 1e-6)
 
         let pyTotalCoverMap = [String: Float](pyBooster.get_score(
             fmap: "", importance_type: "total_cover"
         ))!
         let (_, totalCoverMap) = try booster.score(featureMap: "", importance: .totalCover)
-        assertEqualDictionary(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
+        assertEqual(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
     }
 
     func testScoreWithFeatureMap() throws {
@@ -213,17 +183,11 @@ final class BoosterTests: XCTestCase {
             trainingData: data
         )
 
-        let temporaryModelFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testScoreWithFeatureMap.xgboost", isDirectory: false
-        ).path
-        let temporaryNamesFile = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "testScoreWithFeatureMap.featuremap.txt", isDirectory: false
-        ).path
+        let temporaryNamesFile = temporaryFile()
 
         try features.saveFeatureMap(to: temporaryNamesFile)
 
-        try booster.save(to: temporaryModelFile)
-        let pyBooster = PXGBOOST.Booster(model_file: temporaryModelFile)
+        let pyBooster = try python(booster: booster)
 
         let pyWeightMap = [String: Int](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "weight"
@@ -239,7 +203,7 @@ final class BoosterTests: XCTestCase {
         let (_, gainMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .gain
         )
-        assertEqualDictionary(gainMap!, pyGainMap, accuracy: 1e-6)
+        assertEqual(gainMap!, pyGainMap, accuracy: 1e-6)
 
         let pyTotalGainMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "total_gain"
@@ -247,7 +211,7 @@ final class BoosterTests: XCTestCase {
         let (_, totalGainMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .totalGain
         )
-        assertEqualDictionary(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
+        assertEqual(totalGainMap!, pyTotalGainMap, accuracy: 1e-6)
 
         let pyCoverMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "cover"
@@ -255,7 +219,7 @@ final class BoosterTests: XCTestCase {
         let (_, coverMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .cover
         )
-        assertEqualDictionary(coverMap!, pyCoverMap, accuracy: 1e-6)
+        assertEqual(coverMap!, pyCoverMap, accuracy: 1e-6)
 
         let pyTotalCoverMap = [String: Float](pyBooster.get_score(
             fmap: temporaryNamesFile, importance_type: "total_cover"
@@ -263,7 +227,7 @@ final class BoosterTests: XCTestCase {
         let (_, totalCoverMap) = try booster.score(
             featureMap: temporaryNamesFile, importance: .totalCover
         )
-        assertEqualDictionary(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
+        assertEqual(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
     }
 
     static var allTests = [

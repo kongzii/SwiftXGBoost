@@ -1,7 +1,13 @@
 import CXGBoost
 
-/// Alias for backward compatibility
+/// Alias for backward compatibility.
 public typealias XGBoost = Booster
+
+/// Typealias for objective function.
+public typealias ObjectiveFunction = (ArrayWithShape<Float>, Data) throws -> (gradient: [Float], hessian: [Float])
+
+/// Typealias for evaluation function.
+public typealias EvaluationFunction = (ArrayWithShape<Float>, Data) throws -> (String, String)
 
 /// Booster model.
 ///
@@ -12,7 +18,7 @@ public class Booster {
     var type: BoosterType?
 
     /// Pointer to underlying BoosterHandle.
-    public let booster: BoosterHandle?
+    public var booster: BoosterHandle?
 
     /// Version of underlying XGBoost system library.
     public static var systemLibraryVersion = Version(
@@ -43,7 +49,7 @@ public class Booster {
 
     /// Initialize Booster from buffer.
     ///
-    /// - Parameter model: Model serialized as buffer.
+    /// - Parameter buffer: Model serialized as buffer.
     public convenience init(
         buffer: BufferModel
     ) throws {
@@ -92,11 +98,11 @@ public class Booster {
             try set(parameter: "validate_parameters", value: "1")
         }
 
-        for (name, value) in parameters {
-            try set(parameter: name, value: value)
+        for parameter in parameters {
+            try set(parameter: parameter.name, value: parameter.value)
 
-            if name == "booster" {
-                type = BoosterType(rawValue: name)
+            if parameter.name == "booster" {
+                type = BoosterType(rawValue: parameter.name)
             }
         }
 
@@ -106,6 +112,23 @@ public class Booster {
     deinit {
         try! safe {
             XGBoosterFree(booster)
+        }
+    }
+
+    /// Serializes and unserializes booster to reset state and free training memory.
+    public func reset() throws {
+        let snapshot = try serialized()
+
+        try safe {
+            XGBoosterFree(booster)
+        }
+
+        try safe {
+            XGBoosterUnserializeFromBuffer(
+                &booster,
+                snapshot.data,
+                snapshot.length
+            )
         }
     }
 
@@ -161,7 +184,7 @@ public class Booster {
         predictionInteractions: Bool = false,
         training: Bool = false,
         validateFeatures: Bool = true
-    ) throws -> [Float] {
+    ) throws -> ArrayWithShape<Float> {
         if validateFeatures {
             try validate(data: data)
         }
@@ -203,12 +226,41 @@ public class Booster {
             )
         }
 
-        return (0 ..< Int(outLenght.pointee)).map { outResult.pointee![$0] }
+        let predictions = (0 ..< Int(outLenght.pointee)).map { outResult.pointee![$0] }
+        let rowCount = try data.rowCount()
+        let columnCount = try data.columnCount()
+        var shape = Shape(rowCount, 1)
+
+        if predictions.count != rowCount, predictions.count % rowCount == 0 {
+            let chunkSize = predictions.count / rowCount
+
+            if predictionInteractions {
+                let nGroup = chunkSize / ((columnCount + 1) * (columnCount + 1))
+
+                if nGroup == 1 {
+                    shape = Shape(rowCount, columnCount + 1, columnCount + 1)
+                } else {
+                    shape = Shape(rowCount, nGroup, columnCount + 1, columnCount + 1)
+                }
+            } else if predictionContributions {
+                let nGroup = chunkSize / (columnCount + 1)
+
+                if nGroup == 1 {
+                    shape = Shape(rowCount, columnCount + 1)
+                } else {
+                    shape = Shape(rowCount, nGroup, columnCount + 1)
+                }
+            } else {
+                shape = Shape(rowCount, chunkSize)
+            }
+        }
+
+        return ArrayWithShape<Float>(predictions, shape: shape)
     }
 
     /// Predict directly from array of floats, will build Data structure automatically with one row and features.count features.
     ///
-    /// - Parameter features: Features to base prediction at..
+    /// - Parameter features: Features to base prediction at.
     /// - Parameter outputMargin: Whether to output the raw untransformed margin value.
     /// - Parameter treeLimit: Limit number of trees in the prediction. Zero means use all trees.
     /// - Parameter predictionLeaf: Each record indicating the predicted leaf index of each sample in each tree.
@@ -248,7 +300,7 @@ public class Booster {
     }
 
     /// - Returns: Everything states in buffer.
-    public func serialized() throws -> BufferModel {
+    public func serialized() throws -> SerializedBuffer {
         let length = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let data = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
 
@@ -521,7 +573,7 @@ public class Booster {
     ///
     /// - Parameter model: Buffer to load from.
     public func load(
-        buffer: BufferModel
+        modelBuffer buffer: BufferModel
     ) throws {
         try safe {
             XGBoosterLoadModelFromBuffer(
@@ -575,7 +627,7 @@ public class Booster {
     /// Get attribute string from the Booster.
     ///
     /// - Parameter name: Name of attribute to get.
-    /// - Returns: Value of attribute.
+    /// - Returns: Value of attribute or nil if not set.
     public func attribute(
         name: String
     ) throws -> String? {
@@ -651,7 +703,7 @@ public class Booster {
     /// - Parameter validateFeatures: Whether to validate features.
     public func update(
         data: Data,
-        objective: ([Float], Data) -> (gradient: [Float], hessian: [Float]),
+        objective: ObjectiveFunction,
         validateFeatures: Bool = true
     ) throws {
         let predicted = try predict(
@@ -660,7 +712,7 @@ public class Booster {
             training: true,
             validateFeatures: validateFeatures
         )
-        let (gradient, hessian) = objective(predicted, data)
+        let (gradient, hessian) = try objective(predicted, data)
         try boost(
             data: data,
             gradient: gradient,
@@ -709,10 +761,12 @@ public class Booster {
     ///
     /// - Parameter iteration: Current iteration.
     /// - Parameter data: Data to evaluate.
+    /// - Parameter function: Custom function for evaluation.
     /// - Returns: Dictionary in format [data_name: [eval_name: eval_value, ...], ...]
     public func evaluate(
         iteration: Int,
-        data: [Data]
+        data: [Data],
+        function: EvaluationFunction? = nil
     ) throws -> [String: [String: String]] {
         try validate(data: data)
 
@@ -740,10 +794,11 @@ public class Booster {
             }
 
             let resultSplitted = result.components(separatedBy: ":")
-            let nameSplitted = resultSplitted[0].components(separatedBy: "-")
 
-            let name = nameSplitted[0]
-            let metric = nameSplitted[1]
+            let nameSplitted = resultSplitted[0].components(separatedBy: "-")
+            let name = nameSplitted[0 ..< nameSplitted.count - 1].joined(separator: "-")
+            let metric = nameSplitted.last!
+
             let value = resultSplitted[1]
 
             if results[name] == nil {
@@ -753,6 +808,17 @@ public class Booster {
             results[name]![metric] = value
         }
 
+        if let function = function {
+            for data in data {
+                let (name, result) = try function(
+                    try predict(from: data, training: false),
+                    data
+                )
+
+                results[data.name]![name] = result
+            }
+        }
+
         return results
     }
 
@@ -760,12 +826,14 @@ public class Booster {
     ///
     /// - Parameter iteration: Current iteration.
     /// - Parameter data: Data to evaluate.
+    /// - Parameter function: Custom function for evaluation.
     /// - Returns: Dictionary in format [data_name: [eval_name: eval_value]]
     public func evaluate(
         iteration: Int,
-        data: Data
-    ) throws -> [String: [String: String]] {
-        try evaluate(iteration: iteration, data: [data])
+        data: Data,
+        function: EvaluationFunction? = nil
+    ) throws -> [String: String] {
+        try evaluate(iteration: iteration, data: [data], function: function)[data.name]!
     }
 
     /// Validate features.
