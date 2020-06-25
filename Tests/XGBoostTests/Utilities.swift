@@ -46,7 +46,10 @@ func randomTrainedBooster(
         label: label,
         threads: threads
     )
-    let booster = try Booster(with: [data])
+    let booster = try Booster(
+        with: [data],
+        parameters: [Parameter("tree_method", "exact")]
+    )
     try booster.train(iterations: iterations, trainingData: data)
 
     return booster
@@ -63,7 +66,10 @@ func python(
     try booster.save(to: temporaryModelFile)
     let pyXgboost = try Python.attemptImport("xgboost")
 
-    return pyXgboost.Booster(model_file: temporaryModelFile)
+    return pyXgboost.Booster(
+        model_file: temporaryModelFile,
+        params: ["tree_method": "exact"]
+    )
 }
 
 func python(

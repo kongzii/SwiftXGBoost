@@ -238,6 +238,16 @@ final class BoosterTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(version.patch, 0)
     }
 
+    func testConfig() throws {
+        let booster = try randomTrainedBooster()
+        let pyBooster = try python(booster: booster)
+
+        let config = try booster.config()
+        let pyConfig = String(pyBooster.save_config())!
+
+        XCTAssertEqual(config, pyConfig)
+    }
+
     static var allTests = [
         ("testAttribute", testAttribute),
         ("testAttributes", testAttributes),
@@ -247,5 +257,6 @@ final class BoosterTests: XCTestCase {
         ("testScoreEmptyFeatureMap", testScoreEmptyFeatureMap),
         ("testScoreWithFeatureMap", testScoreWithFeatureMap),
         ("testSystemLibraryVersion", testSystemLibraryVersion),
+        ("testConfig", testConfig),
     ]
 }
