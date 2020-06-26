@@ -239,13 +239,18 @@ final class BoosterTests: XCTestCase {
     }
 
     func testConfig() throws {
+        let json = Python.import("json")
+
         let booster = try randomTrainedBooster()
         let pyBooster = try python(booster: booster)
 
-        let config = try booster.config()
-        let pyConfig = String(pyBooster.save_config())!
+        let config = json.loads(try booster.config())
+        let pyConfig = json.loads(pyBooster.save_config())
 
-        XCTAssertEqual(config, pyConfig)
+        config["version"] = Python.None
+        pyConfig["version"] = Python.None
+
+        XCTAssertEqual(String(json.dumps(config))!, String(json.dumps(pyConfig))!)
     }
 
     static var allTests = [
