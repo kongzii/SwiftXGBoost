@@ -1033,9 +1033,9 @@ training, prediction and evaluation.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC6dumped10featureMap14withStatistics6formatS2S_SbAA11ModelFormatOtKF"></a>
-                    <a name="//apple_ref/swift/Method/dumped(featureMap:withStatistics:format:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC6dumped10featureMap14withStatistics6formatS2S_SbAA11ModelFormatOtKF">dumped(featureMap:<wbr>withStatistics:<wbr>format:<wbr>)</a>
+                    <a name="/s:7XGBoost7BoosterC6dumped8features10featureMap14withStatistics6formatSSSayAA7FeatureVGSg_SSSbAA11ModelFormatOtKF"></a>
+                    <a name="//apple_ref/swift/Method/dumped(features:featureMap:withStatistics:format:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC6dumped8features10featureMap14withStatistics6formatSSSayAA7FeatureVGSg_SSSbAA11ModelFormatOtKF">dumped(features:<wbr>featureMap:<wbr>withStatistics:<wbr>format:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1051,6 +1051,7 @@ training, prediction and evaluation.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dumped</span><span class="p">(</span>
+    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">featureMap</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
     <span class="nv">withStatistics</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/ModelFormat.html">ModelFormat</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">text</span>
@@ -1062,6 +1063,18 @@ training, prediction and evaluation.</p>
                         <h4>Parameters</h4>
                         <table class="graybox">
                           <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>features</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of features.</p>
+                                </div>
+                              </td>
+                            </tr>
                             <tr>
                               <td>
                                 <code>
@@ -1111,9 +1124,9 @@ training, prediction and evaluation.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7XGBoost7BoosterC9rawDumped10featureMap14withStatistics6formatSaySSGSS_SbAA11ModelFormatOtKF"></a>
-                    <a name="//apple_ref/swift/Method/rawDumped(featureMap:withStatistics:format:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC9rawDumped10featureMap14withStatistics6formatSaySSGSS_SbAA11ModelFormatOtKF">rawDumped(featureMap:<wbr>withStatistics:<wbr>format:<wbr>)</a>
+                    <a name="/s:7XGBoost7BoosterC9rawDumped8features10featureMap14withStatistics6formatSaySSGSayAA7FeatureVGSg_SSSbAA11ModelFormatOtKF"></a>
+                    <a name="//apple_ref/swift/Method/rawDumped(features:featureMap:withStatistics:format:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7XGBoost7BoosterC9rawDumped8features10featureMap14withStatistics6formatSaySSGSayAA7FeatureVGSg_SSSbAA11ModelFormatOtKF">rawDumped(features:<wbr>featureMap:<wbr>withStatistics:<wbr>format:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1130,6 +1143,7 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rawDumped</span><span class="p">(</span>
+    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">featureMap</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
     <span class="nv">withStatistics</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/ModelFormat.html">ModelFormat</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">text</span>
@@ -1144,169 +1158,24 @@ In most cases you will want to use <code>dumped</code> method to get output in e
                             <tr>
                               <td>
                                 <code>
+                                <em>features</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of features, you can override ones stored in self.features with this.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>featureMap</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
                                   <p>Name of the file containing feature map.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>withStatistics</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Controls whether the split statistics are output.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>format</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Desired output format type.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>Raw output from XGBoosterDumpModelEx provided as array of strings.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7BoosterC6dumped8features14withStatistics6formatSSSayAA7FeatureVG_SbAA11ModelFormatOtKF"></a>
-                    <a name="//apple_ref/swift/Method/dumped(features:withStatistics:format:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC6dumped8features14withStatistics6formatSSSayAA7FeatureVG_SbAA11ModelFormatOtKF">dumped(features:<wbr>withStatistics:<wbr>format:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Dump model into a string.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dumped</span><span class="p">(</span>
-    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">],</span>
-    <span class="nv">withStatistics</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/ModelFormat.html">ModelFormat</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">text</span>
-<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>features</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Array of features.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>withStatistics</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Controls whether the split statistics are output.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>format</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Desired output format type.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>Formated output into ModelFormat format.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7XGBoost7BoosterC9rawDumped8features14withStatistics6formatSaySSGSayAA7FeatureVG_SbAA11ModelFormatOtKF"></a>
-                    <a name="//apple_ref/swift/Method/rawDumped(features:withStatistics:format:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7XGBoost7BoosterC9rawDumped8features14withStatistics6formatSaySSGSayAA7FeatureVG_SbAA11ModelFormatOtKF">rawDumped(features:<wbr>withStatistics:<wbr>format:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Dump model into an array of strings.
-In most cases you will want to use <code>dumped</code> method to get output in expected format.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rawDumped</span><span class="p">(</span>
-    <span class="nv">features</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Feature.html">Feature</a></span><span class="p">],</span>
-    <span class="nv">withStatistics</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Enums/ModelFormat.html">ModelFormat</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">text</span>
-<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>features</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Array of features.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2656,7 +2525,7 @@ In most cases you will want to use <code>dumped</code> method to get output in e
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-26)</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-06-30)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
