@@ -540,7 +540,7 @@ public class DMatrix {
     }
 
     /// - Returns: Features of data, generates universal names with quantitative type if not previously set by user.
-    public func features(defaultPrefix: String = "F-") throws -> [Feature] {
+    public func features(defaultPrefix: String = "f") throws -> [Feature] {
         if _features == nil {
             _features = try (0 ..< columnCount()).map { Feature(name: "\(defaultPrefix)\($0)", type: .quantitative) }
         }

@@ -39,8 +39,10 @@ final class BoosterTests: XCTestCase {
         let pyBooster = try python(booster: booster)
 
         let temporaryDumpFile = temporaryFile()
+        let temporaryFeatureMapFile = temporaryFile()
+        try booster.features!.saveFeatureMap(to: temporaryFeatureMapFile)
 
-        pyBooster.dump_model(fout: temporaryDumpFile, dump_format: "json")
+        pyBooster.dump_model(fout: temporaryDumpFile, fmap: temporaryFeatureMapFile, dump_format: "json")
 
         let json = try booster.dumped(format: .json)
         let pyJson = try String(contentsOfFile: temporaryDumpFile)
@@ -253,6 +255,19 @@ final class BoosterTests: XCTestCase {
         XCTAssertEqual(String(json.dumps(config))!, String(json.dumps(pyConfig))!)
     }
 
+    func testRawDumped() throws {
+        let booster = try randomTrainedBooster()
+        let pyBooster = try python(booster: booster)
+
+        let rawDump = try booster.rawDumped()
+        let pyRawDump = [String](pyBooster.get_dump())!
+        XCTAssertEqual(rawDump, pyRawDump)
+
+        let rawDumpStatistics = try booster.rawDumped(withStatistics: true)
+        let pyRawDumpStatistics = [String](pyBooster.get_dump(with_stats: true))!
+        XCTAssertEqual(rawDumpStatistics, pyRawDumpStatistics)
+    }
+
     static var allTests = [
         ("testAttribute", testAttribute),
         ("testAttributes", testAttributes),
@@ -263,5 +278,6 @@ final class BoosterTests: XCTestCase {
         ("testScoreWithFeatureMap", testScoreWithFeatureMap),
         ("testSystemLibraryVersion", testSystemLibraryVersion),
         ("testConfig", testConfig),
+        ("testRawDumped", testRawDumped),
     ]
 }

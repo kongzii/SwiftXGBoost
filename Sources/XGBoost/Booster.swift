@@ -1,4 +1,5 @@
 import CXGBoost
+import Foundation
 
 /// Alias for backward compatibility.
 public typealias XGBoost = Booster
@@ -371,17 +372,20 @@ public class Booster {
 
     /// Dump model into a string.
     ///
+    /// - Parameter features: Array of features.
     /// - Parameter featureMap: Name of the file containing feature map.
     /// - Parameter withStatistics: Controls whether the split statistics are output.
     /// - Parameter format: Desired output format type.
     /// - Returns: Formated output into ModelFormat format.
     public func dumped(
+        features: [Feature]? = nil,
         featureMap: String = "",
         withStatistics: Bool = false,
         format: ModelFormat = .text
     ) throws -> String {
         try formatModelDump(
             models: rawDumped(
+                features: features,
                 featureMap: featureMap,
                 withStatistics: withStatistics,
                 format: format
@@ -393,81 +397,53 @@ public class Booster {
     /// Dump model into an array of strings.
     /// In most cases you will want to use `dumped` method to get output in expected format.
     ///
+    /// - Parameter features: Array of features, you can override ones stored in self.features with this.
     /// - Parameter featureMap: Name of the file containing feature map.
     /// - Parameter withStatistics: Controls whether the split statistics are output.
     /// - Parameter format: Desired output format type.
     /// - Returns: Raw output from XGBoosterDumpModelEx provided as array of strings.
     public func rawDumped(
+        features: [Feature]? = nil,
         featureMap: String = "",
         withStatistics: Bool = false,
         format: ModelFormat = .text
     ) throws -> [String] {
-        let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
-        let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
-        try safe {
-            XGBoosterDumpModelEx(
-                booster,
-                featureMap,
-                withStatistics ? 1 : 0,
-                format.rawValue,
-                outLenght,
-                outResult
-            )
-        }
+        let features = features ?? self.features
 
-        return (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
-    }
-
-    /// Dump model into a string.
-    ///
-    /// - Parameter features: Array of features.
-    /// - Parameter withStatistics: Controls whether the split statistics are output.
-    /// - Parameter format: Desired output format type.
-    /// - Returns: Formated output into ModelFormat format.
-    public func dumped(
-        features: [Feature],
-        withStatistics: Bool = false,
-        format: ModelFormat = .text
-    ) throws -> String {
-        try formatModelDump(
-            models: rawDumped(
-                features: features,
-                withStatistics: withStatistics,
-                format: format
-            ),
-            format: format
-        )
-    }
-
-    /// Dump model into an array of strings.
-    /// In most cases you will want to use `dumped` method to get output in expected format.
-    ///
-    /// - Parameter features: Array of features.
-    /// - Parameter withStatistics: Controls whether the split statistics are output.
-    /// - Parameter format: Desired output format type.
-    /// - Returns: Raw output from XGBoosterDumpModelEx provided as array of strings.
-    public func rawDumped(
-        features: [Feature],
-        withStatistics: Bool = false,
-        format: ModelFormat = .text
-    ) throws -> [String] {
         let outLenght = UnsafeMutablePointer<UInt64>.allocate(capacity: 1)
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
 
-        var names = features.map { $0.name.cCompatible }
-        var types = features.map { $0.type.rawValue.cCompatible }
+        if let boosterFeatures = features, featureMap == "" {
+            var names = boosterFeatures.map { $0.name.cCompatible }
+            var types = boosterFeatures.map { $0.type.rawValue.cCompatible }
 
-        try safe {
-            XGBoosterDumpModelExWithFeatures(
-                booster,
-                Int32(names.count),
-                &names,
-                &types,
-                withStatistics ? 1 : 0,
-                format.rawValue,
-                outLenght,
-                outResult
-            )
+            try safe {
+                XGBoosterDumpModelExWithFeatures(
+                    booster,
+                    Int32(names.count),
+                    &names,
+                    &types,
+                    withStatistics ? 1 : 0,
+                    format.rawValue,
+                    outLenght,
+                    outResult
+                )
+            }
+        } else {
+            if featureMap != "", !FileManager.default.fileExists(atPath: featureMap) {
+                throw ValueError.runtimeError("File \(featureMap) does not exists.")
+            }
+
+            try safe {
+                XGBoosterDumpModelEx(
+                    booster,
+                    featureMap,
+                    withStatistics ? 1 : 0,
+                    format.rawValue,
+                    outLenght,
+                    outResult
+                )
+            }
         }
 
         return (0 ..< Int(outLenght.pointee)).map { String(cString: outResult.pointee![$0]!) }
