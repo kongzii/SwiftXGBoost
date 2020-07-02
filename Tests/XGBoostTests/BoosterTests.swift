@@ -268,6 +268,17 @@ final class BoosterTests: XCTestCase {
         XCTAssertEqual(rawDumpStatistics, pyRawDumpStatistics)
     }
 
+    func testLoadModel() throws {
+        let booster = try randomTrainedBooster()
+        try booster.set(attribute: "hello", value: "world")
+        let modelFile = temporaryFile()
+
+        try booster.save(to: modelFile)
+        let boosterLoaded = try Booster(from: modelFile)
+
+        XCTAssertEqual(try booster.attribute(name: "hello"), try boosterLoaded.attribute(name: "hello"))
+    }
+
     static var allTests = [
         ("testAttribute", testAttribute),
         ("testAttributes", testAttributes),
@@ -279,5 +290,6 @@ final class BoosterTests: XCTestCase {
         ("testSystemLibraryVersion", testSystemLibraryVersion),
         ("testConfig", testConfig),
         ("testRawDumped", testRawDumped),
+        ("testLoadModel", testLoadModel),
     ]
 }
