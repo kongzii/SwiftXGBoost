@@ -279,6 +279,21 @@ final class BoosterTests: XCTestCase {
         XCTAssertEqual(try booster.attribute(name: "hello"), try boosterLoaded.attribute(name: "hello"))
     }
 
+    func testLoadConfig() throws {
+        let booster1 = try randomTrainedBooster()
+        try booster1.set(parameter: "eta", value: "555")
+
+        let modelFile = temporaryFile()
+        try booster1.save(to: modelFile)
+
+        let booster2 = try randomTrainedBooster()
+        try booster2.set(parameter: "eta", value: "666")
+        let config = try booster2.config()
+
+        let booster3 = try Booster(from: modelFile, config: config)
+        XCTAssertEqual(try booster3.config(), try booster2.config())
+    }
+
     static var allTests = [
         ("testAttribute", testAttribute),
         ("testAttributes", testAttributes),
@@ -291,5 +306,6 @@ final class BoosterTests: XCTestCase {
         ("testConfig", testConfig),
         ("testRawDumped", testRawDumped),
         ("testLoadModel", testLoadModel),
+        ("testLoadConfig", testLoadConfig),
     ]
 }
