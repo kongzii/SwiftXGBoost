@@ -19,7 +19,14 @@ final class ArrayTests: XCTestCase {
         XCTAssertThrowsError(try [Feature](fromFeatureMap: path))
     }
 
+    func testDiff() {
+        let values = [1, 2, 3, 4, 10]
+        let expectedDiff = [1, 1, 1, 6]
+        XCTAssertEqual(values.diff(), expectedDiff)
+    }
+
     static var allTests = [
         ("testThrowInvalidFeatureMap", testThrowInvalidFeatureMap),
+        ("testDiff", testDiff),
     ]
 }
