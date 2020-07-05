@@ -14,7 +14,7 @@ jobs:
       - name: Update brew
         run: brew update
       - name: Install dependencies from brew
-        run: brew install xgboost python3 llvm
+        run: brew install xgboost llvm
       - name: Install dependencies for python
         run: pip3 install xgboost coverage numpy pandas
       - name: Test and create CodeCoverage
