@@ -11,6 +11,7 @@ import XCTest
             testCase(XGBoostDocsTests.allTests),
             testCase(TrainTests.allTests),
             testCase(CrossValidationTests.allTests),
+            testCase(ArrayTests.allTests),
         ]
     }
 #endif
