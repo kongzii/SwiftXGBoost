@@ -33,6 +33,7 @@ final class ArrayTests: XCTestCase {
     func testArrayWithShapeShape() {
         let array = ArrayWithShape([1, 2, 3, 4, 5, 6], shape: Shape(3, 2))
         XCTAssertEqual(array.shape, Shape(3, 2))
+        XCTAssertEqual(try array.dataShape(), Shape(3, 2))
     }
 
     func testArrayWithShapeSubscript() {
