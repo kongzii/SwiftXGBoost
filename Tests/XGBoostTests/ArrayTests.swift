@@ -25,8 +25,39 @@ final class ArrayTests: XCTestCase {
         XCTAssertEqual(values.diff(), expectedDiff)
     }
 
+    func testArrayWithShapeCount() {
+        let array = ArrayWithShape([1, 2, 3, 4, 5, 6], shape: Shape(3, 2))
+        XCTAssertEqual(array.count, 6)
+    }
+
+    func testArrayWithShapeShape() {
+        let array = ArrayWithShape([1, 2, 3, 4, 5, 6], shape: Shape(3, 2))
+        XCTAssertEqual(array.shape, Shape(3, 2))
+    }
+
+    func testArrayWithShapeSubscript() {
+        var array = ArrayWithShape([1, 2, 3, 4, 5, 6], shape: Shape(3, 2))
+        let arrayExpected = ArrayWithShape([2, 2, 3, 4, 5, 6], shape: Shape(3, 2))
+        array[0] = 2
+        XCTAssertEqual(array, arrayExpected)
+    }
+
+    func testArrayWithShapeDataComfortances() {
+        let floatArray = ArrayWithShape<Float>([1, 2, 3], shape: Shape(3, 1))
+        let intArray = ArrayWithShape<Int32>([1, 2, 3], shape: Shape(3, 1))
+        let uintArray = ArrayWithShape<UInt32>([1, 2, 3], shape: Shape(3, 1))
+
+        XCTAssertEqual(try floatArray.data(), [1, 2, 3])
+        XCTAssertEqual(try intArray.data(), [1, 2, 3])
+        XCTAssertEqual(try uintArray.data(), [1, 2, 3])
+    }
+
     static var allTests = [
         ("testThrowInvalidFeatureMap", testThrowInvalidFeatureMap),
         ("testDiff", testDiff),
+        ("testArrayWithShapeCount", testArrayWithShapeCount),
+        ("testArrayWithShapeShape", testArrayWithShapeShape),
+        ("testArrayWithShapeSubscript", testArrayWithShapeSubscript),
+        ("testArrayWithShapeDataComfortances", testArrayWithShapeDataComfortances),
     ]
 }
