@@ -33,19 +33,27 @@ func temporaryFile(name: String = "xgboost") -> String {
     ).path
 }
 
-func randomTrainedBooster(
-    iterations: Int = 1,
+func randomDMatrix(
+    rows: Int = 10,
+    columns: Int = 5,
     threads: Int = 1
-) throws -> Booster {
-    let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
-    let label = (0 ..< 10).map { _ in Float([0, 1].randomElement()!) }
+) throws -> DMatrix {
+    let randomArray = (0 ..< rows * columns).map { _ in Float.random(in: 0 ..< 2) }
+    let label = (0 ..< rows).map { _ in Float([0, 1].randomElement()!) }
     let data = try DMatrix(
         name: "data",
         from: randomArray,
-        shape: Shape(10, 1),
+        shape: Shape(rows, columns),
         label: label,
         threads: threads
     )
+    return data
+}
+
+func randomTrainedBooster(
+    iterations: Int = 1
+) throws -> Booster {
+    let data = try randomDMatrix()
     let booster = try Booster(
         with: [data],
         parameters: [Parameter("tree_method", "exact")]
