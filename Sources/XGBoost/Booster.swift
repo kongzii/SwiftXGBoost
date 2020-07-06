@@ -103,7 +103,11 @@ public class Booster {
             try set(parameter: parameter.name, value: parameter.value)
 
             if parameter.name == "booster" {
-                type = BoosterType(rawValue: parameter.name)
+                type = BoosterType(rawValue: parameter.value)
+
+                if type == nil {
+                    throw ValueError.runtimeError("Unknown booster type \(parameter.value).")
+                }
             }
         }
 

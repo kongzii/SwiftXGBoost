@@ -294,6 +294,15 @@ final class BoosterTests: XCTestCase {
         XCTAssertEqual(try booster3.config(), try booster2.config())
     }
 
+    func testInitializeWithType() throws {
+        XCTAssertEqual(try Booster(
+            parameters: [Parameter("booster", "dart")]
+        ).type, BoosterType(rawValue: "dart"))
+        XCTAssertThrowsError(try Booster(
+            parameters: [Parameter("booster", "icecream")]
+        ))
+    }
+
     static var allTests = [
         ("testAttribute", testAttribute),
         ("testAttributes", testAttributes),
@@ -307,5 +316,6 @@ final class BoosterTests: XCTestCase {
         ("testRawDumped", testRawDumped),
         ("testLoadModel", testLoadModel),
         ("testLoadConfig", testLoadConfig),
+        ("testInitializeWithType", testInitializeWithType),
     ]
 }
