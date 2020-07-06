@@ -336,6 +336,21 @@ final class BoosterTests: XCTestCase {
         XCTAssertEqual(try predictionInteractions.dataShape(), try pypredictionInteractions.dataShape())
     }
 
+    func testPredictOne() throws {
+        let booster = try randomTrainedBooster()
+        let pyBooster = try python(booster: booster)
+
+        let features: [Float] = [1, 2, 3, 4, 5]
+        let dmatrix = try DMatrix(name: "test", from: features, shape: Shape(1, 5))
+
+        let pydmatrix = try python(dmatrix: dmatrix)
+
+        let predicted = try booster.predict(features: features)
+        let pypredicted = pyBooster.predict(pydmatrix)
+
+        XCTAssertEqual(predicted, Float(pypredicted[0])!)
+    }
+
     static var allTests = [
         ("testAttribute", testAttribute),
         ("testAttributes", testAttributes),
@@ -351,5 +366,6 @@ final class BoosterTests: XCTestCase {
         ("testLoadConfig", testLoadConfig),
         ("testInitializeWithType", testInitializeWithType),
         ("testBoosterPredictOptionMasks", testBoosterPredictOptionMasks),
+        ("testPredictOne", testPredictOne),
     ]
 }
