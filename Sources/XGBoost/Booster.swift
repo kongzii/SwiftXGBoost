@@ -234,7 +234,7 @@ public class Booster {
         let predictions = (0 ..< Int(outLenght.pointee)).map { outResult.pointee![$0] }
         let rowCount = try data.rowCount()
         let columnCount = try data.columnCount()
-        var shape = Shape(rowCount, 1)
+        var shape = Shape(rowCount)
 
         if predictions.count != rowCount, predictions.count % rowCount == 0 {
             let chunkSize = predictions.count / rowCount

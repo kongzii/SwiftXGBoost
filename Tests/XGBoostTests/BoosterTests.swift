@@ -303,6 +303,39 @@ final class BoosterTests: XCTestCase {
         ))
     }
 
+    func testBoosterPredictOptionMasks() throws {
+        let booster = try randomTrainedBooster()
+        let pyBooster = try python(booster: booster)
+
+        let test = try randomDMatrix()
+        let pyTest = try python(dmatrix: test)
+
+        let outputMargin = try booster.predict(from: test, outputMargin: true)
+        let pyoutputMargin = pyBooster.predict(data: pyTest, output_margin: true)
+        XCTAssertEqual(try outputMargin.data(), try pyoutputMargin.data())
+        XCTAssertEqual(try outputMargin.dataShape(), try pyoutputMargin.dataShape())
+
+        let predictionleaf = try booster.predict(from: test, predictionLeaf: true)
+        let pypredictionleaf = pyBooster.predict(data: pyTest, pred_leaf: true)
+        XCTAssertEqual(try predictionleaf.data(), try pypredictionleaf.data())
+        XCTAssertEqual(try predictionleaf.dataShape(), try pypredictionleaf.dataShape())
+
+        let predictionContributions = try booster.predict(from: test, predictionContributions: true)
+        let pypredictionContributions = pyBooster.predict(data: pyTest, pred_contribs: true)
+        XCTAssertEqual(try predictionContributions.data(), try pypredictionContributions.data())
+        XCTAssertEqual(try predictionContributions.dataShape(), try pypredictionContributions.dataShape())
+
+        let approximateContributions = try booster.predict(from: test, approximateContributions: true)
+        let pyapproximateContributions = pyBooster.predict(data: pyTest, approx_contribs: true)
+        XCTAssertEqual(try approximateContributions.data(), try pyapproximateContributions.data())
+        XCTAssertEqual(try approximateContributions.dataShape(), try pyapproximateContributions.dataShape())
+
+        let predictionInteractions = try booster.predict(from: test, predictionInteractions: true)
+        let pypredictionInteractions = pyBooster.predict(data: pyTest, pred_interactions: true)
+        XCTAssertEqual(try predictionInteractions.data(), try pypredictionInteractions.data())
+        XCTAssertEqual(try predictionInteractions.dataShape(), try pypredictionInteractions.dataShape())
+    }
+
     static var allTests = [
         ("testAttribute", testAttribute),
         ("testAttributes", testAttributes),
@@ -317,5 +350,6 @@ final class BoosterTests: XCTestCase {
         ("testLoadModel", testLoadModel),
         ("testLoadConfig", testLoadConfig),
         ("testInitializeWithType", testInitializeWithType),
+        ("testBoosterPredictOptionMasks", testBoosterPredictOptionMasks),
     ]
 }
