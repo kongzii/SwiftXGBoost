@@ -114,8 +114,16 @@ final class BoosterTests: XCTestCase {
 
         let dot = try booster.rawDumped(format: .dot)
         let pyDot = pyBooster.get_dump(dump_format: "dot").map { String($0)! }
-
         XCTAssertEqual(dot, pyDot)
+
+        let temporaryFeatureMapFile = temporaryFile()
+        try [Feature(name: "x", type: .quantitative)].saveFeatureMap(to: temporaryFeatureMapFile)
+
+        let formatDot = try booster.dumped(featureMap: temporaryFeatureMapFile, format: .dot)
+        let temporaryDumpFile = temporaryFile()
+        pyBooster.dump_model(temporaryDumpFile, fmap: temporaryFeatureMapFile, dump_format: "dot")
+        let pyFormatDot = try String(contentsOfFile: temporaryDumpFile)
+        XCTAssertEqual(formatDot, pyFormatDot)
     }
 
     func testScoreEmptyFeatureMap() throws {

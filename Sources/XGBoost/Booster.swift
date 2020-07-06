@@ -362,13 +362,11 @@ public class Booster {
         switch format {
         case .json:
             output = "[\n\(models.joined(separator: ",\n"))]\n"
-        case .text:
+        case .text, .dot:
             output = ""
             for (index, booster) in models.enumerated() {
                 output += "booster[\(index)]:\n\(booster)"
             }
-        case .dot:
-            output = models.joined(separator: "\n")
         }
 
         return output
