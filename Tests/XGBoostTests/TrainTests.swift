@@ -28,7 +28,7 @@ final class TrainTests: XCTestCase {
             callbacks: [EarlyStopping(
                 dataName: "data",
                 metricName: "rmse",
-                stoppingRounds: 10,
+                stoppingRounds: 5,
                 verbose: true
             )]
         ) { _, iteration, evaluation, _ in
@@ -37,11 +37,11 @@ final class TrainTests: XCTestCase {
             return .next
         }
 
-        XCTAssertTrue(scores.count >= 10)
+        XCTAssertTrue(scores.count >= 5)
         XCTAssertTrue(scores.first! >= scores.last!)
-        XCTAssertTrue(scores[scores.count - 10 ..< scores.count].allSatisfy { $0 == scores.last! })
+        XCTAssertTrue(scores[scores.count - 5 ..< scores.count].allSatisfy { $0 == scores.last! })
         XCTAssertEqual(Double(try booster.attribute(name: "best_score")!)!, Double(scores.last!)!)
-        XCTAssertEqual(iterations[iterations.count - 10 - 1], Int(try booster.attribute(name: "best_iteration")!)!)
+        XCTAssertEqual(iterations[iterations.count - 5 - 1], Int(try booster.attribute(name: "best_iteration")!)!)
     }
 
     func testEarlyStoppingMaximize() throws {

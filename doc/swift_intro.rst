@@ -148,7 +148,7 @@ Training a model requires a booster and a dataset.
 
   let trainingData = try DMatrix(name: "train", from: "Examples/Data/data.csv", format: .csv, labelColumn: 0)
   let boosterWithCachedData = try Booster(with: [trainingData])
-  try boosterWithCachedData.train(iterations: 100, trainingData: trainingData)
+  try boosterWithCachedData.train(iterations: 5, trainingData: trainingData)
 
 After training, the model can be saved:
 

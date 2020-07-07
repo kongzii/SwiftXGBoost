@@ -46,7 +46,7 @@ final class XGBoostDocsTests: XCTestCase {
 
         let trainingData = try DMatrix(name: "train", from: "Examples/Data/data.csv", format: .csv, labelColumn: 0)
         let boosterWithCachedData = try Booster(with: [trainingData])
-        try boosterWithCachedData.train(iterations: 100, trainingData: trainingData)
+        try boosterWithCachedData.train(iterations: 5, trainingData: trainingData)
 
         try boosterWithCachedData.save(to: "0001.xgboost")
 
