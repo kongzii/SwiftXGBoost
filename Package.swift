@@ -36,7 +36,7 @@ let package = Package(
                 "Logging",
                 "PythonKit",
                 "SwiftPlot",
-                "AGGRenderer",
+                "SVGRenderer",
             ]
         ),
         .systemLibrary(

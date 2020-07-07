@@ -28,7 +28,7 @@ final class PlotTests: XCTestCase {
         try booster.saveImportanceGraph(to: graphFile, featureMap: featureMapFile)
 
         XCTAssertTrue(FileManager.default.fileExists(atPath: featureMapFile))
-        XCTAssertTrue(FileManager.default.fileExists(atPath: graphFile + ".png"))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: graphFile + ".svg"))
     }
 
     static var allTests = [
