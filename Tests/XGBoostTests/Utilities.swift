@@ -33,6 +33,36 @@ func temporaryFile(name: String = "xgboost") -> String {
     ).path
 }
 
+func randomDMatrix(
+    rows: Int = 10,
+    columns: Int = 5,
+    threads: Int = 1
+) throws -> DMatrix {
+    let randomArray = (0 ..< rows * columns).map { _ in Float.random(in: 0 ..< 2) }
+    let label = (0 ..< rows).map { _ in Float([0, 1].randomElement()!) }
+    let data = try DMatrix(
+        name: "data",
+        from: randomArray,
+        shape: Shape(rows, columns),
+        label: label,
+        threads: threads
+    )
+    return data
+}
+
+func randomTrainedBooster(
+    iterations: Int = 1
+) throws -> Booster {
+    let data = try randomDMatrix()
+    let booster = try Booster(
+        with: [data],
+        parameters: [Parameter("tree_method", "exact")]
+    )
+    try booster.train(iterations: iterations, trainingData: data)
+
+    return booster
+}
+
 func pythonXGBoost() throws -> PythonObject {
     try Python.attemptImport("xgboost")
 }
@@ -44,7 +74,10 @@ func python(
     try booster.save(to: temporaryModelFile)
     let pyXgboost = try Python.attemptImport("xgboost")
 
-    return pyXgboost.Booster(model_file: temporaryModelFile)
+    return pyXgboost.Booster(
+        model_file: temporaryModelFile,
+        params: ["tree_method": "exact"]
+    )
 }
 
 func python(

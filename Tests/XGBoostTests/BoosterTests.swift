@@ -39,8 +39,10 @@ final class BoosterTests: XCTestCase {
         let pyBooster = try python(booster: booster)
 
         let temporaryDumpFile = temporaryFile()
+        let temporaryFeatureMapFile = temporaryFile()
+        try booster.features!.saveFeatureMap(to: temporaryFeatureMapFile)
 
-        pyBooster.dump_model(fout: temporaryDumpFile, dump_format: "json")
+        pyBooster.dump_model(fout: temporaryDumpFile, fmap: temporaryFeatureMapFile, dump_format: "json")
 
         let json = try booster.dumped(format: .json)
         let pyJson = try String(contentsOfFile: temporaryDumpFile)
@@ -112,8 +114,16 @@ final class BoosterTests: XCTestCase {
 
         let dot = try booster.rawDumped(format: .dot)
         let pyDot = pyBooster.get_dump(dump_format: "dot").map { String($0)! }
-
         XCTAssertEqual(dot, pyDot)
+
+        let temporaryFeatureMapFile = temporaryFile()
+        try [Feature(name: "x", type: .quantitative)].saveFeatureMap(to: temporaryFeatureMapFile)
+
+        let formatDot = try booster.dumped(featureMap: temporaryFeatureMapFile, format: .dot)
+        let temporaryDumpFile = temporaryFile()
+        pyBooster.dump_model(temporaryDumpFile, fmap: temporaryFeatureMapFile, dump_format: "dot")
+        let pyFormatDot = try String(contentsOfFile: temporaryDumpFile)
+        XCTAssertEqual(formatDot, pyFormatDot)
     }
 
     func testScoreEmptyFeatureMap() throws {
@@ -230,6 +240,125 @@ final class BoosterTests: XCTestCase {
         assertEqual(totalCoverMap!, pyTotalCoverMap, accuracy: 1e-6)
     }
 
+    func testSystemLibraryVersion() throws {
+        let version = XGBoost.systemLibraryVersion
+
+        XCTAssertGreaterThanOrEqual(version.major, 1)
+        XCTAssertGreaterThanOrEqual(version.minor, 1)
+        XCTAssertGreaterThanOrEqual(version.patch, 0)
+    }
+
+    func testConfig() throws {
+        let json = Python.import("json")
+
+        let booster = try randomTrainedBooster()
+        let pyBooster = try python(booster: booster)
+
+        let config = json.loads(try booster.config())
+        let pyConfig = json.loads(pyBooster.save_config())
+
+        config["version"] = Python.None
+        pyConfig["version"] = Python.None
+
+        XCTAssertEqual(String(json.dumps(config))!, String(json.dumps(pyConfig))!)
+    }
+
+    func testRawDumped() throws {
+        let booster = try randomTrainedBooster()
+        let pyBooster = try python(booster: booster)
+
+        let rawDump = try booster.rawDumped()
+        let pyRawDump = [String](pyBooster.get_dump())!
+        XCTAssertEqual(rawDump, pyRawDump)
+
+        let rawDumpStatistics = try booster.rawDumped(withStatistics: true)
+        let pyRawDumpStatistics = [String](pyBooster.get_dump(with_stats: true))!
+        XCTAssertEqual(rawDumpStatistics, pyRawDumpStatistics)
+    }
+
+    func testLoadModel() throws {
+        let booster = try randomTrainedBooster()
+        try booster.set(attribute: "hello", value: "world")
+        let modelFile = temporaryFile()
+
+        try booster.save(to: modelFile)
+        let boosterLoaded = try Booster(from: modelFile)
+
+        XCTAssertEqual(try booster.attribute(name: "hello"), try boosterLoaded.attribute(name: "hello"))
+    }
+
+    func testLoadConfig() throws {
+        let booster1 = try randomTrainedBooster()
+        try booster1.set(parameter: "eta", value: "555")
+
+        let modelFile = temporaryFile()
+        try booster1.save(to: modelFile)
+
+        let booster2 = try randomTrainedBooster()
+        try booster2.set(parameter: "eta", value: "666")
+        let config = try booster2.config()
+
+        let booster3 = try Booster(from: modelFile, config: config)
+        XCTAssertEqual(try booster3.config(), try booster2.config())
+    }
+
+    func testInitializeWithType() throws {
+        XCTAssertEqual(try Booster(
+            parameters: [Parameter("booster", "dart")]
+        ).type, BoosterType(rawValue: "dart"))
+        XCTAssertThrowsError(try Booster(
+            parameters: [Parameter("booster", "icecream")]
+        ))
+    }
+
+    func testBoosterPredictOptionMasks() throws {
+        let booster = try randomTrainedBooster()
+        let pyBooster = try python(booster: booster)
+
+        let test = try randomDMatrix()
+        let pyTest = try python(dmatrix: test)
+
+        let outputMargin = try booster.predict(from: test, outputMargin: true)
+        let pyoutputMargin = pyBooster.predict(data: pyTest, output_margin: true)
+        XCTAssertEqual(try outputMargin.data(), try pyoutputMargin.data())
+        XCTAssertEqual(try outputMargin.dataShape(), try pyoutputMargin.dataShape())
+
+        let predictionleaf = try booster.predict(from: test, predictionLeaf: true)
+        let pypredictionleaf = pyBooster.predict(data: pyTest, pred_leaf: true)
+        XCTAssertEqual(try predictionleaf.data(), try pypredictionleaf.data())
+        XCTAssertEqual(try predictionleaf.dataShape(), try pypredictionleaf.dataShape())
+
+        let predictionContributions = try booster.predict(from: test, predictionContributions: true)
+        let pypredictionContributions = pyBooster.predict(data: pyTest, pred_contribs: true)
+        XCTAssertEqual(try predictionContributions.data(), try pypredictionContributions.data())
+        XCTAssertEqual(try predictionContributions.dataShape(), try pypredictionContributions.dataShape())
+
+        let approximateContributions = try booster.predict(from: test, approximateContributions: true)
+        let pyapproximateContributions = pyBooster.predict(data: pyTest, approx_contribs: true)
+        XCTAssertEqual(try approximateContributions.data(), try pyapproximateContributions.data())
+        XCTAssertEqual(try approximateContributions.dataShape(), try pyapproximateContributions.dataShape())
+
+        let predictionInteractions = try booster.predict(from: test, predictionInteractions: true)
+        let pypredictionInteractions = pyBooster.predict(data: pyTest, pred_interactions: true)
+        XCTAssertEqual(try predictionInteractions.data(), try pypredictionInteractions.data())
+        XCTAssertEqual(try predictionInteractions.dataShape(), try pypredictionInteractions.dataShape())
+    }
+
+    func testPredictOne() throws {
+        let booster = try randomTrainedBooster()
+        let pyBooster = try python(booster: booster)
+
+        let features: [Float] = [1, 2, 3, 4, 5]
+        let dmatrix = try DMatrix(name: "test", from: features, shape: Shape(1, 5))
+
+        let pydmatrix = try python(dmatrix: dmatrix)
+
+        let predicted = try booster.predict(features: features)
+        let pypredicted = pyBooster.predict(pydmatrix)
+
+        XCTAssertEqual(predicted, Float(pypredicted[0])!)
+    }
+
     static var allTests = [
         ("testAttribute", testAttribute),
         ("testAttributes", testAttributes),
@@ -238,5 +367,13 @@ final class BoosterTests: XCTestCase {
         ("testDotDumped", testDotDumped),
         ("testScoreEmptyFeatureMap", testScoreEmptyFeatureMap),
         ("testScoreWithFeatureMap", testScoreWithFeatureMap),
+        ("testSystemLibraryVersion", testSystemLibraryVersion),
+        ("testConfig", testConfig),
+        ("testRawDumped", testRawDumped),
+        ("testLoadModel", testLoadModel),
+        ("testLoadConfig", testLoadConfig),
+        ("testInitializeWithType", testInitializeWithType),
+        ("testBoosterPredictOptionMasks", testBoosterPredictOptionMasks),
+        ("testPredictOne", testPredictOne),
     ]
 }

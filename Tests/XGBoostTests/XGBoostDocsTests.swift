@@ -60,7 +60,7 @@ final class XGBoostDocsTests: XCTestCase {
         let testData = try DMatrix(name: "test", from: [69.0, 60.0, 7.0, 0, 0, 0, 1, 1, 0, 1, 0, 0], shape: Shape(1, 12))
         let prediction = try loadedBooster.predict(from: testData)
 
-        try boosterWithCachedData.saveImportanceGraph(to: "importance") // .png extension will be added
+        try boosterWithCachedData.saveImportanceGraph(to: "importance") // .svg extension will be added
 
         try safe { XGBoosterSaveModel(boosterWithCachedData.booster, "0002.xgboost") }
     }

@@ -194,7 +194,7 @@ You can also save the plot of importance into a file:
 
 .. code-block:: swift
 
-  try boosterWithCachedData.saveImportanceGraph(to: "importance") // .png extension will be added
+  try boosterWithCachedData.saveImportanceGraph(to: "importance") // .svg extension will be added
 
 
 C API

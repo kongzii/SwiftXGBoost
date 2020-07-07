@@ -32,7 +32,7 @@ let package = Package(
                 "CXGBoost",
                 "Logging",
                 "SwiftPlot",
-                "AGGRenderer",
+                "SVGRenderer",
             ]
         ),
         .systemLibrary(

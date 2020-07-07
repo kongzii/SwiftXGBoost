@@ -9,4 +9,5 @@ Documentation
 *.xgboost
 *.buffer
 *.png
+*.svg
 venv

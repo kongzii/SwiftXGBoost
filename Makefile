@@ -4,7 +4,7 @@ test:
 	docker-compose run test
 
 format:
-	docker-compose run swiftxgboost swiftformat . --exclude Sources/XGBoost/Python.swift,.build,.history
+	docker-compose run swiftxgboost swiftformat . --exclude Sources/XGBoost/Python.swift,Tests/XGBoostTests/ArrayTests.swift,.build,.history
 
 documentation:
 	@sourcekitten doc \

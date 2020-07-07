@@ -1,10 +1,10 @@
-import AGGRenderer
+import SVGRenderer
 import SwiftPlot
 
 extension Booster {
     /// Saves plot with importance based on fitted trees.
     ///
-    /// - Parameter to: File where graph will be saved, .png extension will be added.
+    /// - Parameter to: File where graph will be saved, .svg extension will be added if rendered remains SVGRenderer.
     /// - Parameter featureMap: Path to the feature map, if provided, replaces default f0, f1, ... feature names.
     /// - Parameter importance: Type of importance to plot.
     /// - Parameter label: Label of graph.
@@ -28,7 +28,7 @@ extension Booster {
         graphOrientation: BarGraph<String, Float>.GraphOrientation = .horizontal,
         enableGrid: Bool = true,
         size: Size = Size(width: 1000, height: 660),
-        renderer: Renderer = AGGRenderer()
+        renderer: Renderer = SVGRenderer()
     ) throws {
         let (features, gains) = try score(featureMap: featureMap, importance: importance)
 
