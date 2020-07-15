@@ -2,7 +2,7 @@
   "warnings": [
     {
       "file": "/Users/travis/build/kongzii/SwiftXGBoost/Sources/XGBoost/Array.swift",
-      "line": 21,
+      "line": 17,
       "symbol": "ArrayWithShape",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
