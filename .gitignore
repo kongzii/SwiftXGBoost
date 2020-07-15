@@ -1,4 +1,5 @@
 .build
+.build-mac
 .swiftpm
 .history
 .idea
