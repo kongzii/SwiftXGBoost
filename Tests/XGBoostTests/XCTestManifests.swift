@@ -12,6 +12,7 @@ import XCTest
             testCase(TrainTests.allTests),
             testCase(CrossValidationTests.allTests),
             testCase(ArrayTests.allTests),
+            testCase(PythonTests.allTests),
         ]
     }
 #endif

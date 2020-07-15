@@ -10,11 +10,7 @@ public extension Array where Element: NumpyScalarCompatible {
     /// - Precondition: The `numpy` Python package must be installed.
     /// - Returns: Numpy array of shape.
     func makeNumpyArray(shape: Shape) -> PythonObject {
-        withUnsafeBytes { bytes in
-            let data = ctypes.cast(Int(bitPattern: bytes.baseAddress), ctypes.POINTER(ctypes.c_float))
-            let ndarray = numpy.ctypeslib.as_array(data, shape: shape)
-            return numpy.copy(ndarray)
-        }
+        return numpy.reshape(makeNumpyArray(), shape)
     }
 }
 
