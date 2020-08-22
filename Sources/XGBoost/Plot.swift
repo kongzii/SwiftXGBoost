@@ -53,8 +53,8 @@ extension Booster {
             importance = Array(importance[importance.count - maxNumberOfFeatures ..< importance.count])
         }
 
-        let x = importance.map { $0.name }
-        let y = importance.map { $0.value }
+        let x = importance.map(\.name)
+        let y = importance.map(\.value)
 
         var graph = BarGraph<String, Float>(enableGrid: enableGrid)
         graph.addSeries(x, y, label: label, graphOrientation: graphOrientation)

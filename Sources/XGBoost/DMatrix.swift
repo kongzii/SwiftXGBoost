@@ -526,7 +526,7 @@ public class DMatrix {
             throw ValueError.runtimeError("Features count \(features.count) != data count \(columnCount).")
         }
 
-        let names = features.map { $0.name }
+        let names = features.map(\.name)
 
         if names.count != Set(names).count {
             throw ValueError.runtimeError("Feature names must be unique.")

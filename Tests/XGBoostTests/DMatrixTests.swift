@@ -3,6 +3,67 @@ import XCTest
 @testable import XGBoost
 
 final class DMatrixTests: XCTestCase {
+    func testSetNilFeatures() throws {
+        var data = try randomDMatrix(columns: 1)
+        try data.features()
+        XCTAssertEqual(data._features, [Feature(name: "f0", type: .quantitative)])
+        try data.set(features: nil)
+        XCTAssertEqual(data._features, nil)
+    }
+
+    func testInvalidCacheFormat() throws {
+        XCTAssertThrowsError(try DMatrix(
+            name: "data",
+            from: "file",
+            format: .csv
+        ))
+    }
+
+    func testInvalidDMatrixShape() throws {
+        XCTAssertThrowsError(try DMatrix(
+            name: "data",
+            from: [1, 2, 3, 3, 4, 6],
+            shape: Shape(6)
+        ))
+    }
+
+    func testIsFlat() throws {
+        let data = ArrayWithShape([10, 3, 1], shape: Shape(3))
+        XCTAssertEqual(try data.isFlat(), true)
+    }
+
+    func testInitWithWeight() throws {
+        let data = try DMatrix(
+            name: "data",
+            from: [1, 2, 3, 3, 4, 6],
+            shape: Shape(3, 2),
+            weight: [1, 2, 3]
+        )
+        XCTAssertEqual(try data.get(field: .weight), [1, 2, 3])
+    }
+
+    func testInitWithBaseMargin() throws {
+        let data = try DMatrix(
+            name: "data",
+            from: [1, 2, 3, 3, 4, 6],
+            shape: Shape(3, 2),
+            baseMargin: [1, 2, 3]
+        )
+        XCTAssertEqual(try data.get(field: .baseMargin), [1, 2, 3])
+    }
+
+    func testInitWithBound() throws {
+        let data = try DMatrix(
+            name: "data",
+            from: [1, 2, 3, 3, 4, 6],
+            shape: Shape(3, 2),
+            labelLowerBound: [1, 2, 3],
+            labelUpperBound: [2, 3, 4]
+        )
+        XCTAssertEqual(try data.get(field: .labelLowerBound), [1, 2, 3])
+        XCTAssertEqual(try data.get(field: .labelUpperBound), [2, 3, 4])
+    }
+
     func testCounts() throws {
         let randomArray = (0 ..< 10).map { _ in Float.random(in: 0 ..< 2) }
         let data = try DMatrix(

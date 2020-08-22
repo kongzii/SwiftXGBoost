@@ -79,7 +79,7 @@ public class Booster {
         parameters: [Parameter] = [],
         validateParameters: Bool = true
     ) throws {
-        let pointees = data.map { $0.dmatrix }
+        let pointees = data.map(\.dmatrix)
 
         var booster: BoosterHandle?
         try safe {
@@ -416,8 +416,8 @@ public class Booster {
         let outResult = UnsafeMutablePointer<UnsafeMutablePointer<UnsafePointer<Int8>?>?>.allocate(capacity: 1)
 
         if let boosterFeatures = features, featureMap == "" {
-            var names = boosterFeatures.map { $0.name.cCompatible }
-            var types = boosterFeatures.map { $0.type.rawValue.cCompatible }
+            var names = boosterFeatures.map(\.name.cCompatible)
+            var types = boosterFeatures.map(\.type.rawValue.cCompatible)
 
             try safe {
                 XGBoosterDumpModelExWithFeatures(
@@ -748,8 +748,8 @@ public class Booster {
     ) throws -> [String: [String: String]] {
         try validate(data: data)
 
-        var pointees = data.map { $0.dmatrix }
-        var names = data.map { $0.name.cCompatible }
+        var pointees = data.map(\.dmatrix)
+        var names = data.map(\.name.cCompatible)
         let output = UnsafeMutablePointer<UnsafePointer<Int8>?>.allocate(capacity: 1)
 
         try safe {
@@ -825,8 +825,8 @@ public class Booster {
             return
         }
 
-        let featureNames = features.map { $0.name }
-        let boosterFeatureNames = boosterFeatures.map { $0.name }
+        let featureNames = features.map(\.name)
+        let boosterFeatureNames = boosterFeatures.map(\.name)
 
         if featureNames != boosterFeatureNames {
             let dataMissing = Set(boosterFeatureNames).subtracting(Set(featureNames))
