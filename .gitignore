@@ -12,3 +12,4 @@ Documentation
 *.png
 *.svg
 venv
+.metals
