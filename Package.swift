@@ -22,9 +22,6 @@ let package = Package(
         ),
     ],
     dependencies: [
-        // TODO: Switch to official PythonKit when its versioned.
-        .package(url: "https://github.com/kongzii/PythonKit", .exact("0.0.1")),
-        // .package(url: "https://github.com/pvieito/PythonKit.git", .branch("master")),
         .package(url: "https://github.com/KarthikRIyer/swiftplot.git", from: "2.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
     ],
@@ -34,7 +31,6 @@ let package = Package(
             dependencies: [
                 "CXGBoost",
                 "Logging",
-                "PythonKit",
                 "SwiftPlot",
                 "SVGRenderer",
             ]
@@ -50,14 +46,12 @@ let package = Package(
             name: "XGBoostTests",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ]
         ),
         .target(
             name: "AftSurvival",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/AftSurvival"
         ),
@@ -65,7 +59,6 @@ let package = Package(
             name: "CrossValidation",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/CrossValidation"
         ),
@@ -73,7 +66,6 @@ let package = Package(
             name: "BoostFromPrediction",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/BoostFromPrediction"
         ),
@@ -81,7 +73,6 @@ let package = Package(
             name: "CustomObjective",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/CustomObjective"
         ),
@@ -89,7 +80,6 @@ let package = Package(
             name: "EvalsResult",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/EvalsResult"
         ),
@@ -97,7 +87,6 @@ let package = Package(
             name: "ExternalMemory",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/ExternalMemory"
         ),
@@ -105,7 +94,6 @@ let package = Package(
             name: "GeneralizedLinearModel",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/GeneralizedLinearModel"
         ),
@@ -113,7 +101,6 @@ let package = Package(
             name: "PredictFirstNTree",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/PredictFirstNTree"
         ),
@@ -121,7 +108,6 @@ let package = Package(
             name: "PredictLeafIndices",
             dependencies: [
                 "XGBoost",
-                "PythonKit",
             ],
             path: "Examples/PredictLeafIndices"
         ),
