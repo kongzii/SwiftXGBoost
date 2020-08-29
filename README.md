@@ -25,9 +25,10 @@ Check out:
 Install XGBoost from sources
 
 ```
-git clone --recursive https://github.com/dmlc/xgboost
+git clone https://github.com/dmlc/xgboost
 cd xgboost
 git checkout tags/v1.1.1
+git submodule update --init --recursive
 mkdir build
 cd build
 cmake ..
